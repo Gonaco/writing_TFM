@@ -1,0 +1,152 @@
+
+
+# [Intro about quantum computers and compilers]
+
+Compilers
+
+# [Mapping definition//As explained before, mapping is...]? (We consider that the mapping task is divided in 3 subtasks: scheduling, initial placement and routing)
+
+# [Mapping problem (the longer the circuit the more errors -> paper that demonstrate it: cite:O_Brien_2017,Linke_2017)]
+
+# [Mapping solutions (Distinguish between the works minimizing in # SWAPS or in latency)]
+
+# [NISQ and NISQ mapping solutions]
+
+* BIB                                                                :ignore:
+
+bibliography:../../thesis_plan.bib
+bibliographystyle:plain
+
+** List of papers for the State of the Art
+
+
+*** Quantum Technologies
+
+**** Superconducting
+
+***** cite:Barends_2014
+
+***** Superconducting Surface Code cite:Versluis_2017
+
+**** Quantum dots
+
+***** cite:Hill_2015
+
+***** cite:Li_2018
+
+**** Other chips
+
+***** Google
+
+****** cite:boixo16:charac_quant_suprem_near_term_devic
+
+***** IBM
+
+****** cite:IBM_QX
+
+***** Rigetti
+
+****** cite:Sete_2016
+
+*** Metrics for quantum computation quality
+
+**** Quantum Volume
+
+***** cite:Moll_2018
+
+**** Probability of success
+
+***** cite:Linke_2017
+
+*** Mapping
+**** General (for any device) mapping solutions
+
+***** cite:Metodi_2006 (general but based on ion traps) (Results based on QEC encoders)
+
+Mapping as an algorithm (QPOS) solving the whole problem of mapping, (except the initial placement)?
+
+***** cite:Whitney_2007 (general but based on ion traps) (Results based on QEC encoders) (whole compiler flow)
+
+Computer-aided design (CAD) flow to automate the laying out of a quantum circuit to generate a physical layout, an intelligent initial placement of qubits, the associated classical control logic (HDL) and annotations to help the online scheduler better use the layout optimizations as they were intended.
+
+***** cite:Bahreini_2015 (general but based on ion traps)
+
+Mapping that starts to care about the larger circuits.
+
+A mixed integer nonlinear programming model is proposed for placement and scheduling.
+It is proved to be NP-complete combinatorial optimization, impossible to find optimal solution for large quantum circuits within a reasonable amount of time.
+Therefore, a metaheuristic solution method is developed (Generic Algorithm (GA) and tabu search (TS).
+They split for the first time scheduling and placement.
+
+
+
+***** 
+***** cite:Farghadan_2017 (general but based on ion-traps) (whole compiler flow) (what is the order? is the scheduling?)
+
+A flow for physical design of quantum circuits on a 2D grid is proposed.
+It contains three algorithms for finding the order of qubit placement, physical qubit placement, and routing.
+
+Better than PACQS cite:Lin_2015
+
+***** ? cite:Venturelli_2018 (but using Rigetti's as an example)
+
+The previous work of [[id:92d95c11-9075-4030-8250-b0f7d1ddb100][cite:booth18:compar_integ_const_progr_tempor]] where the temporal planner is coming from
+
+***** cite:booth18:compar_integ_const_progr_tempor (but using Rigetti's as an example ) 
+:PROPERTIES:
+:ID:       92d95c11-9075-4030-8250-b0f7d1ddb100
+:END:
+
+They use Constraint Programming together with temporal planning. An hybrid solution
+**** Only Routing (General)
+
+***** cite:Lye_2015
+
+Exact scheme for nearest neighbor optimization in multi-dimensional quantum circuits.
+
+***** cite:Wille_2016
+
+Routing looking-ahead
+
+**** FT Mapping
+
+***** cite:hwang18:hierar_system_mappin_large_scale
+
+***** cite:murphy18:contr
+
+**** ? Mapping with QEC (Logical Qubits mapping)
+***** cite:Lao_2018
+**** ? Mapping for NISQ devices
+
+***** cite:tannu18:case_variab_aware_polic_nisq
+
+***** cite:paler18:influen_initial_qubit_placem_durin
+
+***** cite:paler18:nisq
+**** ? Distributed Quantum Computing
+
+cite:brierley15:effic_quant
+
+**** Ion traps mapping or general?
+
+***** cite:Dousti_2012
+
+
+***** cite:Yazdani_2013 (general but based on ion trap technology) (Design flow) (Divides the problem in scheduling and initial placement/routing as a layout export) (Results on both QEC encoders and normal benchmarks)
+
+Schedule a quantum application and generate the layout while taking into account the cost of communications and classical resources as well as the maximum exploitable parallelism.
+
+**** IBM's chip mapping
+***** cite:zulehner17:effic_method_mappin_quant_circuit
+***** cite:Siraichi_2018
+***** cite:mckay18:qiskit_backen_specif_openq_openp_exper
+***** cite:Dueck_2018
+**** Rigetti's chip mapping
+***** cite:Venturelli_2018
+**** Google's chip mapping?
+*** NISQ
+**** cite:Preskill_2018
+
+*** ? Compilers
+
+**** cite:Fu_2016

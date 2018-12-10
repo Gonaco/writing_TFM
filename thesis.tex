@@ -1,0 +1,155 @@
+\documentclass{tudelft-report}
+
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{braket}
+\usepackage{subfiles}
+\usepackage{subfigure}
+\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{indentfirst}
+\usepackage{amssymb,amsmath}
+\usepackage[options]{qcircuit}
+\usepackage{color}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{hyperref}
+\usepackage{fdsymbol}
+\usepackage{listings}
+\usepackage{colortbl}
+\usepackage{mathtools}
+\usepackage{setspace}
+\usepackage{pdflscape}
+\usepackage{multirow}
+\usepackage{nameref}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{minted}
+\usepackage{parskip}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    backgroundcolor=\color{backcolour},   
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{codepurple},
+    commentstyle=\color{codegreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+ 
+\lstset{style=mystyle}
+
+\begin{document}
+
+\abovedisplayskip=4pt
+\abovedisplayshortskip=4pt
+\belowdisplayskip=4pt
+\belowdisplayshortskip=4pt
+
+%% Use Roman numerals for the page numbers of the title pages and table of
+%% contents.
+\frontmatter
+
+\title[for pattern-matching\\in genomic sequences]{Mapping Quantum algorithms on superconducting quantum processors}
+%\title[]{Quantum Algorithms for pattern-matching in genomic sequences}
+\author{Daniel Moreno Manzano}
+\affiliation{UPC and Delft University of Technology}
+
+\coverimage{cover1.jpg}
+
+\begingroup
+\hyphenpenalty 10000
+\exhyphenpenalty 10000
+\makecover
+\endgroup
+
+% \coverimage{cover3.jpg}
+% \makecover[back]
+
+%% Include an optional title page.
+
+
+\input{title}
+
+\input{abstract}
+\input{preface}
+
+\input{acronyms}
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+%% Use Arabic numerals for the page numbers of the chapters.
+\mainmatter
+
+%\input{chapter-0}
+%% \subfile{chapters/chapter-1}   % Introduction (Motivation, Problem statement, Structure of the thesis)
+\subfile{chapters/chapter-2}   % Quantum computers and mapping of quantum circuits (State of the Art, Mapping explaining the metrics) 
+%% \subfile{chapters/chapter-3}   % Benchmarks and error framework (Big picture, Benchmarks, Compiler{OpenQL}-cQASM-simulators)
+%% \subfile{chapters/chapter-4}   % Mappings on Superconducting Quantum Processors (Constraints, Mapping Model, Metrics)
+%% \subfile{chapters/chapter-5}   % Results (Comparison between mappings, #SWAPS-latency-Prob. Success-Quantum Volume, Advice)
+%% \subfile{chapters/chapter-6}   % Conclusions
+
+%% Use letters for the chapter numbers of the appendices.
+\appendix
+
+%% \subfile{appendix-1}   % Appendix-1
+%% \subfile{appendix-2}   % Appendix-2
+%% \subfile{appendix-3}   % Appendix-3
+%% \subfile{appendix-4}   % Appendix-4
+%% \subfile{appendix-5}   % Appendix-5
+%% \subfile{appendix-6}   % Appendix-6
+
+%\input{appendix-a}
+
+%\begin{spacing}{0}
+\bibliography{thesis_plan.bib}
+%\end{spacing}
+
+\end{document}
+

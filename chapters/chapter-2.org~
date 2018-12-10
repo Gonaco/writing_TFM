@@ -1,0 +1,6 @@
+# #+EXPORT_FILE_NAME: 
+
+#+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
+
+#+LATEX_CLASS: subfiles
+#+LATEX_CLASS_OPTIONS: thesis.tex

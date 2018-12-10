@@ -1,0 +1,104 @@
+#+TITLE: Mapping quantum algorithms for quantum superconducting chips
+#+AUTHOR: Daniel Moreno Manzano
+#+OPTIONS: tags:nil
+
+#+LATEX_CLASS: book
+
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{tabu}
+#+LATEX_HEADER: \usepackage{fullpage}
+#+LATEX_HEADER: \usepackage{pdflscape}
+#+LATEX_HEADER: \usepackage{tikz} \usetikzlibrary{mindmap,calc,trees,positioning,arrows,chains,shapes.geometric,decorations.pathreplacing,decorations.pathmorphing,shapes,matrix,shapes.symbols,plotmarks,decorations.markings,shadows}
+#+LATEX_HEADER: \usepackage{tikz-qtree}
+
+** Preface/Abstract
+
+*** TODO Something to add at the beginning of the presentation 
+#+BEGIN_QUOTE
+
+#+BEGIN_VERSE
+
+To read our E-mail, how mean
+of the spies and their quantum machine;
+be comforted though,
+the do not yet know
+how to factorize twelve or fifteen.
+
+#+END_VERSE
+
+
+#+END_QUOTE
+
+
+
+* Introduction to quantum computation
+
+  # Temporal introduction. Quantum was big in the 90's but the biggest thing came in 2010
+
+  # "Quantum computing exploits quantum-mechanical effect" ... "superposition entanglement an quantum tunneling" cite:coles18:quant_algor_implem_begin
+
+  # Why Quantum computation?
+  # - ...
+  # - Supercomputation power
+  # - Quantum chemistry simulation cite:Feynman_1982 cite:Wecker_2015
+  # - ...
+
+  # Future of Quantum Computers cite:preskill18:quant_comput_nisq
+
+** ...
+
+** ...
+
+** Quantum Circuits
+
+   # Representation
+
+   # Hardware agnostic
+
+   # Rules of the circuits (they are not like classical circuits representation)
+
+* State of the Art and the mapping problem
+
+** Quantum computers, the physical apparatus
+   :PROPERTIES:
+:INTERLEAVE_PDF: /scp:daniel@koiserver.ddns.net:~/Master/Quantum_Computing_and_Quantum_Information/Bibliography/[Michael_A._Nielsen,_Isaac_L._Chuang]_Quantum_Comp(BookFi.org).pdf
+:END:
+
+   # Conditions for quantum computation
+
+   # Different types: Quantum gate array (computation decomposed into sequence of few-qubit quantum gates), One-way quantum computer (computation decomposed into sequence of one-qubit measurements applied to a highly entangled initial state or cluster state), Adiabatic quantum computer, based on quantum annealing (computation decomposed into a slow continuous transformation of an initial Hamiltonian into a final Hamiltonian, whose ground states contain the solution), Topological quantum computer (computation decomposed into the braiding of anyons in a 2D lattice)
+
+   # Different realizations: harmonic oscillator, optical photon, optical cavity, ion traps, nuclear magnetic resonance, superconducting chips, quantum dots, ...
+
+** Chips constraints
+
+   # Introduction to superconducting chips and chips in general
+   # "Recently, superconducting chips have reached a new level of maturity. They have become fully programmable multi-qubit machines that provide the user with a flexibility to implement arbitrary quantum circuits from a high-level interface. This makes it possible for the first time to test quantum computers irrespective of their particular physical implementation" cite:Linke_2017
+
+   # Different types of chips: IBM QX, QuTech SC, Google, ...
+
+   # Constraints of those examples
+
+   [[file:/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/docs/constraints_analysis/constraints.org][Constraints document]]
+   [[file:/scp:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/docs/constraints_analysis/constraints_thesis.org][A friendly constraints document]]
+
+   
+   
+** The mapping problem
+   :PROPERTIES:
+:INTERLEAVE_PDF: /scp:daniel@koiserver.ddns.net:~/Master/Quantum_Computing_and_Quantum_Information/meeting_presentation_my_thesis.pdf
+# :INTERLEAVE_PDF: /scp:daniel@koiserver.ddns.net:~/Master/Quantum_Computing_and_Quantum_Information/Bibliography/MappingPaper_Lingling.pdf
+:END:
+
+** Stack computer architecture
+
+# Problems that quantum computers want to solve are small hard problems -> Quantum computer as an accelerator
+
+# At some point in the long future the classical machines won't be enough to deal with quantum accelerators
+   
+
+* ...
+* BIB [delete this HEADER]
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain
