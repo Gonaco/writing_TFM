@@ -17,7 +17,7 @@ Compilers
 bibliography:../../thesis_plan.bib
 bibliographystyle:plain
 
-** List of papers for the State of the Art
+** List of papers for the State of the Art                        :noexport:
 
 
 *** Quantum Technologies
