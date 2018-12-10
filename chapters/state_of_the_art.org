@@ -2,7 +2,7 @@
 
 # [Intro about quantum computers and compilers]
 
-Compilers
+Compilers cite:Fu_2016
 
 # [Mapping definition//As explained before, mapping is...]? (We consider that the mapping task is divided in 3 subtasks: scheduling, initial placement and routing)
 

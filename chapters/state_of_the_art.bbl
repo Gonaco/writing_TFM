@@ -1,3 +1,10 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Fu_2016}
+X.~Fu, L.~Riesebos, L.~Lao, C.~G. Almudever, F.~Sebastiano, R.~Versluis,
+  E.~Charbon, and K.~Bertels.
+\newblock A heterogeneous quantum computer architecture.
+\newblock {\em Proceedings of the ACM International Conference on Computing
+  Frontiers - CF ’16}, 2016.
 
 \end{thebibliography}
