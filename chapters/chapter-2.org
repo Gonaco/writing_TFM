@@ -1,9 +1,7 @@
-# #+EXPORT_FILE_NAME: 
+#+LATEX_CLASS: book
 
 #+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
-#+LATEX_CLASS: book
-# #+LATEX_CLASS_OPTIONS: [thesis.tex]
 * Quantum computers and mapping of quantum circuits
 ** State of the art
 
