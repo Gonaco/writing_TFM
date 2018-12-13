@@ -27,7 +27,7 @@ Certainly, the mapping procedure is an important part of this process based on t
 # Various approaches have been proposed to solve this issue cite:Metodi_2006,Whitney_2007,Bahreini_2015,Farghadan_2017,booth18:compar_integ_const_progr_tempor,Lye_2015,Wille_2016,brierley15:effic_quant,Dousti_2014,Heckey_2015,hwang18:hierar_system_mappin_large_scale,murphy18:contr,Lao_2018,paler18:influen_initial_qubit_placem_durin,Preskill_2018,tannu18:case_variab_aware_polic_nisq,li18:tackl_qubit_mappin_probl_nisq,paler18:nisq,zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018.
 
 There is a considerable amount of literature on the mapping task.
-Initial works on this field cite:Metodi_2006,Whitney_2007,Bahreini_2015 focused primarily on the definition of what they defined as a /scheduler/ able to parallelize operations and add the require ones to route qubits.
+Initial works on this field cite:Metodi_2006,Whitney_2007,Bahreini_2015 focused primarily on the definition of what they characterized a /scheduler/ able to parallelize operations and add the require ones to route qubits.
 They would consider general constraints, common for most of the hardware devices -- although the works were examining ion-traps as hardware implementations.
 The proposed techniques examine a dependency graph looking for the best way to organize qubits and operations.
 The majority of the methods use latency as the metric to minimize, however some of them cite:Farghadan_2017 would minimize in number of SWAP operations.
