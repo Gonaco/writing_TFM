@@ -18,9 +18,9 @@ These techniques force the quantum chips layout to arrange the qubits in a parti
 # [Mapping problem (because quantum devices are error prone -> QEC ..., therefore the longer the circuit the more errors -> paper that demonstrate it: cite:O_Brien_2017,Linke_2017)]
 # [Mapping definition//As explained before, mapping is...]? (We consider that the mapping task is divided in 3 subtasks: scheduling, initial placement and routing)
 
-A link between the algorithms and the devices is required cite:Fu_2016 thus.
+Thus, a link between the algorithms and the devices is required cite:Fu_2016.
 As in classical computation, the algorithms should go through a compilation process in order to adapt them to the hosting device.
-Certainly, the mapping procedure is an important part of this process based on three sub-tasks, scheduling, initial placement and routing; as we considered before.
+Certainly, the mapping procedure is an important part of this process based on three sub-tasks: scheduling, initial placement and routing; as we considered before.
 
 # [Mapping solutions (Distinguish between the works minimizing in # SWAPS or in latency)]
 
@@ -30,14 +30,20 @@ There is a considerable amount of literature on the mapping task.
 Initial works on this field cite:Metodi_2006,Whitney_2007,Bahreini_2015 focused primarily on the definition of what they defined as a /scheduler/ able to parallelize operations and add the require ones to route qubits.
 They would consider general constraints, common for most of the hardware devices -- although the works were examining ion-traps as hardware implementations.
 The proposed techniques examine a dependency graph looking for the best way to organize qubits and operations.
-The majority of the methods use latency as the metric to minimize, however some of them cite:Farghadan_2017 would minimize in #SWAPS.
+The majority of the methods use latency as the metric to minimize, however some of them cite:Farghadan_2017 would minimize in number of SWAP operations.
 Following a similar reasoning as the first approaches, more complex solutions cite:booth18:compar_integ_const_progr_tempor have been published.
-And, also, several works cite:Lye_2015,Wille_2016 outlining only the routing sub-task. 
-
+Also, several publications cite:Lye_2015,Wille_2016 outlining only the routing sub-task using the number of SWAPS as the metric to minimize.
+A recent review of the literature on the mapping topic cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018 focused on device specific mapping algorithms, with promising results.
 
 # [FT mapping (As mentioned)]
 
 # [NISQ and NISQ mapping solutions (Start with a sentence from the point 16 of the useful phrases document)]
+
+Many attempts have been made cite:Dousti_2014,Heckey_2015,hwang18:hierar_system_mappin_large_scale,murphy18:contr,Lao_2018 with the purpose of develop a FT mapping able to work at the logical -- qubit -- level.
+However, due to the high complexity of the QEC techniques, quantum chips with large amounts of qubits are still theory.
+More recent evidence cite:Preskill_2018, proposes the Noisy Intermediate-Scale Quantum (NISQ) devices as the next step for near future hardware with an amount of 50-100 qubits and without QEC or much simpler encodings.
+Several studies, for instance cite:tannu18:case_variab_aware_polic_nisq,paler18:nisq,paler18:influen_initial_qubit_placem_durin, have been conducted on the mapping algorithms required for NISQ devices.
+
 
 * Summary table                                             :ignore:noexport:
 
@@ -109,11 +115,11 @@ bibliographystyle:plain
 
 ****** cite:Sete_2016
 
-*** ? Compilers
+*** Compilers
 
 **** cite:Fu_2016
 
-*** Metrics for quantum computation quality
+*** ? Metrics for quantum computation quality
 
 **** Quantum Volume
 
@@ -176,6 +182,23 @@ Routing looking-ahead
 
 cite:brierley15:effic_quant
 
+**** Ion traps mapping or general?
+
+***** cite:Dousti_2012
+
+
+***** cite:Yazdani_2013 (general but based on ion trap technology) (Design flow) (Divides the problem in scheduling and initial placement/routing as a layout export) (Results on both QEC encoders and normal benchmarks)
+
+Schedule a quantum application and generate the layout while taking into account the cost of communications and classical resources as well as the maximum exploitable parallelism.
+
+**** IBM's chip mapping
+***** cite:zulehner17:effic_method_mappin_quant_circuit Metric: *#SWAPS*
+***** cite:Siraichi_2018 Metric: *#SWAPS*
+***** cite:mckay18:qiskit_backen_specif_openq_openp_exper
+***** cite:Dueck_2018
+**** Rigetti's chip mapping
+***** cite:Venturelli_2018
+**** Google's chip mapping?
 **** FT Mapping (Logical Qubits mapping)
 
 ***** ? cite:Dousti_2013 (Estimation tool, not a mapper)
@@ -212,23 +235,5 @@ They pinpoint that to reduce communication with memory and use small memories is
 ***** cite:paler18:influen_initial_qubit_placem_durin
 
 ***** cite:paler18:nisq
-
-**** Ion traps mapping or general?
-
-***** cite:Dousti_2012
-
-
-***** cite:Yazdani_2013 (general but based on ion trap technology) (Design flow) (Divides the problem in scheduling and initial placement/routing as a layout export) (Results on both QEC encoders and normal benchmarks)
-
-Schedule a quantum application and generate the layout while taking into account the cost of communications and classical resources as well as the maximum exploitable parallelism.
-
-**** IBM's chip mapping
-***** cite:zulehner17:effic_method_mappin_quant_circuit
-***** cite:Siraichi_2018
-***** cite:mckay18:qiskit_backen_specif_openq_openp_exper
-***** cite:Dueck_2018
-**** Rigetti's chip mapping
-***** cite:Venturelli_2018
-**** Google's chip mapping?
 *** NISQ
 **** cite:Preskill_2018

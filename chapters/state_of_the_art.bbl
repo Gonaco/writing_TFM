@@ -35,6 +35,19 @@ Patrick~J. Coles, Stephan Eidenbenz, Scott Pakin, Adetokunbo Adedoyin, John
   Marc Vuffray, Jim Wendelberger, Boram Yoon, Richard Zamora, and Wei Zhu.
 \newblock {Quantum Algorithm Implementations for Beginners}, 2018.
 
+\bibitem{Dousti_2014}
+Mohammad~Javad Dousti, Alireza Shafaei, and Massoud Pedram.
+\newblock Squash.
+\newblock {\em Proceedings of the 24th edition of the great lakes symposium on
+  VLSI - GLSVLSI ’14}, 2014.
+
+\bibitem{Dueck_2018}
+Gerhard~W Dueck, Anirban Pathak, Md~Mazder Rahman, Abhishek Shukla, and
+  Anindita Banerjee.
+\newblock Optimization of circuits for ibm’s five-qubit quantum computers.
+\newblock {\em 2018 21st Euromicro Conference on Digital System Design (DSD)},
+  Aug 2018.
+
 \bibitem{Farghadan_2017}
 Azim Farghadan and Naser Mohammadzadeh.
 \newblock Quantum circuit physical design flow for 2d nearest-neighbor
@@ -49,16 +62,35 @@ X.~Fu, L.~Riesebos, L.~Lao, C.~G. Almudever, F.~Sebastiano, R.~Versluis,
 \newblock {\em Proceedings of the ACM International Conference on Computing
   Frontiers - CF ’16}, 2016.
 
+\bibitem{Heckey_2015}
+Jeff Heckey, Shruti Patil, Ali JavadiAbhari, Adam Holmes, Daniel Kudrow,
+  Kenneth~R. Brown, Diana Franklin, Frederic~T. Chong, and Margaret Martonosi.
+\newblock Compiler management of communication and parallelism for quantum
+  computation.
+\newblock {\em ACM SIGPLAN Notices}, 50(4):445–456, Mar 2015.
+
 \bibitem{Hill_2015}
 Charles~D. Hill, Eldad Peretz, Samuel~J. Hile, Matthew~G. House, Martin
   Fuechsle, Sven Rogge, Michelle~Y. Simmons, and Lloyd C.~L. Hollenberg.
 \newblock A surface code quantum computer in silicon.
 \newblock {\em Science Advances}, 1(9):e1500707, Oct 2015.
 
+\bibitem{hwang18:hierar_system_mappin_large_scale}
+Yongsoo Hwang and Byung-Soo Choi.
+\newblock {Hierarchical System Mapping for Large-Scale Fault-Tolerant Quantum
+  Computing}, 2018.
+
 \bibitem{IBM_QX}
 IBM.
 \newblock Ibm q experience backend information.
 \newblock \url{https://github.com/QISKit/ibmqx-backend-information}, 2018.
+
+\bibitem{Lao_2018}
+L~Lao, B~van Wee, I~Ashraf, J~van Someren, N~Khammassi, K~Bertels, and C~G
+  Almudever.
+\newblock Mapping of lattice surgery-based quantum circuits on surface code
+  architectures.
+\newblock {\em Quantum Science and Technology}, 4(1):015005, Sep 2018.
 
 \bibitem{Li_2018}
 Ruoyu Li, Luca Petit, David~P. Franke, Juan~Pablo Dehollain, Jonas Helsen, Mark
@@ -74,11 +106,25 @@ Aaron Lye, Robert Wille, and Rolf Drechsler.
 \newblock {\em The 20th Asia and South Pacific Design Automation Conference},
   Jan 2015.
 
+\bibitem{mckay18:qiskit_backen_specif_openq_openp_exper}
+David~C. McKay, Thomas Alexander, Luciano Bello, Michael~J. Biercuk, Lev
+  Bishop, Jiayin Chen, Jerry~M. Chow, Antonio~D. Córcoles, Daniel Egger,
+  Stefan Filipp, Juan Gomez, Michael Hush, Ali Javadi-Abhari, Diego Moreda,
+  Paul Nation, Brent Paulovicks, Erick Winston, Christopher~J. Wood, James
+  Wootton, and Jay~M. Gambetta.
+\newblock {Qiskit Backend Specifications for OpenQASM and OpenPulse
+  Experiments}, 2018.
+
 \bibitem{Metodi_2006}
 Tzvetan~S. Metodi, Darshan~D. Thaker, Andrew~W. Cross, Frederic~T. Chong, and
   Isaac~L. Chuang.
 \newblock Scheduling physical operations in a quantum information processor.
 \newblock {\em Quantum Information and Computation IV}, May 2006.
+
+\bibitem{murphy18:contr}
+Daniel~C. Murphy and Kenneth~R. Brown.
+\newblock {Controlling error orientation to improve quantum algorithm success
+  rates}, 2018.
 
 \bibitem{Nielsen_2009}
 Michael~A. Nielsen and Isaac~L. Chuang.
@@ -91,11 +137,44 @@ T.~E. O’Brien, B.~Tarasinski, and L.~DiCarlo.
   projected experimental noise.
 \newblock {\em npj Quantum Information}, 3(1), Sep 2017.
 
+\bibitem{paler18:influen_initial_qubit_placem_durin}
+Alexandru Paler.
+\newblock {On the Influence of Initial Qubit Placement During NISQ Circuit
+  Compilation}, 2018.
+
+\bibitem{paler18:nisq}
+Alexandru Paler, Alwin Zulehner, and Robert Wille.
+\newblock {NISQ circuit compilers: search space structure and heuristics},
+  2018.
+
+\bibitem{Preskill_2018}
+John Preskill.
+\newblock Quantum computing in the nisq era and beyond.
+\newblock {\em Quantum}, 2:79, Aug 2018.
+
 \bibitem{Sete_2016}
 Eyob~A. Sete, William~J. Zeng, and Chad~T. Rigetti.
 \newblock A functional architecture for scalable quantum computing.
 \newblock {\em 2016 IEEE International Conference on Rebooting Computing
   (ICRC)}, Oct 2016.
+
+\bibitem{Siraichi_2018}
+Marcos~Yukio Siraichi, Vinícius Fernandes~dos Santos, Sylvain Collange, and
+  Fernando Magno~Quintao Pereira.
+\newblock Qubit allocation.
+\newblock {\em Proceedings of the 2018 International Symposium on Code
+  Generation and Optimization - CGO 2018}, 2018.
+
+\bibitem{tannu18:case_variab_aware_polic_nisq}
+Swamit~S. Tannu and Moinuddin~K. Qureshi.
+\newblock {A Case for Variability-Aware Policies for NISQ-Era Quantum
+  Computers}, 2018.
+
+\bibitem{Venturelli_2018}
+Davide Venturelli, Minh Do, Eleanor Rieffel, and Jeremy Frank.
+\newblock Compiling quantum circuits to realistic hardware architectures using
+  temporal planners.
+\newblock {\em Quantum Science and Technology}, 3(2):025004, Feb 2018.
 
 \bibitem{Versluis_2017}
 R.~Versluis, S.~Poletto, N.~Khammassi, B.~Tarasinski, N.~Haider, D. J.
@@ -117,5 +196,10 @@ Robert Wille, Oliver Keszocze, Marcel Walter, Patrick Rohrs, Anupam
   quantum circuits.
 \newblock {\em 2016 21st Asia and South Pacific Design Automation Conference
   (ASP-DAC)}, Jan 2016.
+
+\bibitem{zulehner17:effic_method_mappin_quant_circuit}
+Alwin Zulehner, Alexandru Paler, and Robert Wille.
+\newblock {An Efficient Methodology for Mapping Quantum Circuits to the IBM QX
+  Architectures}, 2017.
 
 \end{thebibliography}
