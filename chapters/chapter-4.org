@@ -1,0 +1,13 @@
+#+LATEX_CLASS: book
+#+EXCLUDE_TAGS: noexport thesisnoexport
+#+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
+
+* Mapping on superconducting quantum processors
+** TODO Constraints of the Surface-7 and -17 chips
+
+#+BEGIN_EXPORT latex
+\subfile{constraints.tex}
+#+END_EXPORT
+
+** Mapping model
+** Metrics

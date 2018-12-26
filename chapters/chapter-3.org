@@ -1,0 +1,9 @@
+#+LATEX_CLASS: book
+#+EXCLUDE_TAGS: noexport thesisnoexport
+#+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
+
+* Benchmarks and error framework
+** Big picture
+
+** Benchmarks
+** Error framework

@@ -1,0 +1,13 @@
+#+LATEX_CLASS: book
+
+#+EXCLUDE_TAGS: noexport thesisnoexport
+
+#+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
+
+* Introduction
+
+** Motivation
+
+** Problem Statement
+
+** Structure of the thesis

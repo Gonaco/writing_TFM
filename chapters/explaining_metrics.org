@@ -1,0 +1,19 @@
+# What is a metric, why do we need them
+
+# Intro to metrics from the state of the art [As outlined in the state of the art, the literature considers mainly two metrics to report the mapping quality of their algorithms.]
+
+# Metrics criticism [Research has tended to focus on either depth or number of SWAPS rather than the error produced by the mapping.]
+
+As outlined in the state of the art, the literature considers mainly two metrics to report the quality of their mapping algorithms, the added *latency* and the *number* of introduced *operations* after the mapping procedure.
+Latency is the time required to run a quantum circuit in a given quantum device.
+It depends on the chip cycle time and the depth of the circuit, that is the number of cycles in the algorithm.
+On the other hand, the number of operations is ..
+
+Both stand on correct -- but not precise -- reasoning.
+The latency metric states that the longer the circuit, the more errors would appear.
+Indeed, time is a main issue in quantum computing.
+Decoherence time is not only a maximum qubit lifetime, the quantum state would be harder to hold for times closer to the decoherence time.
+So, 
+
+The more these metrics grow, the worst the mapping is.
+Research has tended to focus on either latency or number of SWAPS rather than the error produced by the mapping.
