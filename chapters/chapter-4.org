@@ -6,7 +6,7 @@
 ** TODO Constraints of the Surface-7 and -17 chips
 
 #+BEGIN_EXPORT latex
-\subfile{constraints.tex}
+\subfile{constraints}
 #+END_EXPORT
 
 ** Mapping model
