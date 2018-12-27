@@ -1,19 +1,67 @@
-# What is a metric, why do we need them
-
 # Intro to metrics from the state of the art [As outlined in the state of the art, the literature considers mainly two metrics to report the mapping quality of their algorithms.]
+
+As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added *latency* and the *number* of introduced *operations* after the mapping procedure.
+The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
+And latency is the time required to run a quantum circuit in a given quantum device.
+It depends on the chip cycle time and the *depth* of the circuit, that is the number of cycles the algorithm encloses.
+Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth.
+E.g. in Fig. \ref{latency_swaps_ex}, one can see how after the mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
+From five cycles depth in the original circuit to nine cycles.
+
+# [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]
+
+          #+BEGIN_EXPORT latex
+
+\begin{figure}[h!]
+\centerline{\subfigure[]{
+
+   \Qcircuit @C=1em @R=.7em {
+\lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+}
+
+\label{original_latency_swaps_ex}}
+\subfigure[]{
+
+\resizebox{\textwidth}{!}{
+    \Qcircuit @C=.5em @R=.7em {
+ \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
+\lstick{c \to Q_2} & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \ctrl{-3} & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
+\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
+\lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
+ }
+}
+
+\label{routed_latency_swaps_ex}}}
+\caption{(a) Gray encoder quantum circuit(b) Mapped Gray encoder for the SC-7 chip.}
+\label{latency_swaps_ex}
+\end{figure}
+
+
+   #+END_EXPORT
 
 # Metrics criticism [Research has tended to focus on either depth or number of SWAPS rather than the error produced by the mapping.]
 
-As outlined in the state of the art, the literature considers mainly two metrics to report the quality of their mapping algorithms, the added *latency* and the *number* of introduced *operations* after the mapping procedure.
-Latency is the time required to run a quantum circuit in a given quantum device.
-It depends on the chip cycle time and the depth of the circuit, that is the number of cycles in the algorithm.
-On the other hand, the number of operations is ..
+The ideal mapping would be the one affecting the least as possible the original circuit or, what is the same, introducing the least amount of errors.
+Clearly, both, latency and number of SWAPs, are direct effects of the mapping procedure that have an impact in the error increment.
+To optimize in any of them stands on correct -- but not sufficient -- reasoning.
+The latency optimization states that the leading error source comes from the qubit lifetime.
+And, indeed, time is a main issue in quantum computing.
+Decoherence time is not only a maximum qubit lifetime, it is harder and harder to hold a quantum state for use times closer to the decoherence time.
+On the other hand, to optimize in number of SWAPs stands on the gate error as the preeminent error in a quantum computer.
+As seen in the [PROBLEM STATEMENT SECTION], the higher the number of operations does not necessarily mean the longer circuit depth.
+Several operations can be run in the same cycle -- at the same time.
 
-Both stand on correct -- but not precise -- reasoning.
-The latency metric states that the longer the circuit, the more errors would appear.
-Indeed, time is a main issue in quantum computing.
-Decoherence time is not only a maximum qubit lifetime, the quantum state would be harder to hold for times closer to the decoherence time.
-So, 
+, although these metrics are not enough to assert how good the process is.
 
-The more these metrics grow, the worst the mapping is.
+
+The more these metrics grow, the worse the mapping is.
 Research has tended to focus on either latency or number of SWAPS rather than the error produced by the mapping.
+
+In our study we will analyze these metrics amongst other different ones as fidelity, probability of success or quantum volume and their impact in the error evolution.
