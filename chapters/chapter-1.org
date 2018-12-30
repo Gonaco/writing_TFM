@@ -10,4 +10,6 @@
 
 ** Problem Statement
 
+#+INCLUDE: problem_statement.org
+
 ** Structure of the thesis
