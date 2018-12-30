@@ -1,19 +1,19 @@
 
 \chapter*{Introduction}
-\label{sec:org3903ccc}
+\label{sec:org49c4ae2}
 
 \section*{Motivation}
-\label{sec:org7ae5fad}
+\label{sec:orgb34791d}
 
 \section*{Problem Statement}
-\label{sec:orgd0c4be8}
+\label{sec:orgaea9d52}
 
 \subsection*{Mapping Problem}
-\label{sec:org286d2de}
+\label{sec:org481fbf6}
 
 \begin{itemize}
 \item Mapping
-\label{sec:orge0ed1da}
+\label{sec:orgea02422}
 
 Given a quantum circuit representation that is hardware agnostic, adapt it to the requirements of a real quantum processor.
 
@@ -28,7 +28,7 @@ The mapping problem can be split in:
 
 \begin{itemize}
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgaf22d41}
+\label{sec:org42dceb0}
 So, what is mapping?
 Given a quantum circuit representation that is hardware agnostic, the mapping task adapt it to the requirements of a real quantum processor.
 
@@ -42,14 +42,14 @@ The mapping problem can be split in 3 parts that are executed continuously:
 \end{itemize}
 
 \item Scheduling
-\label{sec:orge5813b3}
+\label{sec:org154d492}
 
 \begin{itemize}
 \item Example
-\label{sec:org78526e8}
+\label{sec:orge7aaf73}
 \begin{itemize}
 \item Original
-\label{sec:org3b38084}
+\label{sec:org0111712}
 
 \begin{center}
 
@@ -64,7 +64,7 @@ Original
 \end{center}
 
 \item ASAP
-\label{sec:org93647d0}
+\label{sec:org0568ee5}
 
 \begin{center}
 
@@ -81,7 +81,7 @@ ASAP
 \end{center}
 
 \item ALAP
-\label{sec:org1bda920}
+\label{sec:orgacd0d08}
 
 \begin{center}
 
@@ -99,14 +99,14 @@ ALAP
 \end{itemize}
 
 \item Dependence graph
-\label{sec:orgcd80f5a}
+\label{sec:org1aab3d5}
 \begin{itemize}
 \item :BMCOL:
-\label{sec:org72d2ec0}
+\label{sec:org5086c3f}
 The SWAP gate swaps the information between qubits.
 
 \item Dependence graph
-\label{sec:org76be64f}
+\label{sec:org31c58f2}
 
 \begin{center}
 \resizebox{.5\textwidth}{!}{%
@@ -140,12 +140,12 @@ The SWAP gate swaps the information between qubits.
 \end{center}
 
 \item :BMCOL:
-\label{sec:orgb5b70fa}
+\label{sec:org633763e}
 Parallel operation \(\to\) the ones that can be done simultaneously
 \end{itemize}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org03836a1}
+\label{sec:org1ff8c8e}
 As an example of scheduling, let's consider this circuit with\ldots{}
 
 A SWAP gate swaps the information (or state) of one qubit to other and viceversa.
@@ -160,15 +160,15 @@ For example, ASAP or ALAP.
 \end{itemize}
 
 \item Mapping example
-\label{sec:orge683885}
+\label{sec:org000cc39}
 
 
 \begin{itemize}
 \item Example definition
-\label{sec:org564dd93}
+\label{sec:orga876c6c}
 \begin{itemize}
 \item Example definition
-\label{sec:orgd127a78}
+\label{sec:org53c2524}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -176,10 +176,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:orga55ef28}
+\label{sec:org9f03e7a}
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org2eef0f8}
+\label{sec:orgabc1cdf}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -250,7 +250,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org4051793}
+\label{sec:org1a8bcab}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -311,10 +311,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org081d57b}
+\label{sec:org73a9a84}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgc98e037}
+\label{sec:org8bdd10c}
 \begin{center}
 
 \uline{Optimized Approach}
@@ -324,17 +324,17 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 \end{itemize}
 \item :BMCOL:
-\label{sec:org99fec97}
+\label{sec:orgf96b694}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:org3f49b86}
+\label{sec:org25300ed}
 \uline{Gray Code Quantum Circuit}
 
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org7963c08}
+\label{sec:org631915c}
 \begin{verbatim}
 
 #QASM code
@@ -356,7 +356,7 @@ cnot f,d
 
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org084b447}
+\label{sec:orga6d7fab}
 
 \begin{center}
    \Qcircuit @C=1em @R=.7em {
@@ -410,7 +410,7 @@ cnot f,d
 Latency: 400ns
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:orga03b603}
+\label{sec:orge6e01b0}
       \begin{center}
      \Qcircuit @C=1em @R=.7em {
      \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
@@ -428,10 +428,10 @@ Latency: 400ns
 \end{itemize}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org57eeb09}
+\label{sec:orgca2424d}
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:orgf13a9d2}
+\label{sec:org0afe0f9}
 Maybe is going to be more clear with a toy example.
 Let's say that we want to run the Gray Code Quantum Generator in the SC-7.
 
@@ -444,7 +444,7 @@ This code is written in QASM (Quantum Assembly), a basic language for describing
 \end{figure}
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org955f779}
+\label{sec:org44c8774}
 The Gray Code Quantum Circuit looks like this.
 
 We have to define whish virtual qubits (a,b,\ldots{}) is related with the physical ones (0,1,..)
@@ -459,13 +459,13 @@ No routing is required.
 \end{itemize}
 
 \item Mapping example. Scheduling and placement
-\label{sec:org98ac65a}
+\label{sec:org32391c1}
 \begin{itemize}
 \item Example definition
-\label{sec:orgd595e78}
+\label{sec:org89bc147}
 \begin{itemize}
 \item Example definition
-\label{sec:orgf423818}
+\label{sec:orgfd9c0de}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -473,7 +473,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:orgbe3ab01}
+\label{sec:orga1b73f5}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -533,10 +533,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org1be003f}
+\label{sec:orgf1624e1}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgf84c6c9}
+\label{sec:org664a69e}
 \begin{center}
 
 \uline{Naive Approach}  
@@ -547,12 +547,12 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :BMCOL:
-\label{sec:orge2c8697}
+\label{sec:orga7b7d68}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:orgdb46197}
+\label{sec:org168be56}
 \uline{Gray Code Quantum Circuit}
 
 
@@ -574,7 +574,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgd940a23}
+\label{sec:org2db148d}
 But what happens if we use a Naive initial placement approach?
 
 Let's map in alphabetical order (a \(\to\) 0, b \(\to\) 1, \ldots{}).
@@ -587,13 +587,13 @@ We should do this with all the circuit and the result will this circuit.
 
 
 \item Mapping example. Routing and re-scheduling
-\label{sec:org3d0bed1}
+\label{sec:orgfa8b241}
 \begin{itemize}
 \item Example definition
-\label{sec:orgae09068}
+\label{sec:orgef961c2}
 \begin{itemize}
 \item Example definition
-\label{sec:org5ab95e2}
+\label{sec:org0c1cc87}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -601,7 +601,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:orgc26b564}
+\label{sec:org51da662}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -662,10 +662,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgb7d40f8}
+\label{sec:org3941e86}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgc7ec296}
+\label{sec:orgc93cd10}
 \begin{center}
 
 \uline{Naive Approach}  
@@ -676,15 +676,15 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :BMCOL:
-\label{sec:orgc30b06f}
+\label{sec:orgf258489}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:orgbb8d7a6}
+\label{sec:org1f2b999}
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org3929557}
+\label{sec:orgfbca12c}
 \begin{center}
 \resizebox{\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -699,7 +699,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgcf6701a}
+\label{sec:org9171e98}
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}
     
@@ -762,7 +762,7 @@ Latency: \(1440 + 400 = 1840\) ns
 \end{itemize}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org7e3f27d}
+\label{sec:org1e3e68d}
 In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
 
 Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
@@ -770,13 +770,13 @@ Remember that Quantum gates are well known to be highly faulty.
 \end{itemize}
 
 \item Mapping example. Routing and re-scheduling
-\label{sec:org33c9a62}
+\label{sec:orgf3feb1d}
 \begin{itemize}
 \item Example definition
-\label{sec:orgd20d3de}
+\label{sec:orge1759de}
 \begin{itemize}
 \item Example definition
-\label{sec:org8ddfca4}
+\label{sec:org5f0cade}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -784,7 +784,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:org7cc1e69}
+\label{sec:org930f822}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -845,10 +845,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgb0ffd41}
+\label{sec:orgff35f2e}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgcdbb175}
+\label{sec:org0a4f39d}
 \begin{center}
 
 \uline{Naive Approach}  
@@ -859,15 +859,15 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :BMCOL:
-\label{sec:org8d9712c}
+\label{sec:org00dd169}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:org9c413e7}
+\label{sec:org8a5a7aa}
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org85f7301}
+\label{sec:org325f6c9}
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -883,13 +883,13 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgabb10c9}
+\label{sec:org5f3dde3}
 \begin{center}
 $\Box$ \text{Cycle}
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orga710379}
+\label{sec:orgf99a7cc}
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}
     
@@ -953,21 +953,21 @@ Latency: 1520 ns
 
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org8c6f964}
+\label{sec:org944332a}
 In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
 
 Note that the circuit complexity has grown. The mapping task is causing an obvious overhead.
 \end{itemize}
 
 \item Optimal approach vs Naive
-\label{sec:org799e872}
+\label{sec:org0fe3452}
 
 \begin{itemize}
 \item Circuits
-\label{sec:org5ccff21}
+\label{sec:orgb9c9366}
 \begin{itemize}
 \item :BMCOL:
-\label{sec:org91cb041}
+\label{sec:org9017ec4}
       \begin{center}
 \resizebox{.6\textwidth}{!}{
      \Qcircuit @C=1em @R=.7em {
@@ -983,7 +983,7 @@ Note that the circuit complexity has grown. The mapping task is causing an obvio
 
 
 \item :BMCOL:
-\label{sec:org92d1e00}
+\label{sec:org0b244b8}
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1000,7 +1000,7 @@ Note that the circuit complexity has grown. The mapping task is causing an obvio
 \end{itemize}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org31caac2}
+\label{sec:org0dd4f00}
 \begin{table}[htbp]
 \centering
 \begin{tabular}{lll}
@@ -1013,14 +1013,14 @@ latency & 400 ns & 1520 ns\\
 \end{table}
 \end{itemize}
 \item What is the problem?
-\label{sec:orgb1cf7fc}
+\label{sec:orgc84433c}
 
 \begin{itemize}
 \item :BMCOL:
-\label{sec:org7dd0ca6}
+\label{sec:org44c2323}
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orga005b26}
+\label{sec:org1aa744f}
 Error sources:
 
 \begin{itemize}
@@ -1030,7 +1030,7 @@ Error sources:
 \end{itemize}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org9e8443f}
+\label{sec:orgf4f6a78}
 \vspace{.5cm}
 
 \uline{No error correction} (despite we are working at \uline{physical} qubits level)
@@ -1038,10 +1038,10 @@ Error sources:
 
 
 \item :BMCOL:
-\label{sec:org34a8414}
+\label{sec:orgc228d30}
 \begin{itemize}
 \item Windows error image
-\label{sec:org5b2675d}
+\label{sec:orge89e635}
 \vspace{.5cm}
 
 \begin{center}
@@ -1050,14 +1050,14 @@ Error sources:
 \end{itemize}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orga99e07c}
+\label{sec:org05385c4}
 
 \item Best Mapping
-\label{sec:orgcf10b6a}
+\label{sec:orgd3cb6ed}
 Ideal mapping should not inject extra errors.
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org84b56f6}
+\label{sec:org63c433e}
 What is the problem of this overhead?
 
 There are a lot of error sources that affect the fidelity of a quantum algorithm result.
@@ -1070,14 +1070,14 @@ So the problem in the mapping task is, which is the best mapping between all pos
 \end{itemize}
 
 \item State of the Art of the mapping task
-\label{sec:org6a24a86}
+\label{sec:orgf682750}
 
 \begin{itemize}
 \item Index
-\label{sec:orgd1dd184}
+\label{sec:org0689b92}
 \begin{itemize}
 \item What is the people doing?
-\label{sec:orgabb90b2}
+\label{sec:org91237ce}
 \small
 
 \begin{itemize}
@@ -1095,7 +1095,7 @@ So the problem in the mapping task is, which is the best mapping between all pos
 \end{itemize}
 
 \item Compare with what we want to do
-\label{sec:org7ea26bb}
+\label{sec:org0068caf}
 \begin{table}[htbp]
 \centering
 \small
@@ -1117,16 +1117,16 @@ The other works metric is either the \uline{latency} or the \uline{\#operations}
 
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org2862bad}
+\label{sec:orgeb12b7f}
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org61582b9}
+\label{sec:org6f1afd2}
 And this problem is an important problem for the Quantum Computing community.
    Many works have tried to efficiently map physical quantum circuits on different qubit structures.
 
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org1529ef7}
+\label{sec:org69b748f}
 \hline
 
 All the works are using the latency or the number of operations as metric, or what is the same, they are looking for the best mapping optimizing in number of operations or latency.
@@ -1138,20 +1138,20 @@ No one is analyzing the success of the algorithms after the mapping task!
 \end{itemize}
 
 \item Other constraints
-\label{sec:orgbdd38d1}
+\label{sec:org3965789}
 
 \begin{itemize}
 \item SC-17 topology
-\label{sec:org2b50336}
+\label{sec:orgd4f6a1d}
 \begin{itemize}
 \item Images
-\label{sec:orgb6cff62}
+\label{sec:org55dfbb5}
 \begin{center}
 \includegraphics[width=.6\textwidth]{figs/sc-17.eps}
 \end{center}
 
 \item Images
-\label{sec:org1946e10}
+\label{sec:orgdf51329}
    
    \definecolor{qpink}{rgb}{0.91, 0.05, 0.57}
 	      
@@ -1233,10 +1233,10 @@ No one is analyzing the success of the algorithms after the mapping task!
 
 
 \item Constraints
-\label{sec:org95b7a4e}
+\label{sec:org91e279c}
 \begin{itemize}
 \item :BMCOL:
-\label{sec:org9722302}
+\label{sec:orgb433ac3}
 Constraints:
 
 \begin{itemize}
@@ -1249,7 +1249,7 @@ Constraints:
 This constraints also affect the mapping task (mainly scheduling)
 
 \item Table
-\label{sec:orgfddf798}
+\label{sec:org0a2c989}
 \definecolor{qpink}{rgb}{0.91, 0.05, 0.57}
 
 \begin{center}
@@ -1268,7 +1268,7 @@ Freq. Group & Qubits\\
 \end{itemize}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgc376766}
+\label{sec:org8ddbe0d}
 \uline{Frequencies constraint}
 
 It is not possible to select or operate at the same time two different single-qubit gates over qubits in the same frequency set (same color).
@@ -1283,4 +1283,4 @@ This constraints are affecting mainly to the scheduling!
 \end{itemize}
 
 \section*{Structure of the thesis}
-\label{sec:org0cd9916}
+\label{sec:orgee916d1}
