@@ -1,10 +1,219 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:org5473f3e}
+\label{sec:org00bfc8f}
 \section*{Big picture}
-\label{sec:org10cc725}
+\label{sec:orgdb59ae1}
 
 \section*{Benchmarks}
-\label{sec:org3814028}
+\label{sec:org3c8610a}
 \section*{Error framework}
-\label{sec:org4c15523}
+\label{sec:org54b28a0}
+\subsection*{Compiler (OpenQL, cQASM)?}
+\label{sec:org0304ed2}
+\subsection*{quantumsim}
+\label{sec:orgc335a45}
+
+\begin{itemize}
+\item Error model parameters
+\label{sec:orgbb17da7}
+
+\begin{table}[htbp]
+\caption{\label{tab:orgd1d2210}
+Main error model parameters for simulation}
+\centering
+\tiny
+\begin{tabular}{lccp{7cm}}
+\hline
+Parameter & Symbol & Value & Explanation and notes\\
+\hline
+Qubit relaxation time & \(T_1\) & 30 \(\mu s\) & Only affects qubits in the excited state. Consistent set of values: [20 - 100 \(\mu s\)]\\
+Qubit dephasing time (white noise) & \(T_{\phi}\) & 60 \(\mu s\) & Consistent set of values would be \(2 T_1\) or \(\infty\) (all white noise dephasing eliminated)\\
+Decay time & \(T_2\) & 30 \(\mu s\) & \(\frac{1}{T_2} = \frac{1}{T_{\phi}} + \frac{1}{2 T_1}\)\\
+Single-qubit gate time & \(T_{g,1Q}\) & 20 ns & \\
+Two-qubit gate time & \(T_{g,2Q}\) & 40 ns & \\
+Measurement time & \(\tau_m\) & 300 ns & \\
+Depletion time & \(\tau_d\) & 300 ns & ?\\
+Fast Measurement time & \(\tau_m^{\text{fast}}\) & 100 ns & \\
+Fast Depletion time & \(\tau_d^{\text{fast}}\) & 100 ns & ?\\
+Readout infidelity & \(\epsilon_{RO}\) & 5\,(-3) & \\
+Physical qubit Fidelity & \(\mathcal{F}_{phys} (t)\) & - & \(\mathcal{F}_{phys} (t) = \frac{1}{6}\left(1 + e^{-\frac{t}{T_1}}\right) + \frac{1}{3}\left(1 + e^{-t\left(\frac{1}{2 T_1} + \frac{1}{T_{\phi}}\right)} \right)\)\\
+Physical qubit error rate & \(\epsilon_{phys}\) & - & \(\epsilon_{phys} = - \tau_{circuit} \frac{d \mathcal{F}_{phys} (t)}{dt} \textbar_{t=0}=\frac{\tau_{circuit}}{3 T_1}+\frac{\tau_{circuit}}{3 T_{\phi}}\)\\
+In-axis rotation error & \(p_{axis}\) & 1\,(-4) & Decay corresponding to shrinking along the y axis because of the single-qubit gates depolarizing noise\\
+In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrinking along the x and z axis because of the single-qubit gates depolarizing noise\\
+\hline
+\end{tabular}
+\end{table}
+
+\item Error models
+\label{sec:org8e8dbac}
+
+In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
+
+$$(R_{\Lambda})_{ij} = \frac{1}{2} Tr(\sigma_i \Lambda \sigma_j)$$
+
+where \(\sigma_i\) are the Pauli operators: \(\sigma_0 = I\), \(\sigma_1 = X\), \(\sigma_2 = Y\), \(\sigma_3 = Z\)
+
+\begin{itemize}
+\item Qubit Idling
+\label{sec:org7c75aad}
+
+While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
+The dephasing effect only appears in a superposition state.
+
+\begin{itemize}
+\item Amplitude-phase damping model
+\label{sec:orgc385154}
+
+$$R_{\Lambda_{T_1}} = \begin{bmatrix}
+ 1 & 0 & 0 & 0 \\
+ 0 & \sqrt{1 - p_1} & 0 & 0 \\
+ 0 & 0 & \sqrt{1 - p_1} & 0 \\
+ p_1 & 0 & 0 & 1 - p_1 \\
+\end{bmatrix}$$
+
+
+$$R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
+ 1 & 0 & 0 & 0 \\
+ 0 & \sqrt{1 - p_{\phi}} & 0 & 0 \\
+ 0 & 0 & \sqrt{1 - p_{\phi}} & 0 \\
+ 0 & 0 & 0 & 1 \\
+\end{bmatrix}$$
+
+with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
+
+\item Qubit idling
+\label{sec:orgad710b8}
+
+Idling for a duration \(t\):
+
+$$R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}$$
+\end{itemize}
+
+\item Single-qubit \(R_y(\pi /2)\) rotations
+\label{sec:org06a7ef3}
+
+"Single-qubit gates [\ldots{}] errors can mostly be attributed to Markovian noise. [\ldots{}] we thus model these errors as Markovian".
+
+"Single-qubit rotations are modeled by sandwiching an instantaneous Pauli transfer matrix, representing the rotation, with periods of duration \(\frac{\tau_{g,1Q}}{2}\) of amplitude and phase damping.
+This allows to model the gate for different \(T_1\) and \(T_{\phi}\) [\ldots{}]
+However, [\ldots{}] actual gates are more accurately described when adding a [\ldots{}] depolarizing noise to the instantaneous part.
+In the Bloch sphere, this decay corresponds to shrinking toward the origin, with factor  \(1 - p_{axis}\) along the y axis and \(1 - p_{plane}\) along the x- and z-axes":
+
+$$R_{R_y (\pi /2)} = R_{AP (\frac{\tau_{g,1Q}}{2})} R_{R_y (\pi /2)}' R_{dep} R_{AP (\frac{\tau_{g,1Q}}{2})}$$
+
+where
+
+$$R_{dep} = \begin{bmatrix}
+ 1 & 0 & 0 & 0 \\
+ 0 & 1 - p_{plane} & 0 & 0 \\
+ 0 & 0 & 1 - p_{axis} & 0 \\
+ 0 & 0 & 0 & 1 - p_{plane} \\
+\end{bmatrix}$$
+
+and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
+
+\item CZ gates
+\label{sec:org05d4b94}
+
+"The C-Z gate is achieved by flux pulsing a transmon into the \(|11\rangle \leftrightarrow |02\rangle\) avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
+Holding the transmons here for \(\tau_{g,2Q}\) causes the probability amplitudes of \(|01\rangle\) and \(|11\rangle\) to acquire phases[\ldots{}]
+
+Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ gate with single-qubit phase error \(\delta_{\phi_{1Q}}\) and two-qubit phase error \(\delta_{\phi_{2Q}} = \frac{\delta_{\phi_{1Q}}}{2}\), sandwiched by idling intervals of duration \(\frac{\tau_{g,2Q}}{2}\)."
+
+
+\item Measurement
+\label{sec:org6088e34}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{measure_model.png}
+\caption{\label{fig:orgd39a4c2}
+The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\). At this point, the qubit state is sampled. The sampling result is subject to a declaration error \(\epsilon_{RO}\), and the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\) before the end of the measurement block}
+\end{figure}
+
+The initial dephasing step in the measurement model (Fig. \ref{fig:orgd39a4c2}) occurs due to the \hyperref[sec:orgd68402b]{photon decay} effect.
+
+"We find that the readout errors \(\epsilon_{RO}^{|i\rangle}\) are almost independent of the qubit state \(|i\rangle\), and so we describe them with a single readout error parameter \(\epsilon_{RO}\)".
+The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%\) is extracted from experiments. 
+
+They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
+
+\item Photon decay
+\label{sec:orgd68402b}
+In the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
+This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
+This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\).
+
+\item Flux Noise
+\label{sec:orga6296cf}
+
+During a quantum algorithm, "transmons are repeatedly moved in frequency away from their sweetspot using flux pulses, either to implement a C-Z gate or to avoid one. Away from the sweetspot, transmons become first-order sensitive to flux noise, which causes an additional random phase shift."
+
+"As this noise typically has a \(1/f\) power spectrum, the largest contribution comes from low-frequency components that are essentially static for a single run, but fluctuating between different runs."
+"Shifting the transmon from its sweetspot \(f_{q,max}\) to a lower frequency \(f_q (t)\) makes it first-order sensitive to flux noise".
+
+"In our simulation, we approximate the effect of this noise through ensemble averaging, with quasi-static phase error added to a transmon whenever it is flux pulsed."
+
+As one could see in the figures 4 and 5 from the Supplemental information, a little over-rotation  caused by inaccurate calibration of the flux pulse in a single- or two-qubit gate translates in a huge increase of the \(\epsilon_L\).
+\end{itemize}
+
+
+\item Effects not taking into account
+\label{sec:org7e41dd6}
+
+They use a simple model for the CZ errors.
+They neglect leakage (previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%).
+Of course this simplification is also in \textbf{quantumsim}.
+
+\item The quantumsim simulation package
+\label{sec:org6dfed34}
+
+"Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [\ldots{}]
+
+One-qubit and two- qubit gates are applied to the density matrix as completely positive, trace preserving maps represented by Pauli transfer matrices. When a gate involving a << new >> qubit must be performed, the density matrix of the system is dynamically enlarged to include that one [\ldots{}]
+
+Qubit measurements are simulated as projective and following the Born rule, with projection probabilities given by the squared overlap of the input state with the measurement basis states. In order to capture empirical measurement errors, we implement a black-box measurement model by sandwiching the measurement between idling processes. After measuring some qubit they remove that qubit from the density matrix.
+
+
+\item Observations I find Interesting
+\label{sec:orge6edd4b}
+\begin{itemize}
+\item Optimization of logical error rates
+\label{sec:orga891e31}
+
+As they explain in the paper and one can see in Fig. \ref{fig:orgfbd2bc4}, they find that the optimal measuring time for the minimum \(\epsilon_L\) is 280 ns.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{measure_t_optimization.png}
+\caption{\label{fig:orgfbd2bc4}
+Measure time optimization based on the SC-17 logical error rate. Optimal \(\tau_m = 280\) ns}
+\end{figure}
+
+
+\item Projected improvement with advances in quantum hardware
+\label{sec:org5039529}
+
+\begin{itemize}
+\item Memory figure of merit (\(\gamma_m = \frac{\epsilon_{phys}}{\epsilon_{L}}\)). How close are \(\epsilon_{phys}\) and \(\epsilon_{L}\). Metric to check how good the error correction is.
+
+\item Computational performance (\(\gamma_c = \frac{\epsilon_{phys} \tau_{g,1Q}}{\epsilon_L \tau_{cycle}}\)), where, at \(\gamma_c = 1\) the computational break-even point is defined.
+
+\item A value of \(T_1 > 80 \mu s\) for planar transmons is emerging.
+\end{itemize}
+
+\item Other observations
+\label{sec:org4b12560}
+
+The following statements are fairly general:
+
+\begin{itemize}
+\item "Small quasi-static qubit errors are suppressed by the repeated measurements"
+\item If either the ancilla error rate (\(\epsilon_{anc}\)) or the \(\epsilon_{\text{RO}}\) are bigger than \(\epsilon_{phys}\), \(\epsilon_L\) becomes independent of both \(\epsilon_{RO}\) and \(\epsilon_{anc}\)
+\item "Optimal cycle parameters for logical error rates per cycle and per unit time are not the same. This implies that logical qubits functioning as quantum memory should be treated differently to those being used for computation"
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+\subsection*{QX}
+\label{sec:org25545a0}
