@@ -30,8 +30,13 @@ As it will be explained in the next section, to minimize in latency stands for t
 Following a similar reasoning as the first approaches, more complex solutions cite:booth18:compar_integ_const_progr_tempor have been published using Constraint Programming together with temporal planning, optimizing in latency as well.
 Also, several publications cite:Lye_2015,Wille_2016 outline only the routing sub-task using the number of SWAPS as the metric to minimize.
 
-A recent review of the literature on the mapping topic cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018 focused on device specific mapping algorithms, with promising results.
-...
+A recent review of the literature on the mapping topic focused on device specific mapping algorithms, with promising results.
+In all the cases, taking into account the specific chip connectivity constrain.
+IBM's chip have been gaining much attention due to the open online tools that make the chips accessible to everybody.
+Various approaches to mapping algorithms for the IBM family of chips have been proposed cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018.
+Zulehner et. al cite:zulehner17:effic_method_mappin_quant_circuit developed a routing algorithm that optimizes in the number of SWAPs building a graph -- similarly to previous works --  and searching the best route in the chip layout with the A* algorithm.
+Siraichi et. al cite:Siraichi_2018 work defines a weighted dependence graph where the mapping algorithm is able to find a solution for all the mapping steps, initial placement, scheduling and routing.
+Also, apart from the works related to the IBM devices, Rigetti's devices have been approached cite:Venturelli_2018.
 
 # [FT mapping]
 
