@@ -12,7 +12,7 @@ From five cycles depth in the original circuit to nine cycles.
 
           #+BEGIN_EXPORT latex
 
-\begin{minipage}{.4\textwidth}
+\begin{minipage}{.3\textwidth}
 \resizebox{\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
