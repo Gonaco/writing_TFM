@@ -1,8 +1,8 @@
 
 \chapter*{Quantum computers and mapping of quantum circuits}
-\label{sec:orgd77457b}
+\label{sec:orgfcb4b99}
 \section*{State of the art}
-\label{sec:orgcdb0239}
+\label{sec:org8f87a2d}
 
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
@@ -55,7 +55,7 @@ And, recently, Quantum Volume has been defined to assert the capability of a qua
 In the next section and in [REFERENCE TO METRICS CHAPTER 4] we offer an overview of the important metrics in this work.
 
 \section*{Mapping explaining the metrics}
-\label{sec:orgfa92053}
+\label{sec:org4549fe8}
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
@@ -67,7 +67,7 @@ From five cycles depth in the original circuit to nine cycles.
 
 
 \begin{figure}[h!]
-\centerline{\subfigure[]{
+\centerline{\begin{minipage}{.45\textwidth}
 
 \resizebox{0.3\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
@@ -79,9 +79,10 @@ From five cycles depth in the original circuit to nine cycles.
 \lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
 }
+\end{minipage}
 
-\label{original_latency_swaps_ex}}
-\subfigure[]{
+%\label{original_latency_swaps_ex}}
+\centerline{\begin{minipage}{.45\textwidth}
 
 \resizebox{0.4\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -93,8 +94,9 @@ From five cycles depth in the original circuit to nine cycles.
 \lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
  }
 }
+\end{minipage}
 
-\label{routed_latency_swaps_ex}}
+%\label{routed_latency_swaps_ex}}
 \caption{(a) Gray encoder quantum circuit (b) Mapped Gray encoder for the SC-7 chip. $\Box$ \text{Cycle}}
 \label{latency_swaps_ex}
 \end{figure}
