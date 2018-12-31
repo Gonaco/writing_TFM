@@ -7,7 +7,7 @@ Commonly described as quantum circuits, quantum algorithms are hardware agnostic
 Due to the variety of technologies that emerged with diverse specifications, there is a vast amount of literature on the algorithms -- high abstraction level --, neglecting hardware constraints.
 From ion traps [? paper on ion traps] to superconducting qubits cite:Barends_2014,Versluis_2017, through quantum dots cite:Hill_2015,Li_2018, each layout has its own requirements and constraints.
 Although all of them are arranged in a 2D -- planar -- structure, ion traps technologies are capable to connect the qubits in all-to-all networks while superconducting technologies connections form a grid shaped network where each qubit is connected to a maximum of four neighbors.
-This grid behaviour establishes one of the main limitation in today's quantum chips, the NN constraint.
+This grid behaviour establishes one of the main connectivity limitation in today's quantum chips, the NN constraint.
 Also industry's superconducting chip layouts from IBM cite:IBM_QX, Google cite:boixo16:charac_quant_suprem_near_term_devic and Rigetti cite:Sete_2016 follow this structural limitations.
 
 # [Mapping problem (because quantum devices are error prone -> QEC ..., therefore the longer the circuit the more errors -> paper that demonstrate it: cite:O_Brien_2017,Linke_2017)]
@@ -15,7 +15,7 @@ Also industry's superconducting chip layouts from IBM cite:IBM_QX, Google cite:b
 
 As for the high abstraction level of the quantum algorithm, a link between the algorithms and the devices is required cite:Fu_2016.
 As in classical computation, the algorithms should go through a compilation process in order to adapt them to the hosting device.
-Certainly, the mapping procedure is an important part of this process based on three sub-tasks: scheduling, initial placement and routing; as we considered before.
+Certainly, the mapping procedure is an important element of this process based on three sub-tasks: scheduling, initial placement and routing; as we considered before.
 
 # [Mapping solutions (Distinguish between the works minimizing in # SWAPS or in latency)]
 
@@ -23,20 +23,24 @@ Certainly, the mapping procedure is an important part of this process based on t
 
 There is a considerable amount of literature on the mapping task.
 Initial works on this field cite:Metodi_2006,Whitney_2007,Bahreini_2015 focused primarily on the definition of what they characterized as a /scheduler/ able to parallelize operations and add the required gates to route qubits.
-They would consider general constraints, common for most of the hardware devices -- although the works were examining ion-traps as hardware implementations.
-The proposed techniques examine a dependency graph looking for the best way to organize qubits and operations.
+They would consider general connectivity constraints as the NN one, common for most of the devices -- although the works were examining ion-traps as hardware implementations.
+The proposed techniques by these works examine a dependency graph looking for the best way to organize qubits and operations.
 The majority of the methods use latency as the metric to minimize, however some of them cite:Farghadan_2017 would minimize in number of SWAP operations.
-Following a similar reasoning as the first approaches, more complex solutions cite:booth18:compar_integ_const_progr_tempor have been published.
-Also, several publications cite:Lye_2015,Wille_2016 outlining only the routing sub-task using the number of SWAPS as the metric to minimize.
+As it will be explained in the next section, to minimize in latency stands for time optimization while minimize in number of SWAP operations means to find the minimal number of operations required.
+Following a similar reasoning as the first approaches, more complex solutions cite:booth18:compar_integ_const_progr_tempor have been published using Constraint Programming together with temporal planning, optimizing in latency as well.
+Also, several publications cite:Lye_2015,Wille_2016 outline only the routing sub-task using the number of SWAPS as the metric to minimize.
+
 A recent review of the literature on the mapping topic cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018 focused on device specific mapping algorithms, with promising results.
+...
 
 # [FT mapping]
 
-In addition to the previous limitations, quantum devices -- no matter which technology -- are error prone.
+In addition to the general connectivity limitations, quantum devices -- no matter which technology -- are error prone.
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
-_[some numbers for the technologies]_ cite:O_Brien_2017.
+For instance, in the case of superconducting technologies cite:O_Brien_2017, the chips bear with decoherence times of $\approx 30 \mu s$ for qubit relaxation and $\approx 60 \mu s$ for qubit dephase.
+The error rates of single-qubit gates are less than 0.1% taking $> 20 ns$ to be executed, while two-qubit gates error rate is 0.6% with times of $40 ns$ and measurement error rates around 1% with execution times of $\sim 300 ns$ cite:O_Brien_2017,Versluis_2017.
 This creates an undesirable environment to compute the most useful algorithms.
-Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years cite:Nielsen_2009 [? papers on error correction].
+Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years cite:Nielsen_2009.
 These techniques force the quantum chips layout to arrange the qubits in a particular manner, constraining them even more.
 
 # [NISQ and NISQ mapping solutions (Start with a sentence from the point 16 of the useful phrases document)]
@@ -45,6 +49,16 @@ Many attempts have been made cite:Dousti_2014,Heckey_2015,hwang18:hierar_system_
 However, due to the high complexity of the QEC techniques, quantum chips with large amounts of qubits are still theory.
 More recent evidence cite:Preskill_2018, proposes the Noisy Intermediate-Scale Quantum (NISQ) devices as the next step for near future hardware with an amount of 50-100 qubits and without QEC or much simpler encodings.
 Several studies, for instance cite:tannu18:case_variab_aware_polic_nisq,paler18:nisq,paler18:influen_initial_qubit_placem_durin, have been conducted on the mapping algorithms required for NISQ devices.
+Also, the works on device specific solutions cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018 described before, could be considered part of the NISQ works collection.
+Although they do not approach the NISQ problem in general, it is true that the devices they tackle are NISQ devices, they have low number of qubits and high error rates.
+
+# Conclusion related with the metrics and introducing the next section?
+
+Besides latency and the number of operations that serve to feedback the quality of a mapping algorithm, few studies have been published on quantum metrics.
+Although widely investigated, there are not too many quantum metrics.
+Fidelity has been addressed in order to characterize the error of a quantum circuit based on the qubits state cite:Jozsa_1994,Nielsen_2009.
+And, recently, Quantum Volume has been defined to assert the capability of a quantum computer cite:Moll_2018.
+In the next section and in [REFERENCE TO METRICS CHAPTER 4] we offer an overview of the important metrics in this work.
 
 
 * Summary table                                             :ignore:noexport:

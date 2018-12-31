@@ -59,6 +59,7 @@ Decoherence time is not only a maximum qubit lifetime, it is harder and harder t
 On the other hand, to optimize in number of SWAPs stands on the intuition that the gate error is the preeminent error in a quantum device.
 Although intuitively one can think that the more operations are in a circuit, the longer it will be; as seen in the [PROBLEM STATEMENT SECTION], the higher the number of operations does not necessarily mean the longer circuit depth.
 Several operations can be run in parallel in the same cycle -- at the same time.
+Actually, to minimize in latency is to maximize in parallelism.
 Therefore, even though related, to optimize in one or the other holds different baselines.
 # It bets to different horses.
 
@@ -71,4 +72,7 @@ What would be the best metric?
 Definitely, the optimal solution would be to optimize directly in terms of the error rate.
 But, in order to do that, a precise prediction of the error should be done and this is a hard computational task in quantum computing.
 
-So that we could do a proper assessment of mapping algorithms, in our study we analyzed these two metrics amongst other different ones as fidelity, probability of success or quantum volume and their relationship with the error generated after the mapping.
+# Explaining our purpose and the other metrics (fidelity, prob. success, quantum volume)
+
+So that we could do a proper assessment of mapping algorithms, in our research we analyzed these two metrics amongst other different ones as fidelity, probability of success or quantum volume and their relationship with the error generated after the mapping.
+We will define These metrics in [REFERENCE TO METRIC SECTION IN CHAPTER 4].
