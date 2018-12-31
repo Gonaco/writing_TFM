@@ -8,7 +8,7 @@
 ** Benchmarks
 ** Error framework
 *** Compiler (OpenQL, cQASM)?
-*** quantumsim
+*** TODO quantumsim
 
 #+INCLUDE: quantumsim.org
 

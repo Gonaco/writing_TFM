@@ -11,3 +11,9 @@
 
 ** Mapping model
 ** Metrics
+*** Number of SWAPS
+*** Latency
+*** Probability of success
+*** Quantum Volume
+
+#+INCLUDE: quantum_volume.org
