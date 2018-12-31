@@ -1,50 +1,67 @@
 
 \chapter*{Quantum computers and mapping of quantum circuits}
-\label{sec:org6ad7a07}
+\label{sec:orgb8ca163}
 \section*{State of the art}
-\label{sec:org8e36527}
+\label{sec:orgc210c23}
 
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
 Due to the variety of technologies that emerged with diverse specifications, there is a vast amount of literature on the algorithms -- high abstraction level --, neglecting hardware constraints.
 From ion traps [? paper on ion traps] to superconducting qubits \cite{Barends_2014,Versluis_2017}, through quantum dots \cite{Hill_2015,Li_2018}, each layout has its own requirements and constraints.
 Although all of them are arranged in a 2D -- planar -- structure, ion traps technologies are capable to connect the qubits in all-to-all networks while superconducting technologies connections form a grid shaped network where each qubit is connected to a maximum of four neighbors.
-This grid behaviour establishes one of the main limitation in today's quantum chips, the NN constraint.
+This grid behaviour establishes one of the main connectivity limitation in today's quantum chips, the NN constraint.
 Also industry's superconducting chip layouts from IBM \cite{IBM_QX}, Google \cite{boixo16:charac_quant_suprem_near_term_devic} and Rigetti \cite{Sete_2016} follow this structural limitations.
 
 As for the high abstraction level of the quantum algorithm, a link between the algorithms and the devices is required \cite{Fu_2016}.
 As in classical computation, the algorithms should go through a compilation process in order to adapt them to the hosting device.
-Certainly, the mapping procedure is an important part of this process based on three sub-tasks: scheduling, initial placement and routing; as we considered before.
+Certainly, the mapping procedure is an important element of this process based on three sub-tasks: scheduling, initial placement and routing; as we considered before.
 
 There is a considerable amount of literature on the mapping task.
 Initial works on this field \cite{Metodi_2006,Whitney_2007,Bahreini_2015} focused primarily on the definition of what they characterized as a \emph{scheduler} able to parallelize operations and add the required gates to route qubits.
-They would consider general constraints, common for most of the hardware devices -- although the works were examining ion-traps as hardware implementations.
-The proposed techniques examine a dependency graph looking for the best way to organize qubits and operations.
+They would consider general connectivity constraints as the NN one, common for most of the devices -- although the works were examining ion-traps as hardware implementations.
+The proposed techniques by these works examine a dependency graph looking for the best way to organize qubits and operations.
 The majority of the methods use latency as the metric to minimize, however some of them \cite{Farghadan_2017} would minimize in number of SWAP operations.
-Following a similar reasoning as the first approaches, more complex solutions \cite{booth18:compar_integ_const_progr_tempor} have been published.
-Also, several publications \cite{Lye_2015,Wille_2016} outlining only the routing sub-task using the number of SWAPS as the metric to minimize.
-A recent review of the literature on the mapping topic \cite{zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018} focused on device specific mapping algorithms, with promising results.
+As it will be explained in the next section, to minimize in latency stands for time optimization while minimize in number of SWAP operations means to find the minimal number of operations required.
+Following a similar reasoning as the first approaches, more complex solutions \cite{booth18:compar_integ_const_progr_tempor} have been published using Constraint Programming together with temporal planning, optimizing in latency as well.
+Also, several publications \cite{Lye_2015,Wille_2016} outline only the routing sub-task using the number of SWAPS as the metric to minimize.
 
-In addition to the previous limitations, quantum devices -- no matter which technology -- are error prone.
+A recent review of the literature on the mapping topic focused on device specific mapping algorithms, with promising results.
+In all the cases, taking into account the specific chip connectivity constrain.
+IBM's chip have been gaining much attention due to the open online tools that make the chips accessible to everybody.
+Various approaches to mapping algorithms for the IBM family of chips have been proposed \cite{zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018}.
+Zulehner et. al \cite{zulehner17:effic_method_mappin_quant_circuit} developed a routing algorithm that optimizes in the number of SWAPs building a graph -- similarly to previous works --  and searching the best route in the chip layout with the A* algorithm.
+Siraichi et. al \cite{Siraichi_2018} work defines a weighted dependence graph where the mapping algorithm is able to find a solution for all the mapping steps, initial placement, scheduling and routing.
+Also, apart from the works related to the IBM devices, Rigetti's devices have been approached \cite{Venturelli_2018}.
+
+In addition to the general connectivity limitations, quantum devices -- no matter which technology -- are error prone.
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
-\uline{[some numbers for the technologies]} \cite{O_Brien_2017}.
+For instance, in the case of superconducting technologies \cite{O_Brien_2017}, the chips bear with decoherence times of \(\approx 30 \mu s\) for qubit relaxation and \(\approx 60 \mu s\) for qubit dephase.
+The error rates of single-qubit gates are less than 0.1\% taking \(> 20 ns\) to be executed, while two-qubit gates error rate is 0.6\% with times of \(40 ns\) and measurement error rates around 1\% with execution times of \(\sim 300 ns\) \cite{O_Brien_2017,Versluis_2017}.
 This creates an undesirable environment to compute the most useful algorithms.
-Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years \cite{Nielsen_2009} [? papers on error correction].
+Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years \cite{Nielsen_2009}.
 These techniques force the quantum chips layout to arrange the qubits in a particular manner, constraining them even more.
 
 Many attempts have been made \cite{Dousti_2014,Heckey_2015,hwang18:hierar_system_mappin_large_scale,murphy18:contr,Lao_2018} with the purpose of develop a FT mapping able to work at the logical -- qubit -- level.
 However, due to the high complexity of the QEC techniques, quantum chips with large amounts of qubits are still theory.
 More recent evidence \cite{Preskill_2018}, proposes the Noisy Intermediate-Scale Quantum (NISQ) devices as the next step for near future hardware with an amount of 50-100 qubits and without QEC or much simpler encodings.
 Several studies, for instance \cite{tannu18:case_variab_aware_polic_nisq,paler18:nisq,paler18:influen_initial_qubit_placem_durin}, have been conducted on the mapping algorithms required for NISQ devices.
+Also, the works on device specific solutions \cite{zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018} described before, could be considered part of the NISQ works collection.
+Although they do not approach the NISQ problem in general, it is true that the devices they tackle are NISQ devices, they have low number of qubits and high error rates.
+
+Besides latency and the number of operations that serve to feedback the quality of a mapping algorithm, few studies have been published on quantum metrics.
+Although widely investigated, there are not too many quantum metrics.
+Fidelity has been addressed in order to characterize the error of a quantum circuit based on the qubits state \cite{Jozsa_1994,Nielsen_2009}.
+And, recently, Quantum Volume has been defined to assert the capability of a quantum computer \cite{Moll_2018}.
+In the next section and in [REFERENCE TO METRICS CHAPTER 4] we offer an overview of the important metrics in this work.
 
 \section*{Mapping explaining the metrics}
-\label{sec:orgea7a3d3}
+\label{sec:orga6cd4b2}
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
 And latency is the time required to run a quantum circuit in a given quantum device.
 It depends on the chip cycle time and the \textbf{depth} of the circuit, that is the number of cycles the algorithm encloses.
-Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth.
+Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
 E.g. in Fig. \ref{latency_swaps_ex}, one can see how after the mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
 
@@ -52,6 +69,7 @@ From five cycles depth in the original circuit to nine cycles.
 \begin{figure}[h!]
 \centerline{\subfigure[]{
 
+\resizebox{0.5\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
@@ -60,11 +78,12 @@ From five cycles depth in the original circuit to nine cycles.
 \lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
 \lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
+}
 
 \label{original_latency_swaps_ex}}
 \subfigure[]{
 
-\resizebox{\textwidth}{!}{
+\resizebox{0.4\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
  \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
@@ -76,24 +95,30 @@ From five cycles depth in the original circuit to nine cycles.
 }
 
 \label{routed_latency_swaps_ex}}}
-\caption{(a) Gray encoder quantum circuit(b) Mapped Gray encoder for the SC-7 chip.}
+\caption{(a) Gray encoder quantum circuit(b) Mapped Gray encoder for the SC-7 chip. $\Box$ \text{Cycle}}
 \label{latency_swaps_ex}
 \end{figure}
 
 The ideal mapping would be the one affecting the least as possible the original circuit or, what is the same, introducing the least amount of errors.
-Clearly, both, latency and number of SWAPs, are direct effects of the mapping procedure that have an impact in the error increment.
+Clearly, both, latency and number of SWAPs, are direct effects of the mapping procedure that have an impact in the error increase as well.
 To optimize in any of them stands on correct -- but not sufficient -- reasoning.
-The latency optimization states that the leading error source comes from the qubit lifetime.
+Latency optimization deems that the leading error source comes from the qubit lifetime.
 And, indeed, time is a main issue in quantum computing.
 Decoherence time is not only a maximum qubit lifetime, it is harder and harder to hold a quantum state for use times closer to the decoherence time.
-On the other hand, to optimize in number of SWAPs stands on the gate error as the preeminent error in a quantum computer.
-As seen in the [PROBLEM STATEMENT SECTION], the higher the number of operations does not necessarily mean the longer circuit depth.
-Several operations can be run in the same cycle -- at the same time.
+On the other hand, to optimize in number of SWAPs stands on the intuition that the gate error is the preeminent error in a quantum device.
+Although intuitively one can think that the more operations are in a circuit, the longer it will be; as seen in the [PROBLEM STATEMENT SECTION], the higher the number of operations does not necessarily mean the longer circuit depth.
+Several operations can be run in parallel in the same cycle -- at the same time.
+Actually, to minimize in latency is to maximize in parallelism.
+Therefore, even though related, to optimize in one or the other holds different baselines.
 
-, although these metrics are not enough to assert how good the process is.
+Nonetheless, these metrics are not enough to assert how good the mapping process is.
+They are related with the error rate increase but the relationship is not totally clear.
+For instance, it could be the case that concatenation of errors introduced by contiguous gates would end up in a correction of the first error.
+Or, that the busier the qubit is, the less affected by decoherence would be.
+Then, one question arises.
+What would be the best metric?
+Definitely, the optimal solution would be to optimize directly in terms of the error rate.
+But, in order to do that, a precise prediction of the error should be done and this is a hard computational task in quantum computing.
 
-
-The more these metrics grow, the worse the mapping is.
-Research has tended to focus on either latency or number of SWAPS rather than the error produced by the mapping.
-
-In our study we will analyze these metrics amongst other different ones as fidelity, probability of success or quantum volume and their impact in the error evolution.
+So that we could do a proper assessment of mapping algorithms, in our research we analyzed these two metrics amongst other different ones as fidelity, probability of success or quantum volume and their relationship with the error generated after the mapping.
+We will define These metrics in [REFERENCE TO METRIC SECTION IN CHAPTER 4].
