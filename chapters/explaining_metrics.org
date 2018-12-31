@@ -13,6 +13,8 @@ From five cycles depth in the original circuit to nine cycles.
           #+BEGIN_EXPORT latex
 
 \begin{minipage}{.3\textwidth}
+\begin{center}
+
 \resizebox{\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
@@ -25,11 +27,14 @@ From five cycles depth in the original circuit to nine cycles.
 }
 \captionof{figure}{Gray encoder quantum circuit}
 \label{latency_swaps_ex_orig}
+
+\end{center}
 \end{minipage}
 
 \hspace{1cm}
 
 \begin{minipage}{.4\textwidth}
+\begin{center}
 
 \resizebox{\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -44,6 +49,7 @@ From five cycles depth in the original circuit to nine cycles.
 \captionof{figure}{Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle}
 \label{latency_swaps_ex_map}
 
+\end{center}
 \end{minipage}
 
 
