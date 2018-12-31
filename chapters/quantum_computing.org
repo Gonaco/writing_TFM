@@ -150,9 +150,6 @@ The /S/ and /T/ gates are also rotations over the z-axis but of 90° and 45° re
 
 
 ***** Two-qubit gates
-:PROPERTIES:
-:ID:       7bf7a29e-3252-408d-aeed-8e1e1f509b03
-:END:
 
 Two-qubit gates are quantum operations that involve two qubits at the same time.
 In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
