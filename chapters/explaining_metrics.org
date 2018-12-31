@@ -31,6 +31,8 @@ From five cycles depth in the original circuit to nine cycles.
 
 \begin{minipage}{.4\textwidth}
 
+\begin{figure}[h!]
+
 \resizebox{\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
  \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
