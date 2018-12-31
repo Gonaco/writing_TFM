@@ -1,8 +1,8 @@
 
 \chapter*{Quantum computers and mapping of quantum circuits}
-\label{sec:orgfcb4b99}
+\label{sec:org7544b30}
 \section*{State of the art}
-\label{sec:org8f87a2d}
+\label{sec:org54ae03e}
 
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
@@ -55,7 +55,7 @@ And, recently, Quantum Volume has been defined to assert the capability of a qua
 In the next section and in [REFERENCE TO METRICS CHAPTER 4] we offer an overview of the important metrics in this work.
 
 \section*{Mapping explaining the metrics}
-\label{sec:org4549fe8}
+\label{sec:org210fad0}
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
@@ -81,8 +81,7 @@ From five cycles depth in the original circuit to nine cycles.
 }
 \end{minipage}
 
-%\label{original_latency_swaps_ex}}
-\centerline{\begin{minipage}{.45\textwidth}
+\begin{minipage}{.45\textwidth}
 
 \resizebox{0.4\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -96,7 +95,6 @@ From five cycles depth in the original circuit to nine cycles.
 }
 \end{minipage}
 
-%\label{routed_latency_swaps_ex}}
 \caption{(a) Gray encoder quantum circuit (b) Mapped Gray encoder for the SC-7 chip. $\Box$ \text{Cycle}}
 \label{latency_swaps_ex}
 \end{figure}
