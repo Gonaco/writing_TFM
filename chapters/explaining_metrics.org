@@ -5,15 +5,16 @@ The routing step from the mapping process introduces SWAP gates in the quantum c
 And latency is the time required to run a quantum circuit in a given quantum device.
 It depends on the chip cycle time and the *depth* of the circuit, that is the number of cycles the algorithm encloses.
 Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
-E.g. in Fig. \ref{latency_swaps_ex}, one can see how after the mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
+E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after the mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
 
 # [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]
 
           #+BEGIN_EXPORT latex
 
-\begin{minipage}{.3\textwidth}
-\begin{center}
+\begin{figure}
+    \centering
+    \begin{subfigure}[h]{0.3\textwidth}
 
 \resizebox{\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
@@ -25,16 +26,14 @@ From five cycles depth in the original circuit to nine cycles.
 \lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
 }
-\captionof{figure}{Gray encoder quantum circuit}
-\label{latency_swaps_ex_orig}
+\caption{Gray encoder quantum circuit}
+\label{fig:latency_swaps_ex_orig}
 
-\end{center}
-\end{minipage}
 
-\hspace{1cm}
-
-\begin{minipage}{.4\textwidth}
-\begin{center}
+\end{subfigure}
+%add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+%(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[h]{0.4\textwidth}
 
 \resizebox{\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -46,11 +45,12 @@ From five cycles depth in the original circuit to nine cycles.
 \lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
  }
 }
-\captionof{figure}{Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle}
-\label{latency_swaps_ex_map}
-
-\end{center}
-\end{minipage}
+\caption{Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle}
+\label{fig:latency_swaps_ex_map}
+\end{subfigure}
+\caption{Circuit mapping example}
+\label{fig:latency_swaps_ex}
+\end{figure}
 
 
    #+END_EXPORT
