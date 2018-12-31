@@ -40,8 +40,8 @@ From five cycles depth in the original circuit to nine cycles.
  }
 }
 
-\label{routed_latency_swaps_ex}}}
-\caption{(a) Gray encoder quantum circuit(b) Mapped Gray encoder for the SC-7 chip. $\Box$ \text{Cycle}}
+\label{routed_latency_swaps_ex}}
+\caption{(a) Gray encoder quantum circuit (b) Mapped Gray encoder for the SC-7 chip. $\Box$ \text{Cycle}}
 \label{latency_swaps_ex}
 \end{figure}
 
