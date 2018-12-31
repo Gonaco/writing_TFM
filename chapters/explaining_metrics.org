@@ -11,13 +11,13 @@ From five cycles depth in the original circuit to nine cycles.
 # [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]
 
           #+BEGIN_EXPORT latex
-
+\begin{center}
 \begin{figure}
     \centering
 
 \begin{minipage}{.3\textwidth}
 
-\resizebox{\textwidth}{!}{
+\resizebox{.9\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
@@ -27,7 +27,7 @@ From five cycles depth in the original circuit to nine cycles.
 \lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
 }
-\subcaption[Gray encoder quantum circuit]
+\subcaption[]{Gray encoder quantum circuit}
 \label{fig:latency_swaps_ex_orig}
 
 
@@ -35,7 +35,7 @@ From five cycles depth in the original circuit to nine cycles.
 
 \begin{minipage}{.4\textwidth}
 
-\resizebox{\textwidth}{!}{
+\resizebox{.9\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
  \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
@@ -45,7 +45,7 @@ From five cycles depth in the original circuit to nine cycles.
 \lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
  }
 }
-\subcaption[Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle]
+\subcaption[]{Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle}
 \label{fig:latency_swaps_ex_map}
 
 \end{minipage}
@@ -53,6 +53,7 @@ From five cycles depth in the original circuit to nine cycles.
 \caption{Circuit mapping example}
 \label{fig:latency_swaps_ex}
 \end{figure}
+\end{center}
 
 
    #+END_EXPORT
