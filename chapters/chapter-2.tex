@@ -1,8 +1,8 @@
 
 \chapter*{Quantum computers and mapping of quantum circuits}
-\label{sec:org94f7a62}
+\label{sec:orgc858e12}
 \section*{State of the art}
-\label{sec:orgf7934f2}
+\label{sec:org06022f6}
 
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
@@ -55,7 +55,7 @@ And, recently, Quantum Volume has been defined to assert the capability of a qua
 In the next section and in [REFERENCE TO METRICS CHAPTER 4] we offer an overview of the important metrics in this work.
 
 \section*{Mapping explaining the metrics}
-\label{sec:orgf7002f7}
+\label{sec:org8ace6db}
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
@@ -66,9 +66,9 @@ E.g. in Fig. \ref{latency_swaps_ex}, one can see how after the mapping process s
 From five cycles depth in the original circuit to nine cycles.
 
 
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{.4\textwidth}
 \begin{figure}[h!]
-\resizebox{0.3\textwidth}{!}{
+\resizebox{\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
@@ -83,9 +83,9 @@ From five cycles depth in the original circuit to nine cycles.
 \end{figure}
 \end{minipage}
 
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{.4\textwidth}
 
-\resizebox{0.4\textwidth}{!}{
+\resizebox{\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
  \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
