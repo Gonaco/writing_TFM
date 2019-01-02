@@ -20,7 +20,6 @@ $|\alpha|^2$ is the probability of measuring $| 0 \rangle$, $|\beta|^2$ is the p
 Dirac's notation grants the definition of the quantum states as vectors, as in eq. [[eq:state_vector_notation]].
 Moreover, as we will see below, adopting Dirac's axioms will make the quantum theory accessible with classical algebra operations. 
 
-
 #+NAME: eq:state_vector_notation
 \begin{equation}
 |\Psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
@@ -38,7 +37,15 @@ E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the 
 \end{equation}
 
 # To visualize the quantum states -> the Bloch sphere
+As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. [[eq:phase_not]]).
+Like the complex numbers, although requiring two angles in this case.
+This notation lead us to a very understandable way to visualize the quantum states, the Bloch sphere (fig. \ref{bloch_sphere}).
+A sphere of radius one which z-axis extremes represent the ground and excited states.
 
+#+NAME: eq:phase_not
+\begin{equation}
+|\psi \rangle =\cos \left(\theta /2\right)|0\rangle \,+\,e^{i\phi }\sin \left(\theta /2\right)|1\rangle
+\end{equation}
 
 #+BEGIN_EXPORT latex
 \begin{figure}
@@ -72,10 +79,26 @@ E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the 
 #+END_EXPORT
 
 # Multiple qubits [Entanglement, Math operation (convolution), Hilbert space increments]
+But a system with just one qubit is not useful.
+The power of quantum computers explodes with the number of qubits able to work with or, what is the same, the dimensions of the Hilbert space $\mathscr{H}$.
+The quantum state of $n$ qubits can be represented in bra-ket notation, with a $2^n$ size.
+And, therefore, they engender Hilbert space of $2^n$ dimensions due to the superposition phenomenon.
+The linear operator that leads to the multiple qubit's state is the outer product, defined as the matrix convolution of the vectors that represent the state of the qubits involved.
+The outer product is represented as $|\phi \rangle \,\langle \psi |$.
+In eq. [[eq:convolution_example]] an example of the outer product is offered.
+The example represents the other fundamental phenomenon in quantum physics, the entanglement state of two qubits also know as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 
+#+NAME: eq:convolution_example
+\begin{equation}
+|\Phi ^{+}\rangle ={\frac  {1}{{\sqrt  {2}}}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = ...! =  (|00\rangle +|11\rangle ) \over {\sqrt {2}}} {\displaystyle (|00\rangle +|11\rangle ) \over {\sqrt {2}}
+\end{equation}
 
 
 **** Quantum Gates
+
+***** Single-qubit gates
+
+***** Two-qubit gates
 *** Quantum Circuits
 *** BIB                                           :noexport:
 bibliography:../thesis_plan.bib
