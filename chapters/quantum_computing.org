@@ -15,7 +15,7 @@ Unlike a classical bit, whose state is either ~0~ or ~1~, but like a particle; q
 A qubit's state could be either ~0~ or ~1~ or both before measuring it.
 Both ground or excited states are represented in the Dirac's bra-ket notation, viz. $| 0 \rangle$ and $| 1 \rangle$ respectively.
 This notation holds the algebraic axioms cite:Nielsen_2009 required to understand the quantum theory.
-Prior to measurement, a qubit is described as in a probabilistic state $| \Psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \mathbb{C$} are the so-called probability amplitudes.
+Prior to measurement, a qubit is described as in a probabilistic state $| \Psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \mathbb{C}$ are the so-called probability amplitudes.
 $|\alpha|^2$ is the probability of measuring $| 0 \rangle$, $|\beta|^2$ is the probability of measuring $| 1 \rangle$ and both $\alpha$ and $\beta$ are allowed to be complex.
 Dirac's notation grants the definition of the quantum states as vectors, as in eq. [[eq:state_vector_notation]].
 Moreover, as we will see below, adopting Dirac's axioms will make the quantum theory accessible with classical algebra operations. 
@@ -39,6 +39,9 @@ E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the 
 
 # To visualize the quantum states -> the Bloch sphere
 
+#+caption: The Bloch sphere
+#+NAME: fig:bloch_sphere
+#+ATTR_LATEX:
 #+BEGIN_EXPORT latex
 \begin{tikzpicture}[line cap=round, line join=round, >=Triangle]
   \clip(-2.19,-2.49) rectangle (2.66,2.58);
