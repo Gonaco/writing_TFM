@@ -1,0 +1,1759 @@
+
+
+*** Mapping
+
+   Given a quantum circuit representation that is hardware agnostic, adapt it to the requirements of a real quantum processor.
+
+
+   The mapping problem can be split in:
+   
+       - Scheduling
+       - Placement
+       - Routing
+
+**** TODO                                                       :B_noteNH:
+:PROPERTIES:
+:BEAMER_env: noteNH
+:END:
+
+# #+BEGIN_EXPORT latex
+# \resizebox{.5\textwidth}{!}{%
+# \schema{\schemabox{Explaining Mapping}}{\schemabox{
+# Intro Schesuling\\
+# Intro Placement\\
+# Intro Routing
+# }}
+# }
+# #+END_EXPORT
+
+   So, what is mapping?
+   Given a quantum circuit representation that is hardware agnostic, the mapping task adapt it to the requirements of a real quantum processor.
+
+   The mapping problem can be split in 3 parts that are executed continuously:
+
+   - Scheduling. How is better to organize the operation in the quantum circuit along time?
+   - Placement. What is the best way to initialize the qubits?
+   - Routing. What is the best way for moving the information between qubits?
+
+*** Scheduling
+
+**** Example                                             :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+***** Original                                                    :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+
+          #+BEGIN_EXPORT latex
+
+\begin{center}
+
+Original
+
+   \Qcircuit @C=1em @R=.7em {
+ & \qswap & \qw & \gate{X} & \qw & \qw\\
+ & \qw & \ctrl{2} & \qw & \qw & \qw\\
+ & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
+ & \qw & \targ & \qw & \qw & \qw\\
+}
+\end{center}
+
+   #+END_EXPORT
+
+*****  ASAP                                                       :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+
+          #+BEGIN_EXPORT latex
+
+\begin{center}
+
+ASAP
+
+   \Qcircuit @C=1em @R=.7em {
+ &  &  & \qwx[5] &  & \\
+ & \qswap & \qw & \qw & \gate{X} & \qw\\
+ & \qw & \ctrl{2} & \qw & \qw & \qw\\
+ & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
+ & \qw & \targ & \qw & \qw & \qw\\
+ &  &  &  &  & \\
+}
+\end{center}
+
+   #+END_EXPORT
+
+***** ALAP                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+
+          #+BEGIN_EXPORT latex
+
+\begin{center}
+
+ALAP
+
+   \Qcircuit @C=1em @R=.7em {
+ &  & \qwx[5] &  &  & \\
+ & \qswap & \qw & \gate{X} & \qw & \qw\\
+ & \qw & \qw & \ctrl{2} & \qw & \qw\\
+ & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
+ & \qw & \qw & \targ & \qw & \qw\\
+ &  &  &  &  &  & \\
+}
+\end{center}
+
+   #+END_EXPORT
+
+**** Dependence graph                                    :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+*****                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+
+The SWAP gate swaps the information between qubits.
+
+*****  Dependence graph                            :B_exampleblock:BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:BEAMER_env: exampleblock
+:END:
+
+#+BEGIN_EXPORT latex
+
+\begin{center}
+\resizebox{.5\textwidth}{!}{%
+\begin{tikzpicture}
+    
+    \node [draw, rectangle] (a) at (0,3) {a};
+    \node [draw, rectangle] (b) at (0,2) {b};
+    \node [draw, rectangle] (c) at (0,1) {c};
+    \node [draw, rectangle] (d) at (0,0) {d};
+
+    
+    \node [draw, ellipse] (swap) at (2,2) {SWAP};
+    \node [draw, ellipse] (cnot) at (2,1) {CNOT};
+    \node [draw, ellipse] (x) at (4,2.5) {X};
+    \node [draw, ellipse] (h) at (4,1.5) {H};
+   
+    
+    \draw (a) -- (swap);
+    \draw (c) -- (swap);
+    
+    \draw (b) -- (cnot);
+    \draw (d) -- (cnot);
+    
+    \draw (swap) -- (h);
+    
+    \draw (swap) -- (x);
+    
+    
+\end{tikzpicture}
+}
+\end{center}
+
+#+END_EXPORT
+
+*****                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+
+Parallel operation $\to$ the ones that can be done simultaneously
+
+# *** SWAP                                                  :B_ignoreheading:
+# :PROPERTIES:
+# :BEAMER_env: ignoreheading
+# :END:
+
+# \centering
+
+# The SWAP gate swaps the information between qubits.
+
+# *** Parallel                                              :B_ignoreheading:
+# :PROPERTIES:
+# :BEAMER_env: ignoreheading
+# :END:
+
+# \centering
+
+# Parallel operation $\to$ the ones that can be done simultaneously
+
+**** TODO                                                       :B_noteNH:
+:PROPERTIES:
+:BEAMER_env: noteNH
+:END:
+
+# #+BEGIN_EXPORT latex
+# \resizebox{.5\textwidth}{!}{%
+# \schema{\schemabox{Explaining Scheduling}}{\schemabox{
+# Different kinds of scheduling\\
+# Parallel operations\\
+# SWAP gates
+# }}
+# }
+# #+END_EXPORT
+
+As an example of scheduling, let's consider this circuit with...
+
+A SWAP gate swaps the information (or state) of one qubit to other and viceversa.
+
+Notice that, in the example, there are several combinations of parallel operations,
+or what is the same, operations that can be done simultaneously.
+They don't depend on each other.
+
+Depending on the scheduling one may want to implement,
+the operations will be spread along the circuit in one way or the other.
+For example, ASAP or ALAP.
+
+*** Mapping example
+
+
+**** Example definition                                            :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+***** Example definition                                :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+     #+BEGIN_EXPORT latex
+     \begin{center}
+     #+END_EXPORT
+     
+     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
+
+     #+BEGIN_EXPORT latex
+     \end{center}
+     #+END_EXPORT
+
+***** Surface architecture                              :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+******                                                       :B_onlyenv:
+      :PROPERTIES:
+      :BEAMER_env: onlyenv
+      :BEAMER_act: <1-2>
+      :END:
+
+     #+BEGIN_EXPORT latex
+
+     \begin{center}
+     \resizebox{\textwidth}{!}{%
+     \begin{tikzpicture}[x=5mm,y=5mm]
+ % \tikzstyle{every node} = [circle, fill=gray!30]
+ % \node [green] at (0,0) {[circle, fill=gray!30]};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
+ % \node [cyan] at (10,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
+ % \node [green] at (20,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
+ % \node [red] at (5,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
+ % \node [red] at (5,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
+ % \node [red] at (15,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
+ % \node [red] at (15,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
+
+ \node [purple] at (1,0) {\textbf{2}};
+ \node [purple] at (11,0) {\textbf{3}};
+ \node [purple] at (21,0) {\textbf{4}};
+ \node [purple] at (6,5) {\textbf{0}};
+ \node [purple] at (6,-5) {\textbf{5}};
+ \node [purple] at (16,5) {\textbf{1}};
+ \node [purple] at (16,-5) {\textbf{6}};
+
+ % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
+ \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
+ \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
+
+ \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
+ \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
+
+ \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
+ \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
+
+ \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
+ \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
+
+ \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
+ \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
+
+ \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
+ \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
+
+ \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
+ \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
+
+ \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
+ \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
+
+ \end{tikzpicture}
+ }
+ \end{center}
+     #+END_EXPORT      
+
+#+BEGIN_EXPORT latex
+     \begin{center}
+     \resizebox{.4\textwidth}{!}{%
+     \begin{tikzpicture}[qubit/.style={fill=cyan,circle,minimum size=0.3cm}]
+
+     \node [qubit,label=right:Physical qubits] {Qubit};
+
+     \end{tikzpicture}
+     }
+     \end{center}
+#+END_EXPORT
+
+
+
+******                                                       :B_onlyenv:
+      :PROPERTIES:
+      :BEAMER_env: onlyenv
+      :BEAMER_act: <3>
+      :END:      
+
+           #+BEGIN_EXPORT latex
+
+     \begin{center}
+     \resizebox{\textwidth}{!}{%
+     \begin{tikzpicture}[x=5mm,y=5mm]
+ % \tikzstyle{every node} = [circle, fill=gray!30]
+ % \node [green] at (0,0) {[circle, fill=gray!30]};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
+ % \node [cyan] at (10,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
+ % \node [green] at (20,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
+ % \node [red] at (5,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
+ % \node [red] at (5,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
+ % \node [red] at (15,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
+ % \node [red] at (15,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
+
+ \node [purple] at (2,0) {\textbf{b} $\to$ \textbf{2}};
+ \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
+ \node [purple] at (22,0) {\textbf{f} $\to$ \textbf{4}};
+ \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
+ \node [purple] at (7,-5) {\textbf{c} $\to$ \textbf{5}};
+ \node [purple] at (17,5) {\textbf{e} $\to$ \textbf{1}};
+ \node [purple] at (17,-5) {\textbf{6}};
+
+ % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
+ \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
+ \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
+
+ \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
+ \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
+
+ \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
+ \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
+
+ \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
+ \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
+
+ \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
+ \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
+
+ \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
+ \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
+
+ \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
+ \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
+
+ \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
+ \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
+
+
+ \end{tikzpicture}
+ }
+ \end{center}
+     #+END_EXPORT
+
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_env: onlyenv
+     :BEAMER_act: <3>
+     :END:
+
+******                                                  :B_structureenv:
+      :PROPERTIES:
+      :BEAMER_env: structureenv
+      :END:      
+
+      #+BEGIN_EXPORT latex
+      \begin{center}
+      #+END_EXPORT
+      
+      _Optimized Approach_
+
+      #+BEGIN_EXPORT latex
+      \medskip
+      \end{center}
+      #+END_EXPORT
+****                                                               :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.1
+    :END:
+
+
+    
+**** Gray Code Quantum Circuit                                     :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+    _Gray Code Quantum Circuit_
+    
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_act: <1>
+     :BEAMER_env: onlyenv
+     :END:
+
+     #+BEGIN_EXAMPLE
+
+     #QASM code
+     
+     qubit a
+     qubit b
+     qubit c
+     qubit d
+     qubit e
+     qubit f
+     
+     cnot b,a
+     cnot c,b
+     cnot d,c
+     cnot e,d
+     cnot f,d
+     
+     #+END_EXAMPLE
+     
+     
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_act: <2>
+     :BEAMER_env: onlyenv
+     :END:
+
+          #+BEGIN_EXPORT latex
+
+\begin{center}
+   \Qcircuit @C=1em @R=.7em {
+\lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+}
+\end{center}
+
+   #+END_EXPORT
+
+#+BEGIN_EXPORT latex
+
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}
+
+%maximum width= pt
+    
+    \node [draw, rectangle] (a) at (0,5) {a};
+    \node [draw, rectangle] (b) at (0,4) {b};
+    \node [draw, rectangle] (c) at (0,3) {c};
+    \node [draw, rectangle] (d) at (0,2) {d};
+    \node [draw, rectangle] (e) at (0,1) {e};
+    \node [draw, rectangle] (f) at (0,0) {f};
+    
+    \node [draw, ellipse] (cnot1) at (2,4.5) {CNOT a,b};
+    \node [draw, ellipse] (cnot2) at (4,3.5) {CNOT b,c};
+    \node [draw, ellipse] (cnot3) at (6,2.5) {CNOT c,d};
+    \node [draw, ellipse] (cnot4) at (8,1.5) {CNOT d,e};
+    \node [draw, ellipse] (cnot5) at (10,0.5) {CNOT e,f};
+
+
+    \draw (a) -- (cnot1);
+    \draw (b) -- (cnot1);
+    
+    \draw (cnot1) -- (cnot2);
+    \draw (c) -- (cnot2);
+    
+    \draw (cnot2) -- (cnot3);
+    \draw (d) -- (cnot3);
+    
+    \draw (cnot3) -- (cnot4);
+    \draw (e) -- (cnot4);
+    
+    \draw (cnot4) -- (cnot5);
+    \draw (f) -- (cnot5);
+    
+\end{tikzpicture}
+}
+
+#+END_EXPORT
+
+Latency: 400ns
+
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_act: <3>
+     :BEAMER_env: onlyenv
+     :END:
+
+     #+BEGIN_EXPORT latex
+      \begin{center}
+     \Qcircuit @C=1em @R=.7em {
+     \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c \to Q_5} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+\lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+}
+\end{center}
+     #+END_EXPORT
+
+\tiny{* Virtual qubit $\to$ physical qubit}
+     
+Latency: 400ns
+     
+**** TODO                                                       :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_env: onlyenv
+     :BEAMER_act: <2>
+     :END:
+
+# #+BEGIN_EXPORT latex
+# \resizebox{.5\textwidth}{!}{%
+# \schema{\schemabox{Explaining mapping example}}{\schemabox{
+# QASM
+# }}
+# }
+# #+END_EXPORT
+     
+     # Let's consider first just the routing problem and then we add the placement.
+     # Let's consider first just a *naive placement*
+
+     # Notice we want to map *virtual* to *physical* qubits, no logical.
+
+     Maybe is going to be more clear with a toy example.
+     Let's say that we want to run the Gray Code Quantum Generator in the SC-7.
+   
+     This code is written in QASM (Quantum Assembly), a basic language for describing quantum circuits
+
+     #+caption: Gray Code
+     #+ATTR_LATEX: :width \textwidth
+    #+ATTR_LATEX: :width 0.3\textwidth
+    [[file:figs/gray_code.png]]
+
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_env: onlyenv
+     :BEAMER_act: <3>
+     :END:
+
+# #+BEGIN_EXPORT latex
+# \resizebox{.5\textwidth}{!}{%
+# \schema{\schemabox{Explaining mapping example}}{\schemabox{
+# Virtual to physical qubits\\
+# Dependence graph
+# }}
+# }
+# #+END_EXPORT
+     
+        The Gray Code Quantum Circuit looks like this.
+
+        We have to define whish virtual qubits (a,b,...) is related with the physical ones (0,1,..)
+
+        As you can see in the circuit and in the dependence graph there are no parallel operations, thus there is no possible scheduling.
+
+     \hline
+
+#      #+BEGIN_EXPORT latex
+# \resizebox{.5\textwidth}{!}{%
+# \schema{\schemabox{Explaining Optimized Approach}}{\schemabox{
+# No better scheduling\\
+# No routing required
+# }}
+# }
+# #+END_EXPORT
+
+        With an optimized initial placement, or a real optimized mapping the circuit could be the  same without adding any gate.
+        No routing is required.
+
+*** Mapping example. Scheduling and placement
+**** Example definition                                            :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+***** Example definition                                :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+     #+BEGIN_EXPORT latex
+     \begin{center}
+     #+END_EXPORT
+     
+     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
+
+     #+BEGIN_EXPORT latex
+     \end{center}
+     #+END_EXPORT
+
+***** Surface architecture                              :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+      
+     #+BEGIN_EXPORT latex
+
+     \begin{center}
+     \resizebox{\textwidth}{!}{%
+     \begin{tikzpicture}[x=5mm,y=5mm]
+ % \tikzstyle{every node} = [circle, fill=gray!30]
+ % \node [green] at (0,0) {[circle, fill=gray!30]};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
+ % \node [cyan] at (10,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
+ % \node [green] at (20,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
+ % \node [red] at (5,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
+ % \node [red] at (5,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
+ % \node [red] at (15,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
+ % \node [red] at (15,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
+
+ \node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
+ \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
+ \node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
+ \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
+ \node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
+ \node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
+ \node [purple] at (17,-5) {\textbf{6}};
+
+ % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
+ \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
+ \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
+
+ \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
+ \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
+
+ \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
+ \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
+
+ \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
+ \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
+
+ \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
+ \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
+
+ \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
+ \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
+
+ \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
+ \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
+
+ \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
+ \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
+
+
+ \end{tikzpicture}
+ }
+ \end{center}
+     #+END_EXPORT
+
+*****                                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+******                                                  :B_structureenv:
+      :PROPERTIES:
+      :BEAMER_env: structureenv
+      :END:
+
+      #+BEGIN_EXPORT latex
+      \begin{center}
+      #+END_EXPORT
+
+      _Naive Approach_  
+
+#+BEGIN_EXPORT latex
+\medskip
+\end{center}
+#+END_EXPORT   
+
+****                                                               :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.1
+    :END:
+
+
+
+**** Gray Code Quantum Circuit                                     :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+    _Gray Code Quantum Circuit_
+    
+     
+           #+BEGIN_EXPORT latex
+
+ \begin{center}
+    \Qcircuit @C=1em @R=.7em {
+ \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
+ \lstick{b \to Q_1} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+ \lstick{c \to Q_2} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+ \lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+ \lstick{e \to Q_4} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+ \lstick{f \to Q_5} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+ }
+ \end{center}
+
+    #+END_EXPORT
+
+	\tiny{* Virtual qubit $\to$ physical qubit}
+
+
+
+     
+**** TODO                                                       :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+    But what happens if we use a Naive initial placement approach?
+    
+   Let's map in alphabetical order (a $\to$ 0, b $\to$ 1, ...).
+
+   You can noticed that after this naive initial placement we are going to need to route the qubit to communicate them.
+
+   For example, we are going to do a SWAP operation between b and d in order to be able to do the CNOT between a and b.
+   We should do this with all the circuit and the result will this circuit.
+
+
+*** Mapping example. Routing and re-scheduling
+**** Example definition                                            :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+***** Example definition                                :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+     #+BEGIN_EXPORT latex
+     \begin{center}
+     #+END_EXPORT
+     
+     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
+
+     #+BEGIN_EXPORT latex
+     \end{center}
+     #+END_EXPORT
+
+***** Surface architecture                              :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+     #+BEGIN_EXPORT latex
+
+     \begin{center}
+     \resizebox{\textwidth}{!}{%
+     \begin{tikzpicture}[x=5mm,y=5mm]
+ % \tikzstyle{every node} = [circle, fill=gray!30]
+ % \node [green] at (0,0) {[circle, fill=gray!30]};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
+ % \node [cyan] at (10,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
+ % \node [green] at (20,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
+ % \node [red] at (5,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
+ % \node [red] at (5,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
+ % \node [red] at (15,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
+ % \node [red] at (15,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
+
+ \node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
+ \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
+ \node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
+ \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
+ \node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
+ \node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
+ \node [purple] at (17,-5) {\textbf{6}};
+
+ % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
+ \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
+ \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
+
+ \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
+ \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
+
+ \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
+ \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
+
+ \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
+ \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
+
+ \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
+ \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
+
+ \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
+ \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
+
+ \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
+ \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
+
+ \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
+ \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
+
+
+ \end{tikzpicture}
+ }
+ \end{center}
+     #+END_EXPORT
+
+
+*****                                                   :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+******                                                  :B_structureenv:
+      :PROPERTIES:
+      :BEAMER_env: structureenv
+      :END:
+
+      #+BEGIN_EXPORT latex
+      \begin{center}
+      #+END_EXPORT
+
+      _Naive Approach_  
+
+#+BEGIN_EXPORT latex
+\medskip
+\end{center}
+#+END_EXPORT   
+
+****                                                               :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.1
+    :END:
+
+
+
+**** Gray Code Quantum Circuit                                     :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+    
+*****                                                   :B_ignoreheading:
+      :PROPERTIES:
+      :BEAMER_env: ignoreheading
+      :END:
+
+           #+BEGIN_EXPORT latex
+\begin{center}
+\resizebox{\textwidth}{!}{
+    \Qcircuit @C=.5em @R=.7em {
+\lstick{a \to Q_0} & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
+\lstick{c \to Q_2} & \qw & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \ctrl{-3} & \qw & \qw & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
+\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
+\lstick{f \to Q_5} & \qw & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw
+ }
+}
+\end{center}
+
+    #+END_EXPORT
+      
+*****                                                   :B_ignoreheading:
+      :PROPERTIES:
+      :BEAMER_env: ignoreheading
+      :END:
+
+#+BEGIN_EXPORT latex
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}
+    
+    \node [draw, rectangle] (a) at (0,5) {a};
+    \node [draw, rectangle] (b) at (0,4) {b};
+    \node [draw, rectangle] (c) at (0,3) {c};
+    \node [draw, rectangle] (d) at (0,2) {d};
+    \node [draw, rectangle] (e) at (0,1) {e};
+    \node [draw, rectangle] (f) at (0,0) {f};
+    
+    \node (swap1) at (2,3) {SWAP};
+    \node (swap2) at (2,1.5) {SWAP};
+    \node (cnot1) at (4,4.5) {CNOT};
+    \node (cnot2) at (6,3) {CNOT};
+    \node (swap3) at (8,2.25) {SWAP};
+    \node (cnot3) at (10,2.5) {CNOT};
+    \node (cnot4) at (12,1.75) {CNOT};
+    \node (swap4) at (12,0.5) {SWAP};
+    \node (swap5) at (14,1.5) {SWAP};
+    \node (swap6) at (16,0.75) {SWAP};
+    \node (cnot5) at (18,1.5) {CNOT};
+    
+    \draw (b) -- (swap1);
+    \draw (d) -- (swap1);
+    
+    \draw (c) -- (swap2);
+    \draw (f) -- (swap2);
+    
+    \draw (a) -- (cnot1);
+    \draw (swap1) -- (cnot1);
+    
+    \draw (cnot1) -- (cnot2);
+    \draw (swap2) -- (cnot2);
+    
+    \draw (cnot2) -- (swap3);
+    \draw (swap2) -- (swap3);
+    
+    \draw (swap1) -- (cnot3);
+    \draw (swap3) -- (cnot3);
+    
+    \draw (cnot3) -- (cnot4);
+    \draw (e) -- (cnot4);
+    
+    \draw (swap2) -- (swap4);
+    \draw (swap3) -- (swap4);
+    
+    \draw (cnot3) -- (swap5);
+    \draw (swap4) -- (swap5);
+    
+    \draw (cnot4) -- (swap6);
+    \draw (swap5) -- (swap6);
+    
+    \draw (swap6) -- (cnot5);
+    \draw (cnot4) -- (cnot5);
+    
+\end{tikzpicture}
+}
+#+END_EXPORT
+
+Latency: $1440 + 400 = 1840$ ns
+     
+**** TODO                                                       :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+    
+   In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
+
+   Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
+   Remember that Quantum gates are well known to be highly faulty.
+     
+*** Mapping example. Routing and re-scheduling
+**** Example definition                                            :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+***** Example definition                                :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+     #+BEGIN_EXPORT latex
+     \begin{center}
+     #+END_EXPORT
+     
+     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
+
+     #+BEGIN_EXPORT latex
+     \end{center}
+     #+END_EXPORT
+
+***** Surface architecture                              :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+     #+BEGIN_EXPORT latex
+
+     \begin{center}
+     \resizebox{\textwidth}{!}{%
+     \begin{tikzpicture}[x=5mm,y=5mm]
+ % \tikzstyle{every node} = [circle, fill=gray!30]
+ % \node [green] at (0,0) {[circle, fill=gray!30]};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
+ % \node [cyan] at (10,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
+ % \node [green] at (20,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
+ % \node [red] at (5,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
+ % \node [red] at (5,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
+ % \node [red] at (15,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
+ % \node [red] at (15,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
+
+ \node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
+ \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
+ \node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
+ \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
+ \node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
+ \node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
+ \node [purple] at (17,-5) {\textbf{6}};
+
+ % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
+ \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
+ \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
+
+ \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
+ \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
+
+ \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
+ \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
+
+ \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
+ \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
+
+ \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
+ \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
+
+ \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
+ \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
+
+ \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
+ \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
+
+ \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
+ \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
+
+
+ \end{tikzpicture}
+ }
+ \end{center}
+     #+END_EXPORT
+
+
+*****                                                   :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+******                                                  :B_structureenv:
+      :PROPERTIES:
+      :BEAMER_env: structureenv
+      :END:
+
+      #+BEGIN_EXPORT latex
+      \begin{center}
+      #+END_EXPORT
+
+      _Naive Approach_  
+
+#+BEGIN_EXPORT latex
+\medskip
+\end{center}
+#+END_EXPORT   
+
+****                                                               :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.1
+    :END:
+
+
+
+**** Gray Code Quantum Circuit                                     :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+      
+*****                                                   :B_ignoreheading:
+      :PROPERTIES:
+      :BEAMER_env: ignoreheading
+      :END:
+
+                 #+BEGIN_EXPORT latex
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+    \Qcircuit @C=.5em @R=.7em {
+ \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
+\lstick{c \to Q_2} & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \ctrl{-3} & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
+\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
+\lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
+ }
+}
+\end{center}
+
+    #+END_EXPORT
+
+*****                                                   :B_ignoreheading:
+      :PROPERTIES:
+      :BEAMER_env: ignoreheading
+      :END:
+
+          #+BEGIN_EXPORT latex
+    \begin{center}
+    $\Box$ \text{Cycle}
+    \end{center}
+    #+END_EXPORT
+    
+*****                                                   :B_ignoreheading:
+      :PROPERTIES:
+      :BEAMER_env: ignoreheading
+      :END:
+
+#+BEGIN_EXPORT latex
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}
+    
+    \node [draw, rectangle] (a) at (0,5) {a};
+    \node [draw, rectangle] (b) at (0,4) {b};
+    \node [draw, rectangle] (c) at (0,3) {c};
+    \node [draw, rectangle] (d) at (0,2) {d};
+    \node [draw, rectangle] (e) at (0,1) {e};
+    \node [draw, rectangle] (f) at (0,0) {f};
+    
+    \node (swap1) at (2,3) {SWAP};
+    \node (swap2) at (2,1.5) {SWAP};
+    \node (cnot1) at (4,4.5) {CNOT};
+    \node (cnot2) at (6,3) {CNOT};
+    \node (swap3) at (8,2.25) {SWAP};
+    \node (cnot3) at (10,2.5) {CNOT};
+    \node (cnot4) at (12,1.75) {CNOT};
+    \node (swap4) at (12,0.5) {SWAP};
+    \node (swap5) at (14,1.5) {SWAP};
+    \node (swap6) at (16,0.75) {SWAP};
+    \node (cnot5) at (18,1.5) {CNOT};
+    
+    \draw (b) -- (swap1);
+    \draw (d) -- (swap1);
+    
+    \draw (c) -- (swap2);
+    \draw (f) -- (swap2);
+    
+    \draw (a) -- (cnot1);
+    \draw (swap1) -- (cnot1);
+    
+    \draw (cnot1) -- (cnot2);
+    \draw (swap2) -- (cnot2);
+    
+    \draw (cnot2) -- (swap3);
+    \draw (swap2) -- (swap3);
+    
+    \draw (swap1) -- (cnot3);
+    \draw (swap3) -- (cnot3);
+    
+    \draw (cnot3) -- (cnot4);
+    \draw (e) -- (cnot4);
+    
+    \draw (swap2) -- (swap4);
+    \draw (swap3) -- (swap4);
+    
+    \draw (cnot3) -- (swap5);
+    \draw (swap4) -- (swap5);
+    
+    \draw (cnot4) -- (swap6);
+    \draw (swap5) -- (swap6);
+    
+    \draw (swap6) -- (cnot5);
+    \draw (cnot4) -- (cnot5);
+    
+\end{tikzpicture}
+}
+#+END_EXPORT
+
+Latency: 1520 ns
+      
+     
+**** TODO                                                       :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+    
+   In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
+
+   Note that the circuit complexity has grown. The mapping task is causing an obvious overhead.
+
+*** Optimal approach vs Naive
+
+**** Circuits                                            :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+*****                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .4
+:END:
+
+     #+BEGIN_EXPORT latex
+      \begin{center}
+\resizebox{.6\textwidth}{!}{
+     \Qcircuit @C=1em @R=.7em {
+     \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c \to Q_5} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+\lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+}
+}
+\end{center}
+     #+END_EXPORT
+
+
+*****                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .4
+:END:
+
+                 #+BEGIN_EXPORT latex
+
+\begin{center}
+\resizebox{\textwidth}{!}{
+    \Qcircuit @C=.5em @R=.7em {
+ \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
+\lstick{c \to Q_2} & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \ctrl{-3} & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
+\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
+\lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
+ }
+}
+\end{center}
+
+    #+END_EXPORT
+
+****                                                     :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float t :align lll
+|              | Optimal approach | Naive apprach |
+|--------------+------------------+---------------|
+| # operations | 5                |            11 |
+| latency      | 400 ns           | 1520 ns       |
+|--------------+------------------+---------------|
+*** What is the problem?
+
+****                                                               :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+*****                                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+Error sources:
+
+- Superconducting quantum gates are highly faulty
+- Decoherence (time)
+- Others
+
+*****                                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+\vspace{.5cm}
+# \centering
+
+_No error correction_ (despite we are working at _physical_ qubits level)
+
+
+****                                                               :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:  
+
+****** Windows error image                             :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+\vspace{.5cm}
+
+#+ATTR_LATEX: :width \textwidth
+[[file:figs/computer_error_windows.png]]
+
+****                                                     :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+# \vspace{.5cm}
+
+****  Best Mapping                                        :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+Ideal mapping should not inject extra errors.
+
+# *** Error image                                           :B_ignoreheading:
+# :PROPERTIES:
+# :BEAMER_env: ignoreheading
+# :END:
+
+# ****                                                               :BMCOL:
+# :PROPERTIES:
+# :BEAMER_col: .2
+# :END:
+
+
+# ****                                                               :BMCOL:
+# :PROPERTIES:
+# :BEAMER_col: .4
+# :END:
+
+# #+ATTR_LATEX: :width \textwidth
+# [[file:figs/computer_error_windows.png]]
+
+# ****                                                               :BMCOL:
+# :PROPERTIES:
+# :BEAMER_col: .2
+# :END:
+
+**** TODO                                                       :B_noteNH:
+:PROPERTIES:
+:BEAMER_env: noteNH
+:END:
+
+
+What is the problem of this overhead?
+
+   There are a lot of error sources that affect the fidelity of a quantum algorithm result.
+   Each gate introduce the possibility of having errors, as well as the latency.
+   Time is the main problem in Quantum Computation.
+
+   We will assume that error correction is not possible, because we are working with qubits at its physical level.
+
+   So the problem in the mapping task is, which is the best mapping between all possibilities in order to introduce the less amount of errors as possible.
+
+*** State of the Art of the mapping task
+
+**** Index                                                     :B_onlyenv:
+    :PROPERTIES:
+    :BEAMER_act: <1>
+    :BEAMER_env: onlyenv
+    :END:
+
+***** What is the people doing?                         :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+
+      \small
+      
+      - Our group's mapping
+      - "An Efficient Methodology for Mapping Quantum Circuits to the IBM QX Architectures" 
+      - "Qubit Allocation"
+      - "Scheduling physical operations in a quantum information processor"
+      - "Automated generation of layout and control for quantum circuits"
+      - "Minimizing the latency of quantum circuits during mapping to the ion-trap circuit fabric" 
+      - "A quantum physical design  ow using ilp and graph drawing"
+      - "An minlp model for scheduling and place- ment of quantum circuits with a heuristic solution approach" 
+      - "Determining the minimal number of swap gates for multi- dimensional nearest neighbor quantum circuits" 
+      - ...
+      # - "Look-ahead schemes for nearest neighbor optimization of 1d and 2d quantum circuits" cite:Wille_2016
+      # - "Quantum circuit physical design  ow for 2d nearest-neighbor architectures" cite:Farghadan_2017
+      # - "Qiskit, quantum information software kit"  
+      # - "Compiling quantum circuits to realistic hardware architectures using temporal planners" cite:Venturelli_2018
+
+# **** Search approaches Scheme                               :B_ignoreheading:
+#      :PROPERTIES:
+#      :BEAMER_env: ignoreheading
+#      :END:
+
+#          #+BEGIN_EXPORT latex
+# \begin{center}
+# \boxed{
+# \resizebox{0.6\textwidth}{!}{
+# \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=0.7cm, thick,main node/.style={}]
+#     \draw (6,0) -- (6,4) coordinate (Le);
+#  \node[main node] (S) at (4,1) {Siraichi's mapping};
+#  \node[main node] (Z) at (2,2) {Zulehner's mapping};
+#  \node[main node] (O) at (9,1.5) {Our group's mapping};
+# \node[main node,text=teal] (C) at (3,3.5) {\underline{Best path (Cost)}};
+# \node[main node,text=orange] (P) at (9,3.5) {\underline{Shortest path}};
+#  \node[main node,draw, ellipse] (1) [above=.5cm of Le] {\underline{Different Search Approaches}};
+# \path[every node/.style={}]
+#    (1) edge node [] {} (C)
+#    (1) edge node [] {} (P);
+# \end{tikzpicture}
+# }
+# }
+# \end{center}
+#     #+END_EXPORT
+
+**** Compare with what we want to do                           :B_onlyenv:
+    :PROPERTIES:
+    :BEAMER_env: onlyenv
+    :BEAMER_act: <2>
+    :END:
+
+    #+ATTR_LATEX: :booktabs :environment :font \small :width \textwidth :float t :align p{3.5cm}|p{3cm}|p{3.5cm}
+    |                                  | Chip Architecture | Metric                    |
+    |----------------------------------+-------------------+---------------------------|
+    |                                  |                   |                           |
+    | "An Efficient Methodology [...]" | IBM QX            | Cost $\equiv$ #operations |
+    |                                  |                   |                           |
+    | "Qubit Allocation"               | IBM QX            | Cost $\equiv$ #operations |
+    |                                  |                   |                           |
+    | Our group's mapping              | QuTech SC-7/SC-17 | Latency                   |
+
+    \vspace{1cm}
+
+    The other works metric is either the _latency_ or the _#operations_, never the "probability of success" of the quantum circuit.
+
+
+**** TODO                                                       :B_noteNH:
+:PROPERTIES:
+:BEAMER_env: noteNH
+:END:
+
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_env: onlyenv
+     :BEAMER_acr: <1>
+     :END:
+
+And this problem is an important problem for the Quantum Computing community.
+   Many works have tried to efficiently map physical quantum circuits on different qubit structures.
+
+
+*****                                                         :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_env: onlyenv
+     :BEAMER_acr: <1>
+     :END:
+   
+\hline
+
+   All the works are using the latency or the number of operations as metric, or what is the same, they are looking for the best mapping optimizing in number of operations or latency.
+
+   It is fair to think that the longer the circuit, the worse the results.
+   But, what if even the best mapping is introducing that amount of errors that, in the end, the result has no sense?
+   No one is analyzing the success of the algorithms after the mapping task!
+
+*** Other constraints
+
+**** SC-17 topology                                      :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+***** Images                                                      :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .4
+:END:
+
+# *****                                                             :BMCOL:
+# :PROPERTIES:
+# :BEAMER_col: .5
+# :END:
+
+#+ATTR_LATEX: :width .6\textwidth
+[[file:figs/sc-17.eps]]
+
+# *****                                                             :BMCOL:
+# :PROPERTIES:
+# :BEAMER_col: .5
+# :END:
+
+
+#    #+BEGIN_EXPORT latex
+   
+#    \definecolor{qpink}{rgb}{0.91, 0.05, 0.57}
+	      
+     
+#      \begin{center}
+#      \resizebox{\textwidth}{!}{%
+
+# \begin{tikzpicture}[x=5mm,y=5mm]
+# \node [circle,fill=cyan,minimum size=10pt] at (20,10) {};
+# \node [circle,fill=green,minimum size=10pt] at (0,0) {};
+# \node [circle,fill=cyan,minimum size=10pt] at (10,0) {};
+# \node [circle,fill=green,minimum size=10pt] at (20,0) {};
+# \node [circle,fill=red,minimum size=10pt] at (5,5) {};
+# %\node [circle,fill=blue!50!red!50,minimum size=10pt] at (5,-5) {};
+# \node [circle,fill=qpink,minimum size=10pt] at (5,-5) {};
+# \node [circle,fill=red,minimum size=10pt] at (15,5) {};
+# \node [circle,fill=red,minimum size=10pt] at (25,5) {};
+# %\node [circle,fill=blue!50!red!50,minimum size=10pt] at (15,-5) {};
+# %\node [circle,fill=blue!50!red!50,minimum size=10pt] at (25,-5) {};
+# \node [circle,fill=qpink,minimum size=10pt] at (15,-5) {};
+# \node [circle,fill=qpink,minimum size=10pt] at (25,-5) {};
+# \node [circle,fill=green,minimum size=10pt] at (10,-10) {};
+# \node [circle,fill=cyan,minimum size=10pt] at (20,-10) {};
+# \node [circle,fill=green,minimum size=10pt] at (30,-10) {};
+# \node [circle,fill=red,minimum size=10pt] at (5,-15) {};
+# \node [circle,fill=red,minimum size=10pt] at (15,-15) {};
+# \node [circle,fill=red,minimum size=10pt] at (25,-15) {};
+# \node [circle,fill=cyan,minimum size=10pt] at (10,-20) {};
+
+# \node [purple] at (1,0) {\huge 4};
+# \node [purple] at (11,0) {\huge 5};
+# \node [purple] at (21,0) {\huge 6};
+# \node [purple] at (6,5) {\huge 1};
+# \node [purple] at (16,5) {\huge 2};
+# \node [purple] at (26,5) {\huge 3};
+# \node [purple] at (21,10) {\huge 0};
+# \node [purple] at (6,-5) {\huge 7};
+# \node [purple] at (16,-5) {\huge 8};
+# \node [purple] at (26,-5) {\huge 9};
+# \node [purple] at (11,-10) {\huge 10};
+# \node [purple] at (21,-10) {\huge 11};
+# \node [purple] at (31,-10) {\huge 12};
+# \node [purple] at (6,-15) {\huge 13};
+# \node [purple] at (16,-15) {\huge 14};
+# \node [purple] at (26,-15) {\huge 15};
+# \node [purple] at (11,-20) {\huge 16};
+
+# \draw (15,5) -- (20,10) node [midway, above, sloped] {};
+# \draw (20,10) -- (25,5) node [midway, above, sloped] {};
+# \draw (0,0) -- (5,5) node [midway, above, sloped] {};
+# \draw (5,5) -- (10,0)  node [midway, above, sloped] {};
+# \draw (10,0)  -- (15,5) node [midway, above, sloped] {};
+# \draw (15,5) -- (20,0) node [midway, above, sloped] {};
+# \draw (20,0) -- (25,5) node [midway, above, sloped] {};
+# \draw (20,0) -- (15, -5) node [midway, above, sloped] {};
+# \draw (15, -5) -- (10, 0) node [midway, above, sloped] {};
+# \draw (10, 0) -- (5, -5) node [midway, above, sloped] {};
+# \draw (5, -5) -- (0,0) node [midway, above, sloped] {};
+# \draw (20, 0) -- (25,-5) node [midway, above, sloped] {};
+# \draw (5, -5) -- (10,-10) node [midway, above, sloped] {};
+# \draw (10, -10) -- (15,-5) node [midway, above, sloped] {};
+# \draw (15, -5) -- (20,-10) node [midway, above, sloped] {};
+# \draw (20, -10) -- (25,-5) node [midway, above, sloped] {};
+# \draw (25, -5) -- (30,-10) node [midway, above, sloped] {};
+# \draw (5, -15) -- (10,-10) node [midway, above, sloped] {};
+# \draw (10, -10) -- (15,-15) node [midway, above, sloped] {};
+# \draw (15, -15) -- (20,-10) node [midway, above, sloped] {};
+# \draw (20, -10) -- (25,-15) node [midway, above, sloped] {};
+# \draw (25, -15) -- (30,-10) node [midway, above, sloped] {};
+# \draw (5, -15) -- (10,-20) node [midway, above, sloped] {};
+# \draw (10, -20) -- (15,-15) node [midway, above, sloped] {};
+
+# \draw (10,0) -- (15,5) -- (20, 0) --(15, -5) -- (10, 0) -- (5, -5) -- (0, 0);
+# \end{tikzpicture}
+
+#      }
+#      \end{center}
+     
+#      #+END_EXPORT
+
+***** Images                                                      :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .4
+:END:
+
+   #+BEGIN_EXPORT latex
+   
+   \definecolor{qpink}{rgb}{0.91, 0.05, 0.57}
+	      
+     
+     \begin{center}
+     \resizebox{.75\textwidth}{!}{%
+
+\begin{tikzpicture}[x=5mm,y=5mm]
+\node [circle,fill=cyan,minimum size=10pt] at (20,10) {};
+\node [circle,fill=green,minimum size=10pt] at (0,0) {};
+\node [circle,fill=cyan,minimum size=10pt] at (10,0) {};
+\node [circle,fill=green,minimum size=10pt] at (20,0) {};
+\node [circle,fill=red,minimum size=10pt] at (5,5) {};
+%\node [circle,fill=blue!50!red!50,minimum size=10pt] at (5,-5) {};
+\node [circle,fill=qpink,minimum size=10pt] at (5,-5) {};
+\node [circle,fill=red,minimum size=10pt] at (15,5) {};
+\node [circle,fill=red,minimum size=10pt] at (25,5) {};
+%\node [circle,fill=blue!50!red!50,minimum size=10pt] at (15,-5) {};
+%\node [circle,fill=blue!50!red!50,minimum size=10pt] at (25,-5) {};
+\node [circle,fill=qpink,minimum size=10pt] at (15,-5) {};
+\node [circle,fill=qpink,minimum size=10pt] at (25,-5) {};
+\node [circle,fill=green,minimum size=10pt] at (10,-10) {};
+\node [circle,fill=cyan,minimum size=10pt] at (20,-10) {};
+\node [circle,fill=green,minimum size=10pt] at (30,-10) {};
+\node [circle,fill=red,minimum size=10pt] at (5,-15) {};
+\node [circle,fill=red,minimum size=10pt] at (15,-15) {};
+\node [circle,fill=red,minimum size=10pt] at (25,-15) {};
+\node [circle,fill=cyan,minimum size=10pt] at (10,-20) {};
+
+\node [purple] at (1,0) {\huge 4};
+\node [purple] at (11,0) {\huge 5};
+\node [purple] at (21,0) {\huge 6};
+\node [purple] at (6,5) {\huge 1};
+\node [purple] at (16,5) {\huge 2};
+\node [purple] at (26,5) {\huge 3};
+\node [purple] at (21,10) {\huge 0};
+\node [purple] at (6,-5) {\huge 7};
+\node [purple] at (16,-5) {\huge 8};
+\node [purple] at (26,-5) {\huge 9};
+\node [purple] at (11,-10) {\huge 10};
+\node [purple] at (21,-10) {\huge 11};
+\node [purple] at (31,-10) {\huge 12};
+\node [purple] at (6,-15) {\huge 13};
+\node [purple] at (16,-15) {\huge 14};
+\node [purple] at (26,-15) {\huge 15};
+\node [purple] at (11,-20) {\huge 16};
+
+\draw (15,5) -- (20,10) node [midway, above, sloped] {};
+\draw (20,10) -- (25,5) node [midway, above, sloped] {};
+\draw (0,0) -- (5,5) node [midway, above, sloped] {};
+\draw (5,5) -- (10,0)  node [midway, above, sloped] {};
+\draw (10,0)  -- (15,5) node [midway, above, sloped] {};
+\draw (15,5) -- (20,0) node [midway, above, sloped] {};
+\draw (20,0) -- (25,5) node [midway, above, sloped] {};
+\draw (20,0) -- (15, -5) node [midway, above, sloped] {};
+\draw (15, -5) -- (10, 0) node [midway, above, sloped] {};
+\draw (10, 0) -- (5, -5) node [midway, above, sloped] {};
+\draw (5, -5) -- (0,0) node [midway, above, sloped] {};
+\draw (20, 0) -- (25,-5) node [midway, above, sloped] {};
+\draw (5, -5) -- (10,-10) node [midway, above, sloped] {};
+\draw (10, -10) -- (15,-5) node [midway, above, sloped] {};
+\draw (15, -5) -- (20,-10) node [midway, above, sloped] {};
+\draw (20, -10) -- (25,-5) node [midway, above, sloped] {};
+\draw (25, -5) -- (30,-10) node [midway, above, sloped] {};
+\draw (5, -15) -- (10,-10) node [midway, above, sloped] {};
+\draw (10, -10) -- (15,-15) node [midway, above, sloped] {};
+\draw (15, -15) -- (20,-10) node [midway, above, sloped] {};
+\draw (20, -10) -- (25,-15) node [midway, above, sloped] {};
+\draw (25, -15) -- (30,-10) node [midway, above, sloped] {};
+\draw (5, -15) -- (10,-20) node [midway, above, sloped] {};
+\draw (10, -20) -- (15,-15) node [midway, above, sloped] {};
+
+\draw (10,0) -- (15,5) -- (20, 0) --(15, -5) -- (10, 0) -- (5, -5) -- (0, 0);
+\end{tikzpicture}
+
+     }
+     \end{center}
+     
+     #+END_EXPORT
+
+
+# **** Frequencies constraint                              :B_ignoreheading:
+# :PROPERTIES:
+# :BEAMER_env: ignoreheading
+# :END:
+
+# - Frequencies constraint
+
+# **** Measurement constraint                              :B_ignoreheading:
+# :PROPERTIES:
+# :BEAMER_env: ignoreheading
+# :END:
+
+# \vspace{1cm}
+
+# - Measurement constraint
+
+
+**** Constraints                                         :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+# - Frequencies constraint
+# - Measurement constraint
+
+*****                                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .4
+:END:
+
+Constraints:
+
+- Frequencies constraint
+- Measurement constraint
+
+\vspace{.5cm}
+
+This constraints also affect the mapping task (mainly scheduling)
+
+***** Table                                                       :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .4
+:END:
+
+#+BEGIN_EXPORT latex
+\definecolor{qpink}{rgb}{0.91, 0.05, 0.57}
+#+END_EXPORT
+
+#+ATTR_LATEX: :environment :font :width .3\textwidth :align ll
+       |                            |                                        |
+       |----------------------------+----------------------------------------|
+       | Freq. Group                | Qubits                                 |
+       |----------------------------+----------------------------------------|
+       | \cellcolor{red!25} QWG 0   | \cellcolor{red!25} 1, 2, 3, 13, 14, 15 |
+       | \cellcolor{qpink!25} QWG 1 | \cellcolor{qpink!25} 7, 8, 9           |
+       | \cellcolor{green!25} QWG 2 | \cellcolor{green!25} 4, 6, 10, 12      |
+       | \cellcolor{cyan!25} QWG 3  | \cellcolor{cyan!25} 0, 5, 11, 16       |
+       |----------------------------+----------------------------------------|
+
+  
+# ***                                                       :B_ignoreheading:
+# :PROPERTIES:
+# :BEAMER_env: ignoreheading
+# :END:
+
+# \centering
+
+# This constraints also affect the mapping task
+
+**** TODO                                                       :B_noteNH:
+:PROPERTIES:
+:BEAMER_env: noteNH
+:END:
+
+_Frequencies constraint_
+
+It is not possible to select or operate at the same time two different single-qubit gates over qubits in the same frequency set (same color).
+
+_Measurement constraint_
+
+The measurement on a qubit cannot start when
+ another qubit coupled to the same feedline is already being measured
+
+This constraints are affecting mainly to the scheduling!
+

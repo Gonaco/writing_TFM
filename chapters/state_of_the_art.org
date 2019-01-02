@@ -63,7 +63,7 @@ Besides latency and the number of operations that serve to feedback the quality 
 Although widely investigated, there are not too many quantum metrics.
 Fidelity has been addressed in order to characterize the error of a quantum circuit based on the qubits state cite:Jozsa_1994,Nielsen_2009.
 And, recently, Quantum Volume has been defined to assert the capability of a quantum computer cite:Moll_2018.
-In the next section and in [REFERENCE TO METRICS CHAPTER 4] we offer an overview of the important metrics in this work.
+In the next section and in [[id:38ded492-56c6-4f6a-a629-06e342314cef][Metrics]] we offer an overview of the important metrics in this work.
 
 
 * Summary table                                             :ignore:noexport:

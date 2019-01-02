@@ -2,14 +2,22 @@
 #+EXCLUDE_TAGS: noexport thesisnoexport
 #+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
-* Benchmarks and error framework
-** Big picture
+* Mapping on superconducting quantum processors
+** TODO Constraints of the Surface-7 and -17 chips
 
-** Benchmarks
-** Error framework
-*** Compiler (OpenQL, cQASM)?
-*** TODO quantumsim
+#+BEGIN_EXPORT latex
+\subfile{chapters/constraints}
+#+END_EXPORT
 
-#+INCLUDE: quantumsim.org
+** Mapping model
+** Metrics
+:PROPERTIES:
+:ID:       38ded492-56c6-4f6a-a629-06e342314cef
+:END:
+*** Number of SWAPS
+*** Latency
+*** Probability of success
+*** Quantum Volume
 
-*** QX
+#+INCLUDE: quantum_volume.org
+

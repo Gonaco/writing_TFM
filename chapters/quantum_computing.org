@@ -1,0 +1,22 @@
+
+In this section ...
+
+*** Essential elements of quantum computation
+
+Qubits and quantum gates are the basic ingredients in quantum computation theory.
+As in classical computation with boolean gates and bits, quantum gates operate on the qubits to change their state and return the desired result or calculation.
+
+**** Qubits
+
+Qubit stands for quantum bit.
+A basic unit of information founded on quantum physics laws.
+Unlike a classical bit, whose state is either ~0~ or ~1~, but like a particle; qubits are not in a fixed state -- ground or excited -- until is measured.
+A qubit's state could be either ~0~ or ~1~ or both before measuring it.
+The ground or excited states are represented in the Dirac's bra-ket notation, viz. $| 0 \rangle$ and $| 1 \rangle$ respectively.
+This notation holds the algebraic axioms required to understand the quantum theory.
+Prior to measurement, a qubit is decribed as in a probabilistic state $| \Phi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \mathds{C}$.
+$\alpha$ is the probability of measuring $| 0 \rangle$, $\beta$ is the probability of measuring $| 1 \rangle$ and both are allowed to be complex.
+
+
+**** Quantum Gates
+*** Quantum Circuits

@@ -6,10 +6,19 @@
 #+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
 * Quantum computers and mapping of quantum circuits
+
+** Quantum computing
+
+#+INCLUDE: quantum_computing.org
+
+** Mapping of quantum circuits
+
+#+INCLUDE: mapping_of_quantum_circuits.org
+
 ** State of the art
 
 #+INCLUDE: state_of_the_art.org
 
-** Mapping explaining the metrics
+** Mapping metrics
 
 #+INCLUDE: explaining_metrics.org
