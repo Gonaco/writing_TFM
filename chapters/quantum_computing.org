@@ -39,10 +39,10 @@ E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the 
 
 # To visualize the quantum states -> the Bloch sphere
 
-#+caption: The Bloch sphere
-#+NAME: fig:bloch_sphere
-#+ATTR_LATEX:
+
 #+BEGIN_EXPORT latex
+\begin{figure}
+\centering
 \begin{tikzpicture}[line cap=round, line join=round, >=Triangle]
   \clip(-2.19,-2.49) rectangle (2.66,2.58);
   \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (56.7:0.4) arc (56.7:90.:0.4) -- cycle;
@@ -66,6 +66,9 @@ E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the 
   \draw [fill] (0,0) circle (1.5pt);
   \draw [fill] (0.7,1.1) circle (0.5pt);
 \end{tikzpicture}
+\caption{The Bloch sphere}
+\label{fig:bloch_sphere}
+\end{figure}
 #+END_EXPORT
 
 # Multiple qubits [Entanglement, Math operation (convolution), Hilbert space increments]
