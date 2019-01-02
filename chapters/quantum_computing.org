@@ -1,4 +1,5 @@
 
+
 In this section ...
 
 *** Essential elements of quantum computation
@@ -14,12 +15,21 @@ Unlike a classical bit, whose state is either ~0~ or ~1~, but like a particle; q
 A qubit's state could be either ~0~ or ~1~ or both before measuring it.
 The ground or excited states are represented in the Dirac's bra-ket notation, viz. $| 0 \rangle$ and $| 1 \rangle$ respectively.
 This notation holds the algebraic axioms required to understand the quantum theory.
-Prior to measurement, a qubit is described as in a probabilistic state $| \Psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \C$.
-$\alpha$ is the probability of measuring $| 0 \rangle$, $\beta$ is the probability of measuring $| 1 \rangle$ and both are allowed to be complex.
-As soon as they are energy probabilistic states, their values are constrained to $|\alpa|^2 + |\beta|^2$
+Prior to measurement, a qubit is described as in a probabilistic state $| \Psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \C$ are the so-called probability amplitudes.
+$|\alpha|^2$ is the probability of measuring $| 0 \rangle$, $|\beta|^2$ is the probability of measuring $| 1 \rangle$ and both are allowed to be complex.
+As soon as they are energy probabilistic states, their values are constrained to $|\alpa|^2 + |\beta|^2 = 1$
 The state is usually defined as a vector $\begin{bmatrix}\alpha \\ \beta \end{bmatrix}$.
 Therefore, we can say that the state of a qubit is define by a 2-dimensional, complex and unitarian vector space.
-E.g. ...
+
+Superposition ...
+E.g. in [[eq:1]]
+
+#+NAME: eq:1
+\begin{equation}
+|0\rangle = \begin{bmatrix}1 \\ 0 \end{bmatrix} \quad \quad |1\rangle = \begin{bmatrix}0 \\ 1 \end{bmatrix}
+\end{equation}
+
+To visualize the quantum states -> the Bloch sphere
 
 **** Quantum Gates
 *** Quantum Circuits
