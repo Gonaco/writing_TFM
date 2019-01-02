@@ -1,5 +1,5 @@
 
-
+[Intro to Quantum Computation power that it is based on *superposition* and *entanglement*]
 In this section ...
 
 *** Essential elements of quantum computation
@@ -13,23 +13,64 @@ Qubit stands for quantum bit.
 A basic unit of information founded on quantum physics laws.
 Unlike a classical bit, whose state is either ~0~ or ~1~, but like a particle; qubits are not in a fixed state -- ground or excited -- until is measured.
 A qubit's state could be either ~0~ or ~1~ or both before measuring it.
-The ground or excited states are represented in the Dirac's bra-ket notation, viz. $| 0 \rangle$ and $| 1 \rangle$ respectively.
-This notation holds the algebraic axioms required to understand the quantum theory.
-Prior to measurement, a qubit is described as in a probabilistic state $| \Psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \C$ are the so-called probability amplitudes.
-$|\alpha|^2$ is the probability of measuring $| 0 \rangle$, $|\beta|^2$ is the probability of measuring $| 1 \rangle$ and both are allowed to be complex.
-As soon as they are energy probabilistic states, their values are constrained to $|\alpa|^2 + |\beta|^2 = 1$
-The state is usually defined as a vector $\begin{bmatrix}\alpha \\ \beta \end{bmatrix}$.
-Therefore, we can say that the state of a qubit is define by a 2-dimensional, complex and unitarian vector space.
+Both ground or excited states are represented in the Dirac's bra-ket notation, viz. $| 0 \rangle$ and $| 1 \rangle$ respectively.
+This notation holds the algebraic axioms cite:Nielsen_2009 required to understand the quantum theory.
+Prior to measurement, a qubit is described as in a probabilistic state $| \Psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \mathbb{C$} are the so-called probability amplitudes.
+$|\alpha|^2$ is the probability of measuring $| 0 \rangle$, $|\beta|^2$ is the probability of measuring $| 1 \rangle$ and both $\alpha$ and $\beta$ are allowed to be complex.
+Dirac's notation grants the definition of the quantum states as vectors, as in eq. [[eq:state_vector_notation]].
+Moreover, as we will see below, adopting Dirac's axioms will make the quantum theory accessible with classical algebra operations. 
 
-Superposition ...
-E.g. in [[eq:1]]
 
-#+NAME: eq:1
+#+NAME: eq:state_vector_notation
 \begin{equation}
-|0\rangle = \begin{bmatrix}1 \\ 0 \end{bmatrix} \quad \quad |1\rangle = \begin{bmatrix}0 \\ 1 \end{bmatrix}
+|\Psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
 \end{equation}
 
-To visualize the quantum states -> the Bloch sphere
+Superposition is easily described giving values to both $\alpha$ and $\beta$ in the same vector.
+But, as soon as they are energy probabilistic states, their values are constrained to $|\alpha|^2 + |\beta|^2 = 1$.
+Since quantum states can be described as vectors, one can easily see that the state of a qubit is defined by a 2-dimensional, complex and unitarian vector space.
+A Hilbert space $\mathscr{H}$.
+E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to get either $|0\rangle$ or $|1\rangle$ -- states are depicted, respectively.
+
+#+NAME: eq:example_q_vectors
+\begin{equation}
+|0\rangle = \begin{bmatrix}1 \\ 0 \end{bmatrix} \quad \quad |1\rangle = \begin{bmatrix}0 \\ 1 \end{bmatrix} \quad \quad |+\rangle = \frac{1}{\sqrt{2}} \begin{bmatrix}1 \\ 1 \end{bmatrix}
+\end{equation}
+
+# To visualize the quantum states -> the Bloch sphere
+
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}[line cap=round, line join=round, >=Triangle]
+  \clip(-2.19,-2.49) rectangle (2.66,2.58);
+  \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (56.7:0.4) arc (56.7:90.:0.4) -- cycle;
+  \draw [shift={(0,0)}, lightgray, fill, fill opacity=0.1] (0,0) -- (-135.7:0.4) arc (-135.7:-33.2:0.4) -- cycle;
+  \draw(0,0) circle (2cm);
+  \draw [rotate around={0.:(0.,0.)},dash pattern=on 3pt off 3pt] (0,0) ellipse (2cm and 0.9cm);
+  \draw (0,0)-- (0.70,1.07);
+  \draw [->] (0,0) -- (0,2);
+  \draw [->] (0,0) -- (-0.81,-0.79);
+  \draw [->] (0,0) -- (2,0);
+  \draw [dotted] (0.7,1)-- (0.7,-0.46);
+  \draw [dotted] (0,0)-- (0.7,-0.46);
+  \draw (-0.08,-0.3) node[anchor=north west] {$\varphi$};
+  \draw (0.01,0.9) node[anchor=north west] {$\theta$};
+  \draw (-1.01,-0.72) node[anchor=north west] {$\mathbf {\hat{x}}$};
+  \draw (2.07,0.3) node[anchor=north west] {$\mathbf {\hat{y}}$};
+  \draw (-0.5,2.6) node[anchor=north west] {$\mathbf {\hat{z}=|0\rangle}$};
+  \draw (-0.4,-2) node[anchor=north west] {$-\mathbf {\hat{z}=|1\rangle}$};
+  \draw (0.4,1.65) node[anchor=north west] {$|\psi\rangle$};
+  \scriptsize
+  \draw [fill] (0,0) circle (1.5pt);
+  \draw [fill] (0.7,1.1) circle (0.5pt);
+\end{tikzpicture}
+#+END_EXPORT
+
+# Multiple qubits [Entanglement, Math operation (convolution), Hilbert space increments]
+
+
 
 **** Quantum Gates
 *** Quantum Circuits
+*** BIB                                           :noexport:
+bibliography:../thesis_plan.bib
+bibliographystyle:plain

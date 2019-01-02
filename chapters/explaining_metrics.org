@@ -81,4 +81,4 @@ But, in order to do that, a precise prediction of the error should be done and t
 # Explaining our purpose and the other metrics (fidelity, prob. success, quantum volume)
 
 So that we could do a proper assessment of mapping algorithms, in our research we analyzed these two metrics amongst other different ones as fidelity, probability of success or quantum volume and their relationship with the error generated after the mapping.
-We will define These metrics in [REFERENCE TO METRIC SECTION IN CHAPTER 4].
+We will define these metrics in the [[id:38ded492-56c6-4f6a-a629-06e342314cef][Metrics]] section.
