@@ -11,7 +11,7 @@ As in classical computation with boolean gates and bits, quantum gates operate o
 
 Qubit stands for quantum bit.
 A basic unit of information founded on quantum physics laws.
-Unlike a classical bit, whose state is either ~0~ or ~1~, but like a particle; qubits are not in a fixed state -- ground or excited -- until is measured.
+Unlike a classical bit, whose state can be either ~0~ or ~1~, but like a particle; qubits are not in a fixed state -- ground or excited -- until they are measured.
 A qubit's state could be either ~0~ or ~1~ or both before measuring it.
 Both ground or excited states are represented in the Dirac's bra-ket notation, viz. $| 0 \rangle$ and $| 1 \rangle$ respectively.
 This notation holds the algebraic axioms cite:Nielsen_2009 required to understand the quantum theory.
@@ -25,11 +25,11 @@ Moreover, as we will see below, adopting Dirac's axioms will make the quantum th
 |\Psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
 \end{equation}
 
-Superposition is easily described giving values to both $\alpha$ and $\beta$ in the same vector.
+*Superposition* is easily described giving values to both $\alpha$ and $\beta$ in the same vector.
 But, as soon as they are energy probabilistic states, their values are constrained to $|\alpha|^2 + |\beta|^2 = 1$.
 Since quantum states can be described as vectors, one can easily see that the state of a qubit is defined by a 2-dimensional, complex and unitarian vector space.
 A Hilbert space $\mathscr{H}$.
-E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to get either $|0\rangle$ or $|1\rangle$ -- states are depicted, respectively.
+E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to measure either $|0\rangle$ or $|1\rangle$ -- states are depicted, respectively.
 
 #+NAME: eq:example_q_vectors
 \begin{equation}
@@ -82,19 +82,25 @@ A sphere of radius one which z-axis extremes represent the ground and excited st
 But a system with just one qubit is not useful.
 The power of quantum computers explodes with the number of qubits able to work with or, what is the same, the dimensions of the Hilbert space $\mathscr{H}$.
 The quantum state of $n$ qubits can be represented in bra-ket notation, with a $2^n$ size.
-And, therefore, they engender Hilbert space of $2^n$ dimensions due to the superposition phenomenon.
+And, therefore, they engender a Hilbert space of $2^n$ dimensions due to superposition.
 The linear operator that leads to the multiple qubit's state is the outer product, defined as the matrix convolution of the state vectors.
 The outer product is represented as $|\phi \rangle \,\langle \psi |$.
 In eq. [[eq:convolution_example]] an example of the outer product is offered.
-The example represents the other fundamental phenomenon in quantum physics, the entanglement state of two qubits ($\phi$ and $\psi$) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
+The example represents the other fundamental phenomenon in quantum physics, the *entanglement* state of two qubits ($\phi$ and $\psi$) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 
 #+NAME: eq:convolution_example
 \begin{equation}
-|\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = \frac{1}{\sqrt{2}} \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
+|\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = \frac{1}{\sqrt{2}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{2}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
 \end{equation}
 
 
-**** Quantum Gates
+**** Quantum Operations
+
+Quantum operations leverage the power of quantum computers, enabling calculations over the qubits.
+Or what is the same, transformations of some Hilbert space.
+As their classical siblings, the l
+
+# Universal set of gates + ¿Intro to differentiation of single- and two-qubit gates?
 
 ***** Single-qubit gates
 
