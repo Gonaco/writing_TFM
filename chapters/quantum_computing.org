@@ -15,14 +15,14 @@ Unlike a classical bit, whose state can be either ~0~ or ~1~, but like a particl
 A qubit's state could be either ~0~ or ~1~ or both before measuring it.
 Both ground or excited states are represented in the Dirac's bra-ket notation, viz. $| 0 \rangle$ and $| 1 \rangle$ respectively.
 This notation holds the algebraic axioms cite:Nielsen_2009 required to understand the quantum theory.
-Prior to measurement, a qubit is described as in a probabilistic state $| \Psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \mathbb{C}$ are the so-called probability amplitudes.
+Prior to measurement, a qubit is described as in a probabilistic state $| \psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle$, where $\alpha, \beta \in \mathbb{C}$ are the so-called probability amplitudes.
 $|\alpha|^2$ is the probability of measuring $| 0 \rangle$, $|\beta|^2$ is the probability of measuring $| 1 \rangle$ and both $\alpha$ and $\beta$ are allowed to be complex.
 Dirac's notation grants the definition of the quantum states as vectors, as in eq. [[eq:state_vector_notation]].
 Moreover, as we will see below, adopting Dirac's axioms will make the quantum theory accessible with classical algebra operations. 
 
 #+NAME: eq:state_vector_notation
 \begin{equation}
-|\Psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
+|\psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
 \end{equation}
 
 *Superposition* is easily described giving values to both $\alpha$ and $\beta$ in the same vector.
@@ -114,11 +114,11 @@ Although, while implying multiple qubits, the quantum operations are more comple
 For instance, a rotation of 180° in z-axis of the Bloch sphere is the same as an operation that change the qubit state from $| 0 \rangle$ to $| 1 \rangle$, or viceversa.
 Qubits and quantum operations interact through the *inner product*.
 In order to apply some operation over a qubit state, a matrix-vector multiplication should be done.
-For instance, in eq. [[eq:inner_prod_ex]] one can understand how some uniform operation $U$ is applied to a qubit with state $| \Psi \rangle$.
+For instance, in eq. [[eq:inner_prod_ex]] one can understand how some uniform operation $U$ is applied to a qubit with state $| \psi \rangle$.
 
 #+NAME: eq:inner_prod_ex
 \begin{equation}
-U \Psi=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{bmatrix}\alpha \\ \beta \end{bmatrix} = \begin{bmatrix}\alpha u_{00} + \beta u_{01} \\ \alpha u_{10} + \beta u_{11} \end{bmatrix}
+U |\psi\rangle=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{bmatrix}\alpha \\ \beta \end{bmatrix} = \begin{bmatrix}\alpha u_{00} + \beta u_{01} \\ \alpha u_{10} + \beta u_{11} \end{bmatrix}
 \end{equation}
 
 # Universal set of gates + ¿Intro to differentiation of single- and two-qubit gates?
@@ -137,16 +137,18 @@ They are represented as a box with one input and one output, evincing that a sin
 As explained before, single-qubit gates can be represented as $2^1 \times 2^1$ square matrices that should be unitary.
 Both representations of the most common single-qubit gates can be found in the table \ref{tab:single_q_gates}.
 
-# #+caption: Most common single qubit gates
-# #+NAME: tab:single_q_gates
-# #+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{.5cm}ccccccc
-# #+TBLNAME: 
+#+caption: Most common single qubit gates
+#+NAME: tab:single_q_gates
+#+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{.5cm}ccccccc
+| Pauli-X                                                                 |
+| \Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{I} & \qw} |
+
+
 # | Name   | Identity                                                                                              | Pauli-X                                                                                               | Pauli-Y                                                                                               | Pauli-Z                                                                                               | Hadamard                                                                                              | S                                                                                                     | T                                                                                                     |
 # | Gate   | \resizebox{0.3\textwidth}{!}{\Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{I} & \qw}} | \resizebox{0.3\textwidth}{!}{\Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{X} & \qw}} | \resizebox{0.3\textwidth}{!}{\Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{Y} & \qw}} | \resizebox{0.3\textwidth}{!}{\Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{Z} & \qw}} | \resizebox{0.3\textwidth}{!}{\Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{H} & \qw}} | \resizebox{0.3\textwidth}{!}{\Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{S} & \qw}} | \resizebox{0.3\textwidth}{!}{\Qcircuit @C=1em @R=.7em {\lstick{\shortmid q\rangle} & \gate{T} & \qw}} |
 # | Matrix |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |
 # | Note   |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |                                                                                                       |
 
-# #+TBLFM: 
 
 ***** Two-qubit gates
 :PROPERTIES:
@@ -163,12 +165,12 @@ Quantum circuits are quantum algorithms descriptions.
 As mentioned before, they are formed by quantum gates and qubits connected in circuit fashion.
 As most of the algorithm description models, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
 They are general descriptions of quantum algorithms.
-Besides the circuit description model, quantum algorithms are commonly described as instruction languages like QASM (Quantum ASseMbly) cite:Nielsen_2009 or its related posterior languages.
-We present an example of circuit in fig. \ref{fig:circuit_example}.
+Besides the circuit description model, quantum algorithms are commonly described as instruction languages like QASM (Quantum ASseMbly) cite:Nielsen_2009 or its related posterior languages -- cQASM, OpenQASM, ...
+In fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
-The circuit is composed by CNOT gates only.
+It is composed by CNOT gates only.
 An example of the Gray code is shown in [[fig:gray_code_example]] for different number of bits ($n$).
-The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
+Also, the QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
 # This example will accompany us through the whole thesis as a circuit example.
 
 #+BEGIN_EXPORT latex
@@ -191,7 +193,7 @@ The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
 \end{figure}
 #+END_EXPORT
 
-#+caption: Gray Code example.
+#+caption: Gray Code example for 3 bits.
 #+NAME: fig:gray_code_example
 #+ATTR_LATEX: :width 0.3\textwidth
 [[file:figures/gray_code.png]]
