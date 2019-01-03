@@ -165,12 +165,12 @@ The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
 [[file:figures/gray_code.png]]
 
 #+BEGIN_EXPORT latex
-\begin{center}
+\begin{figure}
+\centering
 \begin{minipage}{.45\textwidth}
 #+END_EXPORT
 
 #+NAME: code:qasm_gray_code
-#+CAPTION: QASM code describing the Gray code algorithm.
      #+BEGIN_SRC C
 
      #QASM code
@@ -193,8 +193,9 @@ The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
      #+END_SRC
 
 #+BEGIN_EXPORT latex
+\caption{QASM code describing the Gray code algorithm.}
 \end{minipage}
-\end{center}
+\end{figure}
 #+END_EXPORT
 
 *** BIB                                           :noexport:
