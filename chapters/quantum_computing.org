@@ -134,7 +134,8 @@ They are general descriptions of quantum algorithms.
 Besides the circuit description model, quantum algorithms are commonly described as instruction languages like QASM (Quantum ASseMbly) cite:Nielsen_2009 or its related posterior languages.
 We present an example of circuit in fig. \ref{fig:circuit_example}.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
-An example of the Gray code construction is shown in [[fig:gray_code_example]]
+The circuit is composed by CNOT gates only.
+An example of the Gray code is shown in [[fig:gray_code_example]] to recall how the Gray code is.
 The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
 # This example will accompany us through the whole thesis as a circuit example.
 
@@ -154,16 +155,22 @@ The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
 }
 
 \label{fig:circuit_example}
-\caption{Gray encoder quantum circuit}
+\caption{Gray encoder quantum circuit.}
 \end{figure}
 #+END_EXPORT
 
-#+caption: Gray Code
+#+caption: Gray Code example.
 #+NAME: fig:gray_code_example
 #+ATTR_LATEX: :width 0.3\textwidth
 [[file:figures/gray_code.png]]
 
+#+BEGIN_EXPORT latex
+\begin{center}
+\begin{minipage}{.45\textwidth}
+#+END_EXPORT
+
 #+NAME: code:qasm_gray_code
+#+CAPTION: QASM code describing the Gray code algorithm.
      #+BEGIN_SRC C
 
      #QASM code
@@ -184,6 +191,11 @@ The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
      cnot f,d
      
      #+END_SRC
+
+#+BEGIN_EXPORT latex
+\end{minipage}
+\end{center}
+#+END_EXPORT
 
 *** BIB                                           :noexport:
 bibliography:../thesis_plan.bib
