@@ -1,5 +1,5 @@
 #+caption: Most common single qubit gates
 #+NAME: tab:single_q_gates
-#+ATTR_LATEX: :booktabs :environment :width \textwidth :float t :align c
-| Pauli-X                |
-| \input{figures/x_gate} |
+#+ATTR_LATEX: :booktabs :environment :width \textwidth :float t :align ccccccc
+| Identity               | Pauli-X                | Pauli-Y                | Pauli-Z                | Hadamard               | S                      | T                      |
+| \input{figures/i_gate} | \input{figures/x_gate} | \input{figures/y_gate} | \input{figures/z_gate} | \input{figures/h_gate} | \input{figures/s_gate} | \input{figures/t_gate} |
