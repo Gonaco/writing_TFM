@@ -90,7 +90,7 @@ The example represents the other fundamental phenomenon in quantum physics, the 
 
 #+NAME: eq:convolution_example
 \begin{equation}
-|\Phi ^{+}\rangle ={\frac  {1}{{\sqrt  {2}}}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = ...! =  (|00\rangle +|11\rangle ) \over {\sqrt {2}}} {\displaystyle (|00\rangle +|11\rangle ) \over {\sqrt {2}}
+|\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = ...! =  (|00\rangle +|11\rangle ) \over {\sqrt {2}}
 \end{equation}
 
 
