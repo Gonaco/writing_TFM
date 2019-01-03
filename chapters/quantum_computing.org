@@ -166,7 +166,7 @@ Also, the QASM algorithm representation can be seen in code [[code:qasm_gray_cod
 \begin{figure}
     \centering
 
-\resizebox{0.3\textwidth}{!}{
+\resizebox{0.2\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
