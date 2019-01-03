@@ -39,7 +39,7 @@ E.g. in eq. [[eq:example_q_vectors]] the vectors of the ground, excited and the 
 # To visualize the quantum states -> the Bloch sphere
 As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. [[eq:phase_not]]).
 Like the complex numbers, although requiring two angles in this case.
-This notation lead us to a very understandable way to visualize the quantum states, the Bloch sphere (fig. \ref{bloch_sphere}).
+This notation lead us to a very understandable way to visualize the quantum states, the Bloch sphere (fig. \ref{fig:bloch_sphere}).
 A sphere of radius one which z-axis extremes represent the ground and excited states.
 
 #+NAME: eq:phase_not
@@ -83,14 +83,14 @@ But a system with just one qubit is not useful.
 The power of quantum computers explodes with the number of qubits able to work with or, what is the same, the dimensions of the Hilbert space $\mathscr{H}$.
 The quantum state of $n$ qubits can be represented in bra-ket notation, with a $2^n$ size.
 And, therefore, they engender Hilbert space of $2^n$ dimensions due to the superposition phenomenon.
-The linear operator that leads to the multiple qubit's state is the outer product, defined as the matrix convolution of the vectors that represent the state of the qubits involved.
+The linear operator that leads to the multiple qubit's state is the outer product, defined as the matrix convolution of the state vectors.
 The outer product is represented as $|\phi \rangle \,\langle \psi |$.
 In eq. [[eq:convolution_example]] an example of the outer product is offered.
-The example represents the other fundamental phenomenon in quantum physics, the entanglement state of two qubits also know as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
+The example represents the other fundamental phenomenon in quantum physics, the entanglement state of two qubits ($\phi$ and $\psi$) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 
 #+NAME: eq:convolution_example
 \begin{equation}
-|\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = ...! =  (|00\rangle +|11\rangle ) \over {\sqrt {2}}
+|\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = \frac{1}{\sqrt{2}} \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
 \end{equation}
 
 
