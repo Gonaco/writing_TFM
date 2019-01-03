@@ -1,0 +1,5 @@
+#+caption: Most common single qubit gates
+#+NAME: tab:single_q_gates
+#+ATTR_LATEX: :booktabs :environment :width \textwidth :float t :align c
+| Pauli-X                |
+| \input{figures/x_gate} |
