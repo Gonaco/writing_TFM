@@ -164,7 +164,7 @@ The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
 [[file:figures/gray_code.png]]
 
 #+NAME: code:qasm_gray_code
-     #+BEGIN_EXAMPLE
+     #+BEGIN_SRC C
 
      #QASM code
      
@@ -183,7 +183,7 @@ The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
      cnot e,d
      cnot f,d
      
-     #+END_EXAMPLE
+     #+END_SRC
 
 *** BIB                                           :noexport:
 bibliography:../thesis_plan.bib
