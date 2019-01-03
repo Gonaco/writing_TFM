@@ -132,6 +132,58 @@ As mentioned before, they are formed by quantum gates and qubits connected in ci
 As most of the algorithm description models, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
 They are general descriptions of quantum algorithms.
 Besides the circuit description model, quantum algorithms are commonly described as instruction languages like QASM (Quantum ASseMbly) cite:Nielsen_2009 or its related posterior languages.
+We present an example of circuit in fig. \ref{fig:circuit_example}.
+This circuit represents the quantum equivalent of a Gray encoder of six bit length.
+An example of the Gray code construction is shown in [[fig:gray_code_example]]
+The QASM algorithm representation can be seen in code [[code:qasm_gray_code]].
+# This example will accompany us through the whole thesis as a circuit example.
+
+#+BEGIN_EXPORT latex
+\begin{figure}
+    \centering
+
+\resizebox{0.3\textwidth}{!}{
+   \Qcircuit @C=1em @R=.7em {
+\lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+}
+}
+
+\label{fig:circuit_example}
+\caption{Gray encoder quantum circuit}
+\end{figure}
+#+END_EXPORT
+
+#+caption: Gray Code
+#+NAME: fig:gray_code_example
+#+ATTR_LATEX: :width 0.3\textwidth
+[[file:figures/gray_code.png]]
+
+#+NAME: code:qasm_gray_code
+     #+BEGIN_EXAMPLE
+
+     #QASM code
+     
+     # qubit declaration
+     qubit a
+     qubit b
+     qubit c
+     qubit d
+     qubit e
+     qubit f
+     
+     # gates declaration
+     cnot b,a
+     cnot c,b
+     cnot d,c
+     cnot e,d
+     cnot f,d
+     
+     #+END_EXAMPLE
 
 *** BIB                                           :noexport:
 bibliography:../thesis_plan.bib
