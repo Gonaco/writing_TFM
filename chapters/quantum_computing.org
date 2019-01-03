@@ -85,12 +85,17 @@ The quantum state of $n$ qubits can be represented in bra-ket notation, with a $
 And, therefore, they engender a Hilbert space of $2^n$ dimensions due to superposition.
 The linear operator that leads to the multiple qubit's state is the *outer product*, defined as the matrix convolution of the state vectors.
 The outer product is represented as $|\phi \rangle \,\langle \psi |$.
-In eq. [[eq:convolution_example]] an example of the outer product is offered.
-The example represents the other fundamental phenomenon in quantum physics, the *entanglement* state of two qubits ($\phi$ and $\psi$) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
+In eq. [[eq:convolution_example]] and [[eq:convolution_example_entanglement]] an example of the outer product is offered.
+The second example represents the other main phenomenon in quantum physics, the *entanglement* state of two qubits ($\phi$ and $\psi$) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 
 #+NAME: eq:convolution_example
 \begin{equation}
-|\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
+|+\rangle \,\langle + | = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} 
+\end{equation}
+
+#+NAME: eq:convolution_example_entanglement
+\begin{equation}
+|\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
 \end{equation}
 
 
