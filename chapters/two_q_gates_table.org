@@ -1,6 +1,6 @@
 #+caption: Most common two-qubit gates
 #+NAME: tab:two_q_gates
-#+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align ccc
+#+ATTR_LATEX: :booktabs :environment :width \textwidth :float t :align ccc
 | CNOT                                                             | CZ                                                               | SWAP                                                             |
 | \input{figures/cnot_gate}                                        | \input{figures/cz_gate}                                          | \input{figures/swap_gate}                                        |
 | $\begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{bmatrix}$ | $\begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&-1\end{bmatrix}$ | $\begin{bmatrix}1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1\end{bmatrix}$ |
