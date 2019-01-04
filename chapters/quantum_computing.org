@@ -137,6 +137,9 @@ They are represented as a box with one input and one output, evincing that a sin
 As explained before, single-qubit gates can be represented as $2^1 \times 2^1$ square matrices that should be unitary.
 Both representations of the most common single-qubit gates can be found in Table [[tab:single_q_gates]].
 
+# Each gate explanation
+
+
 #+INCLUDE: single_gates_table.org::tab:single_q_gates
 
 ***** Two-qubit gates
@@ -144,8 +147,11 @@ Both representations of the most common single-qubit gates can be found in Table
 :ID:       7bf7a29e-3252-408d-aeed-8e1e1f509b03
 :END:
 
-The most common two-qubit gates are 
+The most common two-qubit gates are ... [[tab:two_q_gates]]
 As the single-qubit gates, two qubit gates 
+
+# Each gate explanation
+
 
 #+INCLUDE: two_q_gates_table.org::tab:two_q_gates
 

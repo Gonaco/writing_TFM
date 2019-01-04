@@ -48,7 +48,7 @@ In this section we offer the inferred definitions from cite:Bishop_2017,Moll_201
 #+caption: Model algorithm example from cite:Moll_2018. Each step represents a possible combination of gates considered as /model algorithm/. Notice that step 2 requires a mapping process that is shown afterwards.
 #+NAME: fig:model_alg
 #+ATTR_LATEX: :width 0.7\textwidth
-[[file:model_algorithm.png]]
+[[file:figures/model_algorithm.png]]
 
 
 - Active qubits ($\textbf{n}$) :: Number of active qubits in a device of $N$ qubits for a given algorithm.
@@ -128,7 +128,7 @@ Therefore, we outline that the main limit for the $V_Q$ is the $\epsilon_{eff}$.
 
 #+END_EXPORT
 
- [[file:general_QV2.png]]
+ [[file:figures/general_QV2.png]]
  
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -140,7 +140,7 @@ Therefore, we outline that the main limit for the $V_Q$ is the $\epsilon_{eff}$.
 
 #+END_EXPORT
 
- [[file:general_QV1.png]]
+ [[file:figures/general_QV1.png]]
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -172,7 +172,7 @@ The growth of both variables causes an equally exponential growth of $V^a_Q$.
 
 # [[file:V_q_analysis2.png]] 
 
-file:V_q_analysis_sym2.png
+file:figures/V_q_analysis_sym2.png
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -186,7 +186,7 @@ file:V_q_analysis_sym2.png
 
 # [[file:V_q_analysis1.png]] 
 
-[[file:V_q_analysis_sym1.png]]
+[[file:figures/V_q_analysis_sym1.png]]
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -212,7 +212,7 @@ The function shows an asymteric beheviour due to $d$ is much bigger than $n$ mos
 
 # [[file:V_q_analysis2.png]] 
 
-file:V_q_analysis_asym2.png
+file:figures/V_q_analysis_asym2.png
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -226,7 +226,7 @@ file:V_q_analysis_asym2.png
 
 # [[file:V_q_analysis1.png]] 
 
-[[file:V_q_analysis_asym1.png]]
+[[file:figures/V_q_analysis_asym1.png]]
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -274,7 +274,7 @@ affecting equally and exponentially to the metric.
 
 #+END_EXPORT
 
-[[file:V_q_analysis_mult2.png]]
+[[file:figures/V_q_analysis_mult2.png]]
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
@@ -286,7 +286,7 @@ affecting equally and exponentially to the metric.
 
 #+END_EXPORT
 
-[[file:V_q_analysis_mult1.png]]
+[[file:figures/V_q_analysis_mult1.png]]
 
 #+BEGIN_EXPORT latex
      \captionof{figure}{}
