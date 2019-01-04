@@ -135,9 +135,9 @@ It is generally accepted to analyze the multiple-qubit gate problem in its most 
 Single qubit gates represent quantum operations that involve just one qubit.
 They are represented as a box with one input and one output, evincing that a single qubit will be the input and output of the operation.
 As explained before, single-qubit gates can be represented as $2^1 \times 2^1$ square matrices that should be unitary.
-Both representations of the most common single-qubit gates can be found in the table \ref{tab:single_q_gates}.
+Both representations of the most common single-qubit gates can be found in the table [[tab:single_q_gates]].
 
-#+INCLUDE: single_gates_table.org
+#+INCLUDE: single_gates_table.org::tab:single_q_gates
 
 ***** Two-qubit gates
 :PROPERTIES:
