@@ -146,6 +146,9 @@ Both representations of the most common single-qubit gates can be found in Table
 
 The most common two-qubit gates are 
 As the single-qubit gates, two qubit gates 
+
+#+INCLUDE: two_q_gates_table.org::tab:two_q_gates
+
 *** Quantum Circuits
 
 Quantum circuits are quantum algorithms descriptions.
@@ -218,7 +221,7 @@ Also, the QASM algorithm representation can be seen in Fig. \ref{code:qasm_gray_
 \end{minipage}
 \end{figure}
 #+END_EXPORT
-***  Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation
+*** TODO Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation
 
 In addition to the general connectivity limitations, quantum devices -- no matter which technology -- are error prone.
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
