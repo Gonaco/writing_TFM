@@ -1,0 +1,486 @@
+* Benchmarks formation and classification
+** Benchmarks formation and classification
+
+*** Objective
+    
+    *Gather* a *useful* list of benchmarks from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014 in order to use them later for the "probability of success" analysis.
+
+
+***                                                         :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+
+    Steps:
+    
+   1. [X] Build algorithms list       
+      # 1. [X] Gather the algorithms from cite:zulehner17:effic_method_mappin_quant_circuit and cite:Lin_2014.
+      # 2. [X] Translate them from its QASM version to OpenQL.
+      # 3. [X] Compile OpenQL files to QASM.
+   2. [X] Algorithms profile (source, number of qubits, number of gates, gates percentage, ...).
+   3. [X] Algorithms classification.
+   4. [ ] Check algorithm correctness.
+      # 1. [ ] Are the original algorithms correct? $\to$ Check behaviour in the IBM Simulator.
+      # 2. [ ] Is my translation correct? $\to$ Simulate them in QX and compare the results with the ones of the previous step.
+      # 3. [ ] Are the algorithms working as expected? $\to$ check if the results are the ones that the algorithm should have.
+*** TODO :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+       So, the objective of this first approach is to gather a *useful* list of benchmarks from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014 in order to use them later for the "probability of success" analysis.
+
+   In order to do it, I'm following the next steps, note that the crosses mean that the work is already done.
+
+
+** Benchmarks formation and classification
+
+*** Objective
+    
+    Gather a useful list of benchmarks from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014 in order to use them later for the "probability of success" analysis.
+
+
+***                                                         :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+
+    Steps:
+    
+   1. [X] *Build algorithms list*
+      # 1. [X] Gather the algorithms from cite:zulehner17:effic_method_mappin_quant_circuit and cite:Lin_2014.
+      # 2. [X] Translate them from its QASM version to OpenQL.
+      # 3. [X] Compile OpenQL files to QASM.
+   2. [X] Algorithms profile (source, number of qubits, number of gates, gates percentage, ...).
+   3. [X] Algorithms classification.
+   4. [ ] Check algorithm correctness.
+      # 1. [ ] Are the original algorithms correct? $\to$ Check behaviour in the IBM Simulator.
+      # 2. [ ] Is my translation correct? $\to$ Simulate them in QX and compare the results with the ones of the previous step.
+      # 3. [ ] Are the algorithms working as expected? $\to$ check if the results are the ones that the algorithm should have.
+   
+*** TODO :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+    First, to build the algorithms list.
+
+** Benchmarks formation and classification
+
+***                                                         :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+
+    Build algorithms list: 
+	  1. [X] Collect the _Clifford+T_ quantum algorithms from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
+	  2. [X] Translate them from its QASM version to OpenQL.
+	  3. [X] Compile OpenQL files to QASM.
+
+*** TODO :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+    # Clifford + T
+
+    # Gather the algorithms from Zulehner's work and QLib.
+
+    # Zulehner's ones are from RevLib (the majority) and ScaffCC
+
+    # The QLib ones were chosen as a trial of being able to generate algorithms with any qubit number.
+
+
+    # 1. *Translate all* the algorithms to OpenQL
+    # 2. *But* some of them are using *gates that we cannot decompose* yet, so there is *no compilation to QASM*.
+
+
+       I have collected the Clifford+T algorithms from  RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
+
+   Then I had to translate them from its QASM version to OpenQL.
+
+   And finally compile them.
+    
+** Benchmarks data analysis
+
+***                                                               :B_onlyenv:
+    :PROPERTIES:
+    :BEAMER_env: onlyenv
+    :BEAMER_act: <1>
+    :END:
+
+    The Clifford+T quantum algorithms gathered are not in pure QASM:
+
+***                                                               :B_onlyenv:
+    :PROPERTIES:
+    :BEAMER_env: onlyenv
+    :BEAMER_act: <2>
+    :END:
+
+    After the translation, despite gates that OpenQL is not able to decompose yet, the compiled QASM files are:
+    
+*** Benchmarks Graph                                                  :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :END:
+
+    #+BEGIN_EXPORT latex
+\begin{center}
+\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=0.7cm, thick,main node/.style={}]
+    \fill[orange!40] (2,2) circle (.08cm) coordinate (Z);
+    \fill[cyan!30] (3,6) circle (1.6cm) coordinate (R);
+    \fill[purple!50] (7,5) circle (.1cm) coordinate (S);
+    \fill[teal!40] (8,2) circle (1cm) coordinate (Q);
+    \draw[gray,dashed] (5,4) ellipse (6cm and 4cm) coordinate (A);
+    \draw (4,0) -- coordinate (L) (10,6.4) coordinate (Le);
+ \node[main node] (1) [left=1.8cm of R] {RevLib};
+ \node[main node] (2) [above of=Z] {Others from Zulehner's paper};
+ \node[main node] (3) [above of=S] {ScaffCC};
+ \node[main node] (4) [above right=1.4cm of Q] {QLib};
+ \node[main node,draw] (5) [above left=0.1cm of L] {OPENQASM};
+ \node[main node,draw] (6) [below=1cm of Le] {QLib QASM};
+\end{tikzpicture}
+}
+\end{center}
+    #+END_EXPORT
+
+*** Benchmarks data                                                   :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.3
+    :END:
+    
+****                                                              :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_env: onlyenv
+     :BEAMER_act: <1>
+     :END:
+
+    - OPENQASM
+      - RevLib (55)
+      - ScaffCC (3)
+      - Others from Zulehner's paper (1)
+    - QLib QASM
+      - QLib (7)
+
+
+****                                                              :B_onlyenv:
+     :PROPERTIES:
+     :BEAMER_env: onlyenv
+     :BEAMER_act: <2>
+     :END:
+
+    - OPENQASM
+      - RevLib (52)
+      - +ScaffCC+ 
+      - Others from Zulehner's paper (1)
+    - QLib QASM
+      - QLib (3)
+
+
+*** OpenQL Translation                                              :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :BEAMER_act: <1>
+    :END:
+
+    So they should be translated to OpenQL an then compiled to QASM.
+
+*** TODO                                                           :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+    
+    # *Introduce* The work that I've done    
+
+#         #+BEGIN_EXPORT latex
+# \begin{center} 
+# \resizebox{0.5\textwidth}{!}{   
+# \begin{tikzpicture}[sibling distance=3pt]
+#   \tikzset{grow'=right,level distance=130pt}
+#   \tikzset{execute at begin node=\strut}
+#   \tikzset{every tree node/.style={align=center,anchor=base west}}
+#   %% \tikzset{edge from parent/.style={draw,
+#   %%     edge from parent path={(\tikzparentnode.east)
+#   %%       -- +(0,-8pt)
+#   %%       |- (\tikzchildnode)}}}
+#   \tikzset{level 2/.style={level distance=120pt}}
+#   %% \tikzset{level 3/.style={level distance=120pt}}
+#   %% \tikzset{level 4/.style={level distance=100pt}}
+#   %% \tikzset{frontier/.style={distance from root=500pt}}
+#   \Tree [.{QLib Algorithms}
+#     {QFT}
+#     {IQFT}
+#     {\textbf{Grover's Search}}
+#     {Benstein-Vazirani Search}
+#     [.{\textbf{Adder}}
+#     {Cuccaro}
+#     {Drapper}
+#     {VBE}
+#     ]
+#     {\textbf{Quantum (Cuccaro) Multiplier}}
+#     {Modular Exponential}
+#     ]
+#     \end{tikzpicture}
+# }
+# \end{center}
+#     #+END_EXPORT
+
+
+   Now, I'm going to show you how the benchmarks are.
+
+   Most of them are written in OPENQASM and are from RevLib.
+
+   Moreover, Leon has contributed uploading more, but I haven't merge those with the ones I am describing.
+
+\hline
+
+   Some of them have arbitrary rotation gates, which decomposition is not included yet in OpenQL, so I'm not going to translate them for now.
+
+** Benchmarks statistics
+
+   # Also how the benchmarks are. I have to do here a bridge from the definition of the tasks to the work done.
+
+*** Statistics
+    
+    - Number of different algorithms (without the decomposition): 53+3 = 56
+    - The highest amount of gates: ~hwb9_119~ with 207775 gates
+
+# *** Gates without decomposition                                :B_alertblock:
+#     :PROPERTIES:
+#     :BEAMER_env: alertblock
+#     :END:
+
+#     Between the OPENQASM source files there are six algorithms using rotations along the z axis in any degree (QFT, Ising and Ground State Estimation).
+#     Those are not compiled for now.
+    
+***                                                                   :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+    You can find much more information in the [[https://github.com/QE-Lab/qbench][qbench]] repository in GitHub or in my thesis notes in ShareLaTeX.
+
+***                                                                   :BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+
+    [[file:pics_meeting_presentation_my_thesis/Octocat.png]]
+    
+
+*** TODO                                                           :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+       After the translation, we have 56 different algorithms, in which the higgest amount of gates is around 208 000 gates.
+
+   Also I'm going to show you how is the qbench repo right now.
+
+    
+    Things that may interest them:
+
+    - See the OpenQL code and the QASM code
+    - The organization of the repository
+    - The Benchmarks profile
+    - The configuration file of the compilation
+   
+# ** Algorithms Classification
+
+# *** Classification                                                :B_onlyenv:
+#     :PROPERTIES:
+#     :BEAMER_act: <1>
+#     :BEAMER_env: onlyenv
+#     :END:
+
+#     #+BEGIN_EXPORT latex
+# \begin{center}    
+# \begin{tikzpicture}[sibling distance=3pt]
+#   \tikzset{grow'=right,level distance=130pt}
+#   \tikzset{execute at begin node=\strut}
+#   \tikzset{every tree node/.style={align=center,anchor=base west}}
+#   %% \tikzset{edge from parent/.style={draw,
+#   %%     edge from parent path={(\tikzparentnode.east)
+#   %%       -- +(0,-8pt)
+#   %%       |- (\tikzchildnode)}}}
+#   \tikzset{level 2/.style={level distance=120pt}}
+#   %% \tikzset{level 3/.style={level distance=120pt}}
+#   %% \tikzset{level 4/.style={level distance=100pt}}
+#   %% \tikzset{frontier/.style={distance from root=500pt}}
+#   \Tree [.{Benchmarks Classes}
+#     {Quantum Gates}
+#     {Search Algorithms}
+#     {Encoding Functions}
+#     {Arithmetic Functions}
+#     {Miscellaneous}
+#     ]
+#     \end{tikzpicture}
+# \end{center}
+#     #+END_EXPORT
+
+# *** Classification                                                  :B_block:
+#     :PROPERTIES:
+#     :BEAMER_env: block
+#     :END:
+
+#     Based on the RevLib cite:Wille_2008 algorithm classification, for now, because most of the benchmarks come from that library.
+# *** Classification                                                :B_onlyenv:
+#     :PROPERTIES:
+#     :BEAMER_act: <2>
+#     :BEAMER_env: onlyenv
+#     :END:
+
+#     #+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{2.5cm}|p{3cm}p{3cm}
+#     |                      |                     |                |
+#     | Quantum gates        | Miller Gate         |                |
+#     |----------------------+---------------------+----------------|
+#     | Search Algorithms    | Grover's Search     |                |
+#     |----------------------+---------------------+----------------|
+#     |                      | Decod24             |                |
+#     | Encoding Functions   | Decod24 with enable |                |
+#     |                      | Graycode            |                |
+#     |                      | Hamming Code        |                |
+#     |----------------------+---------------------+----------------|
+#     |                      | 0410184             | mlp4           |
+#     |                      | 1-bit Adder / rd32  | mod5adder      |
+#     |                      | 4 greater than 10   | mod5d1         |
+#     |                      | 4 greater than 11   | mod5d2         |
+#     |                      | 4 greater than 12   | mod5mils       |
+#     |                      | 4 greater than 13   | plus127mod8192 |
+#     |                      | 4 greater than 4    | plus63mod4096  |
+#     |                      | 4 greater than 5    | plus63mod8192  |
+#     | Arithmetic Functions | 4 modulo 7          | radd           |
+#     |                      | ALUs                | rd32           |
+#     |                      | Check 4 modulo 5    | rd53           |
+#     |                      | Cuccaro Adder       | rd73           |
+#     |                      | Cuccaro Multiplier  | rd84           |
+#     |                      | Drapper Adder       | root           |
+#     |                      | Modulo 8/10 Counter | sqn            |
+
+# *** Classification                                                :B_onlyenv:
+#     :PROPERTIES:
+#     :BEAMER_act: <3>
+#     :BEAMER_env: onlyenv
+#     :END:
+
+#     #+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{2.5cm}|p{2.5cm}p{3.5cm} 
+#     |                      | One-Two-Three Counter | sqrt8                             |
+#     |                      | VBE Adder             | squar5                            |
+#     | Arithmetic Functions | dist                  | xor5                              |
+#     |                      | majority              | z4                                |
+#     |                      | max46                 |                                   |
+#     |----------------------+-----------------------+-----------------------------------|
+#     |                      | 9symml                | ex-1                              |
+#     |                      | adr4                  | ex1                               |
+#     |                      | aj-e11                | ex2                               |
+#     |                      | C17                   | ex3                               |
+#     |                      | clip                  | f2                                |
+#     |                      | cm152a                | inc                               |
+#     | Miscellaneous        | cm42a                 | life                              |
+#     |                      | cm82a                 | misex1                            |
+#     |                      | cm85a                 | pm1                               |
+#     |                      | co14                  | sao2                              |
+#     |                      | con1                  | sym10                             |
+#     |                      | cycle10_2             | sym6                              |
+#     |                      | dc1                   | sym9                              |
+#     |                      | dc2                   | Unstructured Reversible Functions |
+#     |                      | Hidden Weighted Bit   | 3_17                              |
+#     |                      |                       | 4_49                              |
+
+
+# *** TODO :B_noteNH:
+#     :PROPERTIES:
+#     :BEAMER_env: noteNH
+#     :END:
+
+#     Benchmark classes:
+
+#     - Quantum Gates: Circuits that are a decomposition of a Quantum Gate
+#     - Search Algorithms
+#     - Worst Cases: Circuits that were really difficult to generate for RevLib
+#       - HWB: is the simplesr function with exponential Ordered Binary Decision Diagrams (OBDD) size.
+#     - Encoding Functions: Classical codification functions
+#     - Arithmetic Functions: Functions that perform an arithmetic operation
+#     - Miscellaneous: Mix of different kind of algorithms that we do not know its expected behaviour
+    
+** Benchmarks formation and classification
+
+*** Objective
+    
+    Gather a useful list of benchmarks from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014 in order to use them later for the "probability of success" analysis.
+
+
+***                                                         :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+
+    Steps:
+    
+   1. [X] Build algorithms list       
+      # 1. [X] Gather the algorithms from cite:zulehner17:effic_method_mappin_quant_circuit and cite:Lin_2014.
+      # 2. [X] Translate them from its QASM version to OpenQL.
+      # 3. [X] Compile OpenQL files to QASM.
+   2. [X] Algorithms profile (source, number of qubits, number of gates, gates percentage, ...).
+   3. [X] Algorithms classification.
+   4. [ ] *Check algorithm correctness.*
+      # 1. [ ] Are the original algorithms correct? $\to$ Check behaviour in the IBM Simulator.
+      # 2. [ ] Is my translation correct? $\to$ Simulate them in QX and compare the results with the ones of the previous step.
+      # 3. [ ] Are the algorithms working as expected? $\to$ check if the results are the ones that the algorithm should have and simulate the benchmarks
+
+*** TODO :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+       After the building step, as I've already shown you, the profile realization and classification steps came.
+
+   Finally, right now I'm checking the algorithm correctness.
+    
+
+** Benchmarks formation and classification
+
+***                                                         :B_ignoreheading:
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+
+    
+    Check algorithm correctness:
+	  1. [ ] Are the original algorithms correct? $\to$ Check behavior in the IBM Simulator.
+	  2. [ ] Is my translation correct? $\to$ Simulate them in QX and compare the results with the ones of the previous step.
+	  3. [ ] Are the algorithms working as expected? $\to$ For the _set of algorithms_ that I am going to use check if the results are the ones that the algorithm should have.
+
+*** TODO :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+
+       I'm working with the IBM simulator in the develop server of the department, but it is too slow.
+   I'm still waiting for the results and learning about the IBM simulator.
+
+   After that I'll check if my translation is correct and finally if the algorithms are correct.
+
+   In order to do the last part I'm going to look if a certain set of algorithms are working as expected.
+   I want also to open a discussion with Zulehner and with you about how to assert the general correctness of the algorithms.
+    
+** Recap
+
+       Approaches for solving the problem:
+
+   1. [[Benchmarks formation and classification][Benchmarks formation and classification]]
+   2. [["Probability of success" analysis]["Probability of success" analysis]]
+   3. [[Mapping algorithms impact in the "probability of success"][Mapping algorithms impact in the "probability of success"]]
+
+*** TODO :B_noteNH:
+    :PROPERTIES:
+    :BEAMER_env: noteNH
+    :END:
+
+       Ok, so a fast recap. After gathering the benchmarks the next approaches to do are the [["Probability of success" analysis]["Probability of success" analysis]] and the  [[Mapping algorithms impact in the "probability of success"][Mapping algorithms impact in the "probability of success"]].
+
+* BIB                                                       :ignore:noexport:
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain

@@ -1,0 +1,25 @@
+*** Motivation                                             :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+
+
+     /Can some device run a given algorithm?/
+
+     /How the mapping process affect the circuit "probability of success"?/
+
+*** Realization                                      :B_exampleblock:BMCOL:
+    :PROPERTIES:
+    :BEAMER_env: exampleblock
+    :BEAMER_col: .6
+    :END:
+
+    # All the work will be centered in the _SC-7_ and _SC-17_ chips constraints (always at the _physical_ level, thus without error correction), but everything will be simulated with two different error models. Pauli Noise (_QX_) and (_quantumsim_).
+
+    The work is centered in:
+
+    - SC-7 and SC-17 chips
+    - Physical level, without error correction
+    - Two error models:
+      - Pauli Noise (QX simulator)
+      - Complex empirical error model (quantumsim)
