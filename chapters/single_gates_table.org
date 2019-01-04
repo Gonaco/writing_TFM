@@ -1,6 +1,6 @@
 #+caption: Most common single qubit gates
 #+NAME: tab:single_q_gates
-#+ATTR_LATEX: :booktabs :environment :width \textwidth :float t :align ccccccc
+#+ATTR_LATEX: :booktabs :environment :width \textwidth :float t :align p{.5}p{.5}p{.5}p{.5}p{.5}p{.5}p{.5}
 | Identity                               | Pauli-X                                | Pauli-Y                                 | Pauli-Z                                 | Hadamard                                                  | S gate                                 | T gate                                              |
 | \input{figures/i_gate}                 | \input{figures/x_gate}                 | \input{figures/y_gate}                  | \input{figures/z_gate}                  | \input{figures/h_gate}                                    | \input{figures/s_gate}                 | \input{figures/t_gate}                              |
 | $\begin{bmatrix}1&0\\0&1\end{bmatrix}$ | $\begin{bmatrix}0&1\\1&0\end{bmatrix}$ | $\begin{bmatrix}0&-i\\i&0\end{bmatrix}$ | $\begin{bmatrix}1&0\\0&-1\end{bmatrix}$ | $\frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}$ | $\begin{bmatrix}1&0\\0&i\end{bmatrix}$ | $\begin{bmatrix}1&0\\0&e^{i \pi / 4}}\end{bmatrix}$ |
