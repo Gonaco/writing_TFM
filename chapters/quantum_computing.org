@@ -143,10 +143,10 @@ Both representations of the most common single-qubit gates can be found in Table
 The /Identity/ gate is the idling operation.
 It is equivalent to no applying any operation for a cycle.
 The /Pauli-x, -y and -z/ gates are 180° rotation over the x-, y- and z-axis respectively.
-The /Hadamard/ gate is also a 180° rotation, but over the diagonal axis between the x- and z-axes, $\frac{({\hat {x}}+{\hat {z}})}{\sqrt {2}}}$.
-The /S/ and /T/ gates are also rotations over the z-axis but of 90° and 45° respectively.
 Eg. a qubit with state $|+\rangle$ that is equivalent to the position $\theta = \frac{\pi}{2}, \phi = 0$ in the Bloch sphere is rotated in the y-axis with a Pauli-y gate, $Y|+\rangle = \frac{i}{\sqrt{2}} \begin{bmatrix}-1 \\ 1 \end{bmatrix}$.
 This resulting state is located in $\theta = \frac{\pi}{2}, \phi = \pi$, that is a 180° rotation in the Y axis.
+The /Hadamard/ gate is also a 180° rotation, but over the diagonal axis between the x- and z-axes, $\frac{({\hat {x}}+{\hat {z}})}{\sqrt {2}}}$.
+The /S/ and /T/ gates are also rotations over the z-axis but of 90° and 45° respectively.
 
 
 ***** Two-qubit gates
@@ -154,11 +154,15 @@ This resulting state is located in $\theta = \frac{\pi}{2}, \phi = \pi$, that is
 :ID:       7bf7a29e-3252-408d-aeed-8e1e1f509b03
 :END:
 
-The most common two-qubit gates are ... [[tab:two_q_gates]]
-As the single-qubit gates, two qubit gates 
-
-# Each gate explanation
-
+Two-qubit gates are quantum operations that involve two qubits at the same time.
+In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
+The qubits that goes through the operation is called *target*, while the other is called the *control* qubit.
+The most common two-qubit gates are represented in Table [[tab:two_q_gates]].
+The /CNOT/ gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the sate of the control qubit will be executed or not.
+As the CNOT, the /CZ/ gate is a Controlled-Z operations that, in this case, executes a Pauli-z gates depending on the state of the control qubit.
+Finally, the /SWAP/ gate "swaps" the state of two qubits.
+The state of the one goes to the other and viceversa.
+This gate is mostly used for routing purposes as it will be seen in the next sections.
 
 #+INCLUDE: two_q_gates_table.org::tab:two_q_gates
 
