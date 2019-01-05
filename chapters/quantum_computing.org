@@ -111,7 +111,7 @@ This matrices should be unitary respecting the qubit state vector unitary proper
 They shouldn't ever change the amplitude of the state.
 Therefore, quantum operations are, basically, state rotations in the Bloch sphere (fig. \ref{fig:bloch_sphere}).
 Although, while implying multiple qubits, the quantum operations are more complex than just rotations, as it will be seen below.
-For instance, a rotation of 180° in z-axis of the Bloch sphere is the same as an operation that change the qubit state from $| 0 \rangle$ to $| 1 \rangle$, or viceversa.
+For instance, a rotation of 180° in x-axis of the Bloch sphere is the same as an operation that changes the qubit state from $| 0 \rangle$ to $| 1 \rangle$, or viceversa.
 Qubits and quantum operations interact through the *inner product*.
 In order to apply some operation over a qubit state, a matrix-vector multiplication should be done.
 For instance, in eq. [[eq:inner_prod_ex]] one can understand how some uniform operation $U$ is applied to a qubit with state $| \psi \rangle$.
@@ -137,10 +137,17 @@ They are represented as a box with one input and one output, evincing that a sin
 As explained before, single-qubit gates can be represented as $2^1 \times 2^1$ square matrices that should be unitary.
 Both representations of the most common single-qubit gates can be found in Table [[tab:single_q_gates]].
 
-# Each gate explanation
-
-
 #+INCLUDE: single_gates_table.org::tab:single_q_gates
+
+# Each gate explanation
+The /Identity/ gate is the idling operation.
+It is equivalent to no applying any operation for a cycle.
+The /Pauli-x, -y and -z/ gates are 180° rotation over the x-, y- and z-axis respectively.
+The /Hadamard/ gate is also a 180° rotation, but over the diagonal axis between the x- and z-axes, $\frac{({\hat {x}}+{\hat {z}})}{\sqrt {2}}}$.
+The /S/ and /T/ gates are also rotations over the z-axis but of 90° and 45° respectively.
+Eg. a qubit with state $|+\rangle$ that is equivalent to the position $\theta = \frac{\pi}{2}, \phi = 0$ in the Bloch sphere is rotated in the y-axis with a Pauli-y gate, $Y|+\rangle = \frac{i}{\sqrt{2}} \begin{bmatrix}-1 \\ 1 \end{bmatrix}$.
+This resulting state is located in $\theta = \frac{\pi}{2}, \phi = \pi$, that is a 180° rotation in the Y axis.
+
 
 ***** Two-qubit gates
 :PROPERTIES:
