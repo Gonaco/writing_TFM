@@ -1,30 +1,30 @@
 
 \chapter*{Mapping on superconducting quantum processors}
-\label{sec:org259a7e6}
+\label{sec:orgf13b0be}
 \section*{{\bfseries\sffamily TODO} Constraints of the Surface-7 and -17 chips}
-\label{sec:orgeba94a0}
+\label{sec:orgdb4356c}
 \subfile{chapters/constraints}
 
 \section*{Mapping model}
-\label{sec:orgd872e25}
+\label{sec:org031f30c}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/mapping_flow2.png}
-\caption{\label{fig:org8815c28}
+\caption{\label{fig:org81f7c58}
 Mapping flow}
 \end{figure}
 
 \section*{Metrics}
-\label{sec:org7cf0400}
+\label{sec:org348f764}
 \subsection*{Number of SWAPS}
-\label{sec:orgb1409e3}
+\label{sec:org5515f99}
 \subsection*{Latency}
-\label{sec:org3bdce5f}
+\label{sec:org733697a}
 \subsection*{Probability of success}
-\label{sec:orgde48086}
+\label{sec:org2694382}
 \subsection*{{\bfseries\sffamily TODO} Quantum Volume}
-\label{sec:org8b20658}
+\label{sec:org248e523}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -37,20 +37,20 @@ Our purpose is to assert how the mapping procedure affects the runnability of a 
 
 \begin{itemize}
 \item Definition
-\label{sec:orgf45f802}
+\label{sec:orgdaa116c}
 
 In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by its capabilities
 
 \begin{itemize}
 \item Literature review
-\label{sec:org28bca45}
+\label{sec:org4be197a}
 
 Few studies have been published on the Quantum Volume topic \cite{Bishop_2017,Moll_2018}.
 In this section, a brief introduction to the metric is offered, reviewing the important concepts and basis.
 
 \begin{itemize}
 \item Hardware parameters
-\label{sec:org7f83945}
+\label{sec:org791e110}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -63,7 +63,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \item Definitions and metrics
-\label{sec:org4484c14}
+\label{sec:orgf46e352}
 
 In order to understand the metric of Quantum Volume, some concepts need to be defined first. 
 In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_2018} that are part of the rationale of Quantum Volume.
@@ -76,7 +76,7 @@ In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_20
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/model_algorithm.png}
-\caption{\label{fig:org89a3571}
+\caption{\label{fig:orgc7e5d9c}
 Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
@@ -98,7 +98,7 @@ Model algorithm example from \cite{Moll_2018}. Each step represents a possible c
 \end{itemize}
 
 \item Runnability
-\label{sec:org978ccb6}
+\label{sec:org521877b}
 
 After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that this new metric offers. 
 We define the \textbf{runnability} of a given quantum circuit on a device based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
@@ -106,7 +106,7 @@ We define the \textbf{runnability} of a given quantum circuit on a device based 
 
 \begin{itemize}
 \item Quantum Volume of a device
-\label{sec:orge4672ba}
+\label{sec:orgc60b821}
 
 Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions in the previous section and maximize for the biggest possible \(n\) in the device. 
 Then, the maximum Quantum Volume that a device could run is defined by:
@@ -149,7 +149,7 @@ Therefore, we outline that the main limit for the \(V_Q\) is the \(\epsilon_{eff
 \end{minipage}%
 
 \item Quantum Volume of an algorithm
-\label{sec:orga362a96}
+\label{sec:org2cb63d7}
 
 As with \(V_Q\), we initially defined the algorithm's Quantum Volume from the general equation \(\tilde{V}_Q\), although we will adapt it later.
 
@@ -271,7 +271,7 @@ affecting equally and exponentially to the metric.
 \end{minipage}%
 
 \item Runnability
-\label{sec:org2580a7b}
+\label{sec:org905c50d}
 
 Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the \(V_Q\) should be bigger than \(V^a_Q\).
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
@@ -291,7 +291,7 @@ $$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \time
 \end{itemize}
 
 \item Methodology
-\label{sec:orgaf071a4}
+\label{sec:orgbc90808}
 
 After explaining the insights and our new concepts around the metric of Quantum Volume, let us now
 look at our methodology.
@@ -317,7 +317,7 @@ of success, if any.
 Finally, we will outline the runnability threshold of the algorithm.
 
 \begin{table}[htbp]
-\caption{\label{tab:org120d350}
+\caption{\label{tab:org9285f8b}
 Summary of the steps to outline the range of possible values for running a given algorithm}
 \centering
 \small

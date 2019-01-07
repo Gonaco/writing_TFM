@@ -118,7 +118,7 @@ Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ g
 #+caption: The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability $p_{\uparrow / \downarrow}^{(1)}$. At this point, the qubit state is sampled. The sampling result is subject to a declaration error $\epsilon_{RO}$, and the qubit state is subject to further decay or excitation with probabilities $p_{\uparrow / \downarrow}^{(2)}$ before the end of the measurement block
 #+NAME: fig:meas_model
 #+ATTR_LATEX: :width 0.5\textwidth
-[[file:measure_model.png]]
+[[file:figures/measure_model.png]]
 
 The initial dephasing step in the measurement model (Fig. [[fig:meas_model]]) occurs due to the [[id:07599b1a-0150-4e80-ad59-8ce826f8d96a][photon decay]] effect.
 
@@ -191,7 +191,7 @@ As they explain in the paper and one can see in Fig. [[fig:meas_t_optim]], they 
 #+caption: Measure time optimization based on the SC-17 logical error rate. Optimal $\tau_m = 280$ ns
 #+NAME: fig:meas_t_optim
 #+ATTR_LATEX: :width 0.7\textwidth
-[[file:measure_t_optimization.png]]
+[[file:figures/measure_t_optimization.png]]
 
 
 ***** Projected improvement with advances in quantum hardware
