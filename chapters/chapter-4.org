@@ -14,5 +14,8 @@
 #+INCLUDE: quantumsim.org
 
 *** QX
+
+#+INCLUDE: qx.org
+
 *** Error Framework
 #+INCLUDE: error_framework.org

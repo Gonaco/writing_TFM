@@ -1,0 +1,11 @@
+
+# Intro to QX and its advantages
+[Intro]
+
+#+caption: QX logo
+#+NAME: fig:qx_logo
+#+ATTR_LATEX: :width 0.3\textwidth
+[[file:figures/qx.png]]
+
+# Error model description (Pauli errors, no error measurement, no decoherence, only one error rate)
+[Error model]
