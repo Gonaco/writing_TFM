@@ -23,10 +23,10 @@
 
 #+caption: Database tables
 #+NAME: fig:error_analysis
-#+ATTR_LATEX: :width .5\textwidth
+#+ATTR_LATEX: :width .75\textwidth
 [[file:figures/database_scheme_general.png]]
 
 #+caption: Database tables information
 #+NAME: fig:error_analysis
-#+ATTR_LATEX: :width .5\textwidth
+#+ATTR_LATEX: :width \textwidth
 [[file:figures/database_scheme_detail.png]]
