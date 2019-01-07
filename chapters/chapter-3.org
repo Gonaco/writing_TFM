@@ -13,6 +13,9 @@
 #+END_EXPORT
 
 ** Mapping model
+
+#+INCLUDE: mapping_model.org
+
 ** Metrics
 :PROPERTIES:
 :ID:       38ded492-56c6-4f6a-a629-06e342314cef

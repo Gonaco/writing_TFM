@@ -8,6 +8,11 @@
 
      /How the mapping process affect the circuit "probability of success"?/
 
+#+caption: Full stack implementation
+#+NAME: fig:system_stack
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/system_stack.png]]
+
 *** Realization                                      :B_exampleblock:BMCOL:
     :PROPERTIES:
     :BEAMER_env: exampleblock

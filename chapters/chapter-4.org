@@ -6,9 +6,13 @@
 ** Benchmarks
 ** Error framework
 *** Compiler (OpenQL, cQASM)?
+
+#+INCLUDE: compiler.org
+
 *** TODO quantumsim
 
 #+INCLUDE: quantumsim.org
 
 *** QX
 *** Error Framework
+#+INCLUDE: error_framework.org
