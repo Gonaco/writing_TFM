@@ -1,1 +1,32 @@
 # Intro
+
+#+caption: Error Framework
+#+NAME: fig:general_error_framework
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/error_framework_diagram.png]]
+
+****** Benchmark Object
+
+#+caption: Benchmark Object ...
+#+NAME: fig:benchmark_object
+#+ATTR_LATEX: :width .5\textwidth
+[[file:figures/benchmark_object.png]]
+
+****** Mapping Analysis Object
+
+#+caption: Mapping Analysis Object ...
+#+NAME: fig:error_analysis
+#+ATTR_LATEX: :width .5\textwidth
+[[file:figures/error_analysis.png]]
+
+****** Database
+
+#+caption: Database tables
+#+NAME: fig:error_analysis
+#+ATTR_LATEX: :width .5\textwidth
+[[file:figures/database_scheme_general.png]]
+
+#+caption: Database tables information
+#+NAME: fig:error_analysis
+#+ATTR_LATEX: :width .5\textwidth
+[[file:figures/database_scheme_detail.png]]

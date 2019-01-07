@@ -18,7 +18,7 @@
 #+BEGIN_EXPORT latex
 \begin{figure}
 \centering
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{\textwidth}
 #+END_EXPORT
 
      #+BEGIN_SRC python

@@ -1,12 +1,12 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:orged1c825}
+\label{sec:org4a28e15}
 \section*{Benchmarks}
-\label{sec:org655dae6}
+\label{sec:org3e8d91b}
 \section*{Error framework}
-\label{sec:orge5d739c}
+\label{sec:org0c95aad}
 \subsection*{Compiler (OpenQL, cQASM)?}
-\label{sec:org6d182f4}
+\label{sec:org1c00562}
 
 [Intro]
 
@@ -14,24 +14,24 @@
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/layers.png}
-\caption{\label{fig:org0eb0940}
+\caption{\label{fig:org9f4b348}
 Compilation layers}
 \end{figure}
 
 
 \begin{itemize}
 \item cQASM
-\label{sec:orgbd78b76}
+\label{sec:org4e2d18f}
 
 
 \item OpenQL
-\label{sec:orge36aadd}
+\label{sec:orgd2f3cc4}
 
 [OpenQL figure adapted]
 
 \begin{figure}
 \centering
-\begin{minipage}{.45\textwidth}
+\begin{minipage}{\textwidth}
 
 \begin{minted}[frame=lines,fontsize=\scriptsize,linenos,breaklines,breakanywhere]{python}
 
@@ -82,14 +82,14 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{itemize}
 
 \subsection*{{\bfseries\sffamily TODO} quantumsim}
-\label{sec:orgcf3dbab}
+\label{sec:org0c650d9}
 
 \begin{itemize}
 \item Error model parameters
-\label{sec:org753022b}
+\label{sec:org193ec06}
 
 \begin{table}[htbp]
-\caption{\label{tab:org514452f}
+\caption{\label{tab:org1f3f2f3}
 Main error model parameters for simulation}
 \centering
 \tiny
@@ -116,7 +116,7 @@ In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrin
 \end{table}
 
 \item Error models
-\label{sec:org62ab31e}
+\label{sec:org6a73428}
 
 In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
 
@@ -126,14 +126,14 @@ where \(\sigma_i\) are the Pauli operators: \(\sigma_0 = I\), \(\sigma_1 = X\), 
 
 \begin{itemize}
 \item Qubit Idling
-\label{sec:org907a96c}
+\label{sec:org99092c6}
 
 While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
 The dephasing effect only appears in a superposition state.
 
 \begin{itemize}
 \item Amplitude-phase damping model
-\label{sec:org7870cbd}
+\label{sec:orgd0ca948}
 
 $$R_{\Lambda_{T_1}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
@@ -153,7 +153,7 @@ $$R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
 with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
 
 \item Qubit idling
-\label{sec:org7a2b00d}
+\label{sec:org826c5cb}
 
 Idling for a duration \(t\):
 
@@ -161,7 +161,7 @@ $$R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}$$
 \end{itemize}
 
 \item Single-qubit \(R_y(\pi /2)\) rotations
-\label{sec:orgfa28de0}
+\label{sec:org5e11e8b}
 
 "Single-qubit gates [\ldots{}] errors can mostly be attributed to Markovian noise. [\ldots{}] we thus model these errors as Markovian".
 
@@ -184,7 +184,7 @@ $$R_{dep} = \begin{bmatrix}
 and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
 
 \item CZ gates
-\label{sec:orgb49ef87}
+\label{sec:org6644671}
 
 "The C-Z gate is achieved by flux pulsing a transmon into the \(|11\rangle \leftrightarrow |02\rangle\) avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
 Holding the transmons here for \(\tau_{g,2Q}\) causes the probability amplitudes of \(|01\rangle\) and \(|11\rangle\) to acquire phases[\ldots{}]
@@ -193,16 +193,16 @@ Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ g
 
 
 \item Measurement
-\label{sec:orgc0af018}
+\label{sec:org9fce00a}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/measure_model.png}
-\caption{\label{fig:orgd57c92f}
+\caption{\label{fig:orgd3a6f86}
 The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\). At this point, the qubit state is sampled. The sampling result is subject to a declaration error \(\epsilon_{RO}\), and the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\) before the end of the measurement block}
 \end{figure}
 
-The initial dephasing step in the measurement model (Fig. \ref{fig:orgd57c92f}) occurs due to the \hyperref[sec:orgf2bfd32]{photon decay} effect.
+The initial dephasing step in the measurement model (Fig. \ref{fig:orgd3a6f86}) occurs due to the \hyperref[sec:orgfcfe1f2]{photon decay} effect.
 
 "We find that the readout errors \(\epsilon_{RO}^{|i\rangle}\) are almost independent of the qubit state \(|i\rangle\), and so we describe them with a single readout error parameter \(\epsilon_{RO}\)".
 The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%\) is extracted from experiments. 
@@ -210,13 +210,13 @@ The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1}
 They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
 
 \item Photon decay
-\label{sec:orgf2bfd32}
+\label{sec:orgfcfe1f2}
 In the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
 This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
 This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\).
 
 \item Flux Noise
-\label{sec:org00372cc}
+\label{sec:orgd42653d}
 
 During a quantum algorithm, "transmons are repeatedly moved in frequency away from their sweetspot using flux pulses, either to implement a C-Z gate or to avoid one. Away from the sweetspot, transmons become first-order sensitive to flux noise, which causes an additional random phase shift."
 
@@ -230,14 +230,14 @@ As one could see in the figures 4 and 5 from the Supplemental information, a lit
 
 
 \item Effects not taking into account
-\label{sec:org1284f33}
+\label{sec:org070dede}
 
 They use a simple model for the CZ errors.
 They neglect leakage (previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%).
 Of course this simplification is also in \textbf{quantumsim}.
 
 \item The quantumsim simulation package
-\label{sec:org9136d7b}
+\label{sec:org62de8e1}
 
 "Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [\ldots{}]
 
@@ -247,23 +247,23 @@ Qubit measurements are simulated as projective and following the Born rule, with
 
 
 \item Observations I find Interesting
-\label{sec:orgff9ec73}
+\label{sec:org5fb1c93}
 \begin{itemize}
 \item Optimization of logical error rates
-\label{sec:org248fcaa}
+\label{sec:org52ecf79}
 
-As they explain in the paper and one can see in Fig. \ref{fig:orgcf82635}, they find that the optimal measuring time for the minimum \(\epsilon_L\) is 280 ns.
+As they explain in the paper and one can see in Fig. \ref{fig:org832d814}, they find that the optimal measuring time for the minimum \(\epsilon_L\) is 280 ns.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/measure_t_optimization.png}
-\caption{\label{fig:orgcf82635}
+\caption{\label{fig:org832d814}
 Measure time optimization based on the SC-17 logical error rate. Optimal \(\tau_m = 280\) ns}
 \end{figure}
 
 
 \item Projected improvement with advances in quantum hardware
-\label{sec:org61b2576}
+\label{sec:org597edf2}
 
 \begin{itemize}
 \item Memory figure of merit (\(\gamma_m = \frac{\epsilon_{phys}}{\epsilon_{L}}\)). How close are \(\epsilon_{phys}\) and \(\epsilon_{L}\). Metric to check how good the error correction is.
@@ -274,7 +274,7 @@ Measure time optimization based on the SC-17 logical error rate. Optimal \(\tau_
 \end{itemize}
 
 \item Other observations
-\label{sec:org71d98e6}
+\label{sec:org54b4c0c}
 
 The following statements are fairly general:
 
@@ -287,6 +287,51 @@ The following statements are fairly general:
 \end{itemize}
 
 \subsection*{QX}
-\label{sec:orgb282506}
+\label{sec:org07eba1a}
 \subsection*{Error Framework}
-\label{sec:org8dbf0a3}
+\label{sec:org222b4b9}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
+\caption{\label{fig:org16fbdce}
+Error Framework}
+\end{figure}
+
+\begin{itemize}
+\item Benchmark Object
+\label{sec:org1e12ac0}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
+\caption{\label{fig:orgeb8af80}
+Benchmark Object \ldots{}}
+\end{figure}
+
+\item Mapping Analysis Object
+\label{sec:org77fb07a}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.5\textwidth]{figures/error_analysis.png}
+\caption{\label{fig:org678d5d9}
+Mapping Analysis Object \ldots{}}
+\end{figure}
+
+\item Database
+\label{sec:org5fa49a3}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.5\textwidth]{figures/database_scheme_general.png}
+\caption{\label{fig:org5e335d9}
+Database tables}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
+\caption{\label{fig:org6c0774d}
+Database tables information}
+\end{figure}
+\end{itemize}
