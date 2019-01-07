@@ -447,7 +447,7 @@ In order to perform a two quibt gate in transmons, interacting qubits need to be
 \end{figure}
 
 
-Based on the unit cell in Figure \ref{cell} and assuming the frequency scheme of Figure \ref{detuning} we can formulate the following: 1) If a two-qubit gate is being performed between D1 (D2) and X1 (X1 or Z1), D2 (D1) cannot interact with X1 or Z1 (X1) at the same time; 2) In the same way, if a two-qubit gate is being performed between D3 (D4) and X1 or Z2 (X1 or Z1 or X2 or Z2), D4 (D3) cannot interact with X1 or Z1 or X2 or Z2 (X1 or Z2) at the same time. Obviously,  if a two-qubit gate is being performed between two qubits, the qubits involved can not perform another single- or two-qubit gate at the same time. A summary of the gates that can or cannot be performed in paralallel is shown in Table \ref{parallelCZ}.
+Based on the unit cell in Figure \ref{cell} and assuming the frequency scheme of Figure \ref{detuning} we can formulate the following: 1) If a two-qubit gate is being performed between D1 (D2) and X1 (X1 or Z1), D2 (D1) cannot interact with X1 or Z1 (X1) at the same time; 2) In the same way, if a two-qubit gate is being performed between D3 (D4) and X1 or Z2 (X1 or Z1 or X2 or Z2), D4 (D3) cannot interact with X1 or Z1 or X2 or Z2 (X1 or Z2) at the same time. Obviously,  if a two-qubit gate is being performed between two qubits, the qubits involved can not perform another single- or two-qubit gate at the same time. As an example, a summary of the gates that cannot be performed in paralallel in SC-7 is shown in Table \ref{parallelCZ}.
 
 \begin{table}[h!]
 \centering
@@ -457,7 +457,7 @@ Based on the unit cell in Figure \ref{cell} and assuming the frequency scheme of
 \resizebox{0.80\textwidth}{!}{
 \begin{tabular}{|c|c|c|}
 \hline
-CZ gate    & NOT Possible gates in parallel                  & NOT Possible single-qubit gates   \\ \hline
+CZ gate    & NOT Possible two-qubit gates in parallel                  & NOT Possible single-qubit gates   \\ \hline
 D1-X1      & D2-X1, D3-X1, D4-X1, D2-Z1                      &  X2, D1, X1\\ \hline
 D2-X1      & D1-X1, D3-X1, D4-X1, D2-Z1                      &  X2, D2, X1 \\ \hline
 D3-X1      & D1-X1, D2-X1, D4-X1, D3-Z2, D4-Z1, D4-Z2, D4-X2 &  D4, D3, X1                     \\ \hline
@@ -472,73 +472,73 @@ D4-X2      & D3-X1, D3-Z2, D4-X1, D4-Z1, D4-Z2               &  D3, D4, X2      
 \end{table}
 
 
-This can be extended to SC-17 based on the same frequency scheme and the simplified layout shown in Figure \ref{fig:simple_sc_17}.% \textcolor{red}{We need to derive what operations can be performed in parallel and fill Table \ref{parallelCZSC17} in.}
+%% This can be extended to SC-17 based on the same frequency scheme and the simplified layout shown in Figure \ref{fig:simple_sc_17}.% \textcolor{red}{We need to derive what operations can be performed in parallel and fill Table \ref{parallelCZSC17} in.}
 
-%\textcolor{red}{We also need to derive what operations can be performed in parallel for SC-7.}
+%% %\textcolor{red}{We also need to derive what operations can be performed in parallel for SC-7.}
 
-\begin{table}[h!]
-\caption{Allowed and not allowed parallel CZ gates in SC-17.}
-\label{parallelCZSC17}
-\centering
-\scriptsize
-\resizebox{0.80\textwidth}{!}{
-\begin{tabular}{|c|c|c|}
-\hline
-CZ gate & Not possible parallel two-qubit gates & Not allowed qubits for single-qubit gates\\
-\hline
-Q0-Q2 & Q1-Q5,Q2-Q5,Q2-Q6,Q3-Q0,Q3-Q6 & Q0,Q2,Q5,Q6\\
-\hline
-Q0-Q3 & Q0-Q2,Q2-Q6,Q3-Q6,Q2-Q5  & Q0,Q3,Q6\\
-\hline
-Q1-Q4 & Q1-Q5,Q2-Q5,Q4-Q7 & Q1,Q4,Q5\\
-\hline
-Q1-Q5 & Q1-Q4,Q5-Q7,Q2-Q5,Q5-Q8,Q2-Q0,Q2-Q6 & Q1,Q5,Q4\\
-\hline
-Q2-Q5 & Q1-Q4,Q1-Q5,Q2-Q0,Q2-Q6,Q0-Q3,Q3-Q6,Q5-Q7,Q5-Q8 & Q2,Q5,Q0,Q6\\
-\hline
-Q2-Q6 & Q1-Q5,Q2-Q5,Q2-Q0,Q6-Q8,Q0-Q3,Q6-Q9,Q3-Q6 & Q2,Q6,Q5,Q0\\
-\hline
-Q3-Q6 & Q2-Q5,Q2-Q0,Q2-Q6,Q6-Q8,Q0-Q3,Q6-Q9 & Q3,Q6,Q0\\
-\hline
-Q4-Q7 & Q1-Q4,Q5-Q7,Q7-Q10,Q5-Q8,Q8-Q10 & Q4,Q7,Q8\\
-\hline
-Q5-Q7 & Q4-Q7,Q1-Q5,Q7-Q10,Q2-Q5,Q5-Q8,Q8-Q10,Q6-Q8,Q8-Q11 & Q5,Q7,Q8\\
-\hline
-Q5-Q8 & Q4-Q7,Q1-Q5,Q5-Q7,Q7-Q10,Q8-Q10,Q8-Q6,Q8-Q11,Q6-Q9,Q9-Q11 & Q5,Q8,Q7,Q9\\
-\hline
-Q6-Q8 & Q5-Q7,Q7-Q10,Q5-Q8,Q8-Q10,Q2-Q6,Q8-Q11,Q3-Q6,Q6-Q9,Q9-Q11 & Q6,Q8,Q7,Q9\\
-\hline
-Q6-Q9 & Q5-Q8,Q8-Q10,Q2-Q6,Q6-Q8,Q8-Q11,Q3-Q6,Q9-Q11,Q9-Q12 & Q6,Q9,Q8\\
-\hline
-Q7-Q10 & Q4-Q7,Q5-Q7,Q10-Q13,Q5-Q8,Q8-Q10,Q10-Q14,Q6-Q8 ,Q8-Q11  & Q7,Q10,Q8\\
-\hline
-Q8-Q10 & Q5-Q7,Q7-Q10,Q10-Q13,Q5-Q8,Q10-Q14,Q6-Q8,Q8-Q11,Q6-Q9,Q9-Q11 & Q8,Q10,Q7,Q9\\
-\hline
-Q8-Q11 & Q5-Q7,Q7-Q10,Q5-Q8,Q8-Q10,Q6-Q8,Q11-Q14,Q6-Q9,Q9-Q11,Q11-Q15,Q9-Q12  & Q8,Q11,Q7,Q9\\
-\hline
-Q9-Q11 & Q5-Q8,Q8-Q10,Q6-Q8,Q8-Q11,Q11-Q14,Q6-Q9,Q11-Q15,Q9-Q12 & Q9,Q11,Q8\\
-\hline
-Q9-Q12 & Q6-Q8,Q8-Q11,Q6-Q9,Q9-Q11,Q12-Q15 & Q9,Q12,Q8\\
-\hline
-Q10-Q13 & Q7-Q10,Q13-Q16,Q8-Q10,Q10-Q14,Q14-Q10,Q11-Q14 & Q10,Q13,Q16\\
-\hline
-Q10-Q14 & Q7-Q10,Q10-Q13,Q13-Q16,Q8-Q10,Q14-Q16,Q11-Q14,Q11-Q15 & Q10,Q14,Q16,Q11\\
-\hline
-Q11-Q14 & Q10-Q13,Q13-Q16,Q10-Q14,Q14-Q16,Q8-Q11,Q9-Q11,Q11-Q15,Q12-Q15 & Q11,Q14,Q10,Q16\\
-\hline
-Q11-Q15 & Q10-Q14,Q14-Q16,Q8-Q11,Q11-Q14,Q9-Q11,Q12-Q15 & Q11,Q15,Q12\\
-\hline
-Q12-Q15 & Q11-Q14,Q11-Q15,Q9-Q12 & Q12,Q15,Q11\\
-\hline
-Q13-Q16 & Q10-Q13,Q10-Q14,Q14-Q16,Q11-Q14  & Q13,Q16,Q10\\
-\hline
-Q14-Q16 & Q10-Q13,Q13-Q16,Q10-Q14,Q11-Q14,Q11-Q15 & Q14,Q16,Q10,Q11\\
-\hline
-\end{tabular}
-}
-\end{table}
+%% \begin{table}[h!]
+%% \caption{Allowed and not allowed parallel CZ gates in SC-17.}
+%% \label{parallelCZSC17}
+%% \centering
+%% \scriptsize
+%% \resizebox{0.80\textwidth}{!}{
+%% \begin{tabular}{|c|c|c|}
+%% \hline
+%% CZ gate & Not possible parallel two-qubit gates & Not allowed qubits for single-qubit gates\\
+%% \hline
+%% Q0-Q2 & Q1-Q5,Q2-Q5,Q2-Q6,Q3-Q0,Q3-Q6 & Q0,Q2,Q5,Q6\\
+%% \hline
+%% Q0-Q3 & Q0-Q2,Q2-Q6,Q3-Q6,Q2-Q5  & Q0,Q3,Q6\\
+%% \hline
+%% Q1-Q4 & Q1-Q5,Q2-Q5,Q4-Q7 & Q1,Q4,Q5\\
+%% \hline
+%% Q1-Q5 & Q1-Q4,Q5-Q7,Q2-Q5,Q5-Q8,Q2-Q0,Q2-Q6 & Q1,Q5,Q4\\
+%% \hline
+%% Q2-Q5 & Q1-Q4,Q1-Q5,Q2-Q0,Q2-Q6,Q0-Q3,Q3-Q6,Q5-Q7,Q5-Q8 & Q2,Q5,Q0,Q6\\
+%% \hline
+%% Q2-Q6 & Q1-Q5,Q2-Q5,Q2-Q0,Q6-Q8,Q0-Q3,Q6-Q9,Q3-Q6 & Q2,Q6,Q5,Q0\\
+%% \hline
+%% Q3-Q6 & Q2-Q5,Q2-Q0,Q2-Q6,Q6-Q8,Q0-Q3,Q6-Q9 & Q3,Q6,Q0\\
+%% \hline
+%% Q4-Q7 & Q1-Q4,Q5-Q7,Q7-Q10,Q5-Q8,Q8-Q10 & Q4,Q7,Q8\\
+%% \hline
+%% Q5-Q7 & Q4-Q7,Q1-Q5,Q7-Q10,Q2-Q5,Q5-Q8,Q8-Q10,Q6-Q8,Q8-Q11 & Q5,Q7,Q8\\
+%% \hline
+%% Q5-Q8 & Q4-Q7,Q1-Q5,Q5-Q7,Q7-Q10,Q8-Q10,Q8-Q6,Q8-Q11,Q6-Q9,Q9-Q11 & Q5,Q8,Q7,Q9\\
+%% \hline
+%% Q6-Q8 & Q5-Q7,Q7-Q10,Q5-Q8,Q8-Q10,Q2-Q6,Q8-Q11,Q3-Q6,Q6-Q9,Q9-Q11 & Q6,Q8,Q7,Q9\\
+%% \hline
+%% Q6-Q9 & Q5-Q8,Q8-Q10,Q2-Q6,Q6-Q8,Q8-Q11,Q3-Q6,Q9-Q11,Q9-Q12 & Q6,Q9,Q8\\
+%% \hline
+%% Q7-Q10 & Q4-Q7,Q5-Q7,Q10-Q13,Q5-Q8,Q8-Q10,Q10-Q14,Q6-Q8 ,Q8-Q11  & Q7,Q10,Q8\\
+%% \hline
+%% Q8-Q10 & Q5-Q7,Q7-Q10,Q10-Q13,Q5-Q8,Q10-Q14,Q6-Q8,Q8-Q11,Q6-Q9,Q9-Q11 & Q8,Q10,Q7,Q9\\
+%% \hline
+%% Q8-Q11 & Q5-Q7,Q7-Q10,Q5-Q8,Q8-Q10,Q6-Q8,Q11-Q14,Q6-Q9,Q9-Q11,Q11-Q15,Q9-Q12  & Q8,Q11,Q7,Q9\\
+%% \hline
+%% Q9-Q11 & Q5-Q8,Q8-Q10,Q6-Q8,Q8-Q11,Q11-Q14,Q6-Q9,Q11-Q15,Q9-Q12 & Q9,Q11,Q8\\
+%% \hline
+%% Q9-Q12 & Q6-Q8,Q8-Q11,Q6-Q9,Q9-Q11,Q12-Q15 & Q9,Q12,Q8\\
+%% \hline
+%% Q10-Q13 & Q7-Q10,Q13-Q16,Q8-Q10,Q10-Q14,Q14-Q10,Q11-Q14 & Q10,Q13,Q16\\
+%% \hline
+%% Q10-Q14 & Q7-Q10,Q10-Q13,Q13-Q16,Q8-Q10,Q14-Q16,Q11-Q14,Q11-Q15 & Q10,Q14,Q16,Q11\\
+%% \hline
+%% Q11-Q14 & Q10-Q13,Q13-Q16,Q10-Q14,Q14-Q16,Q8-Q11,Q9-Q11,Q11-Q15,Q12-Q15 & Q11,Q14,Q10,Q16\\
+%% \hline
+%% Q11-Q15 & Q10-Q14,Q14-Q16,Q8-Q11,Q11-Q14,Q9-Q11,Q12-Q15 & Q11,Q15,Q12\\
+%% \hline
+%% Q12-Q15 & Q11-Q14,Q11-Q15,Q9-Q12 & Q12,Q15,Q11\\
+%% \hline
+%% Q13-Q16 & Q10-Q13,Q10-Q14,Q14-Q16,Q11-Q14  & Q13,Q16,Q10\\
+%% \hline
+%% Q14-Q16 & Q10-Q13,Q13-Q16,Q10-Q14,Q11-Q14,Q11-Q15 & Q14,Q16,Q10,Q11\\
+%% \hline
+%% \end{tabular}
+%% }
+%% \end{table}
 
-\subsubsection*{Summary for single-qubit and two-qubit gates}
+%% \subsubsection*{Summary for single-qubit and two-qubit gates}
 
 \textbf{Single-qubit gates:} for performing a single-qubit gate on a qubit, one needs to send the required electromagnetic microwave to it.  \textbf{The same} single-qubit gate can be performed in parallel in all or some of the qubits connected to the same QWG. However, it is not possible to perform in parallel a different single qubit-gate in qubits connected to the same QWG.
 

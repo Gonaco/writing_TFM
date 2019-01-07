@@ -22,12 +22,7 @@ The third section examines ...
 
 In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by its capabilities
 
-***** Literature review
-
-Few studies have been published on the Quantum Volume topic cite:Bishop_2017,Moll_2018.
-In this section, a brief introduction to the metric is offered, reviewing the important concepts and basis.
-
-****** Hardware parameters
+***** Hardware parameters
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -37,7 +32,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 - Gate set. Available hardware gate set
 - Maximum number of parallel operations. Number of operations that can be run in parallel
 
-****** Definitions and metrics
+***** Definitions and metrics
 
 In order to understand the metric of Quantum Volume, some concepts need to be defined first. 
 In this section we offer the inferred definitions from cite:Bishop_2017,Moll_2018 that are part of the rationale of Quantum Volume.
