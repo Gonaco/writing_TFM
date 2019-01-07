@@ -103,133 +103,153 @@ We define the *runnability* of a given quantum circuit on a device based on the 
 Following cite:Bishop_2017,Moll_2018, we can expand the Quantum Volume general equation ($\tilde{V}_Q$) with the other definitions in the previous section and maximize for the biggest possible $n$ in the device. 
 Then, the maximum Quantum Volume that a device could run is defined by:
 
-$$V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2$$
+#+NAME: eq:d_q_v
+\begin{equation}
+V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2
+\end{equation}
 
 We define this as the /device/ Quantum Volume. 
-In Fig. \ref{fig:deviceQV2} and Fig. \ref{fig:deviceQV1} a graph describing the Quantum Volume as a function of $n$ and $\epsilon_{eff}$ is shown.
+In Fig. \ref{fig:deviceQV} a graph describing the Quantum Volume as a function of $n$ and $\epsilon_{eff}$ is shown.
 For this example we are not considering $\epsilon_{eff} (n)$.
 Otherwise, it would be a technology specific graph.
 The purpose of this figure is tho show the general behaviour of $V_Q$.
 Note that the axis are in a logarithmic scale in order to show that $V_Q$ grows exponentially as $n$ increase and that $\epsilon_{eff}$ is abruptly detonating $V_Q$ growth from values smaller than $10^{-3}$.
 Therefore, we outline that the main limit for the $V_Q$ is the $\epsilon_{eff}$.
 
-#+BEGIN_EXPORT latex
-     %\begin{figure}
+# #+BEGIN_EXPORT latex
+#      %\begin{figure}
      
-     %\centering
-     \begin{minipage}{.45\textwidth}
+#      %\centering
+#      \begin{minipage}{.45\textwidth}
 
-     \centering
+#      \centering
 
-#+END_EXPORT
+# #+END_EXPORT
 
- [[file:figures/general_QV2.png]]
+#  [[file:figures/general_QV2.png]]
  
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:deviceQV2}
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:deviceQV2}
 
-     \end{minipage}%
-     \hspace{1cm}
-     \begin{minipage}{.45\textwidth}
+#      \end{minipage}%
+#      \hspace{1cm}
+#      \begin{minipage}{.45\textwidth}
 
-#+END_EXPORT
+# #+END_EXPORT
 
- [[file:figures/general_QV1.png]]
+#  [[file:figures/general_QV1.png]]
 
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:deviceQV1}
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:deviceQV1}
 
-     \end{minipage}%
-#+END_EXPORT
+#      \end{minipage}%
+# #+END_EXPORT
+
+#+caption: Device Quantum Volume behaviour for values less than 1000 qubits and a $\epsilon_eff < 10^{-5}$
+#+NAME: fig:deviceQV
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/general_QV.png]]
 
 ****** Quantum Volume of an algorithm
 
 As with $V_Q$, we initially defined the algorithm's Quantum Volume from the general equation $\tilde{V}_Q$, although we will adapt it later.
 
-$$V_Q^a = \min \left[ n,d \right]^2$$
+#+NAME: eq:a_q_v_min
+\begin{equation}
+V_Q^a = \min \left[ n,d \right]^2
+\end{equation}
 
 Note that $d$ is not $d(N)$ but the real depth of the given algorithm.
 At the same time, $n$ is the number of qubits required by the algorithm itself.
-One can see how $d$ and $n$ are equally important in Fig. \ref{fig:algorithmQV2sym} and Fig. \ref{fig:algorithmQV1sym}.
+One can see how $d$ and $n$ are equally important in Fig. \ref{fig:algorithmQVsym}.
 The growth of both variables causes an equally exponential growth of $V^a_Q$.
 
-#+BEGIN_EXPORT latex
-     %\begin{figure}
+# #+BEGIN_EXPORT latex
+#      %\begin{figure}
      
-     %\centering
-     \begin{minipage}{.45\textwidth}
+#      %\centering
+#      \begin{minipage}{.45\textwidth}
 
-     \centering
+#      \centering
 
-#+END_EXPORT
+# #+END_EXPORT
 
-# [[file:V_q_analysis2.png]] 
+# # [[file:V_q_analysis2.png]] 
 
-file:figures/V_q_analysis_sym2.png
+# file:figures/V_q_analysis_sym2.png
 
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmQV2sym}
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:algorithmQV2sym}
 
-     \end{minipage}%
-     \hspace{1cm}
-     \begin{minipage}{.45\textwidth}
+#      \end{minipage}%
+#      \hspace{1cm}
+#      \begin{minipage}{.45\textwidth}
 
-#+END_EXPORT
+# #+END_EXPORT
 
-# [[file:V_q_analysis1.png]] 
+# # [[file:V_q_analysis1.png]] 
 
-[[file:figures/V_q_analysis_sym1.png]]
+# [[file:figures/V_q_analysis_sym1.png]]
 
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmQV1sym}
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:algorithmQV1sym}
 
-     \end{minipage}%
-#+END_EXPORT
+#      \end{minipage}%
+# #+END_EXPORT
 
-Fig. \ref{fig:algorithmQV2asym} and Fig. \ref{fig:algorithmQV1asym} present the behaviour of $V_Q^a$
+#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_min]] behaviour for values less than $10^{4}$ qubits and a depth $< 10^{4}$
+#+NAME: fig:algorithmQVsym
+#+ATTR_LATEX: :width \textwidth
+file:figures/V_q_analysis_sym.png
+
+Fig. \ref{fig:algorithmQVasym} present the behaviour of $V_Q^a$
 focusing in the current most common values for $n$ and $d$.
 The function shows an asymteric beheviour due to $d$ is much bigger than $n$ most of the times.
 
 
-#+BEGIN_EXPORT latex
-     %\begin{figure}
+# #+BEGIN_EXPORT latex
+#      %\begin{figure}
      
-     %\centering
-     \begin{minipage}{.45\textwidth}
+#      %\centering
+#      \begin{minipage}{.45\textwidth}
 
-     \centering
+#      \centering
 
-#+END_EXPORT
+# #+END_EXPORT
 
-# [[file:V_q_analysis2.png]] 
+# # [[file:V_q_analysis2.png]] 
 
-file:figures/V_q_analysis_asym2.png
+# file:figures/V_q_analysis_asym2.png
 
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmQV2asym}
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:algorithmQV2asym}
 
-     \end{minipage}%
-     \hspace{1cm}
-     \begin{minipage}{.45\textwidth}
+#      \end{minipage}%
+#      \hspace{1cm}
+#      \begin{minipage}{.45\textwidth}
 
-#+END_EXPORT
+# #+END_EXPORT
 
-# [[file:V_q_analysis1.png]] 
+# # [[file:V_q_analysis1.png]] 
 
-[[file:figures/V_q_analysis_asym1.png]]
+# [[file:figures/V_q_analysis_asym1.png]]
 
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmQV1asym}
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:algorithmQV1asym}
 
-     \end{minipage}%
-#+END_EXPORT
+#      \end{minipage}%
+# #+END_EXPORT
 
+#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_min]] behaviour for values less than 1000 qubits and a depth $< 10^{5}$
+#+NAME: fig:algorithmQVasym
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/V_q_analysis_asym.png]]
 
 We aware that this approach has a limitation regarding the mapping of the quantum circuit.
 As explained before, $V_Q$ is able to take into account the sophistication of the mapping procedure.
@@ -252,43 +272,51 @@ But, considering that most of our work is not going to be in any of these extrem
 # the current quantum systems with minimal error rates are the systems with very low amount of qubits.
 # And, at the same time, this systems are not relevant in computational power, although are able to run long circuits.
 
-$$V_Q^a =  n \times d$$
+#+NAME: eq:a_q_v_mult
+\begin{equation}
+V_Q^a =  n \times d
+\end{equation}
 
-Fig. \ref{fig:algorithmmultQV2} and Fig. \ref{fig:algorithmmultQV1} report the behaviour of the $V_Q^a$ as
+Fig. \ref{fig:algorithmmultQV} report the behaviour of the $V_Q^a$ as
 the multiplication of $n$ and $d$.
-As illutrated in Fig. \ref{fig:algorithmQV2sym} and \ref{fig:algorithmQV1sym}, the values of $n$ and $d$ are
+As illutrated in Fig. \ref{fig:algorithmQVsym}, the values of $n$ and $d$ are
 affecting equally and exponentially to the metric.
 
-#+BEGIN_EXPORT latex
-     %\begin{figure}
+# #+BEGIN_EXPORT latex
+#      %\begin{figure}
      
-     %\centering
-     \begin{minipage}{.45\textwidth}
+#      %\centering
+#      \begin{minipage}{.45\textwidth}
 
-     \centering
+#      \centering
 
-#+END_EXPORT
+# #+END_EXPORT
 
-[[file:figures/V_q_analysis_mult2.png]]
+# [[file:figures/V_q_analysis_mult2.png]]
 
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmmultQV2}
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:algorithmmultQV2}
 
-     \end{minipage}%
-     \hspace{1cm}
-     \begin{minipage}{.45\textwidth}
+#      \end{minipage}%
+#      \hspace{1cm}
+#      \begin{minipage}{.45\textwidth}
 
-#+END_EXPORT
+# #+END_EXPORT
 
+# [[file:figures/V_q_analysis_mult1.png]]
+
+# #+BEGIN_EXPORT latex
+#      \captionof{figure}{}
+#      \label{fig:algorithmmultQV1}
+
+#      \end{minipage}%
+# #+END_EXPORT
+
+#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_mult]] behaviour for values less than 1000 qubits and a depth $< 10^{5}$
+#+NAME: fig:algorithmmultQV
+#+ATTR_LATEX: :width \textwidth
 [[file:figures/V_q_analysis_mult1.png]]
-
-#+BEGIN_EXPORT latex
-     \captionof{figure}{}
-     \label{fig:algorithmmultQV1}
-
-     \end{minipage}%
-#+END_EXPORT
 
 ******* Problem                                              :noexport:
 
@@ -307,7 +335,7 @@ For instance, in order to understand this concept, one may imagine the process o
 If the algorithm's box volume is smaller than the volume of the device's box, the algorithm's box will fit inside.
 
 Indeed, one acceptable criticism of this definition is that, as $V_Q$ and $V^a_Q$ are finally defined in the previous sections, it seems that it is not really fair to compare them.
-But, as soon as the general behaviour of the final and the initial $V^a_Q$ is the same -- one can see in the Fig. \ref{fig:algorithmQV1sym} and Fig. \ref{fig:algorithmmultQV1} -- and as the final definition tends to have bigger values than the initial one -- so it is defining a more restrictive and exigent scenario -- we believe that this definition of runnability is mathematically correct and useful.
+But, as soon as the general behaviour of the final and the initial $V^a_Q$ is the same -- one can see in the Fig. \ref{fig:algorithmQVsym} and Fig. \ref{fig:algorithmmultQV} -- and as the final definition tends to have bigger values than the initial one -- so it is defining a more restrictive and exigent scenario -- we believe that this definition of runnability is mathematically correct and useful.
 
 Therefore, we define runnability as the condition of:
 

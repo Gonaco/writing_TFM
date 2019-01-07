@@ -469,16 +469,16 @@
 
        Approaches for solving the problem:
 
-   1. [[Benchmarks formation and classification][Benchmarks formation and classification]]
-   2. [["Probability of success" analysis]["Probability of success" analysis]]
-   3. [[Mapping algorithms impact in the "probability of success"][Mapping algorithms impact in the "probability of success"]]
+   1. Benchmarks formation and classification
+   2. "Probability of success" analysis
+   3. Mapping algorithms impact in the "probability of success"
 
 *** TODO :B_noteNH:
     :PROPERTIES:
     :BEAMER_env: noteNH
     :END:
 
-       Ok, so a fast recap. After gathering the benchmarks the next approaches to do are the [["Probability of success" analysis]["Probability of success" analysis]] and the  [[Mapping algorithms impact in the "probability of success"][Mapping algorithms impact in the "probability of success"]].
+       Ok, so a fast recap. After gathering the benchmarks the next approaches to do are the "Probability of success" analysis and the  Mapping algorithms impact in the "probability of success".
 
 * BIB                                                       :ignore:noexport:
 

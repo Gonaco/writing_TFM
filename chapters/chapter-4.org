@@ -4,6 +4,9 @@
 
 * Benchmarks and error framework
 ** Benchmarks
+
+#+INCLUDE: benchmarks.org
+
 ** Error framework
 *** Compiler (OpenQL, cQASM)?
 
