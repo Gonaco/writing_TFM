@@ -2,10 +2,20 @@
 # Intro to QX and its advantages
 [Intro]
 
-#+caption: QX logo
-#+NAME: fig:qx_logo
-#+ATTR_LATEX: :width 0.3\textwidth
+#+BEGIN_EXPORT latex
+\begin{figure}
+\centering
+\begin{minipage}{.4\textwidth}
+#+END_EXPORT
+
 [[file:figures/qx.png]]
+
+#+BEGIN_EXPORT latex
+\caption{QX logo}
+\label{fig:qx_logo}
+\end{minipage}
+\end{figure}
+#+END_EXPORT
 
 # Error model description (Pauli errors, no error measurement, no decoherence, only one error rate)
 [Error model]

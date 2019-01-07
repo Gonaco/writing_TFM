@@ -23,7 +23,7 @@
 *** Number of SWAPS
 *** Latency
 *** Probability of success
-*** TODO Quantum Volume
+*** Quantum Volume
 
 #+INCLUDE: quantum_volume.org
 

@@ -1,5 +1,11 @@
 # Intro (what is quantumsim, advantages)
 
+# "Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [...]
+
+# One-qubit and two- qubit gates are applied to the density matrix as completely positive, trace preserving maps represented by Pauli transfer matrices. When a gate involving a << new >> qubit must be performed, the density matrix of the system is dynamically enlarged to include that one [...]
+
+# Qubit measurements are simulated as projective and following the Born rule, with projection probabilities given by the squared overlap of the input state with the measurement basis states. In order to capture empirical measurement errors, we implement a black-box measurement model by sandwiching the measurement between idling processes. After measuring some qubit they remove that qubit from the density matrix.
+
 
 **** Error model parameters
 
@@ -156,7 +162,7 @@ They use a simple model for the CZ errors.
 They neglect leakage (previous experiments have reduced leakage probability per CZ to $\approx$ 0.3%).
 Of course this simplification is also in *quantumsim*.
 
-**** The quantumsim simulation package
+**** The quantumsim simulation package                          :noexport:
 
 "Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [...]
 
@@ -165,7 +171,7 @@ One-qubit and two- qubit gates are applied to the density matrix as completely p
 Qubit measurements are simulated as projective and following the Born rule, with projection probabilities given by the squared overlap of the input state with the measurement basis states. In order to capture empirical measurement errors, we implement a black-box measurement model by sandwiching the measurement between idling processes. After measuring some qubit they remove that qubit from the density matrix.
 
 
-**** Observations I find Interesting
+**** Observations I find Interesting                            :noexport:
 ***** Decoder Upper Bound explanation                          :noexport:
 
 "We obtain the probability of a final measurement falling within each coset by summing the probabilities from the diagonal of the reduced density matrix of the data qubits in the Z-basis.

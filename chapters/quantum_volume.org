@@ -201,7 +201,7 @@ The growth of both variables causes an equally exponential growth of $V^a_Q$.
 #      \end{minipage}%
 # #+END_EXPORT
 
-#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_min]] behaviour for values less than $10^{4}$ qubits and a depth $< 10^{4}$
+#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_min]] behaviour for values less than $10^{4}$ qubits and depth less than $10^{4}$
 #+NAME: fig:algorithmQVsym
 #+ATTR_LATEX: :width \textwidth
 file:figures/V_q_analysis_sym.png
@@ -246,7 +246,7 @@ The function shows an asymteric beheviour due to $d$ is much bigger than $n$ mos
 #      \end{minipage}%
 # #+END_EXPORT
 
-#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_min]] behaviour for values less than 1000 qubits and a depth $< 10^{5}$
+#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_min]] behaviour for values less than 1000 qubits and a depth less than $10^{5}$
 #+NAME: fig:algorithmQVasym
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/V_q_analysis_asym.png]]
@@ -313,10 +313,10 @@ affecting equally and exponentially to the metric.
 #      \end{minipage}%
 # #+END_EXPORT
 
-#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_mult]] behaviour for values less than 1000 qubits and a depth $< 10^{5}$
+#+caption: Algorithm Quantum Volume as in eq. [[eq:a_q_v_mult]] behaviour for values less than 1000 qubits and a depth less than $10^{5}$
 #+NAME: fig:algorithmmultQV
 #+ATTR_LATEX: :width \textwidth
-[[file:figures/V_q_analysis_mult1.png]]
+[[file:figures/V_q_analysis_mult.png]]
 
 ******* Problem                                              :noexport:
 
@@ -339,7 +339,10 @@ But, as soon as the general behaviour of the final and the initial $V^a_Q$ is th
 
 Therefore, we define runnability as the condition of:
 
-$$\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d \quad \quad \text{ when } N \ge n$$
+#+NAME: eq:runnability_condition
+\begin{equation}
+\max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d \quad \quad \text{ when } N \ge n
+\end{equation}
 
 ****** Depict $\epsilon_{eff}(n)$                             :noexport:
 

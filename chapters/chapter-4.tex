@@ -1,24 +1,24 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:org5146f70}
+\label{sec:orgd07ccc6}
 \section*{Benchmarks}
-\label{sec:orgc70a6da}
+\label{sec:org4814af7}
 
 \subsection*{Benchmarks formation and classification}
-\label{sec:orge208565}
+\label{sec:org405aa57}
 \begin{itemize}
 \item Benchmarks formation and classification
-\label{sec:org5160996}
+\label{sec:orged7f04e}
 
 \begin{itemize}
 \item Objective
-\label{sec:org20e35e7}
+\label{sec:org98ce71d}
 
 \textbf{Gather} a \textbf{useful} list of benchmarks from RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, Zulehner's paper \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} in order to use them later for the "probability of success" analysis.
 
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgbdbd3ec}
+\label{sec:orgc2c38ea}
 Steps:
 
 \begin{enumerate}
@@ -28,7 +28,7 @@ Steps:
 \item[{$\square$}] Check algorithm correctness.
 \end{enumerate}
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org5287ba5}
+\label{sec:orge540594}
 So, the objective of this first approach is to gather a \textbf{useful} list of benchmarks from RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, Zulehner's paper \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} in order to use them later for the "probability of success" analysis.
 
 In order to do it, I'm following the next steps, note that the crosses mean that the work is already done.
@@ -36,17 +36,17 @@ In order to do it, I'm following the next steps, note that the crosses mean that
 
 
 \item Benchmarks formation and classification
-\label{sec:org0716b59}
+\label{sec:orgdb79b23}
 
 \begin{itemize}
 \item Objective
-\label{sec:orgb107ef1}
+\label{sec:org073807d}
 
 Gather a useful list of benchmarks from RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, Zulehner's paper \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} in order to use them later for the "probability of success" analysis.
 
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgcb49271}
+\label{sec:org89a6941}
 Steps:
 
 \begin{enumerate}
@@ -57,16 +57,16 @@ Steps:
 \end{enumerate}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgc0cd9be}
+\label{sec:org398fd17}
 First, to build the algorithms list.
 \end{itemize}
 
 \item Benchmarks formation and classification
-\label{sec:orgfd2086e}
+\label{sec:orgf7697d0}
 
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org1fcc5f1}
+\label{sec:org56869d1}
 Build algorithms list: 
 \begin{enumerate}
 \item[{$\boxtimes$}] Collect the \uline{Clifford+T} quantum algorithms from RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, Zulehner's paper \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014}.
@@ -75,7 +75,7 @@ Build algorithms list:
 \end{enumerate}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgf50ec77}
+\label{sec:org513ee59}
 I have collected the Clifford+T algorithms from  RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, Zulehner's paper \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014}.
 
 Then I had to translate them from its QASM version to OpenQL.
@@ -84,19 +84,19 @@ And finally compile them.
 \end{itemize}
 
 \item Benchmarks data analysis
-\label{sec:orgc9063cb}
+\label{sec:orgc9fd994}
 
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org14b9688}
+\label{sec:org6e0a56c}
 The Clifford+T quantum algorithms gathered are not in pure QASM:
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org55f5082}
+\label{sec:orge1217b4}
 After the translation, despite gates that OpenQL is not able to decompose yet, the compiled QASM files are:
 
 \item Benchmarks Graph
-\label{sec:org07c3a2d}
+\label{sec:org6c935ea}
 \begin{center}
 \resizebox{\textwidth}{!}{
 \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=0.7cm, thick,main node/.style={}]
@@ -117,10 +117,10 @@ After the translation, despite gates that OpenQL is not able to decompose yet, t
 \end{center}
 
 \item Benchmarks data
-\label{sec:orgcfe14f2}
+\label{sec:org16c9223}
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org63609f0}
+\label{sec:org1bfd3d2}
 \begin{itemize}
 \item OPENQASM
 \begin{itemize}
@@ -136,7 +136,7 @@ After the translation, despite gates that OpenQL is not able to decompose yet, t
 
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org89686b2}
+\label{sec:org14e1fa0}
 \begin{itemize}
 \item OPENQASM
 \begin{itemize}
@@ -153,11 +153,11 @@ After the translation, despite gates that OpenQL is not able to decompose yet, t
 
 
 \item OpenQL Translation
-\label{sec:org4363a79}
+\label{sec:orga905e45}
 So they should be translated to OpenQL an then compiled to QASM.
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org9e218cc}
+\label{sec:org6b7e665}
 Now, I'm going to show you how the benchmarks are.
 
 Most of them are written in OPENQASM and are from RevLib.
@@ -170,11 +170,11 @@ Some of them have arbitrary rotation gates, which decomposition is not included 
 \end{itemize}
 
 \item Benchmarks statistics
-\label{sec:org645828a}
+\label{sec:org45a867d}
 
 \begin{itemize}
 \item Statistics
-\label{sec:org4a1f358}
+\label{sec:org4c12e77}
 
 \begin{itemize}
 \item Number of different algorithms (without the decomposition): 53+3 = 56
@@ -182,18 +182,18 @@ Some of them have arbitrary rotation gates, which decomposition is not included 
 \end{itemize}
 
 \item :BMCOL:
-\label{sec:org97d9394}
+\label{sec:orgbc24d17}
 You can find much more information in the \href{https://github.com/QE-Lab/qbench}{qbench} repository in GitHub or in my thesis notes in ShareLaTeX.
 
 \item :BMCOL:
-\label{sec:org6883e07}
+\label{sec:org797fa2f}
 \begin{center}
 \includegraphics[width=.9\linewidth]{pics_meeting_presentation_my_thesis/Octocat.png}
 \end{center}
 
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org008ebdb}
+\label{sec:org57916fe}
 After the translation, we have 56 different algorithms, in which the higgest amount of gates is around 208 000 gates.
 
 Also I'm going to show you how is the qbench repo right now.
@@ -210,17 +210,17 @@ Things that may interest them:
 \end{itemize}
 
 \item Benchmarks formation and classification
-\label{sec:org1197ae5}
+\label{sec:org73597a0}
 
 \begin{itemize}
 \item Objective
-\label{sec:org6004871}
+\label{sec:orga847572}
 
 Gather a useful list of benchmarks from RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, Zulehner's paper \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} in order to use them later for the "probability of success" analysis.
 
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org24cd32f}
+\label{sec:org4e025d9}
 Steps:
 
 \begin{enumerate}
@@ -231,7 +231,7 @@ Steps:
 \end{enumerate}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org083efec}
+\label{sec:org93f1f6b}
 After the building step, as I've already shown you, the profile realization and classification steps came.
 
 Finally, right now I'm checking the algorithm correctness.
@@ -239,11 +239,11 @@ Finally, right now I'm checking the algorithm correctness.
 
 
 \item Benchmarks formation and classification
-\label{sec:org53f3ae7}
+\label{sec:org234571e}
 
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgf19294e}
+\label{sec:org902828d}
 Check algorithm correctness:
 \begin{enumerate}
 \item[{$\square$}] Are the original algorithms correct? \(\to\) Check behavior in the IBM Simulator.
@@ -252,7 +252,7 @@ Check algorithm correctness:
 \end{enumerate}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org890f3bc}
+\label{sec:org45dbe34}
     I'm working with the IBM simulator in the develop server of the department, but it is too slow.
 I'm still waiting for the results and learning about the IBM simulator.
 
@@ -263,7 +263,7 @@ I want also to open a discussion with Zulehner and with you about how to assert 
 \end{itemize}
 
 \item Recap
-\label{sec:org51f9ddf}
+\label{sec:org529c0a6}
 
 Approaches for solving the problem:
 
@@ -275,15 +275,15 @@ Approaches for solving the problem:
 
 \begin{itemize}
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org1dc9003}
+\label{sec:org9928f76}
 Ok, so a fast recap. After gathering the benchmarks the next approaches to do are the "Probability of success" analysis and the  Mapping algorithms impact in the "probability of success".
 \end{itemize}
 \end{itemize}
 
 \section*{Error framework}
-\label{sec:org685f412}
+\label{sec:orgee18bcb}
 \subsection*{Compiler (OpenQL, cQASM)?}
-\label{sec:org36060d9}
+\label{sec:orgae0942e}
 
 [Intro]
 
@@ -291,23 +291,23 @@ Ok, so a fast recap. After gathering the benchmarks the next approaches to do ar
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/layers.png}
-\caption{\label{fig:org7e17b15}
+\caption{\label{fig:org7767693}
 Compilation layers}
 \end{figure}
 
 
 \begin{itemize}
 \item cQASM
-\label{sec:orgba16aa8}
+\label{sec:org56437d1}
 
 
 \item OpenQL
-\label{sec:orgf0c24e9}
+\label{sec:orgd1cee71}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{figures/openql.png}
-\caption{\label{fig:org3daa34f}
+\includegraphics[width=0.8\textwidth]{figures/openql.png}
+\caption{\label{fig:orgd9c489d}
 OpenQL diagram}
 \end{figure}
 
@@ -363,14 +363,14 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{itemize}
 
 \subsection*{{\bfseries\sffamily TODO} quantumsim}
-\label{sec:org07bec3b}
+\label{sec:org993cfcb}
 
 \begin{itemize}
 \item Error model parameters
-\label{sec:org5d338c1}
+\label{sec:orga449fc5}
 
 \begin{table}[htbp]
-\caption{\label{tab:org73af437}
+\caption{\label{tab:org772c011}
 Main error model parameters for simulation}
 \centering
 \tiny
@@ -397,7 +397,7 @@ In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrin
 \end{table}
 
 \item Error models
-\label{sec:org1724ed9}
+\label{sec:org1ad1226}
 
 In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
 
@@ -407,14 +407,14 @@ where \(\sigma_i\) are the Pauli operators: \(\sigma_0 = I\), \(\sigma_1 = X\), 
 
 \begin{itemize}
 \item Qubit Idling
-\label{sec:org9d684ee}
+\label{sec:orgd906b75}
 
 While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
 The dephasing effect only appears in a superposition state.
 
 \begin{itemize}
 \item Amplitude-phase damping model
-\label{sec:org3dd0ce7}
+\label{sec:org95f47b9}
 
 $$R_{\Lambda_{T_1}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
@@ -434,7 +434,7 @@ $$R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
 with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
 
 \item Qubit idling
-\label{sec:org3c098ae}
+\label{sec:org29d7201}
 
 Idling for a duration \(t\):
 
@@ -442,7 +442,7 @@ $$R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}$$
 \end{itemize}
 
 \item Single-qubit \(R_y(\pi /2)\) rotations
-\label{sec:org9ccd8d1}
+\label{sec:orgcb47dd0}
 
 "Single-qubit gates [\ldots{}] errors can mostly be attributed to Markovian noise. [\ldots{}] we thus model these errors as Markovian".
 
@@ -465,7 +465,7 @@ $$R_{dep} = \begin{bmatrix}
 and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
 
 \item CZ gates
-\label{sec:orgedcde3c}
+\label{sec:orgad1c80d}
 
 "The C-Z gate is achieved by flux pulsing a transmon into the \(|11\rangle \leftrightarrow |02\rangle\) avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
 Holding the transmons here for \(\tau_{g,2Q}\) causes the probability amplitudes of \(|01\rangle\) and \(|11\rangle\) to acquire phases[\ldots{}]
@@ -474,16 +474,16 @@ Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ g
 
 
 \item Measurement
-\label{sec:orgc4f870a}
+\label{sec:orgd0da3cd}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/measure_model.png}
-\caption{\label{fig:org65a0163}
+\caption{\label{fig:orgd68bfcd}
 The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\). At this point, the qubit state is sampled. The sampling result is subject to a declaration error \(\epsilon_{RO}\), and the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\) before the end of the measurement block}
 \end{figure}
 
-The initial dephasing step in the measurement model (Fig. \ref{fig:org65a0163}) occurs due to the \hyperref[sec:org7d69332]{photon decay} effect.
+The initial dephasing step in the measurement model (Fig. \ref{fig:orgd68bfcd}) occurs due to the \hyperref[sec:org53d2419]{photon decay} effect.
 
 "We find that the readout errors \(\epsilon_{RO}^{|i\rangle}\) are almost independent of the qubit state \(|i\rangle\), and so we describe them with a single readout error parameter \(\epsilon_{RO}\)".
 The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%\) is extracted from experiments. 
@@ -491,13 +491,13 @@ The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1}
 They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
 
 \item Photon decay
-\label{sec:org7d69332}
+\label{sec:org53d2419}
 In the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
 This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
 This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\).
 
 \item Flux Noise
-\label{sec:orge185afe}
+\label{sec:org01e1147}
 
 During a quantum algorithm, "transmons are repeatedly moved in frequency away from their sweetspot using flux pulses, either to implement a C-Z gate or to avoid one. Away from the sweetspot, transmons become first-order sensitive to flux noise, which causes an additional random phase shift."
 
@@ -511,120 +511,77 @@ As one could see in the figures 4 and 5 from the Supplemental information, a lit
 
 
 \item Effects not taking into account
-\label{sec:org2953be7}
+\label{sec:org47402d0}
 
 They use a simple model for the CZ errors.
 They neglect leakage (previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%).
 Of course this simplification is also in \textbf{quantumsim}.
-
-\item The quantumsim simulation package
-\label{sec:org131ae2a}
-
-"Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [\ldots{}]
-
-One-qubit and two- qubit gates are applied to the density matrix as completely positive, trace preserving maps represented by Pauli transfer matrices. When a gate involving a << new >> qubit must be performed, the density matrix of the system is dynamically enlarged to include that one [\ldots{}]
-
-Qubit measurements are simulated as projective and following the Born rule, with projection probabilities given by the squared overlap of the input state with the measurement basis states. In order to capture empirical measurement errors, we implement a black-box measurement model by sandwiching the measurement between idling processes. After measuring some qubit they remove that qubit from the density matrix.
-
-
-\item Observations I find Interesting
-\label{sec:orgbd69322}
-\begin{itemize}
-\item Optimization of logical error rates
-\label{sec:org5bc6b85}
-
-As they explain in the paper and one can see in Fig. \ref{fig:orgcef12cd}, they find that the optimal measuring time for the minimum \(\epsilon_L\) is 280 ns.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.7\textwidth]{figures/measure_t_optimization.png}
-\caption{\label{fig:orgcef12cd}
-Measure time optimization based on the SC-17 logical error rate. Optimal \(\tau_m = 280\) ns}
-\end{figure}
-
-
-\item Projected improvement with advances in quantum hardware
-\label{sec:orgdda5cb6}
-
-\begin{itemize}
-\item Memory figure of merit (\(\gamma_m = \frac{\epsilon_{phys}}{\epsilon_{L}}\)). How close are \(\epsilon_{phys}\) and \(\epsilon_{L}\). Metric to check how good the error correction is.
-
-\item Computational performance (\(\gamma_c = \frac{\epsilon_{phys} \tau_{g,1Q}}{\epsilon_L \tau_{cycle}}\)), where, at \(\gamma_c = 1\) the computational break-even point is defined.
-
-\item A value of \(T_1 > 80 \mu s\) for planar transmons is emerging.
-\end{itemize}
-
-\item Other observations
-\label{sec:org2f68f4d}
-
-The following statements are fairly general:
-
-\begin{itemize}
-\item "Small quasi-static qubit errors are suppressed by the repeated measurements"
-\item If either the ancilla error rate (\(\epsilon_{anc}\)) or the \(\epsilon_{\text{RO}}\) are bigger than \(\epsilon_{phys}\), \(\epsilon_L\) becomes independent of both \(\epsilon_{RO}\) and \(\epsilon_{anc}\)
-\item "Optimal cycle parameters for logical error rates per cycle and per unit time are not the same. This implies that logical qubits functioning as quantum memory should be treated differently to those being used for computation"
-\end{itemize}
-\end{itemize}
 \end{itemize}
 
 \subsection*{QX}
-\label{sec:org842cefa}
+\label{sec:org89503f1}
 
 [Intro]
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
-\includegraphics[width=0.3\textwidth]{figures/qx.png}
-\caption{\label{fig:orga6135ad}
-QX logo}
+\begin{minipage}{.4\textwidth}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{figures/qx.png}
+\end{center}
+
+\caption{QX logo}
+\label{fig:qx_logo}
+\end{minipage}
 \end{figure}
 
 [Error model]
 
 \subsection*{Error Framework}
-\label{sec:orgc1910c0}
+\label{sec:org9904620}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:org23eae94}
+\caption{\label{fig:org943bea2}
 Error Framework}
 \end{figure}
 
 \begin{itemize}
 \item Benchmark Object
-\label{sec:orge4dd958}
+\label{sec:orgbba9c96}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:org7d54d02}
+\caption{\label{fig:org750d942}
 Benchmark Object \ldots{}}
 \end{figure}
 
 \item Mapping Analysis Object
-\label{sec:org74cba28}
+\label{sec:orgbb8de1b}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:orgaf9de29}
+\caption{\label{fig:orge2416db}
 Mapping Analysis Object \ldots{}}
 \end{figure}
 
 \item Database
-\label{sec:orgd660138}
+\label{sec:orgff0cea0}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:org9ea55fd}
+\caption{\label{fig:org1dd37ef}
 Database tables}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org3ffecb5}
+\caption{\label{fig:orgd50b607}
 Database tables information}
 \end{figure}
 \end{itemize}

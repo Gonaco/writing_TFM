@@ -23,7 +23,7 @@
 
 #+caption: OpenQL diagram
 #+NAME: fig:openql
-#+ATTR_LATEX: :width 0.75\textwidth
+#+ATTR_LATEX: :width 0.8\textwidth
 [[file:figures/openql.png]]
 
 #+BEGIN_EXPORT latex
