@@ -24,20 +24,20 @@ For example, ASAP or ALAP.
 
 \subfigure[Original circuit]{
 
-\resizebox{0.3\textwidth}{!}{
+%\resizebox{0.3\textwidth}{!}{
 \Qcircuit @C=1em @R=.7em {
  & \qswap & \qw & \gate{X} & \qw & \qw\\
  & \qw & \ctrl{2} & \qw & \qw & \qw\\
  & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
  & \qw & \targ & \qw & \qw & \qw\\
 }
-}
+%}
 }
 \label{fig:scheduling_ex_orig}
 
 \subfigure[ASAP]{
 
-\resizebox{0.3\textwidth}{!}{
+%\resizebox{0.3\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
  &  &  & \qwx[5] &  & \\
  & \qswap & \qw & \qw & \gate{X} & \qw\\
@@ -46,20 +46,20 @@ For example, ASAP or ALAP.
  & \qw & \targ & \qw & \qw & \qw\\
  &  &  &  &  & \\
 }
-}
+%}
 }
 \label{fig:scheduling_ex_asap}
 
 \subfigure[ALAP]{
 
-\resizebox{0.3\textwidth}{!}{
+%\resizebox{0.3\textwidth}{!}{
 \Qcircuit @C=1em @R=.7em {
  & \qswap & \qw & \gate{X} & \qw & \qw\\
  & \qw & \ctrl{2} & \qw & \qw & \qw\\
  & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
  & \qw & \targ & \qw & \qw & \qw\\
 }
-}
+%}
 }
 \label{fig:scheduling_ex_alap}
 
