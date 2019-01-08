@@ -74,7 +74,7 @@ For example, ASAP or ALAP.
 
 \begin{figure}
 \centering
-\resizebox{.5\textwidth}{!}{%
+\resizebox{.3\textwidth}{!}{%
 \begin{tikzpicture}
     
     \node [draw, rectangle] (a) at (0,3) {a};
@@ -192,7 +192,7 @@ For example, ASAP or ALAP.
 
 \subfigure[Dependence graph after routing]{
 
-%\resizebox{\textwidth}{!}{%
+\resizebox{.75\textwidth}{!}{%
 \begin{tikzpicture}
     
     \node [draw, rectangle] (a) at (0,5) {a};
@@ -248,7 +248,7 @@ For example, ASAP or ALAP.
     \draw (cnot4) -- (cnot5);
     
 \end{tikzpicture}
-%}
+}
 Latency: $1440 + 400 = 1840$ ns
 
 }
@@ -261,6 +261,11 @@ Latency: $1440 + 400 = 1840$ ns
 #+END_EXPORT
 
 **** Re-scheduling the wrong initial placement                    :ignore:
+
+[...]
+In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
+Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
+Remember that Quantum gates are well known to be highly faulty.
 
 #+BEGIN_EXPORT latex
 
@@ -283,7 +288,7 @@ Latency: $1440 + 400 = 1840$ ns
 \label{fig:map_ex_circ_resch}
 
 \subfigure[Dependence graph after re-scheduling]{
-%\resizebox{\textwidth}{!}{%
+\resizebox{.75\textwidth}{!}{%
 \begin{tikzpicture}
     
     \node [draw, rectangle] (a) at (0,5) {a};
@@ -339,7 +344,7 @@ Latency: $1440 + 400 = 1840$ ns
     \draw (cnot4) -- (cnot5);
     
 \end{tikzpicture}
-%}
+}
 Latency: 1520 ns
       
 }
@@ -351,70 +356,32 @@ Latency: 1520 ns
 
 #+END_EXPORT
 
-**** TODO                                                       :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
+**** Optimal approach vs Naive                                    :ignore:
+
+With an optimized initial placement, or a real optimized mapping the circuit could be the  same without adding any gate.
+No routing is required.
 
 
-*****                                                         :B_onlyenv:
-     :PROPERTIES:
-     :BEAMER_env: onlyenv
-     :BEAMER_act: <2>
-     :END:
+#+BEGIN_EXPORT latex
 
+\begin{figure}
+\centering
+\subfigure[Optimal initiapl placement]{
+\resizebox{.3\textwidth}{!}{
+     \Qcircuit @C=1em @R=.7em {
+     \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c \to Q_5} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+\lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+}
+}
+}
+\label{fig:map_ex_circ_optim}
 
-        The Gray Code Quantum Circuit looks like this.
-
-        We have to define whish virtual qubits (a,b,...) is related with the physical ones (0,1,..)
-
-        As you can see in the circuit and in the dependence graph there are no parallel operations, thus there is no possible scheduling.
-
-     \hline
-
-#      #+BEGIN_EXPORT latex
-# \resizebox{.5\textwidth}{!}{%
-# \schema{\schemabox{Explaining Optimized Approach}}{\schemabox{
-# No better scheduling\\
-# No routing required
-# }}
-# }
-# #+END_EXPORT
-
-        With an optimized initial placement, or a real optimized mapping the circuit could be the  same without adding any gate.
-        No routing is required.
-
-*** Mapping example. Scheduling and placement
-**** Example definition                                            :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-
-***** Example definition                                :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
-
-     #+BEGIN_EXPORT latex
-     \begin{center}
-     #+END_EXPORT
-     
-     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
-
-     #+BEGIN_EXPORT latex
-     \end{center}
-     #+END_EXPORT
-
-***** Surface architecture                              :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-      
-     #+BEGIN_EXPORT latex
-
-     \begin{center}
-     \resizebox{\textwidth}{!}{%
+\subfigure[Chip layout with the qubits with optimal initial placement]{
+     \resizebox{0.45\textwidth}{!}{%
      \begin{tikzpicture}[x=5mm,y=5mm]
  % \tikzstyle{every node} = [circle, fill=gray!30]
  % \node [green] at (0,0) {[circle, fill=gray!30]};
@@ -432,12 +399,12 @@ Latency: 1520 ns
  % \node [red] at (15,-5) {\textbullet};
  \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
 
- \node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
+ \node [purple] at (2,0) {\textbf{b} $\to$ \textbf{2}};
  \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
- \node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
+ \node [purple] at (22,0) {\textbf{f} $\to$ \textbf{4}};
  \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
- \node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
- \node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
+ \node [purple] at (7,-5) {\textbf{c} $\to$ \textbf{5}};
+ \node [purple] at (17,5) {\textbf{e} $\to$ \textbf{1}};
  \node [purple] at (17,-5) {\textbf{6}};
 
  % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
@@ -468,86 +435,30 @@ Latency: 1520 ns
 
  \end{tikzpicture}
  }
- \end{center}
-     #+END_EXPORT
+}
+\label{fig:map_ex_chip_optim}
 
-*****                                                   :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
+\label{fig:optimal_init_place}
+\caption{Optimal initial placement}
+\end{figure}
 
-******                                                  :B_structureenv:
-      :PROPERTIES:
-      :BEAMER_env: structureenv
-      :END:
-
-      #+BEGIN_EXPORT latex
-      \begin{center}
-      #+END_EXPORT
-
-      _Naive Approach_  
-
-#+BEGIN_EXPORT latex
-\medskip
-\end{center}
-#+END_EXPORT   
-
-****                                                               :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.1
-    :END:
+#+END_EXPORT
 
 
-
-**** Gray Code Quantum Circuit                                     :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-
-    _Gray Code Quantum Circuit_
-    
-     
-           #+BEGIN_EXPORT latex
-
- \begin{center}
-    \Qcircuit @C=1em @R=.7em {
- \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
- \lstick{b \to Q_1} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
- \lstick{c \to Q_2} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
- \lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
- \lstick{e \to Q_4} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
- \lstick{f \to Q_5} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
- }
- \end{center}
-
-    #+END_EXPORT
-
-	\tiny{* Virtual qubit $\to$ physical qubit}
-
-
-
-     
-**** TODO                                                       :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-    But what happens if we use a Naive initial placement approach?
-    
-   Let's map in alphabetical order (a $\to$ 0, b $\to$ 1, ...).
-
-   You can noticed that after this naive initial placement we are going to need to route the qubit to communicate them.
-
-   For example, we are going to do a SWAP operation between b and d in order to be able to do the CNOT between a and b.
-   We should do this with all the circuit and the result will this circuit.
+#+caption: Difference between the naive initial placement and the optimal one in terms of number of operations and latency
+#+NAME: tab:optima_vs_naive
+#+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float t :align ccc
+|--------------+------------------+---------------|
+|              | Optimal approach | Naive apprach |
+|--------------+------------------+---------------|
+| # operations | 5                | 11            |
+| latency      | 400 ns           | 1520 ns       |
+|--------------+------------------+---------------|
 
 
 *** Mapping example. Routing and re-scheduling                     :ignore:
 
-[...]
-In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
-Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
-Remember that Quantum gates are well known to be highly faulty.
+
 
 **** Example definition                                            :BMCOL:
     :PROPERTIES:
@@ -620,43 +531,6 @@ Remember that Quantum gates are well known to be highly faulty.
      #+END_EXPORT
 
 
-*****                                                   :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
-
-******                                                  :B_structureenv:
-      :PROPERTIES:
-      :BEAMER_env: structureenv
-      :END:
-
-      #+BEGIN_EXPORT latex
-      \begin{center}
-      #+END_EXPORT
-
-      _Naive Approach_  
-
-#+BEGIN_EXPORT latex
-\medskip
-\end{center}
-#+END_EXPORT   
-
-****                                                               :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.1
-    :END:
-
-
-
-**** Gray Code Quantum Circuit                                     :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-    
-*****                                                   :B_ignoreheading:
-      :PROPERTIES:
-      :BEAMER_env: ignoreheading
-      :END:
 
            #+BEGIN_EXPORT latex
 \begin{center}
@@ -685,131 +559,3 @@ Remember that Quantum gates are well known to be highly faulty.
    Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
    Remember that Quantum gates are well known to be highly faulty.
      
-*** Mapping example. Routing and re-scheduling                     :ignore:
-
-#+BEGIN_EXPORT latex
-
-\begin{figure}
-\centering
-
-\label{}
-\caption{}
-\end{figure}
-
-#+END_EXPORT
-
-
-
-**** Example definition                                            :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-
-***** Surface architecture                              :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
-
-     #+BEGIN_EXPORT latex
-
-     \begin{center}
-     \resizebox{\textwidth}{!}{%
-     \begin{tikzpicture}[x=5mm,y=5mm]
- % \tikzstyle{every node} = [circle, fill=gray!30]
- % \node [green] at (0,0) {[circle, fill=gray!30]};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
- % \node [cyan] at (10,0) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
- % \node [green] at (20,0) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
- % \node [red] at (5,5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
- % \node [red] at (5,-5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
- % \node [red] at (15,5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
- % \node [red] at (15,-5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
-
- \node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
- \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
- \node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
- \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
- \node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
- \node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
- \node [purple] at (17,-5) {\textbf{6}};
-
- % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
- \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
- \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
-
- \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
- \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
-
- \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
- \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
-
- \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
- \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
-
- \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
- \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
-
- \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
- \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
-
- \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
- \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
-
- \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
- \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
-
-
- \end{tikzpicture}
- }
- \end{center}
-     #+END_EXPORT
-
-     
-**** TODO                                                       :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-    
-   In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
-
-   Note that the circuit complexity has grown. The mapping task is causing an obvious overhead.
-
-*** Optimal approach vs Naive                                      :ignore:
-
-#+BEGIN_EXPORT latex
-
-\begin{figure}
-\centering
-\resizebox{.3\textwidth}{!}{
-     \Qcircuit @C=1em @R=.7em {
-     \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
-\lstick{c \to Q_5} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
-\lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
-\lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
-\lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
-}
-}
-\label{fig:optimal_init_place}
-\caption{Optimal initial placement}
-\end{figure}
-
-#+END_EXPORT
-
-#+caption: Difference between the naive initial placement and the optimal one in terms of number of operations and latency
-#+NAME: tab:optima_vs_naive
-#+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float t :align ccc
-|--------------+------------------+---------------|
-|              | Optimal approach | Naive apprach |
-|--------------+------------------+---------------|
-| # operations | 5                | 11            |
-| latency      | 400 ns           | 1520 ns       |
-|--------------+------------------+---------------|
-

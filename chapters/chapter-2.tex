@@ -1,22 +1,22 @@
 
 \chapter*{Quantum computers and mapping of quantum circuits}
-\label{sec:org4908715}
+\label{sec:org3d6b753}
 
 \section*{Quantum computing}
-\label{sec:org746a2ea}
+\label{sec:orgac428f5}
 
 [Intro to Quantum Computation power that it is based on \textbf{superposition} and *entanglement*]
 In this section \ldots{}
 
 \subsection*{Essential elements of quantum computation}
-\label{sec:org1d1ae35}
+\label{sec:orgd245cb0}
 
 Qubits and quantum gates are the basic ingredients in quantum computation theory.
 As in classical computation with boolean gates and bits, quantum gates operate on the qubits to change their state and return the desired result or calculation.
 
 \begin{itemize}
 \item Qubits
-\label{sec:orgb3a542a}
+\label{sec:orgf8654f0}
 
 Qubit stands for quantum bit.
 A basic unit of information founded on quantum physics laws.
@@ -26,11 +26,11 @@ Both ground or excited states are represented in the Dirac's bra-ket notation, v
 This notation holds the algebraic axioms \cite{Nielsen_2009} required to understand the quantum theory.
 Prior to measurement, a qubit is described as in a probabilistic state \(| \psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle\), where \(\alpha, \beta \in \mathbb{C}\) are the so-called probability amplitudes.
 \(|\alpha|^2\) is the probability of measuring \(| 0 \rangle\), \(|\beta|^2\) is the probability of measuring \(| 1 \rangle\) and both \(\alpha\) and \(\beta\) are allowed to be complex.
-Dirac's notation grants the definition of the quantum states as vectors, as in eq. \ref{eq:orga36428d}.
+Dirac's notation grants the definition of the quantum states as vectors, as in eq. \ref{eq:org159bf8d}.
 Moreover, as we will see below, adopting Dirac's axioms will make the quantum theory accessible with classical algebra operations. 
 
 \begin{equation}
-\label{eq:orga36428d}
+\label{eq:org159bf8d}
 |\psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
 \end{equation}
 
@@ -38,20 +38,20 @@ Moreover, as we will see below, adopting Dirac's axioms will make the quantum th
 But, as soon as they are energy probabilistic states, their values are constrained to \(|\alpha|^2 + |\beta|^2 = 1\).
 Since quantum states can be described as vectors, one can easily see that the state of a qubit is defined by a 2-dimensional, complex and unitarian vector space.
 A \textbf{Hilbert space} \(\mathscr{H}\).
-E.g. in eq. \ref{eq:org97a866b} the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to measure either \(|0\rangle\) or \(|1\rangle\) -- states are depicted, respectively.
+E.g. in eq. \ref{eq:org43763f9} the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to measure either \(|0\rangle\) or \(|1\rangle\) -- states are depicted, respectively.
 
 \begin{equation}
-\label{eq:org97a866b}
+\label{eq:org43763f9}
 |0\rangle = \begin{bmatrix}1 \\ 0 \end{bmatrix} \quad \quad |1\rangle = \begin{bmatrix}0 \\ 1 \end{bmatrix} \quad \quad |+\rangle = \frac{1}{\sqrt{2}} \begin{bmatrix}1 \\ 1 \end{bmatrix}
 \end{equation}
 
-As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. \ref{eq:org12a073f}).
+As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. \ref{eq:org0651f53}).
 Like the complex numbers, although requiring two angles in this case.
 This notation lead us to a very understandable way to visualize the quantum states, the \textbf{Bloch sphere} (fig. \ref{fig:bloch_sphere}).
 A sphere of radius one which z-axis extremes represent the ground and excited states.
 
 \begin{equation}
-\label{eq:org12a073f}
+\label{eq:org0651f53}
 |\psi \rangle =\cos \left(\theta /2\right)|0\rangle \,+\,e^{i\phi }\sin \left(\theta /2\right)|1\rangle
 \end{equation}
 
@@ -90,21 +90,21 @@ The quantum state of \(n\) qubits can be represented in bra-ket notation, with a
 And, therefore, they engender a Hilbert space of \(2^n\) dimensions due to superposition.
 The linear operator that leads to the multiple qubit's state is the \textbf{outer product}, defined as the matrix convolution of the state vectors.
 The outer product is represented as \(|\phi \rangle \,\langle \psi |\).
-In eq. \ref{eq:orgbf7aecb} and \ref{eq:org1f3355c} an example of the outer product is offered.
+In eq. \ref{eq:orgc6f46a6} and \ref{eq:org53812e3} an example of the outer product is offered.
 The second example represents the other main phenomenon in quantum physics, the \textbf{entanglement} state of two qubits (\(\phi\) and \(\psi\)) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 \begin{equation}
-\label{eq:orgbf7aecb}
+\label{eq:orgc6f46a6}
 |+\rangle \,\langle + | = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} 
 \end{equation}
 
 \begin{equation}
-\label{eq:org1f3355c}
+\label{eq:org53812e3}
 |\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
 \end{equation}
 
 
 \item Quantum Operations
-\label{sec:org4b9cc5e}
+\label{sec:orgec531d6}
 
 Quantum operations leverage the power of quantum computers enabling calculations over the qubits.
 Or what is the same, enabling transformations of a Hilbert space.
@@ -119,10 +119,10 @@ Although, while implying multiple qubits, the quantum operations are more comple
 For instance, a rotation of 180° in x-axis of the Bloch sphere is the same as an operation that changes the qubit state from \(| 0 \rangle\) to \(| 1 \rangle\), or viceversa.
 Qubits and quantum operations interact through the \textbf{inner product}.
 In order to apply some operation over a qubit state, a matrix-vector multiplication should be done.
-For instance, in eq. \ref{eq:org841c2aa} one can understand how some uniform operation \(U\) is applied to a qubit with state \(| \psi \rangle\).
+For instance, in eq. \ref{eq:org7c07373} one can understand how some uniform operation \(U\) is applied to a qubit with state \(| \psi \rangle\).
 
 \begin{equation}
-\label{eq:org841c2aa}
+\label{eq:org7c07373}
 U |\psi\rangle=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{bmatrix}\alpha \\ \beta \end{bmatrix} = \begin{bmatrix}\alpha u_{00} + \beta u_{01} \\ \alpha u_{10} + \beta u_{11} \end{bmatrix}
 \end{equation}
 
@@ -136,15 +136,15 @@ It is generally accepted to analyze the multiple-qubit gate problem in its most 
 
 \begin{itemize}
 \item Single-qubit gates
-\label{sec:orge3c9eaf}
+\label{sec:orga59b461}
 
 Single qubit gates represent quantum operations that involve just one qubit.
 They are represented as a box with one input and one output, evincing that a single qubit will be the input and output of the operation.
 As explained before, single-qubit gates can be represented as \(2^1 \times 2^1\) square matrices that should be unitary.
-Both representations of the most common single-qubit gates can be found in Table \ref{tab:org57f6cac}.
+Both representations of the most common single-qubit gates can be found in Table \ref{tab:org9589485}.
 
 \begin{table}[htbp]
-\caption{\label{tab:org57f6cac}
+\caption{\label{tab:org9589485}
 Most common single qubit gates}
 \centering
 \begin{tabular}{ccccccc}
@@ -164,12 +164,12 @@ The \emph{S} and \emph{T} gates are also rotations over the z-axis but of 90° a
 
 
 \item Two-qubit gates
-\label{sec:orga038fb7}
+\label{sec:orgcaa923d}
 
 Two-qubit gates are quantum operations that involve two qubits at the same time.
 In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
 The qubits that goes through the operation is called \textbf{target}, while the other is called the \textbf{control} qubit.
-The most common two-qubit gates are represented in Table \ref{tab:orga132cc9}.
+The most common two-qubit gates are represented in Table \ref{tab:orgbe8c1de}.
 The \emph{CNOT} gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the state of the control qubit will be executed or not.
 As the CNOT, the \emph{CZ} gate is a Controlled-Z operations that, in this case, executes a Pauli-z gate depending on the state of the control qubit.
 Finally, the \emph{SWAP} gate "swaps" the state of two qubits.
@@ -177,7 +177,7 @@ It moves the state of one to the other and viceversa.
 This gate is mostly used for routing purposes as it will be seen in the next sections.
 
 \begin{table}[htbp]
-\caption{\label{tab:orga132cc9}
+\caption{\label{tab:orgbe8c1de}
 Most common two-qubit gates}
 \centering
 \begin{tabular}{ccc}
@@ -190,7 +190,7 @@ CNOT & CZ & SWAP\\
 \end{itemize}
 
 \subsection*{Quantum Circuits}
-\label{sec:org753333f}
+\label{sec:orgc713529}
 
 Quantum circuits are quantum algorithms descriptions.
 As mentioned before, they are formed by quantum gates and qubits connected in circuit fashion.
@@ -224,7 +224,7 @@ Also, the QASM algorithm representation can be seen in Fig. \ref{code:qasm_gray_
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.3\textwidth]{figures/gray_code.png}
-\caption{\label{fig:orgb997bcc}
+\caption{\label{fig:org8c25544}
 Gray Code example for 3 bits.}
 \end{figure}
 
@@ -259,7 +259,7 @@ cnot f,d
 \end{figure}
 
 \subsection*{Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation}
-\label{sec:org3b9d752}
+\label{sec:orgf572955}
 
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
 For instance, in the case of superconducting technologies \cite{O_Brien_2017}, the chips bear with decoherence times of \(\approx 30 \mu s\) for qubit relaxation and \(\approx 60 \mu s\) for qubit dephase.
@@ -268,7 +268,7 @@ This creates an undesirable environment to compute the most useful algorithms.
 Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years \cite{Nielsen_2009}.
 
 \section*{Mapping of quantum circuits}
-\label{sec:org794e39c}
+\label{sec:orgcbbbdc7}
 
 As it was described in the [LINK TO THE SECTION DESCRIBING THE FULL STACK] the mapping step is part of the quantum compilation.
 The mapping process adapts a quantum circuit -- hardware agnostic -- representation to the requirement of a real quantum processor.
@@ -340,7 +340,7 @@ For example, ASAP or ALAP.
 
 \begin{figure}
 \centering
-\resizebox{.5\textwidth}{!}{%
+\resizebox{.3\textwidth}{!}{%
 \begin{tikzpicture}
     
     \node [draw, rectangle] (a) at (0,3) {a};
@@ -373,7 +373,7 @@ For example, ASAP or ALAP.
 \end{figure}
 
 \subsection*{Mapping example}
-\label{sec:orga94b084}
+\label{sec:orgda330e1}
 
 
 
@@ -434,7 +434,7 @@ For example, ASAP or ALAP.
 
 \subfigure[Dependence graph after routing]{
 
-%\resizebox{\textwidth}{!}{%
+\resizebox{.75\textwidth}{!}{%
 \begin{tikzpicture}
     
     \node [draw, rectangle] (a) at (0,5) {a};
@@ -490,7 +490,7 @@ For example, ASAP or ALAP.
     \draw (cnot4) -- (cnot5);
     
 \end{tikzpicture}
-%}
+}
 Latency: $1440 + 400 = 1840$ ns
 
 }
@@ -499,6 +499,11 @@ Latency: $1440 + 400 = 1840$ ns
 \label{fig:map_ex_routing}
 \caption{Naive initial placement after routing}
 \end{figure}
+[\ldots{}]
+In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
+Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
+Remember that Quantum gates are well known to be highly faulty.
+
 
 \begin{figure}
 \centering
@@ -519,7 +524,7 @@ Latency: $1440 + 400 = 1840$ ns
 \label{fig:map_ex_circ_resch}
 
 \subfigure[Dependence graph after re-scheduling]{
-%\resizebox{\textwidth}{!}{%
+\resizebox{.75\textwidth}{!}{%
 \begin{tikzpicture}
     
     \node [draw, rectangle] (a) at (0,5) {a};
@@ -575,7 +580,7 @@ Latency: $1440 + 400 = 1840$ ns
     \draw (cnot4) -- (cnot5);
     
 \end{tikzpicture}
-%}
+}
 Latency: 1520 ns
       
 }
@@ -584,165 +589,110 @@ Latency: 1520 ns
 \label{fig:map_ex_resch}
 \caption{Naive initial placement routed and re-scheduled}
 \end{figure}
-
-
-\begin{itemize}
-\item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org2bd9f3d}
-\begin{itemize}
-\item :B\(_{\text{onlyenv}}\):
-\label{sec:org50ca0ba}
-The Gray Code Quantum Circuit looks like this.
-
-We have to define whish virtual qubits (a,b,\ldots{}) is related with the physical ones (0,1,..)
-
-As you can see in the circuit and in the dependence graph there are no parallel operations, thus there is no possible scheduling.
-
-\hline
-
 With an optimized initial placement, or a real optimized mapping the circuit could be the  same without adding any gate.
 No routing is required.
-\end{itemize}
-\end{itemize}
-
-\subsection*{Mapping example. Scheduling and placement}
-\label{sec:org13ffed1}
-\begin{itemize}
-\item Example definition
-\label{sec:orge122f18}
-\begin{itemize}
-\item Example definition
-\label{sec:org76f5b74}
-\begin{center}
-
-Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
-
-\end{center}
-
-\item Surface architecture
-\label{sec:orgad6568a}
-
-    \begin{center}
-    \resizebox{\textwidth}{!}{%
-    \begin{tikzpicture}[x=5mm,y=5mm]
-% \tikzstyle{every node} = [circle, fill=gray!30]
-% \node [green] at (0,0) {[circle, fill=gray!30]};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
-% \node [cyan] at (10,0) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
-% \node [green] at (20,0) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
-% \node [red] at (5,5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
-% \node [red] at (5,-5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
-% \node [red] at (15,5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
-% \node [red] at (15,-5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
-
-\node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
-\node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
-\node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
-\node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
-\node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
-\node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
-\node [purple] at (17,-5) {\textbf{6}};
-
-% \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
-\draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
-\draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
-
-\draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
-\draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
-
-\draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
-\draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
-
-\draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
-\draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
-
-\draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
-\draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
-
-\draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
-\draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
-
-\draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
-\draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
-
-\draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
-\draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
-
-
-\end{tikzpicture}
-}
-\end{center}
-
-\item :B\(_{\text{ignoreheading}}\):
-\label{sec:org0a6d0b9}
-\begin{itemize}
-\item :B\(_{\text{structureenv}}\):
-\label{sec:orgc4769f2}
-\begin{center}
-
-\uline{Naive Approach}  
-
-\medskip
-\end{center}
-\end{itemize}
-\end{itemize}
-
-\item :BMCOL:
-\label{sec:org75805ba}
 
 
 
-\item Gray Code Quantum Circuit
-\label{sec:org38bd81a}
-\uline{Gray Code Quantum Circuit}
-
-
-
-\begin{center}
-   \Qcircuit @C=1em @R=.7em {
-\lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_1} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
-\lstick{c \to Q_2} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\begin{figure}
+\centering
+\subfigure[Optimal initiapl placement]{
+\resizebox{.3\textwidth}{!}{
+     \Qcircuit @C=1em @R=.7em {
+     \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c \to Q_5} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
 \lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
-\lstick{e \to Q_4} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
-\lstick{f \to Q_5} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+\lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
-\end{center}
+}
+}
+\label{fig:map_ex_circ_optim}
 
-\tiny{* Virtual qubit $\to$ physical qubit}
+\subfigure[Chip layout with the qubits with optimal initial placement]{
+     \resizebox{0.45\textwidth}{!}{%
+     \begin{tikzpicture}[x=5mm,y=5mm]
+ % \tikzstyle{every node} = [circle, fill=gray!30]
+ % \node [green] at (0,0) {[circle, fill=gray!30]};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
+ % \node [cyan] at (10,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
+ % \node [green] at (20,0) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
+ % \node [red] at (5,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
+ % \node [red] at (5,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
+ % \node [red] at (15,5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
+ % \node [red] at (15,-5) {\textbullet};
+ \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
+
+ \node [purple] at (2,0) {\textbf{b} $\to$ \textbf{2}};
+ \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
+ \node [purple] at (22,0) {\textbf{f} $\to$ \textbf{4}};
+ \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
+ \node [purple] at (7,-5) {\textbf{c} $\to$ \textbf{5}};
+ \node [purple] at (17,5) {\textbf{e} $\to$ \textbf{1}};
+ \node [purple] at (17,-5) {\textbf{6}};
+
+ % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
+ \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
+ \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
+
+ \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
+ \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
+
+ \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
+ \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
+
+ \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
+ \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
+
+ \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
+ \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
+
+ \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
+ \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
+
+ \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
+ \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
+
+ \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
+ \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
 
 
+ \end{tikzpicture}
+ }
+}
+\label{fig:map_ex_chip_optim}
+
+\label{fig:optimal_init_place}
+\caption{Optimal initial placement}
+\end{figure}
 
 
-\item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org942780e}
-But what happens if we use a Naive initial placement approach?
+\begin{table}[htbp]
+\caption{\label{tab:orged02db6}
+Difference between the naive initial placement and the optimal one in terms of number of operations and latency}
+\centering
+\begin{tabular}{ccc}
+\hline
+ & Optimal approach & Naive apprach\\
+\hline
+\# operations & 5 & 11\\
+latency & 400 ns & 1520 ns\\
+\hline
+\end{tabular}
+\end{table}
 
-Let's map in alphabetical order (a \(\to\) 0, b \(\to\) 1, \ldots{}).
-
-You can noticed that after this naive initial placement we are going to need to route the qubit to communicate them.
-
-For example, we are going to do a SWAP operation between b and d in order to be able to do the CNOT between a and b.
-We should do this with all the circuit and the result will this circuit.
-\end{itemize}
-
-
-[\ldots{}]
-In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
-Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
-Remember that Quantum gates are well known to be highly faulty.
 
 \subsection*{Example definition}
-\label{sec:org3b3a995}
+\label{sec:orgd41eeb5}
 \begin{itemize}
 \item Surface architecture
-\label{sec:orgaaad112}
+\label{sec:org8894238}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -802,30 +752,7 @@ Remember that Quantum gates are well known to be highly faulty.
 \end{center}
 
 
-\item :B\(_{\text{ignoreheading}}\):
-\label{sec:org5391149}
-\begin{itemize}
-\item :B\(_{\text{structureenv}}\):
-\label{sec:org6f6d889}
-\begin{center}
 
-\uline{Naive Approach}  
-
-\medskip
-\end{center}
-\end{itemize}
-\end{itemize}
-
-\subsection*{:BMCOL:}
-\label{sec:org309a946}
-
-
-
-\subsection*{Gray Code Quantum Circuit}
-\label{sec:orgb3d337d}
-\begin{itemize}
-\item :B\(_{\text{ignoreheading}}\):
-\label{sec:org4c2a60a}
 \begin{center}
 \resizebox{\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -842,123 +769,13 @@ Remember that Quantum gates are well known to be highly faulty.
 
 
 \subsection*{{\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):}
-\label{sec:org5381dd4}
+\label{sec:orgc9672c4}
 In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
 Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
 Remember that Quantum gates are well known to be highly faulty.
 
-\begin{figure}
-\centering
-
-\label{}
-\caption{}
-\end{figure}
-
-
-
-\subsection*{Example definition}
-\label{sec:org3f019b7}
-\begin{itemize}
-\item Surface architecture
-\label{sec:orge599fcb}
-
-    \begin{center}
-    \resizebox{\textwidth}{!}{%
-    \begin{tikzpicture}[x=5mm,y=5mm]
-% \tikzstyle{every node} = [circle, fill=gray!30]
-% \node [green] at (0,0) {[circle, fill=gray!30]};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
-% \node [cyan] at (10,0) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
-% \node [green] at (20,0) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
-% \node [red] at (5,5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
-% \node [red] at (5,-5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
-% \node [red] at (15,5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
-% \node [red] at (15,-5) {\textbullet};
-\draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
-
-\node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
-\node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
-\node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
-\node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
-\node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
-\node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
-\node [purple] at (17,-5) {\textbf{6}};
-
-% \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
-\draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
-\draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
-
-\draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
-\draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
-
-\draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
-\draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
-
-\draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
-\draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
-
-\draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
-\draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
-
-\draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
-\draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
-
-\draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
-\draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
-
-\draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
-\draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
-
-
-\end{tikzpicture}
-}
-\end{center}
-\end{itemize}
-
-
-\subsection*{{\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):}
-\label{sec:orgf79288a}
-In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
-
-Note that the circuit complexity has grown. The mapping task is causing an obvious overhead.
-
-\begin{figure}
-\centering
-\resizebox{.3\textwidth}{!}{
-     \Qcircuit @C=1em @R=.7em {
-     \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
-\lstick{c \to Q_5} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
-\lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
-\lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
-\lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
-}
-}
-\label{fig:optimal_init_place}
-\caption{Optimal initial placement}
-\end{figure}
-
-\begin{table}[htbp]
-\caption{\label{tab:org8875c70}
-Difference between the naive initial placement and the optimal one in terms of number of operations and latency}
-\centering
-\begin{tabular}{ccc}
-\hline
- & Optimal approach & Naive apprach\\
-\hline
-\# operations & 5 & 11\\
-latency & 400 ns & 1520 ns\\
-\hline
-\end{tabular}
-\end{table}
-
 \section*{State of the art}
-\label{sec:org5814ba1}
+\label{sec:orgb0dff53}
 
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
@@ -1003,7 +820,7 @@ And, recently, Quantum Volume has been defined to assert the capability of a qua
 In the next section and in \href{chapter-3.org}{Metrics} we offer an overview of the important metrics in this work.
 
 \section*{Mapping metrics}
-\label{sec:orgcce1209}
+\label{sec:org5e99ca5}
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
