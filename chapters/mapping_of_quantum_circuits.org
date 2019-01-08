@@ -160,29 +160,6 @@ For example, ASAP or ALAP.
 
 #+END_EXPORT
 
-    
-**** Gray Code Quantum Circuit                                     :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-
-
-
-*****                                                         :B_onlyenv:
-     :PROPERTIES:
-     :BEAMER_act: <3>
-     :BEAMER_env: onlyenv
-     :END:
-
-     #+BEGIN_EXPORT latex
-      \begin{center}
-     
-\end{center}
-     #+END_EXPORT
-
-\tiny{* Virtual qubit $\to$ physical qubit}
-     
-Latency: 400ns
      
 **** TODO                                                       :B_noteNH:
     :PROPERTIES:
@@ -196,44 +173,7 @@ Latency: 400ns
      :BEAMER_act: <2>
      :END:
 
-# #+BEGIN_EXPORT latex
-# \resizebox{.5\textwidth}{!}{%
-# \schema{\schemabox{Explaining mapping example}}{\schemabox{
-# QASM
-# }}
-# }
-# #+END_EXPORT
-     
-     # Let's consider first just the routing problem and then we add the placement.
-     # Let's consider first just a *naive placement*
 
-     # Notice we want to map *virtual* to *physical* qubits, no logical.
-
-     Maybe is going to be more clear with a toy example.
-     Let's say that we want to run the Gray Code Quantum Generator in the SC-7.
-   
-     This code is written in QASM (Quantum Assembly), a basic language for describing quantum circuits
-
-     #+caption: Gray Code
-     #+ATTR_LATEX: :width \textwidth
-    #+ATTR_LATEX: :width 0.3\textwidth
-    [[file:figs/gray_code.png]]
-
-*****                                                         :B_onlyenv:
-     :PROPERTIES:
-     :BEAMER_env: onlyenv
-     :BEAMER_act: <3>
-     :END:
-
-# #+BEGIN_EXPORT latex
-# \resizebox{.5\textwidth}{!}{%
-# \schema{\schemabox{Explaining mapping example}}{\schemabox{
-# Virtual to physical qubits\\
-# Dependence graph
-# }}
-# }
-# #+END_EXPORT
-     
         The Gray Code Quantum Circuit looks like this.
 
         We have to define whish virtual qubits (a,b,...) is related with the physical ones (0,1,..)
