@@ -1,39 +1,71 @@
 
 
-*** Mapping
+# Intro (what is mapping)
+# Given a quantum circuit representation that is hardware agnostic, adapt it to the requirements of a real quantum processor.
+As it was described in the [LINK TO THE SECTION DESCRIBING THE FULL STACK] the mapping step is part of the quantum compilation.
+The mapping process adapts a quantum circuit -- hardware agnostic -- representation to the requirement of a real quantum processor.
+Brings the idea of an algorithm to earth, to the limitations of the quantum chips.
+We split the mapping problem in three steps that can be executed several times or continuously and in any order, depending on the mapping approach.
+The steps are *scheduling*, *initial placement* and *routing*.
+[INITIAL PLACEMENT DEFINITION].
+[ROUTING DEFINITION]
+[SCHEDULING DEFINITION].
+[MAIN SCHEDULING TYPES (ALAP, ASAP)]
+[SCHEDULING EXAMPLE EXPLANATION].
 
-   Given a quantum circuit representation that is hardware agnostic, adapt it to the requirements of a real quantum processor.
+#+BEGIN_EXPORT latex
+\begin{figure}
+    \centering
+
+\subfigure[Original circuit]{
+
+\resizebox{0.3\textwidth}{!}{
+\Qcircuit @C=1em @R=.7em {
+ & \qswap & \qw & \gate{X} & \qw & \qw\\
+ & \qw & \ctrl{2} & \qw & \qw & \qw\\
+ & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
+ & \qw & \targ & \qw & \qw & \qw\\
+}
+}
+}
+\label{fig:scheduling_ex_orig}
+
+\subfigure[ASAP]{
+
+\resizebox{0.3\textwidth}{!}{
+\Qcircuit @C=1em @R=.7em {
+ & \qswap & \qw & \gate{X} & \qw & \qw\\
+ & \qw & \ctrl{2} & \qw & \qw & \qw\\
+ & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
+ & \qw & \targ & \qw & \qw & \qw\\
+}
+}
+}
+\label{fig:scheduling_ex_asap}
+
+\subfigure[ALAP]{
+
+\resizebox{0.3\textwidth}{!}{
+\Qcircuit @C=1em @R=.7em {
+ & \qswap & \qw & \gate{X} & \qw & \qw\\
+ & \qw & \ctrl{2} & \qw & \qw & \qw\\
+ & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
+ & \qw & \targ & \qw & \qw & \qw\\
+}
+}
+}
+\label{fig:scheduling_ex_alap}
+
+\caption{Scheduling example}
+\label{fig:scheduling_ex}
+\end{figure}
+#+END_EXPORT
+
+[DEPENDENCE GRAPH (EXAMPLE, )]
 
 
-   The mapping problem can be split in:
-   
-       - Scheduling
-       - Placement
-       - Routing
-
-**** TODO                                                       :B_noteNH:
-:PROPERTIES:
-:BEAMER_env: noteNH
-:END:
-
-# #+BEGIN_EXPORT latex
-# \resizebox{.5\textwidth}{!}{%
-# \schema{\schemabox{Explaining Mapping}}{\schemabox{
-# Intro Schesuling\\
-# Intro Placement\\
-# Intro Routing
-# }}
-# }
-# #+END_EXPORT
-
-   So, what is mapping?
-   Given a quantum circuit representation that is hardware agnostic, the mapping task adapt it to the requirements of a real quantum processor.
-
-   The mapping problem can be split in 3 parts that are executed continuously:
-
-   - Scheduling. How is better to organize the operation in the quantum circuit along time?
-   - Placement. What is the best way to initialize the qubits?
-   - Routing. What is the best way for moving the information between qubits?
+# the general settings of our mapping algorithm is described in the [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]] section.
+    
 
 *** Scheduling
 

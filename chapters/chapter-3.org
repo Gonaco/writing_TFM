@@ -13,6 +13,9 @@
 #+END_EXPORT
 
 ** Mapping model
+:PROPERTIES:
+:ID:       0a029c29-40ea-42ab-ad65-250a5a76bb49
+:END:
 
 #+INCLUDE: mapping_model.org
 
