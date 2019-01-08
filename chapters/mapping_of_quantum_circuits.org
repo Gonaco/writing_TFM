@@ -11,7 +11,13 @@ The steps are *scheduling*, *initial placement* and *routing*.
 [ROUTING DEFINITION]
 [SCHEDULING DEFINITION].
 [MAIN SCHEDULING TYPES (ALAP, ASAP)]
-[SCHEDULING EXAMPLE EXPLANATION].
+As an example of scheduling, let's consider the circuit inf Fig. \ref{fig:scheduling_ex}
+Notice that, in the example, there are several combinations of parallel operations,
+or what is the same, operations that can be done simultaneously.
+They don't depend on each other.
+Depending on the scheduling one may want to implement,
+the operations will be spread along the circuit in one way or the other.
+For example, ASAP or ALAP.
 
 #+BEGIN_EXPORT latex
 \begin{figure}
@@ -33,11 +39,13 @@ The steps are *scheduling*, *initial placement* and *routing*.
 \subfigure[ASAP]{
 
 \resizebox{0.3\textwidth}{!}{
-\Qcircuit @C=1em @R=.7em {
- & \qswap & \qw & \gate{X} & \qw & \qw\\
+   \Qcircuit @C=1em @R=.7em {
+ &  &  & \qwx[5] &  & \\
+ & \qswap & \qw & \qw & \gate{X} & \qw\\
  & \qw & \ctrl{2} & \qw & \qw & \qw\\
  & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
  & \qw & \targ & \qw & \qw & \qw\\
+ &  &  &  &  & \\
 }
 }
 }
@@ -61,107 +69,12 @@ The steps are *scheduling*, *initial placement* and *routing*.
 \end{figure}
 #+END_EXPORT
 
-[DEPENDENCE GRAPH (EXAMPLE, )]
-
-
-# the general settings of our mapping algorithm is described in the [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]] section.
-    
-
-*** Scheduling
-
-**** Example                                             :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-***** Original                                                    :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .3
-:END:
-
-          #+BEGIN_EXPORT latex
-
-\begin{center}
-
-Original
-
-   \Qcircuit @C=1em @R=.7em {
- & \qswap & \qw & \gate{X} & \qw & \qw\\
- & \qw & \ctrl{2} & \qw & \qw & \qw\\
- & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
- & \qw & \targ & \qw & \qw & \qw\\
-}
-\end{center}
-
-   #+END_EXPORT
-
-*****  ASAP                                                       :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .3
-:END:
-
-          #+BEGIN_EXPORT latex
-
-\begin{center}
-
-ASAP
-
-   \Qcircuit @C=1em @R=.7em {
- &  &  & \qwx[5] &  & \\
- & \qswap & \qw & \qw & \gate{X} & \qw\\
- & \qw & \ctrl{2} & \qw & \qw & \qw\\
- & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
- & \qw & \targ & \qw & \qw & \qw\\
- &  &  &  &  & \\
-}
-\end{center}
-
-   #+END_EXPORT
-
-***** ALAP                                                        :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .3
-:END:
-
-          #+BEGIN_EXPORT latex
-
-\begin{center}
-
-ALAP
-
-   \Qcircuit @C=1em @R=.7em {
- &  & \qwx[5] &  &  & \\
- & \qswap & \qw & \gate{X} & \qw & \qw\\
- & \qw & \qw & \ctrl{2} & \qw & \qw\\
- & \qswap \qwx[-2] & \qw & \qw & \gate{H} & \qw\\
- & \qw & \qw & \targ & \qw & \qw\\
- &  &  &  &  &  & \\
-}
-\end{center}
-
-   #+END_EXPORT
-
-**** Dependence graph                                    :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-*****                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .3
-:END:
-
-The SWAP gate swaps the information between qubits.
-
-*****  Dependence graph                            :B_exampleblock:BMCOL:
-:PROPERTIES:
-:BEAMER_col: .3
-:BEAMER_env: exampleblock
-:END:
+[DEPENDENCE GRAPH (EXPLANATION, EXAMPLE)]
 
 #+BEGIN_EXPORT latex
 
-\begin{center}
+\begin{figure}
+\centering
 \resizebox{.5\textwidth}{!}{%
 \begin{tikzpicture}
     
@@ -190,61 +103,14 @@ The SWAP gate swaps the information between qubits.
     
 \end{tikzpicture}
 }
-\end{center}
+\caption{Dependence graph of the scheduling example (Fig. \ref{fig:scheduling_ex})}
+\label{fig:dependence_graph_ex}
+\end{figure}
 
 #+END_EXPORT
 
-*****                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .3
-:END:
 
-Parallel operation $\to$ the ones that can be done simultaneously
-
-# *** SWAP                                                  :B_ignoreheading:
-# :PROPERTIES:
-# :BEAMER_env: ignoreheading
-# :END:
-
-# \centering
-
-# The SWAP gate swaps the information between qubits.
-
-# *** Parallel                                              :B_ignoreheading:
-# :PROPERTIES:
-# :BEAMER_env: ignoreheading
-# :END:
-
-# \centering
-
-# Parallel operation $\to$ the ones that can be done simultaneously
-
-**** TODO                                                       :B_noteNH:
-:PROPERTIES:
-:BEAMER_env: noteNH
-:END:
-
-# #+BEGIN_EXPORT latex
-# \resizebox{.5\textwidth}{!}{%
-# \schema{\schemabox{Explaining Scheduling}}{\schemabox{
-# Different kinds of scheduling\\
-# Parallel operations\\
-# SWAP gates
-# }}
-# }
-# #+END_EXPORT
-
-As an example of scheduling, let's consider this circuit with...
-
-A SWAP gate swaps the information (or state) of one qubit to other and viceversa.
-
-Notice that, in the example, there are several combinations of parallel operations,
-or what is the same, operations that can be done simultaneously.
-They don't depend on each other.
-
-Depending on the scheduling one may want to implement,
-the operations will be spread along the circuit in one way or the other.
-For example, ASAP or ALAP.
+# the general settings of our mapping algorithm is described in the [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]] section.    
 
 *** Mapping example
 
