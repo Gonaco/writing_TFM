@@ -128,7 +128,7 @@ For example, ASAP or ALAP.
 
 #+END_EXPORT
 
-#+ATTR_LATEX: :width \textwidth :align p{3cm}p{3cm}p{3cm}
+#+ATTR_LATEX: :width \textwidth :align p{5cm}p{5cm}p{5cm}
 | \input{figures/map_ex_circuit} | \input{figures/map_ex_chip} | \input{figures/map_ex_depend} |
 
 #+BEGIN_EXPORT latex
