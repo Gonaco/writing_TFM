@@ -1,22 +1,22 @@
 
 \chapter*{Quantum computers and mapping of quantum circuits}
-\label{sec:orgdcde088}
+\label{sec:org5cbe96d}
 
 \section*{Quantum computing}
-\label{sec:orgfabc5e6}
+\label{sec:orgf5abf55}
 
 [Intro to Quantum Computation power that it is based on \textbf{superposition} and *entanglement*]
 In this section \ldots{}
 
 \subsection*{Essential elements of quantum computation}
-\label{sec:org874e56a}
+\label{sec:org96ee95d}
 
 Qubits and quantum gates are the basic ingredients in quantum computation theory.
 As in classical computation with boolean gates and bits, quantum gates operate on the qubits to change their state and return the desired result or calculation.
 
 \begin{itemize}
 \item Qubits
-\label{sec:org1757b65}
+\label{sec:org436d2d2}
 
 Qubit stands for quantum bit.
 A basic unit of information founded on quantum physics laws.
@@ -26,11 +26,11 @@ Both ground or excited states are represented in the Dirac's bra-ket notation, v
 This notation holds the algebraic axioms \cite{Nielsen_2009} required to understand the quantum theory.
 Prior to measurement, a qubit is described as in a probabilistic state \(| \psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle\), where \(\alpha, \beta \in \mathbb{C}\) are the so-called probability amplitudes.
 \(|\alpha|^2\) is the probability of measuring \(| 0 \rangle\), \(|\beta|^2\) is the probability of measuring \(| 1 \rangle\) and both \(\alpha\) and \(\beta\) are allowed to be complex.
-Dirac's notation grants the definition of the quantum states as vectors, as in eq. \ref{eq:orgbc76e54}.
+Dirac's notation grants the definition of the quantum states as vectors, as in eq. \ref{eq:orgb8aa45f}.
 Moreover, as we will see below, adopting Dirac's axioms will make the quantum theory accessible with classical algebra operations. 
 
 \begin{equation}
-\label{eq:orgbc76e54}
+\label{eq:orgb8aa45f}
 |\psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
 \end{equation}
 
@@ -38,20 +38,20 @@ Moreover, as we will see below, adopting Dirac's axioms will make the quantum th
 But, as soon as they are energy probabilistic states, their values are constrained to \(|\alpha|^2 + |\beta|^2 = 1\).
 Since quantum states can be described as vectors, one can easily see that the state of a qubit is defined by a 2-dimensional, complex and unitarian vector space.
 A \textbf{Hilbert space} \(\mathscr{H}\).
-E.g. in eq. \ref{eq:org55463c4} the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to measure either \(|0\rangle\) or \(|1\rangle\) -- states are depicted, respectively.
+E.g. in eq. \ref{eq:orgbc2c839} the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to measure either \(|0\rangle\) or \(|1\rangle\) -- states are depicted, respectively.
 
 \begin{equation}
-\label{eq:org55463c4}
+\label{eq:orgbc2c839}
 |0\rangle = \begin{bmatrix}1 \\ 0 \end{bmatrix} \quad \quad |1\rangle = \begin{bmatrix}0 \\ 1 \end{bmatrix} \quad \quad |+\rangle = \frac{1}{\sqrt{2}} \begin{bmatrix}1 \\ 1 \end{bmatrix}
 \end{equation}
 
-As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. \ref{eq:orgb8cf40b}).
+As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. \ref{eq:org270eb72}).
 Like the complex numbers, although requiring two angles in this case.
 This notation lead us to a very understandable way to visualize the quantum states, the \textbf{Bloch sphere} (fig. \ref{fig:bloch_sphere}).
 A sphere of radius one which z-axis extremes represent the ground and excited states.
 
 \begin{equation}
-\label{eq:orgb8cf40b}
+\label{eq:org270eb72}
 |\psi \rangle =\cos \left(\theta /2\right)|0\rangle \,+\,e^{i\phi }\sin \left(\theta /2\right)|1\rangle
 \end{equation}
 
@@ -90,21 +90,21 @@ The quantum state of \(n\) qubits can be represented in bra-ket notation, with a
 And, therefore, they engender a Hilbert space of \(2^n\) dimensions due to superposition.
 The linear operator that leads to the multiple qubit's state is the \textbf{outer product}, defined as the matrix convolution of the state vectors.
 The outer product is represented as \(|\phi \rangle \,\langle \psi |\).
-In eq. \ref{eq:org0940f4f} and \ref{eq:org373cf71} an example of the outer product is offered.
+In eq. \ref{eq:orgae41e1a} and \ref{eq:orga9f9dd9} an example of the outer product is offered.
 The second example represents the other main phenomenon in quantum physics, the \textbf{entanglement} state of two qubits (\(\phi\) and \(\psi\)) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 \begin{equation}
-\label{eq:org0940f4f}
+\label{eq:orgae41e1a}
 |+\rangle \,\langle + | = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} 
 \end{equation}
 
 \begin{equation}
-\label{eq:org373cf71}
+\label{eq:orga9f9dd9}
 |\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
 \end{equation}
 
 
 \item Quantum Operations
-\label{sec:org2805b54}
+\label{sec:org08d75e2}
 
 Quantum operations leverage the power of quantum computers enabling calculations over the qubits.
 Or what is the same, enabling transformations of a Hilbert space.
@@ -119,10 +119,10 @@ Although, while implying multiple qubits, the quantum operations are more comple
 For instance, a rotation of 180° in x-axis of the Bloch sphere is the same as an operation that changes the qubit state from \(| 0 \rangle\) to \(| 1 \rangle\), or viceversa.
 Qubits and quantum operations interact through the \textbf{inner product}.
 In order to apply some operation over a qubit state, a matrix-vector multiplication should be done.
-For instance, in eq. \ref{eq:orgded39b0} one can understand how some uniform operation \(U\) is applied to a qubit with state \(| \psi \rangle\).
+For instance, in eq. \ref{eq:orgb50f247} one can understand how some uniform operation \(U\) is applied to a qubit with state \(| \psi \rangle\).
 
 \begin{equation}
-\label{eq:orgded39b0}
+\label{eq:orgb50f247}
 U |\psi\rangle=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{bmatrix}\alpha \\ \beta \end{bmatrix} = \begin{bmatrix}\alpha u_{00} + \beta u_{01} \\ \alpha u_{10} + \beta u_{11} \end{bmatrix}
 \end{equation}
 
@@ -136,15 +136,15 @@ It is generally accepted to analyze the multiple-qubit gate problem in its most 
 
 \begin{itemize}
 \item Single-qubit gates
-\label{sec:org1702ee6}
+\label{sec:org71c8a6e}
 
 Single qubit gates represent quantum operations that involve just one qubit.
 They are represented as a box with one input and one output, evincing that a single qubit will be the input and output of the operation.
 As explained before, single-qubit gates can be represented as \(2^1 \times 2^1\) square matrices that should be unitary.
-Both representations of the most common single-qubit gates can be found in Table \ref{tab:org1616173}.
+Both representations of the most common single-qubit gates can be found in Table \ref{tab:org5a52234}.
 
 \begin{table}[htbp]
-\caption{\label{tab:org1616173}
+\caption{\label{tab:org5a52234}
 Most common single qubit gates}
 \centering
 \begin{tabular}{ccccccc}
@@ -164,12 +164,12 @@ The \emph{S} and \emph{T} gates are also rotations over the z-axis but of 90° a
 
 
 \item Two-qubit gates
-\label{sec:org4498d4c}
+\label{sec:org9c2ef1d}
 
 Two-qubit gates are quantum operations that involve two qubits at the same time.
 In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
 The qubits that goes through the operation is called \textbf{target}, while the other is called the \textbf{control} qubit.
-The most common two-qubit gates are represented in Table \ref{tab:org1bd5644}.
+The most common two-qubit gates are represented in Table \ref{tab:org0af9a08}.
 The \emph{CNOT} gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the state of the control qubit will be executed or not.
 As the CNOT, the \emph{CZ} gate is a Controlled-Z operations that, in this case, executes a Pauli-z gate depending on the state of the control qubit.
 Finally, the \emph{SWAP} gate "swaps" the state of two qubits.
@@ -177,7 +177,7 @@ It moves the state of one to the other and viceversa.
 This gate is mostly used for routing purposes as it will be seen in the next sections.
 
 \begin{table}[htbp]
-\caption{\label{tab:org1bd5644}
+\caption{\label{tab:org0af9a08}
 Most common two-qubit gates}
 \centering
 \begin{tabular}{ccc}
@@ -190,7 +190,7 @@ CNOT & CZ & SWAP\\
 \end{itemize}
 
 \subsection*{Quantum Circuits}
-\label{sec:org44bf0ca}
+\label{sec:orgfb0829c}
 
 Quantum circuits are quantum algorithms descriptions.
 As mentioned before, they are formed by quantum gates and qubits connected in circuit fashion.
@@ -224,7 +224,7 @@ Also, the QASM algorithm representation can be seen in Fig. \ref{code:qasm_gray_
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.3\textwidth]{figures/gray_code.png}
-\caption{\label{fig:orgd76c147}
+\caption{\label{fig:org7d36b79}
 Gray Code example for 3 bits.}
 \end{figure}
 
@@ -259,7 +259,7 @@ cnot f,d
 \end{figure}
 
 \subsection*{Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation}
-\label{sec:org9cdb1c7}
+\label{sec:orgb87e1bd}
 
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
 For instance, in the case of superconducting technologies \cite{O_Brien_2017}, the chips bear with decoherence times of \(\approx 30 \mu s\) for qubit relaxation and \(\approx 60 \mu s\) for qubit dephase.
@@ -268,7 +268,7 @@ This creates an undesirable environment to compute the most useful algorithms.
 Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years \cite{Nielsen_2009}.
 
 \section*{Mapping of quantum circuits}
-\label{sec:orga4510b3}
+\label{sec:orga77ab7f}
 
 As it was described in the [LINK TO THE SECTION DESCRIBING THE FULL STACK] the mapping step is part of the quantum compilation.
 The mapping process adapts a quantum circuit -- hardware agnostic -- representation to the requirement of a real quantum processor.
@@ -373,15 +373,15 @@ For example, ASAP or ALAP.
 \end{figure}
 
 \subsection*{Mapping example}
-\label{sec:org243bcea}
+\label{sec:org0b197ed}
 
 
 \begin{itemize}
 \item Example definition
-\label{sec:org8c7c9f1}
+\label{sec:org1228f73}
 \begin{itemize}
 \item Example definition
-\label{sec:org6bf6f93}
+\label{sec:orgb3fa0a5}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -389,10 +389,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:org6e52508}
+\label{sec:orgb162403}
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:orge26fc17}
+\label{sec:org997e2d4}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -463,7 +463,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org6ec1f06}
+\label{sec:org9b7de70}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -524,10 +524,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org09f2fcd}
+\label{sec:org8db7e3d}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgb6b85c8}
+\label{sec:orga69ea9c}
 \begin{center}
 
 \uline{Optimized Approach}
@@ -537,17 +537,17 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 \end{itemize}
 \item :BMCOL:
-\label{sec:orgdcc5201}
+\label{sec:org2b9fe44}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:org893fdb5}
+\label{sec:orgdbb6293}
 \uline{Gray Code Quantum Circuit}
 
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org6b114ac}
+\label{sec:org48f448c}
 \begin{verbatim}
 
 #QASM code
@@ -569,7 +569,7 @@ cnot f,d
 
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:orgdad645d}
+\label{sec:org024a622}
 
 \begin{center}
    \Qcircuit @C=1em @R=.7em {
@@ -623,7 +623,7 @@ cnot f,d
 Latency: 400ns
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org1b1c94d}
+\label{sec:orga386798}
       \begin{center}
      \Qcircuit @C=1em @R=.7em {
      \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
@@ -641,10 +641,10 @@ Latency: 400ns
 \end{itemize}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgbc36906}
+\label{sec:orgd0cde88}
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:orgc2d6aa2}
+\label{sec:orgde40a38}
 Maybe is going to be more clear with a toy example.
 Let's say that we want to run the Gray Code Quantum Generator in the SC-7.
 
@@ -657,7 +657,7 @@ This code is written in QASM (Quantum Assembly), a basic language for describing
 \end{figure}
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:orgf05d5b7}
+\label{sec:org7585fe2}
 The Gray Code Quantum Circuit looks like this.
 
 We have to define whish virtual qubits (a,b,\ldots{}) is related with the physical ones (0,1,..)
@@ -672,13 +672,13 @@ No routing is required.
 \end{itemize}
 
 \subsection*{Mapping example. Scheduling and placement}
-\label{sec:org81a9f86}
+\label{sec:orgdd1bec7}
 \begin{itemize}
 \item Example definition
-\label{sec:org2aab403}
+\label{sec:orgf03652b}
 \begin{itemize}
 \item Example definition
-\label{sec:org2b2005c}
+\label{sec:org49d8b0d}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -686,7 +686,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:orgd533ee3}
+\label{sec:orgc2bfb5a}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -746,10 +746,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgdcb1bcf}
+\label{sec:orgfa4e8be}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgd118620}
+\label{sec:org7757f9b}
 \begin{center}
 
 \uline{Naive Approach}  
@@ -760,12 +760,12 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :BMCOL:
-\label{sec:org4cbb6c2}
+\label{sec:org6472e31}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:orgced68eb}
+\label{sec:org4ff73c6}
 \uline{Gray Code Quantum Circuit}
 
 
@@ -787,7 +787,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgeb2f1a6}
+\label{sec:org768bf2d}
 But what happens if we use a Naive initial placement approach?
 
 Let's map in alphabetical order (a \(\to\) 0, b \(\to\) 1, \ldots{}).
@@ -800,13 +800,13 @@ We should do this with all the circuit and the result will this circuit.
 
 
 \subsection*{Mapping example. Routing and re-scheduling}
-\label{sec:org795ebd8}
+\label{sec:orgae61fb6}
 \begin{itemize}
 \item Example definition
-\label{sec:org7748581}
+\label{sec:org12b1cd1}
 \begin{itemize}
 \item Example definition
-\label{sec:org249de55}
+\label{sec:org74e3434}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -814,7 +814,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:orgcb0ea8a}
+\label{sec:org27c2a04}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -875,10 +875,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orga912df5}
+\label{sec:orga955b3e}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgef22361}
+\label{sec:orge721382}
 \begin{center}
 
 \uline{Naive Approach}  
@@ -889,15 +889,15 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :BMCOL:
-\label{sec:org9e50de2}
+\label{sec:orgf981338}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:org37d3dd0}
+\label{sec:orgd53d792}
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org584bbb0}
+\label{sec:org2b6b68a}
 \begin{center}
 \resizebox{\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -912,7 +912,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgdd6f947}
+\label{sec:orge9f09b1}
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}
     
@@ -975,7 +975,7 @@ Latency: \(1440 + 400 = 1840\) ns
 \end{itemize}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org845954f}
+\label{sec:org074e3fd}
 In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
 
 Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
@@ -983,13 +983,13 @@ Remember that Quantum gates are well known to be highly faulty.
 \end{itemize}
 
 \subsection*{Mapping example. Routing and re-scheduling}
-\label{sec:org9392d84}
+\label{sec:org1ba6fca}
 \begin{itemize}
 \item Example definition
-\label{sec:org56b5d71}
+\label{sec:org7daf1cb}
 \begin{itemize}
 \item Example definition
-\label{sec:org80a25ad}
+\label{sec:org1c5ce05}
 \begin{center}
 
 Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubits in the SC-7.
@@ -997,7 +997,7 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item Surface architecture
-\label{sec:org5533467}
+\label{sec:org9492cb5}
 
     \begin{center}
     \resizebox{\textwidth}{!}{%
@@ -1058,10 +1058,10 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgb5c63ba}
+\label{sec:orgcb7a212}
 \begin{itemize}
 \item :B\(_{\text{structureenv}}\):
-\label{sec:orgfd5b1cd}
+\label{sec:org544fcd5}
 \begin{center}
 
 \uline{Naive Approach}  
@@ -1072,15 +1072,15 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{itemize}
 
 \item :BMCOL:
-\label{sec:org84ce572}
+\label{sec:org48eec73}
 
 
 
 \item Gray Code Quantum Circuit
-\label{sec:org8095576}
+\label{sec:org40a1056}
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org75c0a99}
+\label{sec:orgc296d1a}
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1096,13 +1096,13 @@ Ex.: To map the Gray code generator Quantum Circuit for 6 \uline{physical} qubit
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org026a1bd}
+\label{sec:org4fe164a}
 \begin{center}
 $\Box$ \text{Cycle}
 \end{center}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgffd73a7}
+\label{sec:orgdd18a6e}
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}
     
@@ -1166,21 +1166,21 @@ Latency: 1520 ns
 
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org405d67c}
+\label{sec:orge19e732}
 In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
 
 Note that the circuit complexity has grown. The mapping task is causing an obvious overhead.
 \end{itemize}
 
 \subsection*{Optimal approach vs Naive}
-\label{sec:org1bc0b05}
+\label{sec:org5db4c52}
 
 \begin{itemize}
 \item Circuits
-\label{sec:org9c83620}
+\label{sec:orgc91cc05}
 \begin{itemize}
 \item :BMCOL:
-\label{sec:org453ecda}
+\label{sec:org51c5277}
       \begin{center}
 \resizebox{.6\textwidth}{!}{
      \Qcircuit @C=1em @R=.7em {
@@ -1196,7 +1196,7 @@ Note that the circuit complexity has grown. The mapping task is causing an obvio
 
 
 \item :BMCOL:
-\label{sec:orga610276}
+\label{sec:org652dd63}
 
 \begin{center}
 \resizebox{\textwidth}{!}{
@@ -1213,7 +1213,7 @@ Note that the circuit complexity has grown. The mapping task is causing an obvio
 \end{itemize}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org2c44e44}
+\label{sec:orgadc3eaf}
 \begin{table}[htbp]
 \centering
 \begin{tabular}{lll}
@@ -1226,14 +1226,14 @@ latency & 400 ns & 1520 ns\\
 \end{table}
 \end{itemize}
 \subsection*{What is the problem?}
-\label{sec:org051f391}
+\label{sec:org58b1639}
 
 \begin{itemize}
 \item :BMCOL:
-\label{sec:orgdcf7400}
+\label{sec:orgd2391de}
 \begin{itemize}
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org6f1bfc3}
+\label{sec:org024fe7e}
 Error sources:
 
 \begin{itemize}
@@ -1243,7 +1243,7 @@ Error sources:
 \end{itemize}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:org91fb5d1}
+\label{sec:orgec65fe9}
 \vspace{.5cm}
 
 \uline{No error correction} (despite we are working at \uline{physical} qubits level)
@@ -1251,10 +1251,10 @@ Error sources:
 
 
 \item :BMCOL:
-\label{sec:org431d99b}
+\label{sec:orgc22be7e}
 \begin{itemize}
 \item Windows error image
-\label{sec:orgfc08823}
+\label{sec:org24566e4}
 \vspace{.5cm}
 
 \begin{center}
@@ -1263,14 +1263,14 @@ Error sources:
 \end{itemize}
 
 \item :B\(_{\text{ignoreheading}}\):
-\label{sec:orgda61f07}
+\label{sec:orgc866856}
 
 \item Best Mapping
-\label{sec:orgbeb90cb}
+\label{sec:orgcab30e5}
 Ideal mapping should not inject extra errors.
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgaea9a4d}
+\label{sec:org45f6b71}
 What is the problem of this overhead?
 
 There are a lot of error sources that affect the fidelity of a quantum algorithm result.
@@ -1282,220 +1282,8 @@ We will assume that error correction is not possible, because we are working wit
 So the problem in the mapping task is, which is the best mapping between all possibilities in order to introduce the less amount of errors as possible.
 \end{itemize}
 
-\subsection*{State of the Art of the mapping task}
-\label{sec:orgc07bcb2}
-
-\begin{itemize}
-\item Index
-\label{sec:org47498b2}
-\begin{itemize}
-\item What is the people doing?
-\label{sec:org47e7da2}
-\small
-
-\begin{itemize}
-\item Our group's mapping
-\item "An Efficient Methodology for Mapping Quantum Circuits to the IBM QX Architectures"
-\item "Qubit Allocation"
-\item "Scheduling physical operations in a quantum information processor"
-\item "Automated generation of layout and control for quantum circuits"
-\item "Minimizing the latency of quantum circuits during mapping to the ion-trap circuit fabric"
-\item "A quantum physical design  ow using ilp and graph drawing"
-\item "An minlp model for scheduling and place- ment of quantum circuits with a heuristic solution approach"
-\item "Determining the minimal number of swap gates for multi- dimensional nearest neighbor quantum circuits"
-\item \ldots{}
-\end{itemize}
-\end{itemize}
-
-\item Compare with what we want to do
-\label{sec:org5ad954b}
-\begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{p{3.5cm}|p{3cm}|p{3.5cm}}
- & Chip Architecture & Metric\\
-\hline
- &  & \\
-"An Efficient Methodology [\ldots{}]" & IBM QX & Cost \(\equiv\) \#operations\\
- &  & \\
-"Qubit Allocation" & IBM QX & Cost \(\equiv\) \#operations\\
- &  & \\
-Our group's mapping & QuTech SC-7/SC-17 & Latency\\
-\end{tabular}
-\end{table}
-
-\vspace{1cm}
-
-The other works metric is either the \uline{latency} or the \uline{\#operations}, never the "probability of success" of the quantum circuit.
-
-
-\item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org8576729}
-\begin{itemize}
-\item :B\(_{\text{onlyenv}}\):
-\label{sec:org4d22ddd}
-And this problem is an important problem for the Quantum Computing community.
-   Many works have tried to efficiently map physical quantum circuits on different qubit structures.
-
-
-\item :B\(_{\text{onlyenv}}\):
-\label{sec:org4ddce53}
-\hline
-
-All the works are using the latency or the number of operations as metric, or what is the same, they are looking for the best mapping optimizing in number of operations or latency.
-
-It is fair to think that the longer the circuit, the worse the results.
-But, what if even the best mapping is introducing that amount of errors that, in the end, the result has no sense?
-No one is analyzing the success of the algorithms after the mapping task!
-\end{itemize}
-\end{itemize}
-
-\subsection*{Other constraints}
-\label{sec:org6c1365a}
-
-\begin{itemize}
-\item SC-17 topology
-\label{sec:org7326383}
-\begin{itemize}
-\item Images
-\label{sec:orgc6da931}
-\begin{center}
-\includegraphics[width=.6\textwidth]{figs/sc-17.eps}
-\end{center}
-
-\item Images
-\label{sec:orgbc46334}
-   
-   \definecolor{qpink}{rgb}{0.91, 0.05, 0.57}
-	      
-     
-     \begin{center}
-     \resizebox{.75\textwidth}{!}{%
-
-\begin{tikzpicture}[x=5mm,y=5mm]
-\node [circle,fill=cyan,minimum size=10pt] at (20,10) {};
-\node [circle,fill=green,minimum size=10pt] at (0,0) {};
-\node [circle,fill=cyan,minimum size=10pt] at (10,0) {};
-\node [circle,fill=green,minimum size=10pt] at (20,0) {};
-\node [circle,fill=red,minimum size=10pt] at (5,5) {};
-%\node [circle,fill=blue!50!red!50,minimum size=10pt] at (5,-5) {};
-\node [circle,fill=qpink,minimum size=10pt] at (5,-5) {};
-\node [circle,fill=red,minimum size=10pt] at (15,5) {};
-\node [circle,fill=red,minimum size=10pt] at (25,5) {};
-%\node [circle,fill=blue!50!red!50,minimum size=10pt] at (15,-5) {};
-%\node [circle,fill=blue!50!red!50,minimum size=10pt] at (25,-5) {};
-\node [circle,fill=qpink,minimum size=10pt] at (15,-5) {};
-\node [circle,fill=qpink,minimum size=10pt] at (25,-5) {};
-\node [circle,fill=green,minimum size=10pt] at (10,-10) {};
-\node [circle,fill=cyan,minimum size=10pt] at (20,-10) {};
-\node [circle,fill=green,minimum size=10pt] at (30,-10) {};
-\node [circle,fill=red,minimum size=10pt] at (5,-15) {};
-\node [circle,fill=red,minimum size=10pt] at (15,-15) {};
-\node [circle,fill=red,minimum size=10pt] at (25,-15) {};
-\node [circle,fill=cyan,minimum size=10pt] at (10,-20) {};
-
-\node [purple] at (1,0) {\huge 4};
-\node [purple] at (11,0) {\huge 5};
-\node [purple] at (21,0) {\huge 6};
-\node [purple] at (6,5) {\huge 1};
-\node [purple] at (16,5) {\huge 2};
-\node [purple] at (26,5) {\huge 3};
-\node [purple] at (21,10) {\huge 0};
-\node [purple] at (6,-5) {\huge 7};
-\node [purple] at (16,-5) {\huge 8};
-\node [purple] at (26,-5) {\huge 9};
-\node [purple] at (11,-10) {\huge 10};
-\node [purple] at (21,-10) {\huge 11};
-\node [purple] at (31,-10) {\huge 12};
-\node [purple] at (6,-15) {\huge 13};
-\node [purple] at (16,-15) {\huge 14};
-\node [purple] at (26,-15) {\huge 15};
-\node [purple] at (11,-20) {\huge 16};
-
-\draw (15,5) -- (20,10) node [midway, above, sloped] {};
-\draw (20,10) -- (25,5) node [midway, above, sloped] {};
-\draw (0,0) -- (5,5) node [midway, above, sloped] {};
-\draw (5,5) -- (10,0)  node [midway, above, sloped] {};
-\draw (10,0)  -- (15,5) node [midway, above, sloped] {};
-\draw (15,5) -- (20,0) node [midway, above, sloped] {};
-\draw (20,0) -- (25,5) node [midway, above, sloped] {};
-\draw (20,0) -- (15, -5) node [midway, above, sloped] {};
-\draw (15, -5) -- (10, 0) node [midway, above, sloped] {};
-\draw (10, 0) -- (5, -5) node [midway, above, sloped] {};
-\draw (5, -5) -- (0,0) node [midway, above, sloped] {};
-\draw (20, 0) -- (25,-5) node [midway, above, sloped] {};
-\draw (5, -5) -- (10,-10) node [midway, above, sloped] {};
-\draw (10, -10) -- (15,-5) node [midway, above, sloped] {};
-\draw (15, -5) -- (20,-10) node [midway, above, sloped] {};
-\draw (20, -10) -- (25,-5) node [midway, above, sloped] {};
-\draw (25, -5) -- (30,-10) node [midway, above, sloped] {};
-\draw (5, -15) -- (10,-10) node [midway, above, sloped] {};
-\draw (10, -10) -- (15,-15) node [midway, above, sloped] {};
-\draw (15, -15) -- (20,-10) node [midway, above, sloped] {};
-\draw (20, -10) -- (25,-15) node [midway, above, sloped] {};
-\draw (25, -15) -- (30,-10) node [midway, above, sloped] {};
-\draw (5, -15) -- (10,-20) node [midway, above, sloped] {};
-\draw (10, -20) -- (15,-15) node [midway, above, sloped] {};
-
-\draw (10,0) -- (15,5) -- (20, 0) --(15, -5) -- (10, 0) -- (5, -5) -- (0, 0);
-\end{tikzpicture}
-
-     }
-     \end{center}
-\end{itemize}
-
-
-\item Constraints
-\label{sec:org915f109}
-\begin{itemize}
-\item :BMCOL:
-\label{sec:orge106c6e}
-Constraints:
-
-\begin{itemize}
-\item Frequencies constraint
-\item Measurement constraint
-\end{itemize}
-
-\vspace{.5cm}
-
-This constraints also affect the mapping task (mainly scheduling)
-
-\item Table
-\label{sec:orgb9929f7}
-\definecolor{qpink}{rgb}{0.91, 0.05, 0.57}
-
-\begin{center}
-\begin{tabular}{ll}
- & \\
-\hline
-Freq. Group & Qubits\\
-\hline
-\cellcolor{red!25} QWG 0 & \cellcolor{red!25} 1, 2, 3, 13, 14, 15\\
-\cellcolor{qpink!25} QWG 1 & \cellcolor{qpink!25} 7, 8, 9\\
-\cellcolor{green!25} QWG 2 & \cellcolor{green!25} 4, 6, 10, 12\\
-\cellcolor{cyan!25} QWG 3 & \cellcolor{cyan!25} 0, 5, 11, 16\\
-\hline
-\end{tabular}
-\end{center}
-\end{itemize}
-
-\item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:orgaab04b7}
-\uline{Frequencies constraint}
-
-It is not possible to select or operate at the same time two different single-qubit gates over qubits in the same frequency set (same color).
-
-\uline{Measurement constraint}
-
-The measurement on a qubit cannot start when
- another qubit coupled to the same feedline is already being measured
-
-This constraints are affecting mainly to the scheduling!
-\end{itemize}
-
 \section*{State of the art}
-\label{sec:org2108930}
+\label{sec:orgbc32624}
 
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
@@ -1540,7 +1328,7 @@ And, recently, Quantum Volume has been defined to assert the capability of a qua
 In the next section and in \href{chapter-3.org}{Metrics} we offer an overview of the important metrics in this work.
 
 \section*{Mapping metrics}
-\label{sec:org7753477}
+\label{sec:org89c116e}
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
