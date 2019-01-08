@@ -125,13 +125,20 @@ For example, ASAP or ALAP.
 
 \begin{figure}
 \centering
+\subfigure[Gray code circuit to map]{
+\input{figures/map_ex_circuit}
+}
+\label{fig:map_ex_circ}
 
-#+END_EXPORT
+\subfigure[Dependence graph of the circuit]{
+\input{figures/map_ex_depend}
+}
+\label{fig:map_ex_depend}
 
-#+ATTR_LATEX: :width \textwidth :align p{5cm}p{5cm}p{5cm}
-| \input{figures/map_ex_circuit} | \input{figures/map_ex_chip} | \input{figures/map_ex_depend} |
-
-#+BEGIN_EXPORT latex
+\subfigure[Chip layout where to map the example circuit]{
+\input{figures/map_ex_chip}
+}
+\label{fig:map_ex_chip}
 
 \label{fig:map_ex_def}
 \caption{Mapping example draft}
