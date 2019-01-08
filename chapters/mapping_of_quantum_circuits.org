@@ -367,7 +367,7 @@ No routing is required.
 \begin{figure}
 \centering
 \subfigure[Optimal initiapl placement]{
-\resizebox{.3\textwidth}{!}{
+%\resizebox{.3\textwidth}{!}{
      \Qcircuit @C=1em @R=.7em {
      \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
@@ -376,7 +376,7 @@ No routing is required.
 \lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
 \lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
-}
+%}
 }
 \label{fig:map_ex_circ_optim}
 
@@ -454,108 +454,3 @@ No routing is required.
 | # operations | 5                | 11            |
 | latency      | 400 ns           | 1520 ns       |
 |--------------+------------------+---------------|
-
-
-*** Mapping example. Routing and re-scheduling                     :ignore:
-
-
-
-**** Example definition                                            :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-
-***** Surface architecture                              :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
-
-     #+BEGIN_EXPORT latex
-
-     \begin{center}
-     \resizebox{\textwidth}{!}{%
-     \begin{tikzpicture}[x=5mm,y=5mm]
- % \tikzstyle{every node} = [circle, fill=gray!30]
- % \node [green] at (0,0) {[circle, fill=gray!30]};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (0,0) {};
- % \node [cyan] at (10,0) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (10,0) {};
- % \node [green] at (20,0) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (20,0) {};
- % \node [red] at (5,5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,5) {};
- % \node [red] at (5,-5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (5,-5) {};
- % \node [red] at (15,5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,5) {};
- % \node [red] at (15,-5) {\textbullet};
- \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
-
- \node [purple] at (2,0) {\textbf{c} $\to$ \textbf{2}};
- \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
- \node [purple] at (22,0) {\textbf{e} $\to$ \textbf{4}};
- \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
- \node [purple] at (7,-5) {\textbf{f} $\to$ \textbf{5}};
- \node [purple] at (17,5) {\textbf{b} $\to$ \textbf{1}};
- \node [purple] at (17,-5) {\textbf{6}};
-
- % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
- \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9)   node [midway, above, sloped] {0};
- \draw[-Latex] (4.8,4.7)   -- (0.3,0.2)  node [midway, below, sloped] {8};
-
- \draw[-Latex] (5.4, 4.9)   -- (9.9,0.4)  node [midway, above, sloped] {1};
- \draw[-Latex] (9.7,0.2) -- (5.2,4.7)   node [midway, below, sloped] {9};
-
- \draw[-Latex] (10.1,0.4)  -- (14.6,4.9)  node [midway, above, sloped] {2};
- \draw[-Latex] (14.8,4.7)  -- (10.3,0.2) node [midway, below, sloped] {10};
-
- \draw[-Latex] (15.4, 4.9)  -- (19.9,0.4)  node [midway, above, sloped] {3};
- \draw[-Latex] (19.7,0.2) -- (15.2,4.7)  node [midway, below, sloped] {11};
-
- \draw[-Latex] (0.4,-0.1) -- (4.9,-4.6)  node [midway, above, sloped] {4};
- \draw[-Latex] (4.7,-4.8) -- (0.2,-0.3)  node [midway, below, sloped] {12};
-
- \draw[-Latex] (5.1, -4.6) -- (9.6,-0.1) node [midway, above, sloped] {5};
- \draw[-Latex] (9.8, -0.3) -- (5.3, -4.8) node [midway, below, sloped] {13};
-
- \draw[-Latex] (10.4,-0.1) -- (14.9,-4.6) node [midway, above, sloped] {6};
- \draw[-Latex] (14.7,-4.8) -- (10.2,-0.3) node [midway, below, sloped] {14};
-
- \draw[-Latex] (15.1,-4.6) -- (19.6,-0.1) node [midway, above, sloped] {7};
- \draw[-Latex] (19.8,-0.3)  -- (15.3,-4.8) node [midway, below, sloped] {15};
-
-
- \end{tikzpicture}
- }
- \end{center}
-     #+END_EXPORT
-
-
-
-           #+BEGIN_EXPORT latex
-\begin{center}
-\resizebox{\textwidth}{!}{
-    \Qcircuit @C=.5em @R=.7em {
-\lstick{a \to Q_0} & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
-\lstick{c \to Q_2} & \qw & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \ctrl{-3} & \qw & \qw & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
-\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
-\lstick{f \to Q_5} & \qw & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw
- }
-}
-\end{center}
-
-    #+END_EXPORT
-      
-     
-**** TODO                                                       :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-    
-   In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
-   Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
-   Remember that Quantum gates are well known to be highly faulty.
-     
