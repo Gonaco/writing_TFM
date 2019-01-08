@@ -5,7 +5,7 @@ The routing step from the mapping process introduces SWAP gates in the quantum c
 And latency is the time required to run a quantum circuit in a given quantum device.
 It depends on the chip cycle time and the *depth* of the circuit, that is the number of cycles the algorithm encloses.
 Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
-E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after the mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
+E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
 
 # [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]

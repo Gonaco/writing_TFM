@@ -11,7 +11,7 @@ The steps are *scheduling*, *initial placement* and *routing*.
 [ROUTING DEFINITION]
 [SCHEDULING DEFINITION].
 [MAIN SCHEDULING TYPES (ALAP, ASAP)]
-As an example of scheduling, let's consider the circuit inf Fig. \ref{fig:scheduling_ex}
+As an example of scheduling, let's consider the circuit in Fig. \ref{fig:scheduling_ex}
 Notice that, in the example, there are several combinations of parallel operations,
 or what is the same, operations that can be done simultaneously.
 They don't depend on each other.
@@ -115,41 +115,32 @@ For example, ASAP or ALAP.
 *** Mapping example
 
 
-**** Example definition                                            :BMCOL:
+**** Example definition                                     :BMCOL:ignore:
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
 
-***** Example definition                                :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
+#+BEGIN_EXPORT latex
 
-     #+BEGIN_EXPORT latex
-     \begin{center}
-     #+END_EXPORT
-     
-     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
+\begin{figure}
+\centering
 
-     #+BEGIN_EXPORT latex
-     \end{center}
-     #+END_EXPORT
+\begin{minipage}{.3\textwidth}
 
-***** Surface architecture                              :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
+   \Qcircuit @C=1em @R=.7em {
+\lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
+\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+}
 
-******                                                       :B_onlyenv:
-      :PROPERTIES:
-      :BEAMER_env: onlyenv
-      :BEAMER_act: <1-2>
-      :END:
+\end{minipage}
 
-     #+BEGIN_EXPORT latex
+\begin{minipage}{.3\textwidth}
 
-     \begin{center}
-     \resizebox{\textwidth}{!}{%
+\resizebox{\textwidth}{!}{%
      \begin{tikzpicture}[x=5mm,y=5mm]
  % \tikzstyle{every node} = [circle, fill=gray!30]
  % \node [green] at (0,0) {[circle, fill=gray!30]};
@@ -202,22 +193,60 @@ For example, ASAP or ALAP.
 
  \end{tikzpicture}
  }
- \end{center}
-     #+END_EXPORT      
 
-#+BEGIN_EXPORT latex
-     \begin{center}
-     \resizebox{.4\textwidth}{!}{%
-     \begin{tikzpicture}[qubit/.style={fill=cyan,circle,minimum size=0.3cm}]
+\end{minipage}
 
-     \node [qubit,label=right:Physical qubits] {Qubit};
+\begin{minipage}{.3\textwidth}
 
-     \end{tikzpicture}
-     }
-     \end{center}
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}
+
+%maximum width= pt
+    
+    \node [draw, rectangle] (a) at (0,5) {a};
+    \node [draw, rectangle] (b) at (0,4) {b};
+    \node [draw, rectangle] (c) at (0,3) {c};
+    \node [draw, rectangle] (d) at (0,2) {d};
+    \node [draw, rectangle] (e) at (0,1) {e};
+    \node [draw, rectangle] (f) at (0,0) {f};
+    
+    \node [draw, ellipse] (cnot1) at (2,4.5) {CNOT a,b};
+    \node [draw, ellipse] (cnot2) at (4,3.5) {CNOT b,c};
+    \node [draw, ellipse] (cnot3) at (6,2.5) {CNOT c,d};
+    \node [draw, ellipse] (cnot4) at (8,1.5) {CNOT d,e};
+    \node [draw, ellipse] (cnot5) at (10,0.5) {CNOT e,f};
+
+
+    \draw (a) -- (cnot1);
+    \draw (b) -- (cnot1);
+    
+    \draw (cnot1) -- (cnot2);
+    \draw (c) -- (cnot2);
+    
+    \draw (cnot2) -- (cnot3);
+    \draw (d) -- (cnot3);
+    
+    \draw (cnot3) -- (cnot4);
+    \draw (e) -- (cnot4);
+    
+    \draw (cnot4) -- (cnot5);
+    \draw (f) -- (cnot5);
+    
+\end{tikzpicture}
+}
+Latency: 400ns
+\end{minipage}
+
+\label{fig:map_ex_def}
+\caption{Mapping example scheme}
+\end{figure}
+
 #+END_EXPORT
 
-
+***** Surface architecture                              :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
 
 ******                                                       :B_onlyenv:
       :PROPERTIES:
@@ -318,97 +347,7 @@ For example, ASAP or ALAP.
     :BEAMER_col: 0.4
     :END:
 
-    _Gray Code Quantum Circuit_
-    
-*****                                                         :B_onlyenv:
-     :PROPERTIES:
-     :BEAMER_act: <1>
-     :BEAMER_env: onlyenv
-     :END:
 
-     #+BEGIN_EXAMPLE
-
-     #QASM code
-     
-     qubit a
-     qubit b
-     qubit c
-     qubit d
-     qubit e
-     qubit f
-     
-     cnot b,a
-     cnot c,b
-     cnot d,c
-     cnot e,d
-     cnot f,d
-     
-     #+END_EXAMPLE
-     
-     
-*****                                                         :B_onlyenv:
-     :PROPERTIES:
-     :BEAMER_act: <2>
-     :BEAMER_env: onlyenv
-     :END:
-
-          #+BEGIN_EXPORT latex
-
-\begin{center}
-   \Qcircuit @C=1em @R=.7em {
-\lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
-\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
-\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
-\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
-\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
-}
-\end{center}
-
-   #+END_EXPORT
-
-#+BEGIN_EXPORT latex
-
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}
-
-%maximum width= pt
-    
-    \node [draw, rectangle] (a) at (0,5) {a};
-    \node [draw, rectangle] (b) at (0,4) {b};
-    \node [draw, rectangle] (c) at (0,3) {c};
-    \node [draw, rectangle] (d) at (0,2) {d};
-    \node [draw, rectangle] (e) at (0,1) {e};
-    \node [draw, rectangle] (f) at (0,0) {f};
-    
-    \node [draw, ellipse] (cnot1) at (2,4.5) {CNOT a,b};
-    \node [draw, ellipse] (cnot2) at (4,3.5) {CNOT b,c};
-    \node [draw, ellipse] (cnot3) at (6,2.5) {CNOT c,d};
-    \node [draw, ellipse] (cnot4) at (8,1.5) {CNOT d,e};
-    \node [draw, ellipse] (cnot5) at (10,0.5) {CNOT e,f};
-
-
-    \draw (a) -- (cnot1);
-    \draw (b) -- (cnot1);
-    
-    \draw (cnot1) -- (cnot2);
-    \draw (c) -- (cnot2);
-    
-    \draw (cnot2) -- (cnot3);
-    \draw (d) -- (cnot3);
-    
-    \draw (cnot3) -- (cnot4);
-    \draw (e) -- (cnot4);
-    
-    \draw (cnot4) -- (cnot5);
-    \draw (f) -- (cnot5);
-    
-\end{tikzpicture}
-}
-
-#+END_EXPORT
-
-Latency: 400ns
 
 *****                                                         :B_onlyenv:
      :PROPERTIES:
@@ -661,26 +600,17 @@ Latency: 400ns
    We should do this with all the circuit and the result will this circuit.
 
 
-*** Mapping example. Routing and re-scheduling
+*** Mapping example. Routing and re-scheduling                     :ignore:
+
+[...]
+In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
+Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
+Remember that Quantum gates are well known to be highly faulty.
+
 **** Example definition                                            :BMCOL:
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
-
-***** Example definition                                :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
-
-     #+BEGIN_EXPORT latex
-     \begin{center}
-     #+END_EXPORT
-     
-     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
-
-     #+BEGIN_EXPORT latex
-     \end{center}
-     #+END_EXPORT
 
 ***** Surface architecture                              :B_ignoreheading:
      :PROPERTIES:
@@ -876,30 +806,28 @@ Latency: $1440 + 400 = 1840$ ns
 
     
    In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
-
    Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
    Remember that Quantum gates are well known to be highly faulty.
      
-*** Mapping example. Routing and re-scheduling
+*** Mapping example. Routing and re-scheduling                     :ignore:
+
+#+BEGIN_EXPORT latex
+
+\begin{figure}
+\centering
+
+\label{}
+\caption{}
+\end{figure}
+
+#+END_EXPORT
+
+
+
 **** Example definition                                            :BMCOL:
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
-
-***** Example definition                                :B_ignoreheading:
-     :PROPERTIES:
-     :BEAMER_env: ignoreheading
-     :END:
-
-     #+BEGIN_EXPORT latex
-     \begin{center}
-     #+END_EXPORT
-     
-     Ex.: To map the Gray code generator Quantum Circuit for 6 _physical_ qubits in the SC-7.
-
-     #+BEGIN_EXPORT latex
-     \end{center}
-     #+END_EXPORT
 
 ***** Surface architecture                              :B_ignoreheading:
      :PROPERTIES:
@@ -1022,21 +950,6 @@ Latency: $1440 + 400 = 1840$ ns
 
     #+END_EXPORT
 
-*****                                                   :B_ignoreheading:
-      :PROPERTIES:
-      :BEAMER_env: ignoreheading
-      :END:
-
-          #+BEGIN_EXPORT latex
-    \begin{center}
-    $\Box$ \text{Cycle}
-    \end{center}
-    #+END_EXPORT
-    
-*****                                                   :B_ignoreheading:
-      :PROPERTIES:
-      :BEAMER_env: ignoreheading
-      :END:
 
 #+BEGIN_EXPORT latex
 \resizebox{\textwidth}{!}{%
@@ -1111,21 +1024,13 @@ Latency: 1520 ns
 
    Note that the circuit complexity has grown. The mapping task is causing an obvious overhead.
 
-*** Optimal approach vs Naive
+*** Optimal approach vs Naive                                      :ignore:
 
-**** Circuits                                            :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
+#+BEGIN_EXPORT latex
 
-*****                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .4
-:END:
-
-     #+BEGIN_EXPORT latex
-      \begin{center}
-\resizebox{.6\textwidth}{!}{
+\begin{figure}
+\centering
+\resizebox{.3\textwidth}{!}{
      \Qcircuit @C=1em @R=.7em {
      \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
@@ -1135,137 +1040,19 @@ Latency: 1520 ns
 \lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
 }
-\end{center}
-     #+END_EXPORT
+\label{fig:optimal_init_place}
+\caption{Optimal initial placement}
+\end{figure}
 
+#+END_EXPORT
 
-*****                                                             :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .4
-:END:
-
-                 #+BEGIN_EXPORT latex
-
-\begin{center}
-\resizebox{\textwidth}{!}{
-    \Qcircuit @C=.5em @R=.7em {
- \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
-\lstick{c \to Q_2} & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \ctrl{-3} & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
-\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
-\lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
- }
-}
-\end{center}
-
-    #+END_EXPORT
-
-****                                                     :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-#+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float t :align lll
+#+caption: Difference between the naive initial placement and the optimal one in terms of number of operations and latency
+#+NAME: tab:optima_vs_naive
+#+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float t :align ccc
+|--------------+------------------+---------------|
 |              | Optimal approach | Naive apprach |
 |--------------+------------------+---------------|
-| # operations | 5                |            11 |
+| # operations | 5                | 11            |
 | latency      | 400 ns           | 1520 ns       |
 |--------------+------------------+---------------|
-*** What is the problem?
 
-****                                                               :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.4
-:END:
-
-*****                                                   :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-Error sources:
-
-- Superconducting quantum gates are highly faulty
-- Decoherence (time)
-- Others
-
-*****                                                   :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-\vspace{.5cm}
-# \centering
-
-_No error correction_ (despite we are working at _physical_ qubits level)
-
-
-****                                                               :BMCOL:
-:PROPERTIES:
-:BEAMER_col: 0.4
-:END:  
-
-****** Windows error image                             :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-\vspace{.5cm}
-
-#+ATTR_LATEX: :width \textwidth
-[[file:figs/computer_error_windows.png]]
-
-****                                                     :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-
-# \vspace{.5cm}
-
-****  Best Mapping                                        :B_exampleblock:
-:PROPERTIES:
-:BEAMER_env: exampleblock
-:END:
-
-Ideal mapping should not inject extra errors.
-
-# *** Error image                                           :B_ignoreheading:
-# :PROPERTIES:
-# :BEAMER_env: ignoreheading
-# :END:
-
-# ****                                                               :BMCOL:
-# :PROPERTIES:
-# :BEAMER_col: .2
-# :END:
-
-
-# ****                                                               :BMCOL:
-# :PROPERTIES:
-# :BEAMER_col: .4
-# :END:
-
-# #+ATTR_LATEX: :width \textwidth
-# [[file:figs/computer_error_windows.png]]
-
-# ****                                                               :BMCOL:
-# :PROPERTIES:
-# :BEAMER_col: .2
-# :END:
-
-**** TODO                                                       :B_noteNH:
-:PROPERTIES:
-:BEAMER_env: noteNH
-:END:
-
-
-What is the problem of this overhead?
-
-   There are a lot of error sources that affect the fidelity of a quantum algorithm result.
-   Each gate introduce the possibility of having errors, as well as the latency.
-   Time is the main problem in Quantum Computation.
-
-   We will assume that error correction is not possible, because we are working with qubits at its physical level.
-
-   So the problem in the mapping task is, which is the best mapping between all possibilities in order to introduce the less amount of errors as possible.
