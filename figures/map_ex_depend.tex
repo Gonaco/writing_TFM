@@ -1,0 +1,37 @@
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}
+
+%maximum width= pt
+    
+    \node [draw, rectangle] (a) at (0,5) {a};
+    \node [draw, rectangle] (b) at (0,4) {b};
+    \node [draw, rectangle] (c) at (0,3) {c};
+    \node [draw, rectangle] (d) at (0,2) {d};
+    \node [draw, rectangle] (e) at (0,1) {e};
+    \node [draw, rectangle] (f) at (0,0) {f};
+    
+    \node [draw, ellipse] (cnot1) at (2,4.5) {CNOT a,b};
+    \node [draw, ellipse] (cnot2) at (4,3.5) {CNOT b,c};
+    \node [draw, ellipse] (cnot3) at (6,2.5) {CNOT c,d};
+    \node [draw, ellipse] (cnot4) at (8,1.5) {CNOT d,e};
+    \node [draw, ellipse] (cnot5) at (10,0.5) {CNOT e,f};
+
+
+    \draw (a) -- (cnot1);
+    \draw (b) -- (cnot1);
+    
+    \draw (cnot1) -- (cnot2);
+    \draw (c) -- (cnot2);
+    
+    \draw (cnot2) -- (cnot3);
+    \draw (d) -- (cnot3);
+    
+    \draw (cnot3) -- (cnot4);
+    \draw (e) -- (cnot4);
+    
+    \draw (cnot4) -- (cnot5);
+    \draw (f) -- (cnot5);
+    
+\end{tikzpicture}
+}
+Latency: 400ns
