@@ -176,7 +176,7 @@ For example, ASAP or ALAP.
 \centering
 \subfigure[Example circuit routed]{
 
-\resizebox{.75\textwidth}{!}{
+\resizebox{.5\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
 \lstick{a \to Q_0} & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
@@ -273,7 +273,7 @@ Remember that Quantum gates are well known to be highly faulty.
 \centering
 \subfigure[Routed circuit re-scheduled]{
 
-\resizebox{.75\textwidth}{!}{
+\resizebox{.5\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
  \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
