@@ -2,23 +2,35 @@
 # Intro (what is mapping)
 # Given a quantum circuit representation that is hardware agnostic, adapt it to the requirements of a real quantum processor.
 As it was described in the [LINK TO THE SECTION DESCRIBING THE FULL STACK] the mapping step is a critical part of the quantum compilation.
-The mapping process adapts a quantum circuit -- hardware agnostic -- representation to the requirement of a real quantum processor.
+Quantum computers have limitations ([[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-7 and -17 chips]]) that are not contemplated in the quantum circuits description due to its inherent hardware agnostic behaviour.
+One of the main constraints is the Nearest Neighbor (NN) constraint.
+This curb alludes to the qubit connectivity inside the quantum processors, affecting the two-qubit gates realization.
+Instead of connected in an all-to-all fashion, the qubits are arranged in a two-dimensional grid shape, connecting each qubit to other four qubits -- its neighbours.
+At the same time, the quantum circuits consider the qubits arranged in an all-to-all fashion, applying two-qubit gates to qubits no matter if they are neighbors or not.
+Then, the circuits need a transformation in order to be executed in real quantum devices.
+The qubits states need to switch places between them -- with SWAP gates -- whenever an interaction between two qubits that are not NN is required. 
+
+The mapping process adapts a quantum circuit representation to the requirements of a real quantum processor.
 It brings ideal algorithms down to earth, to the limitations of the quantum chips.
 Therefore, the mapping accounts for the realization of quantum algorithms in quantum chips.
+As explained in the previous section ([[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation]]), quantum gates are faulty.
+Then, the extra addition of them due to the mapping task causes quantum algorithms to accumulate error and result in noisy or even useless results.
+Therefore, the optimal mapping would be the one that alters the least the original circuit that is a complex issue.
 In order to address the mapping problem, we split it in three steps, namely: *scheduling*, *initial placement* and *routing*.
 These steps can be executed several times, or even continuously, and in any order, depending on the mapping approach.
 
 ***** Initial placement
 
 # [INITIAL PLACEMENT DEFINITION].
-Throughout this thesis we use the terms */virtual/ qubits* and */physical/ qubits* referring to the qubits from the desired circuit to map and the qubits in the quantum chip, respectively.
-The initial placement task is responsible to relate a virtual qubits with a physical one.
+Throughout this thesis we use the terms */virtual/ qubits* and */physical/ qubits* referring to the qubits from the circuit we would like to adapt -- map -- and the real qubits in the quantum chip, respectively.
+The initial placement task is responsible to relate the virtual qubits with the physical ones finding the best 
 As one can see in the example below and, in more detail in Tab. [[tab:optima_vs_naive]], the initial placement is a crucial part of the optimal mapping.
+Depending on its quality, it would make the routing work easier or even make the optimal mapping impossible to find.
 
 ***** Routing
 
 # [ROUTING DEFINITION]
-...
+The routing process 
 We will appreciate the behaviour of the initial placement and the routing steps as an example in the next subsection ([[id:d1e90d41-ecaa-46b4-9f20-7a7726caa34a][Mapping example]]).
 
 ***** Scheduling

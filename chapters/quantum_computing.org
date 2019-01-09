@@ -168,7 +168,7 @@ Quantum circuits are quantum algorithms descriptions.
 As mentioned before, they are formed by quantum gates and qubits connected in circuit fashion.
 As most of the algorithm description models -- no matter if classical or quantum --, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
 They are general descriptions of quantum algorithms.
-Besides the circuit description model, quantum algorithms are commonly described as instruction languages like QASM (Quantum ASseMbly) cite:Nielsen_2009 or its related posterior languages -- cQASM, OpenQASM, ...
+Besides the circuit description model, quantum algorithms are commonly described as instruction languages like QASM (Quantum ASseMbly) cite:Nielsen_2009 or its related posterior languages -- cQASM, OpenQASM, etc.
 In fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
 It is composed by CNOT gates only.
@@ -236,6 +236,9 @@ Also, the QASM algorithm representation can be seen in Fig. \ref{code:qasm_gray_
 #+END_EXPORT
 
 *** Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation
+:PROPERTIES:
+:ID:       016d3e26-fc74-45a4-a459-1934d84c24bf
+:END:
 
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
 For instance, in the case of superconducting technologies cite:O_Brien_2017, the chips bear with decoherence times of $\approx 30 \mu s$ for qubit relaxation and $\approx 60 \mu s$ for qubit dephase.
