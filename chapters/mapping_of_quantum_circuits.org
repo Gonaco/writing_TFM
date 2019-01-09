@@ -19,6 +19,7 @@ Therefore, the optimal mapping would be the one that alters the least the origin
 In order to address the mapping problem, we split it in three steps, viz.: *scheduling*, *initial placement* and *routing*.
 These steps can be executed several times, or even continuously, and in any order, depending on the mapping approach.
 
+*** Subparts of mapping                                            :ignore:
 ***** Initial placement
 
 # [INITIAL PLACEMENT DEFINITION].
@@ -160,10 +161,7 @@ One can see how the gates that are in the same column -- SWAP and CNOT, H and X 
 
 
 
-**** Example definition                                     :BMCOL:ignore:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
+**** Example definition                                           :ignore:
 
 Let us suppose that we want to run the gray encoder quantum algorithm (Fig. \ref{fig:map_ex_circ}) in a real device.
 Given the device's chip layout in Fig. \ref{fig:map_ex_chip}, we need to map the quantum circuit to its requirements.
