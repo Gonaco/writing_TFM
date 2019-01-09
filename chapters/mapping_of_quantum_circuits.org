@@ -15,22 +15,30 @@ It brings ideal algorithms down to earth, to the limitations of the quantum chip
 Therefore, the mapping accounts for the realization of quantum algorithms in quantum chips.
 As explained in the previous section ([[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation]]), quantum gates are faulty.
 Then, the extra addition of them due to the mapping task causes quantum algorithms to accumulate error and result in noisy or even useless results.
-Therefore, the optimal mapping would be the one that alters the least the original circuit that is a complex issue.
-In order to address the mapping problem, we split it in three steps, namely: *scheduling*, *initial placement* and *routing*.
+Therefore, the optimal mapping would be the one that alters the least the original circuit.
+In order to address the mapping problem, we split it in three steps, viz.: *scheduling*, *initial placement* and *routing*.
 These steps can be executed several times, or even continuously, and in any order, depending on the mapping approach.
 
 ***** Initial placement
 
 # [INITIAL PLACEMENT DEFINITION].
-Throughout this thesis we use the terms */virtual/ qubits* and */physical/ qubits* referring to the qubits from the circuit we would like to adapt -- map -- and the real qubits in the quantum chip, respectively.
+Throughout this thesis we use the terms */virtual/ qubits* and */physical/ qubits* referring to the qubits from the circuit we would like to adapt -- map -- and the real qubits from the quantum chip, respectively.
 The initial placement task is responsible to relate the virtual qubits with the physical ones finding the best 
-As one can see in the example below and, in more detail in Tab. [[tab:optima_vs_naive]], the initial placement is a crucial part of the optimal mapping.
+As one can see in the example below, and in more detail in Tab. [[tab:optima_vs_naive]], the initial placement is a crucial part of the optimal mapping.
 Depending on its quality, it would make the routing work easier or even make the optimal mapping impossible to find.
 
 ***** Routing
 
 # [ROUTING DEFINITION]
-The routing process 
+The routing process accounts for finding the best path between two qubits far away in the chip layout.
+It introduces the SWAP gates -- or a decomposition of it -- to move the qubit states from one point to another.
+Therefore, it is a decisive step in order to reduce the number of added gates to the circuit.
+Then, the routed best path is the one that introduces the less number of gates to the overall circuit.
+It could be the case that the best path for some two-qubit gate would introduce the least number of operations for this operation but it could make the overall circuit bigger.
+Eg. let us consider three qubits far away-- $q_1, q_2, q_3$ -- and two operations, CNOT q_1,q_2 and CNOT q_1,q_3.
+The three qubits are far away from each other and $q_1$ is located between $q_2$ and $q_3$.
+It could be the case that a mapping algorithm decides that the best path for the first operation is to swap $q_1$ close to $q_2$, but that would make the path to $q_3$ -- the next operation -- longer.
+On the contrary, if the mapping algorithm would decide to move $q_2$ closer to $q_1$, it would make the overall number of added gates much smaller.
 We will appreciate the behaviour of the initial placement and the routing steps as an example in the next subsection ([[id:d1e90d41-ecaa-46b4-9f20-7a7726caa34a][Mapping example]]).
 
 ***** Scheduling
@@ -483,3 +491,8 @@ No routing is required.
 | # operations | 5                | 11            |
 | latency      | 400 ns           | 1520 ns       |
 |--------------+------------------+---------------|
+
+* BIB                                                       :ignore:noexport:
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain
