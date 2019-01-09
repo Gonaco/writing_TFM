@@ -158,11 +158,6 @@ One can see how the gates that are in the same column -- SWAP and CNOT, H and X 
 :ID:       d1e90d41-ecaa-46b4-9f20-7a7726caa34a
 :END:
 
-#+BEGIN_EXPORT latex
-\subsection*{Mapping example}
-#+END_EXPORT
-
-
 **** Example definition                                           :ignore:
 
 Let us suppose that we want to run the gray encoder quantum algorithm (Fig. \ref{fig:map_ex_circ}) in a real device.
