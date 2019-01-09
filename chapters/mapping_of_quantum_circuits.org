@@ -3,7 +3,7 @@
 # Given a quantum circuit representation that is hardware agnostic, adapt it to the requirements of a real quantum processor.
 As it was described in the [LINK TO THE SECTION DESCRIBING THE FULL STACK] the mapping step is a critical part of the quantum compilation.
 Quantum computers have limitations ([[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-7 and -17 chips]]) that are not contemplated in the quantum circuits description due to its inherent hardware agnostic behaviour.
-One of the main constraints is the Nearest Neighbor (NN) constraint.
+One of the main constraints is the Nearest Neighbor (NN) constraint, although there are much more limitations to consider depending on the device or the technology.
 This curb alludes to the qubit connectivity inside the quantum processors, affecting the two-qubit gates realization.
 Instead of connected in an all-to-all fashion, the qubits are arranged in a two-dimensional grid shape, connecting each qubit to other four qubits -- its neighbours.
 At the same time, the quantum circuits consider the qubits arranged in an all-to-all fashion, applying two-qubit gates to qubits no matter if they are neighbors or not.
@@ -35,7 +35,7 @@ It introduces the SWAP gates -- or a decomposition of it -- to move the qubit st
 Therefore, it is a decisive step in order to reduce the number of added gates to the circuit.
 Then, the routed best path is the one that introduces the less number of gates to the overall circuit.
 It could be the case that the best path for some two-qubit gate would introduce the least number of operations for this operation but it could make the overall circuit bigger.
-Eg. let us consider three qubits far away-- $q_1, q_2, q_3$ -- and two operations, ~CNOT q_1,q_2~ and ~CNOT q_1,q_3~.
+Eg. let us consider three qubits far away-- $q_1, q_2, q_3$ -- and two operations, ~CNOT q1,q2~ and ~CNOT q1,q3~.
 The three qubits are far away from each other and $q_1$ is located between $q_2$ and $q_3$.
 It could be the case that a mapping algorithm decides that the best path for the first operation is to swap $q_1$ close to $q_2$, but that would make the path to $q_3$ -- the next operation -- longer.
 On the contrary, if the mapping algorithm would decide to move $q_2$ closer to $q_1$, it would make the overall number of added gates much smaller.
@@ -59,7 +59,7 @@ A dependence graph is a graph that relates qubits and gates sequentially.
 Starting from the qubits, it chains all the gates with them.
 It is really convenient while mapping, mostly scheduling and finding the parallel operations.
 Fig. \ref{fig:dependence_graph_ex} shows the dependence graph of the circuit in Fig. \ref{fig:scheduling_ex} as an example.
-One can see how the gates that are in the same column --SWAP and CNOT, H and X -- can run in parallel.
+One can see how the gates that are in the same column -- SWAP and CNOT, H and X -- can run in parallel.
 
 #+BEGIN_EXPORT latex
 \begin{figure}
@@ -152,18 +152,25 @@ One can see how the gates that are in the same column --SWAP and CNOT, H and X -
 
 # the general settings of our mapping algorithm is described in the [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]] section.    
 
-*** Mapping example
+
+**** Mapping example
 :PROPERTIES:
 :ID:       d1e90d41-ecaa-46b4-9f20-7a7726caa34a
 :END:
 
 
 
-**** Example definition                                     :BMCOL:ignore:
+***** Example definition                                   :BMCOL:ignore:
     :PROPERTIES:
     :BEAMER_col: 0.4
     :END:
 
+Let us suppose that we want to run the gray encoder quantum algorithm (Fig. \ref{fig:map_ex_circ}) in a real device.
+Given the device's chip layout in Fig. \ref{fig:map_ex_chip}, we need to map the quantum circuit to its requirements.
+The mapping flow that we will follow starts with a scheduler, then we set the initial placement, route and, finally, we re-schedule in order to make all the gate additions as parallel as possible.
+As illustrated in the dependence graph of Fig. \ref{fig:map_ex_depend}, there are no parallel gates.
+No better schedule is possible.
+Considering the gate times for this device the same ones as the ones described in Tab. \ref{uni_set_gatetime}, the latency of this circuit is 400ns already.
 
 #+BEGIN_EXPORT latex
 
@@ -191,7 +198,14 @@ One can see how the gates that are in the same column --SWAP and CNOT, H and X -
 #+END_EXPORT
 
 
-**** Wrong initial placement                                      :ignore:
+***** Wrong initial placement                                    :ignore:
+
+Our next step in the mapping flow is to set the initial placement.
+In order to show the importance of it, in this example we will first do a naive initial placement and, then, the optimal one.
+Our naive initial placement will relate the virtual qubits ($a, b, c, ...$) to the physical ones $Q_0, Q_1, Q_2, ...$ in alphabetical order.
+So, $a \to 1$, $b \to 2$, etc.
+As shown in Fig. \ref{fig:map_ex_wrong_init}.
+
 
 #+BEGIN_EXPORT latex
 
@@ -213,7 +227,7 @@ One can see how the gates that are in the same column --SWAP and CNOT, H and X -
 
 #+END_EXPORT
      
-**** Routing the wrong initial placement                          :ignore:
+***** Routing the wrong initial placement                        :ignore:
 
 #+BEGIN_EXPORT latex
 
@@ -305,7 +319,7 @@ Latency: $1440 + 400 = 1840$ ns
 
 #+END_EXPORT
 
-**** Re-scheduling the wrong initial placement                    :ignore:
+***** Re-scheduling the wrong initial placement                  :ignore:
 
 [...]
 In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
@@ -401,7 +415,7 @@ Latency: 1520 ns
 
 #+END_EXPORT
 
-**** Optimal approach vs Naive                                    :ignore:
+***** Optimal approach vs Naive                                  :ignore:
 
 With an optimized initial placement, or a real optimized mapping the circuit could be the  same without adding any gate.
 No routing is required.
