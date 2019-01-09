@@ -3,7 +3,7 @@
 #+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
 * Mapping on superconducting quantum processors
-** TODO Constraints of the Surface-7 and -17 chips
+** Constraints of the Surface-7 and -17 chips
 :PROPERTIES:
 :ID:       5fc58a48-9874-45ed-94ff-095153aeea0f
 :END:
