@@ -35,7 +35,7 @@ It introduces the SWAP gates -- or a decomposition of it -- to move the qubit st
 Therefore, it is a decisive step in order to reduce the number of added gates to the circuit.
 Then, the routed best path is the one that introduces the less number of gates to the overall circuit.
 It could be the case that the best path for some two-qubit gate would introduce the least number of operations for this operation but it could make the overall circuit bigger.
-Eg. let us consider three qubits far away-- $q_1, q_2, q_3$ -- and two operations, CNOT q_1,q_2 and CNOT q_1,q_3.
+Eg. let us consider three qubits far away-- $q_1, q_2, q_3$ -- and two operations, ~CNOT q_1,q_2~ and ~CNOT q_1,q_3~.
 The three qubits are far away from each other and $q_1$ is located between $q_2$ and $q_3$.
 It could be the case that a mapping algorithm decides that the best path for the first operation is to swap $q_1$ close to $q_2$, but that would make the path to $q_3$ -- the next operation -- longer.
 On the contrary, if the mapping algorithm would decide to move $q_2$ closer to $q_1$, it would make the overall number of added gates much smaller.
@@ -45,14 +45,21 @@ We will appreciate the behaviour of the initial placement and the routing steps 
 
 # [SCHEDULING DEFINITION].
 # [MAIN SCHEDULING TYPES (ALAP, ASAP)]
+A scheduler organizes the circuit operations through the circuit time,
+finding whether several operations can be executed in parallel -- at the same time -- or not.
+It is possible to schedule in different configurations, for instance /*As Soon As Possible/ (ASAP)* or /*As Late As Possible/ (ALAP)*, depending on the mapping requirements.
 As an example of scheduling, let's consider the circuit in Fig. \ref{fig:scheduling_ex}
-Notice that, in the example, there are several combinations of parallel operations,
-or what is the same, operations that can be done simultaneously.
-They don't depend on each other.
-Depending on the scheduling one may want to implement,
+Notice that, in the example, there are several combinations of parallel operations.
+Depending on the scheduling configuration,
 the operations will be spread along the circuit in one way or the other.
-For example, ASAP or ALAP.
-[DEPENDENCE GRAPH (EXPLANATION, EXAMPLE)]
+
+# [DEPENDENCE GRAPH (EXPLANATION, EXAMPLE)]
+# It is really convenient while scheduling and finding the parallel operations.
+A dependence graph is a graph that relates qubits and gates sequentially.
+Starting from the qubits, it chains all the gates with them.
+It is really convenient while mapping, mostly scheduling and finding the parallel operations.
+Fig. \ref{fig:dependence_graph_ex} shows the dependence graph of the circuit in Fig. \ref{fig:scheduling_ex} as an example.
+One can see how the gates that are in the same column --SWAP and CNOT, H and X -- can run in parallel.
 
 #+BEGIN_EXPORT latex
 \begin{figure}
@@ -149,6 +156,7 @@ For example, ASAP or ALAP.
 :PROPERTIES:
 :ID:       d1e90d41-ecaa-46b4-9f20-7a7726caa34a
 :END:
+
 
 
 **** Example definition                                     :BMCOL:ignore:
