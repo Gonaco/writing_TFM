@@ -1,22 +1,22 @@
 
 \chapter*{Quantum computers and mapping of quantum circuits}
-\label{sec:org65b46b0}
+\label{sec:org30d638a}
 
 \section*{Quantum computing}
-\label{sec:org35434d8}
+\label{sec:orgd2aff45}
 
 [Intro to Quantum Computation power that it is based on \textbf{superposition} and *entanglement*]
 In this section \ldots{}
 
 \subsection*{Essential elements of quantum computation}
-\label{sec:org4b5c729}
+\label{sec:org984dd74}
 
 Qubits and quantum gates are the basic ingredients in quantum computation theory.
 As in classical computation with boolean gates and bits, quantum gates operate on the qubits to change their state and return the desired result or calculation.
 
 \begin{itemize}
 \item Qubits
-\label{sec:orge25c9cd}
+\label{sec:orgbbed12a}
 
 Qubit stands for quantum bit.
 A basic unit of information founded on quantum physics laws.
@@ -26,11 +26,11 @@ Both ground or excited states are represented in the Dirac's bra-ket notation, v
 This notation holds the algebraic axioms \cite{Nielsen_2009} required to understand the quantum theory.
 Prior to measurement, a qubit is described as in a probabilistic state \(| \psi \rangle = \alpha | 0 \rangle + \beta | 1 \rangle\), where \(\alpha, \beta \in \mathbb{C}\) are the so-called probability amplitudes.
 \(|\alpha|^2\) is the probability of measuring \(| 0 \rangle\), \(|\beta|^2\) is the probability of measuring \(| 1 \rangle\) and both \(\alpha\) and \(\beta\) are allowed to be complex.
-Dirac's notation grants the definition of the quantum states as vectors, as in eq. \ref{eq:org4f94e1f}.
+Dirac's notation grants the definition of the quantum states as vectors, as in eq. \ref{eq:org7fbc05d}.
 Moreover, as we will see below, adopting Dirac's axioms will make the quantum theory accessible with classical algebra operations. 
 
 \begin{equation}
-\label{eq:org4f94e1f}
+\label{eq:org7fbc05d}
 |\psi\rangle = \begin{bmatrix}\alpha \\ \beta \end{bmatrix}
 \end{equation}
 
@@ -38,20 +38,20 @@ Moreover, as we will see below, adopting Dirac's axioms will make the quantum th
 But, as soon as they are energy probabilistic states, their values are constrained to \(|\alpha|^2 + |\beta|^2 = 1\).
 Since quantum states can be described as vectors, one can easily see that the state of a qubit is defined by a 2-dimensional, complex and unitarian vector space.
 A \textbf{Hilbert space} \(\mathscr{H}\).
-E.g. in eq. \ref{eq:org7a60895} the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to measure either \(|0\rangle\) or \(|1\rangle\) -- states are depicted, respectively.
+E.g. in eq. \ref{eq:org1f7b739} the vectors of the ground, excited and the plus superposition -- a quantum state with the same probability to measure either \(|0\rangle\) or \(|1\rangle\) -- states are depicted, respectively.
 
 \begin{equation}
-\label{eq:org7a60895}
+\label{eq:org1f7b739}
 |0\rangle = \begin{bmatrix}1 \\ 0 \end{bmatrix} \quad \quad |1\rangle = \begin{bmatrix}0 \\ 1 \end{bmatrix} \quad \quad |+\rangle = \frac{1}{\sqrt{2}} \begin{bmatrix}1 \\ 1 \end{bmatrix}
 \end{equation}
 
-As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. \ref{eq:org9fd07d6}).
+As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation (eq. \ref{eq:org3df5d91}).
 Like the complex numbers, although requiring two angles in this case.
 This notation lead us to a very understandable way to visualize the quantum states, the \textbf{Bloch sphere} (fig. \ref{fig:bloch_sphere}).
 A sphere of radius one which z-axis extremes represent the ground and excited states.
 
 \begin{equation}
-\label{eq:org9fd07d6}
+\label{eq:org3df5d91}
 |\psi \rangle =\cos \left(\theta /2\right)|0\rangle \,+\,e^{i\phi }\sin \left(\theta /2\right)|1\rangle
 \end{equation}
 
@@ -90,21 +90,21 @@ The quantum state of \(n\) qubits can be represented in bra-ket notation, with a
 And, therefore, they engender a Hilbert space of \(2^n\) dimensions due to superposition.
 The linear operator that leads to the multiple qubit's state is the \textbf{outer product}, defined as the matrix convolution of the state vectors.
 The outer product is represented as \(|\phi \rangle \,\langle \psi |\).
-In eq. \ref{eq:org6a7e036} and \ref{eq:orgf6f0d8a} an example of the outer product is offered.
+In eq. \ref{eq:org4315412} and \ref{eq:orgef9c03c} an example of the outer product is offered.
 The second example represents the other main phenomenon in quantum physics, the \textbf{entanglement} state of two qubits (\(\phi\) and \(\psi\)) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 \begin{equation}
-\label{eq:org6a7e036}
+\label{eq:org4315412}
 |+\rangle \,\langle + | = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} 
 \end{equation}
 
 \begin{equation}
-\label{eq:orgf6f0d8a}
+\label{eq:orgef9c03c}
 |\Phi ^{+}\rangle =\frac  {1}{\sqrt  {2}}(|0\rangle _{\phi}\otimes |0\rangle _{\psi}+|1\rangle _{\phi}\otimes |1\rangle _{\psi}) =  \frac{(|00\rangle +|11\rangle )} {\sqrt {2}}
 \end{equation}
 
 
 \item Quantum Operations
-\label{sec:org6df8420}
+\label{sec:org12a6f3a}
 
 Quantum operations leverage the power of quantum computers enabling calculations over the qubits.
 Or what is the same, enabling transformations of a Hilbert space.
@@ -119,10 +119,10 @@ Although, while implying multiple qubits, the quantum operations are more comple
 For instance, a rotation of 180° in x-axis of the Bloch sphere is the same as an operation that changes the qubit state from \(| 0 \rangle\) to \(| 1 \rangle\), or viceversa.
 Qubits and quantum operations interact through the \textbf{inner product}.
 In order to apply some operation over a qubit state, a matrix-vector multiplication should be done.
-For instance, in eq. \ref{eq:orga49ac33} one can understand how some uniform operation \(U\) is applied to a qubit with state \(| \psi \rangle\).
+For instance, in eq. \ref{eq:org6117e6e} one can understand how some uniform operation \(U\) is applied to a qubit with state \(| \psi \rangle\).
 
 \begin{equation}
-\label{eq:orga49ac33}
+\label{eq:org6117e6e}
 U |\psi\rangle=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{bmatrix}\alpha \\ \beta \end{bmatrix} = \begin{bmatrix}\alpha u_{00} + \beta u_{01} \\ \alpha u_{10} + \beta u_{11} \end{bmatrix}
 \end{equation}
 
@@ -136,15 +136,15 @@ It is generally accepted to analyze the multiple-qubit gate problem in its most 
 
 \begin{itemize}
 \item Single-qubit gates
-\label{sec:orgb8ae7a5}
+\label{sec:org49974cf}
 
 Single qubit gates represent quantum operations that involve just one qubit.
 They are represented as a box with one input and one output, evincing that a single qubit will be the input and output of the operation.
 As explained before, single-qubit gates can be represented as \(2^1 \times 2^1\) square matrices that should be unitary.
-Both representations of the most common single-qubit gates can be found in Table \ref{tab:org9324deb}.
+Both representations of the most common single-qubit gates can be found in Table \ref{tab:orga5b73e8}.
 
 \begin{table}[htbp]
-\caption{\label{tab:org9324deb}
+\caption{\label{tab:orga5b73e8}
 Most common single qubit gates}
 \centering
 \begin{tabular}{ccccccc}
@@ -164,12 +164,12 @@ The \emph{S} and \emph{T} gates are also rotations over the z-axis but of 90° a
 
 
 \item Two-qubit gates
-\label{sec:org4422b2b}
+\label{sec:orgfacfc80}
 
 Two-qubit gates are quantum operations that involve two qubits at the same time.
 In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
 The qubits that goes through the operation is called \textbf{target}, while the other is called the \textbf{control} qubit.
-The most common two-qubit gates are represented in Table \ref{tab:org6cc6c92}.
+The most common two-qubit gates are represented in Table \ref{tab:org91a8a56}.
 The \emph{CNOT} gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the state of the control qubit will be executed or not.
 As the CNOT, the \emph{CZ} gate is a Controlled-Z operations that, in this case, executes a Pauli-z gate depending on the state of the control qubit.
 Finally, the \emph{SWAP} gate "swaps" the state of two qubits.
@@ -177,7 +177,7 @@ It moves the state of one to the other and viceversa.
 This gate is mostly used for routing purposes as it will be seen in the next sections.
 
 \begin{table}[htbp]
-\caption{\label{tab:org6cc6c92}
+\caption{\label{tab:org91a8a56}
 Most common two-qubit gates}
 \centering
 \begin{tabular}{ccc}
@@ -190,7 +190,7 @@ CNOT & CZ & SWAP\\
 \end{itemize}
 
 \subsection*{Quantum Circuits}
-\label{sec:org9ec7089}
+\label{sec:org57861ab}
 
 Quantum circuits are quantum algorithms descriptions.
 As mentioned before, they are formed by quantum gates and qubits connected in circuit fashion.
@@ -224,7 +224,7 @@ Also, the QASM algorithm representation can be seen in Fig. \ref{code:qasm_gray_
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.3\textwidth]{figures/gray_code.png}
-\caption{\label{fig:org2f159a1}
+\caption{\label{fig:org72d84ea}
 Gray Code example for 3 bits.}
 \end{figure}
 
@@ -259,7 +259,7 @@ cnot f,d
 \end{figure}
 
 \subsection*{Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation}
-\label{sec:orgb298a75}
+\label{sec:org270a02c}
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
 For instance, in the case of superconducting technologies \cite{O_Brien_2017}, the chips bear with decoherence times of \(\approx 30 \mu s\) for qubit relaxation and \(\approx 60 \mu s\) for qubit dephase.
 The error rates of single-qubit gates are less than 0.1\% taking \(> 20 ns\) to be executed, while two-qubit gates error rate is 0.6\% with times of \(40 ns\) and measurement error rates around 1\% with execution times of \(\sim 300 ns\) \cite{O_Brien_2017,Versluis_2017}.
@@ -267,7 +267,7 @@ This creates an undesirable environment to compute the most useful algorithms.
 Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years \cite{Nielsen_2009}.
 
 \section*{Mapping of quantum circuits}
-\label{sec:org57c12b9}
+\label{sec:org537bded}
 
 As it was described in the [LINK TO THE SECTION DESCRIBING THE FULL STACK] the mapping step is a critical part of the quantum compilation.
 Quantum computers have limitations (\href{chapter-3.org}{Constraints of the Surface-7 and -17 chips}) that are not contemplated in the quantum circuits description due to its inherent hardware agnostic behaviour.
@@ -281,7 +281,7 @@ The qubits states need to switch places between them -- with SWAP gates -- whene
 The mapping process adapts a quantum circuit representation to the requirements of a real quantum processor.
 It brings ideal algorithms down to earth, to the limitations of the quantum chips.
 Therefore, the mapping accounts for the realization of quantum algorithms in quantum chips.
-As explained in the previous section (\hyperref[sec:orgb298a75]{Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation}), quantum gates are faulty.
+As explained in the previous section (\hyperref[sec:org270a02c]{Quantum Error Correction (QEC) and Fault Tolerant (FT) quantum computation}), quantum gates are faulty.
 Then, the extra addition of them due to the mapping task causes quantum algorithms to accumulate error and result in noisy or even useless results.
 Therefore, the optimal mapping would be the one that alters the least the original circuit.
 In order to address the mapping problem, we split it in three steps, viz.: \textbf{scheduling}, \textbf{initial placement} and \textbf{routing}.
@@ -289,15 +289,15 @@ These steps can be executed several times, or even continuously, and in any orde
 
 \begin{itemize}
 \item Initial placement
-\label{sec:org8b3a9d0}
+\label{sec:orgef4ad35}
 
 Throughout this thesis we use the terms \textbf{\emph{virtual} qubits} and \textbf{\emph{physical} qubits} referring to the qubits from the circuit we would like to adapt -- map -- and the real qubits from the quantum chip, respectively.
 The initial placement task is responsible to relate the virtual qubits with the physical ones finding the best 
-As one can see in the example below, and in more detail in Tab. \ref{tab:orgdc82b8a}, the initial placement is a crucial part of the optimal mapping.
+As one can see in the example below, and in more detail in Tab. \ref{tab:org57a2408}, the initial placement is a crucial part of the optimal mapping.
 Depending on its quality, it would make the routing work easier or even make the optimal mapping impossible to find.
 
 \item Routing
-\label{sec:orgc48b275}
+\label{sec:org1cbff59}
 
 The routing process accounts for finding the best path between two qubits far away in the chip layout.
 It introduces the SWAP gates -- or a decomposition of it -- to move the qubit states from one point to another.
@@ -308,10 +308,10 @@ Eg. let us consider three qubits far away-- \(q_1, q_2, q_3\) -- and two operati
 The three qubits are far away from each other and \(q_1\) is located between \(q_2\) and \(q_3\).
 It could be the case that a mapping algorithm decides that the best path for the first operation is to swap \(q_1\) close to \(q_2\), but that would make the path to \(q_3\) -- the next operation -- longer.
 On the contrary, if the mapping algorithm would decide to move \(q_2\) closer to \(q_1\), it would make the overall number of added gates much smaller.
-We will appreciate the behaviour of the initial placement and the routing steps as an example in the next subsection (\hyperref[sec:org8ae45e7]{Mapping example}).
+We will appreciate the behaviour of the initial placement and the routing steps as an example in the next subsection (\hyperref[sec:org6a742c5]{Mapping example}).
 
 \item Scheduling
-\label{sec:org0dc189a}
+\label{sec:org4f75a66}
 
 A scheduler organizes the circuit operations through the circuit time,
 finding whether several operations can be executed in parallel -- at the same time -- or not.
@@ -413,7 +413,7 @@ One can see how the gates that are in the same column -- SWAP and CNOT, H and X 
 
 
 \item Mapping example
-\label{sec:org8ae45e7}
+\label{sec:org6a742c5}
 Let us suppose that we want to run the gray encoder quantum algorithm (Fig. \ref{fig:map_ex_circ}) in a real device.
 Given the device's chip layout in Fig. \ref{fig:map_ex_chip}, we need to map the quantum circuit to its requirements.
 The mapping flow that we will follow starts with a scheduler, then we set the initial placement, route and, finally, we re-schedule in order to make all the gate additions as parallel as possible.
@@ -444,7 +444,7 @@ Considering the gate times for this device the same ones as the ones described i
 \end{figure}
 Our next step in the mapping flow is to set the initial placement.
 In order to show the importance of it, in this example we will first do a naive initial placement and, then, the optimal one.
-Our naive initial placement will relate the virtual qubits (\$a, b, c, \ldots{}\$) to the physical ones \$Q\(_{\text{0}}\), Q\(_{\text{1}}\), Q\(_{\text{2}}\),\$ \ldots{} in alphabetical order.
+Our naive initial placement will relate the virtual qubits (\$a, b, c, \ldots{}\$) to the physical ones \$Q\(_{\text{0}}\), Q\(_{\text{1}}\), Q\(_{\text{2}}\), \ldots{}\$ in alphabetical order.
 So, \(a \to Q_0\), \(b \to Q_1\), etc.
 As shown in Fig. \ref{fig:map_ex_wrong_init}.
 
@@ -558,12 +558,13 @@ The latency after the routing increases in 1440 ns, \(1440 + 400 = 1840\) ns.
 \caption{Naive initial placement after routing}
 \end{figure}
 As one could notice in the dependence graph (Fig. \ref{fig:map_ex_depend_resch}), there were several parallel operations.
-Therefore, in this case, we can apply scheduling, indeed.
+Therefore, we can apply a scheduling, indeed.
 In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, reducing the latency to 1520 ns.
+Note that the dashed boxes enclose all the parallel operations in a cycle.
 
 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 
 \resizebox{.5\textwidth}{!}{
@@ -580,12 +581,12 @@ In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, re
 \label{fig:map_ex_resch}
 \caption{Naive initial placement routed and re-scheduled}
 \end{figure}
-With an optimized initial placement, or a real optimized mapping the circuit could be the  same without adding any gate.
-No routing is required.
+Finally, with an optimized initial placement, we can observe that the circuit could be the same without adding any gate.
+No routing would be required, saving 1120 ns.
+We summary a comparison between the naive and optimal initial placement in terms of number of gates and latency in \ref{fig:optimal_init_place}.
 
 
-
-\begin{figure}
+\begin{figure}[H]
 \centering
 \subfigure[Optimal initiapl placement]{
 %\resizebox{.3\textwidth}{!}{
@@ -665,7 +666,7 @@ No routing is required.
 
 
 \begin{table}[htbp]
-\caption{\label{tab:orgdc82b8a}
+\caption{\label{tab:org57a2408}
 Difference between the naive initial placement and the optimal one in terms of number of operations and latency}
 \centering
 \begin{tabular}{ccc}
@@ -680,7 +681,7 @@ latency & 400 ns & 1520 ns\\
 \end{itemize}
 
 \section*{State of the art}
-\label{sec:org9bf431e}
+\label{sec:orgbb1cfd6}
 
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
@@ -725,7 +726,7 @@ And, recently, Quantum Volume has been defined to assert the capability of a qua
 In the next section and in \href{chapter-3.org}{Metrics} we offer an overview of the important metrics in this work.
 
 \section*{Mapping metrics}
-\label{sec:org12a6a9f}
+\label{sec:orgf3d9808}
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
