@@ -202,8 +202,8 @@ Considering the gate times for this device the same ones as the ones described i
 
 Our next step in the mapping flow is to set the initial placement.
 In order to show the importance of it, in this example we will first do a naive initial placement and, then, the optimal one.
-Our naive initial placement will relate the virtual qubits ($a, b, c, ...$) to the physical ones $Q_0, Q_1, Q_2, ...$ in alphabetical order.
-So, $a \to 1$, $b \to 2$, etc.
+Our naive initial placement will relate the virtual qubits ($a, b, c, ...$) to the physical ones $Q_0, Q_1, Q_2,$ ... in alphabetical order.
+So, $a \to Q_0$, $b \to Q_1$, etc.
 As shown in Fig. \ref{fig:map_ex_wrong_init}.
 
 
@@ -228,6 +228,13 @@ As shown in Fig. \ref{fig:map_ex_wrong_init}.
 #+END_EXPORT
      
 ***** Routing the wrong initial placement                        :ignore:
+
+As for the routing, in order to connect the not NN we insert SWAPs to connect the required qubits.
+The mapping brings smartly the qubits close to the next operation qubit as well.
+For example, it routes $b$ next to $a$ but also close to $c$, avoiding a path increment for the next operation.
+The result can be seen in Fig. \ref{fig:map_ex_routing} as well as its dependence graph after the swap addition.
+After every SWAP, the interchanged virtual qubits appear to follow easily the mapping.
+The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
 
 #+BEGIN_EXPORT latex
 
@@ -308,7 +315,6 @@ As shown in Fig. \ref{fig:map_ex_wrong_init}.
     
 \end{tikzpicture}
 }
-Latency: $1440 + 400 = 1840$ ns
 
 }
 \label{fig:map_ex_depend_resch}
@@ -321,16 +327,15 @@ Latency: $1440 + 400 = 1840$ ns
 
 ***** Re-scheduling the wrong initial placement                  :ignore:
 
-[...]
-In this case, we can apply scheduling, indeed. The first result with an optimal routing and scheduling would be this one.
-Note that the circuit complexity has grown and, thus, the amount of possible errors along the circuit.
-Remember that Quantum gates are well known to be highly faulty.
+As one could notice in the dependence graph (Fig. \ref{fig:map_ex_depend_resch}), there were several parallel operations.
+Therefore, in this case, we can apply scheduling, indeed.
+In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, reducing the latency to 1520 ns.
+
 
 #+BEGIN_EXPORT latex
 
 \begin{figure}
 \centering
-\subfigure[Routed circuit re-scheduled]{
 
 \resizebox{.5\textwidth}{!}{
     \Qcircuit @C=.5em @R=.7em {
@@ -342,72 +347,6 @@ Remember that Quantum gates are well known to be highly faulty.
 \lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
  }
 }
-
-}
-\label{fig:map_ex_circ_resch}
-
-\subfigure[Dependence graph after re-scheduling]{
-\resizebox{.75\textwidth}{!}{%
-\begin{tikzpicture}
-    
-    \node [draw, rectangle] (a) at (0,5) {a};
-    \node [draw, rectangle] (b) at (0,4) {b};
-    \node [draw, rectangle] (c) at (0,3) {c};
-    \node [draw, rectangle] (d) at (0,2) {d};
-    \node [draw, rectangle] (e) at (0,1) {e};
-    \node [draw, rectangle] (f) at (0,0) {f};
-    
-    \node (swap1) at (2,3) {SWAP};
-    \node (swap2) at (2,1.5) {SWAP};
-    \node (cnot1) at (4,4.5) {CNOT};
-    \node (cnot2) at (6,3) {CNOT};
-    \node (swap3) at (8,2.25) {SWAP};
-    \node (cnot3) at (10,2.5) {CNOT};
-    \node (cnot4) at (12,1.75) {CNOT};
-    \node (swap4) at (12,0.5) {SWAP};
-    \node (swap5) at (14,1.5) {SWAP};
-    \node (swap6) at (16,0.75) {SWAP};
-    \node (cnot5) at (18,1.5) {CNOT};
-    
-    \draw (b) -- (swap1);
-    \draw (d) -- (swap1);
-    
-    \draw (c) -- (swap2);
-    \draw (f) -- (swap2);
-    
-    \draw (a) -- (cnot1);
-    \draw (swap1) -- (cnot1);
-    
-    \draw (cnot1) -- (cnot2);
-    \draw (swap2) -- (cnot2);
-    
-    \draw (cnot2) -- (swap3);
-    \draw (swap2) -- (swap3);
-    
-    \draw (swap1) -- (cnot3);
-    \draw (swap3) -- (cnot3);
-    
-    \draw (cnot3) -- (cnot4);
-    \draw (e) -- (cnot4);
-    
-    \draw (swap2) -- (swap4);
-    \draw (swap3) -- (swap4);
-    
-    \draw (cnot3) -- (swap5);
-    \draw (swap4) -- (swap5);
-    
-    \draw (cnot4) -- (swap6);
-    \draw (swap5) -- (swap6);
-    
-    \draw (swap6) -- (cnot5);
-    \draw (cnot4) -- (cnot5);
-    
-\end{tikzpicture}
-}
-Latency: 1520 ns
-      
-}
-\label{fig:map_ex_depend_resch}
 
 \label{fig:map_ex_resch}
 \caption{Naive initial placement routed and re-scheduled}
