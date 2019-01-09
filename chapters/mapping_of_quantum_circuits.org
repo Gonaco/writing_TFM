@@ -197,7 +197,6 @@ Considering the gate times for this device the same ones as the ones described i
 
 #+END_EXPORT
 
-
 **** Wrong initial placement                                      :ignore:
 
 Our next step in the mapping flow is to set the initial placement.
@@ -454,7 +453,7 @@ We summary a comparison between the naive and optimal initial placement in terms
 | latency      | 400 ns           | 1520 ns       |
 |--------------+------------------+---------------|
 
-* BIB                                                       :ignore:noexport:
+*** BIB                                                   :ignore:noexport:
 
 bibliography:../thesis_plan.bib
 bibliographystyle:plain
