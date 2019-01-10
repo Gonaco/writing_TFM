@@ -1,6 +1,14 @@
 
+# Explanation of the mapping flow
 
 #+caption: Mapping flow
 #+NAME: fig:mapping_flow
 #+ATTR_LATEX: :width 0.5\textwidth
 [[file:figures/mapping_flow2.png]]
+
+# Explaining why you chose your specific method, model, etc
+
+
+# Admitting limitations
+
+

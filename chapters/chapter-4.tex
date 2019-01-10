@@ -1,26 +1,24 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:orgaf2fef4}
+\label{sec:orgf308fdb}
 
 In this chapter we describe the work developed during this study.
 Since our main aim was to research on the mapping quality and the metrics used to assess it, we had to develop a whole framework in order to map and simulate quantum algorithm.
 And, obviously, we had to have a set of quantum algorithms to map and simulate.
 
-In the \hyperref[sec:orgf61c758]{Benchmarks} section we describe how we built the algorithm set.
-In the \hyperref[sec:org8b63c1b]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
+In the \hyperref[sec:org23b5801]{Benchmarks} section we describe how we built the algorithm set.
+In the \hyperref[sec:org80e1604]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
 In order to use the mapping algorithm described in the \href{chapter-3.org}{Mapping model} section, we use OpenQL, a high level programming language to describe quantum circuits.
 OpenQL is able to load a quantum device description and run our mapping algorithm, that is in its engine, to compile and export a mapped quantum circuit representation to the chosen device.
-OpenQL will be explained in much detail in the section \hyperref[sec:org7871930]{Compiler (OpenQL, cQASM)?}.
+OpenQL will be explained in much detail in the section \hyperref[sec:org06f6c35]{Compiler (OpenQL, cQASM)?}.
 
 \section*{Benchmarks}
-\label{sec:orgf61c758}
+\label{sec:org23b5801}
 As stated in the Introduction, the research was conducted to analyze the different metrics to assert the quality of a mapping algorithm.
 Consequently, we used a classic technique, the benchmarking technique.
 In general computing, a benchmark is a program or a set of programs used to assess the performance of the host technology.
 In our case, a benchmark would be a quantum algorithm that we will map to the SC chips constrains and then simulate aiming to use them to understand the different metrics.
 Under this approach, it was decided that the best methodology would be to follow four steps.
-
-Steps:
 
 \begin{enumerate}
 \item Build algorithms list       
@@ -30,29 +28,23 @@ Steps:
 \end{enumerate}
 \item Algorithms profile (source, number of qubits, number of gates, gates percentage, \ldots{}).
 \item Algorithms classification.
-\item Check algorithm correctness.
-\begin{enumerate}
-\item Are the original algorithms correct? \(\to\) Check behaviour in the IBM Simulator.
-\item Is my translation correct? \(\to\) Simulate them in QX and compare the results with the ones of the previous step.
-\item Are the algorithms working as expected? \(\to\) check if the results are the ones that the algorithm should have.
-\end{enumerate}
+\item Mapping set creation
 \end{enumerate}
 
-\begin{itemize}
-\item Build a list of quantum algorithms
-\label{sec:org4239dda}
+\subsection*{Build a list of quantum algorithms}
+\label{sec:orga5e2946}
 
 First, we built a list of quantum algorithms as benchmarks.
 We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
 As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks should be real and useful quantum algorithms, instead of random circuits.
 The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} because of the variety of algorithms and because they are decomposed in the Clifford+T set.
 The counterpart is that the language description of the algorithms from those sources are different and any of them is the pure QASM, but OpenQASM or another altered QASM languages.
-As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:org7871930]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
+As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:org06f6c35]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
 Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
 We developed a parser in python in order to do that.
 
 \begin{table}[htbp]
-\caption{\label{tab:orgba17510}
+\caption{\label{tab:org23ee81b}
 Amount of algorithms per source organized per the type of circuit description language used}
 \centering
 \begin{tabular}{lrr}
@@ -90,18 +82,18 @@ other Sources (1) & \\
 \caption{Graph depicting the amount of benchmarks per source. The line splits the source depending on the description programming language}
 \end{figure}
 
-\item Algorithms profile
-\label{sec:org50754a6}
+\subsection*{Algorithms profile}
+\label{sec:org39ff1c6}
 
 The goal of this second step is to understand the algorithms we have, extracting their statistics.
-We built an algorithm profile with the number of qubits used, the number of gates, the expected behaviour of the algorithm and different graphs, showing the percentage of the operations types or the number of operations running in parallel, amongst others.
+We built a benchmark profile with the number of qubits used, the number of gates, the expected behaviour of the algorithm and different graphs, showing the percentage of the operations types or the number of operations running in parallel amongst others.
 
-\item Benchmarks classification
-\label{sec:orgd1f339e}
+\subsection*{Benchmarks classification}
+\label{sec:org82da51d}
 
-The third step 
-
-Benchmark classes:
+The third step is to classify the benchmarks depending on their behaviour.
+This is an important step because algorithms that do similar calculations are used to have common gates distribution.
+From all the benchmarks we have, we can distinct six different classes.
 
 \begin{itemize}
 \item Quantum Gates: Circuits that are a decomposition of a Quantum Gate
@@ -116,41 +108,338 @@ Benchmark classes:
 \end{itemize}
 
 
-\item Benchmarks selection
-\label{sec:org9ad4773}
-\item Github repository
-\label{sec:org19b3d62}
+\subsection*{Benchmarks selection}
+\label{sec:org798f8e3}
+
+The last step aims to have a small, but representative, set of benchmarks to map.
+In order to do that, we studied the different benchmark profiles looking for most illustrative cases.
+\begin{itemize}
+\item \# qubits < 17
+\item \# gates as spread as possible and in the case of repeated benchmark the minimum number of gates
+\item The less number of the same algorithm versions as possible
+\item The benchmarks that are repeated and have an interesting combination of No. qubits/No. gates are preferred
+\item The benchmarks with a known functionality are preferred
+\end{itemize}
+43 benchmarks (with qubits numbers from 3 to 17 qubits) selected after applying the previous Restrictions to the analysis of the benchmarks described in the next section.
+
+\begin{center}
+\begin{tabular}{rrl}
+No. qubits & No. gates & Algorithm\\
+\hline
+5 & 27 & 4gt11\(_{\text{82}}\)\\
+6 & 228 & 4gt12-v1\(_{\text{89}}\)\\
+6 & 258 & 4gt4-v0\(_{\text{72}}\)\\
+7 & 70 & 4mod5-bdd\(_{\text{287}}\)\\
+5 & 20 & 4mod5-v0\(_{\text{20}}\)\\
+7 & 84 & alu-bdd\(_{\text{288}}\)\\
+5 & 36 & alu-v0\(_{\text{27}}\)\\
+17 & 35 & benstein\(_{\text{vazirani}}\)\(_{\text{15b}}\)\(_{\text{secret}}\)\(_{\text{128}}\)\\
+16 & 175 & \sout{cnt3-5\(_{\text{179}}\)}\\
+5 & 7 & cuccaroAdder\(_{\text{1b}}\)\\
+7 & 11 & cuccaroMultiplier\(_{\text{1b}}\)\\
+6 & 73 & decod24-bdd\(_{\text{294}}\)\\
+6 & 338 & decod24-enable\(_{\text{126}}\)\\
+6 & 5 & graycode6\(_{\text{47}}\)\\
+13 & 360618 & \sout{ground\(_{\text{state}}\)\(_{\text{estimation}}\)\(_{\text{10}}\)}\\
+3 & 16 & grover\(_{\text{orcl}}\)\(_{\text{toff}}\)\\
+3 & 20 & ham3\(_{\text{102}}\)\\
+5 & 233 & hwb4\(_{\text{49}}\)\\
+10 & 200 & \sout{ising\(_{\text{model}}\)\(_{\text{10}}\)}\\
+11 & 22445 & \sout{life\(_{\text{238}}\)}\\
+3 & 50 & miller\(_{\text{11}}\)\\
+5 & 288 & mini-alu\(_{\text{167}}\)\\
+10 & 173 & \sout{mini\(_{\text{alu}}\)\(_{\text{305}}\)}\\
+5 & 178 & mod10\(_{\text{176}}\)\\
+6 & 555 & mod5adder\(_{\text{127}}\)\\
+5 & 22 & mod5d1\(_{\text{63}}\)\\
+6 & 440 & mod8-10\(_{\text{177}}\)\\
+5 & 132 & one-two-three-v1\(_{\text{99}}\)\\
+5 & 70 & one-two-three-v3\(_{\text{101}}\)\\
+13 & 128744 & \sout{plus63mod4096\(_{\text{163}}\)}\\
+10 & 110 & \sout{qft\(_{\text{10}}\)}\\
+4 & 34 & rd32-v0\(_{\text{66}}\)\\
+6 & 781 & sf\(_{\text{274}}\)\\
+6 & 778 & sf\(_{\text{276}}\)\\
+12 & 4792 & shor\(_{\text{15}}\)\\
+12 & 3009 & sqrt8\(_{\text{260}}\)\\
+13 & 1993 & \sout{squar5\(_{\text{261}}\)}\\
+15 & 7630 & \sout{square\(_{\text{root}}\)\(_{\text{7}}\)}\\
+7 & 3888 & sym6\(_{\text{145}}\)\\
+14 & 270 & \sout{sym6\(_{\text{316}}\)}\\
+8 & 80480 & \sout{urf2\(_{\text{152}}\)}\\
+8 & 20112 & \sout{urf2\(_{\text{277}}\)}\\
+8 & 12 & vbeAdder\(_{\text{2b}}\)\\
+6 & 7 & xor5\(_{\text{254}}\)\\
+\end{tabular}
+\end{center}
+
+
+*After simulating the algorithms, some of them either return errors (segmentation fault) or are computationally exhausting to simulate them as they should be simulated.
+\begin{center}
+\begin{tabular}{ll}
+Algorithm & Gate proportion\\
+\hline
+4gt11\(_{\text{82}}\) & \href{post\_analysis/4gt11\_82/output\_instruction\_types.png}{histogram}\\
+4gt12-v1\(_{\text{89}}\) & \href{post\_analysis/4gt12\_v1\_89/output\_instruction\_types.png}{histogram}\\
+4gt4-v0\(_{\text{72}}\) & \href{post\_analysis/4gt4\_v0\_72/output\_instruction\_types.png}{histogram}\\
+4mod5-bdd\(_{\text{287}}\) & \href{post\_analysis/4mod5\_bdd\_287/output\_instruction\_types.png}{histogram}\\
+4mod5-v0\(_{\text{20}}\) & \href{post\_analysis/4mod5\_v0\_20/output\_instruction\_types.png}{histogram}\\
+alu-bdd\(_{\text{288}}\) & \href{post\_analysis/alu\_bdd\_288/output\_instruction\_types.png}{histogram}\\
+alu-v0\(_{\text{27}}\) & \href{post\_analysis/alu\_v0\_27/output\_instruction\_types.png}{histogram}\\
+benstein\(_{\text{vazirani}}\)\(_{\text{15b}}\)\(_{\text{secret}}\)\(_{\text{128}}\) & \href{post\_analysis/benstein\_vazirani\_15b\_secret\_128/output\_instruction\_types.png}{histogram}\\
+cuccaroAdder\(_{\text{1b}}\) & \href{post\_analysis/cuccaroAdder\_1b/output\_instruction\_types.png}{histogram}\\
+cuccaroMultiplier\(_{\text{1b}}\) & \href{post\_analysis/cuccaroMultiplier\_1b/output\_instruction\_types.png}{histogram}\\
+decod24-bdd\(_{\text{294}}\) & \href{post\_analysis/decod24\_bdd\_294/output\_instruction\_types.png}{histogram}\\
+decod24-enable\(_{\text{126}}\) & \href{post\_analysis/decod24\_enable\_126/output\_instruction\_types.png}{histogram}\\
+graycode6\(_{\text{47}}\) & \href{post\_analysis/graycode6\_47/output\_instruction\_types.png}{histogram}\\
+ham3\(_{\text{102}}\) & \href{post\_analysis/ham3\_102/output\_instruction\_types.png}{histogram}\\
+hwb4\(_{\text{49}}\) & \href{post\_analysis/hwb4\_49/output\_instruction\_types.png}{histogram}\\
+miller\(_{\text{11}}\) & \href{post\_analysis/miller\_11/output\_instruction\_types.png}{histogram}\\
+mini-alu\(_{\text{167}}\) & \href{post\_analysis/mini\_alu\_167/output\_instruction\_types.png}{histogram}\\
+mod10\(_{\text{176}}\) & \href{post\_analysis/mod10\_176/output\_instruction\_types.png}{histogram}\\
+mod5adder\(_{\text{127}}\) & \href{post\_analysis/mod5adder\_127/output\_instruction\_types.png}{histogram}\\
+mod5d1\(_{\text{63}}\) & \href{post\_analysis/mod5d1\_63/output\_instruction\_types.png}{histogram}\\
+mod8-10\(_{\text{177}}\) & \href{post\_analysis/mod8\_10\_177/output\_instruction\_types.png}{histogram}\\
+one-two-three-v1\(_{\text{99}}\) & \href{post\_analysis/one\_two\_three\_v1\_99/output\_instruction\_types.png}{histogram}\\
+one-two-three-v3\(_{\text{101}}\) & \href{post\_analysis/one\_two\_three\_v3\_101/output\_instruction\_types.png}{histogram}\\
+rd32-v0\(_{\text{66}}\) & \href{post\_analysis/rd32\_v0\_66/output\_instruction\_types.png}{histogram}\\
+sf\(_{\text{274}}\) & \href{post\_analysis/sf\_274/output\_instruction\_types.png}{histogram}\\
+sf\(_{\text{276}}\) & \href{post\_analysis/sf\_276/output\_instruction\_types.png}{histogram}\\
+shor\(_{\text{15}}\) & \href{post\_analysis/shor\_15/output\_instruction\_types.png}{histogram}\\
+sqrt8\(_{\text{260}}\) & \href{post\_analysis/sqrt8\_260/output\_instruction\_types.png}{histogram}\\
+sym6\(_{\text{145}}\) & \href{post\_analysis/sym6\_145/output\_instruction\_types.png}{histogram}\\
+vbeAdder\(_{\text{2b}}\) & \href{post\_analysis/vbeAdder\_2b/output\_instruction\_types.png}{histogram}\\
+xor5\(_{\text{254}}\) & \href{post\_analysis/xor5\_254/output\_instruction\_types.png}{histogram}\\
+\end{tabular}
+\end{center}
+
+
+\begin{itemize}
+\item Initial entries
+\label{sec:org0de7617}
+
+690
+
+
+\item Benchark amounts depending on the different possible number of qubits
+\label{sec:org7aec0d1}
+
+\begin{verbatim}
+
+            Benchmarks ammount
+No. qubits
+3                           12
+4                           12
+5                           57
+6                           31
+7                           22
+8                           16
+9                           15
+10                          21
+11                          17
+12                          14
+13                          18
+14                          17
+15                          16
+16                          14
+17                          10
+
+\end{verbatim}
+
+\item Different gate numbers for algorithms with less than 17 qubits
+\label{sec:orgc90bc66}
+
+\begin{verbatim}
+
+[4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 27, 28, 29, 31, 33, 34, 35, 36, 37, 43, 50, 51, 52, 53, 66, 68, 69, 70, 73, 83, 84, 85, 91, 103, 107, 110, 115, 131, 132, 146, 148, 150, 151, 162, 163, 164, 173, 175, 178, 179, 194, 200, 211, 215, 217, 228, 230, 231, 233, 235, 244, 247, 251, 258, 263, 270, 272, 273, 275, 288, 290, 296, 320, 326, 328, 338, 342, 343, 395, 403, 440, 451, 467, 469, 485, 504, 555, 580, 612, 631, 650, 778, 781, 954, 986, 1043, 1206, 1221, 1291, 1336, 1776, 1914, 1993, 3009, 3073, 3213, 3439, 3888, 4813, 5321, 6050, 6723, 7630, 8763, 9462, 10223, 10619, 11414, 13658, 17159, 17936, 18852, 20112, 21504, 22445, 24379, 27126, 33827, 34881, 38046, 38577, 49829, 54766, 64283, 69380, 80480, 125362, 128744, 164416, 171840, 184864, 187112, 207775, 360618, 423488, 512064]
+
+\end{verbatim}
+
+\item Amount of different no. of gates unique values
+\label{sec:org722bad4}
+
+157
+
+\item Amount of becnhmarks depending on the number of qubits and gates
+\label{sec:orgf1d3ab5}
+
+\begin{verbatim}
+
+                      Benchmarks ammount
+No. qubits No. gates
+3          6                           7
+           7                           1
+           19                          1
+           20                          1
+           36                          1
+           50                          1
+4          8                           6
+           9                           2
+           34                          1
+           36                          1
+           51                          1
+           52                          1
+5          4                           1
+           7                           1
+           10                          5
+           11                          3
+           18                          1
+           20                          1
+           21                          1
+           22                          1
+           23                          1
+           27                          1
+           35                          2
+           36                          2
+           37                          5
+           52                          1
+           53                          1
+           66                          1
+           68                          1
+           69                          3
+...                                  ...
+13         128744                      1
+           360618                      1
+14         28                          1
+           29                          8
+           211                         1
+           270                         1
+           1776                        2
+           11414                       1
+           33827                       1
+           38577                       1
+           187112                      1
+15         31                          8
+           37                          1
+           343                         1
+           4813                        1
+           7630                        1
+           8763                        1
+           9462                        1
+           17936                       1
+           171840                      1
+16         33                          8
+           175                         1
+           272                         1
+           326                         1
+           485                         1
+           10619                       1
+           18852                       1
+17         35                          8
+           36                          1
+           43                          1
+
+[180 rows x 1 columns]
+
+\end{verbatim}
+
+\item with names
+\label{sec:org63344ab}
+
+\begin{verbatim}
+
+No. qubits No. gates Algorithm
+3          6         benstein_vazirani_1b_secret_128 
+                     benstein_vazirani_1b_secret_16  
+                     benstein_vazirani_1b_secret_2   
+                     benstein_vazirani_1b_secret_32  
+                     benstein_vazirani_1b_secret_4   
+                     benstein_vazirani_1b_secret_64  
+                     benstein_vazirani_1b_secret_8   
+           7         benstein_vazirani_1b_secret_1   
+           19        ex-1_166                        
+           20        ham3_102                        
+           36        3_17_13                         
+           50        miller_11                       
+4          8         benstein_vazirani_2b_secret_128 
+                     benstein_vazirani_2b_secret_16  
+                     benstein_vazirani_2b_secret_32  
+                     benstein_vazirani_2b_secret_4   
+                     benstein_vazirani_2b_secret_64  
+                     benstein_vazirani_2b_secret_8   
+           9         benstein_vazirani_2b_secret_1   
+                     benstein_vazirani_2b_secret_2   
+           34        rd32-v0_66                      
+           36        rd32-v1_68                      
+           51        decod24-v0_38                   
+           52        decod24-v2_43                   
+5          4         vbeAdder_1b                     
+           7         cuccaroAdder_1b                 
+           10        benstein_vazirani_3b_secret_128 
+                     benstein_vazirani_3b_secret_16  
+                     benstein_vazirani_3b_secret_32  
+                     benstein_vazirani_3b_secret_64  
+...                                                       ...
+15         4813      misex1_241                      
+           7630      square_root_7                   
+           8763      ham15_107                       
+           9462      dc2_222                         
+           17936     co14_215                        
+           171840    urf6_160                        
+16         33        benstein_vazirani_14b_secret_1  
+                     benstein_vazirani_14b_secret_128
+                     benstein_vazirani_14b_secret_16 
+                     benstein_vazirani_14b_secret_2  
+                     benstein_vazirani_14b_secret_32 
+                     benstein_vazirani_14b_secret_4  
+                     benstein_vazirani_14b_secret_64 
+                     benstein_vazirani_14b_secret_8  
+           175       cnt3-5_179                      
+           272       qft_16                          
+           326       ising_model_16                  
+           485       cnt3-5_180                      
+           10619     inc_237                         
+           18852     mlp4_245                        
+17         35        benstein_vazirani_15b_secret_1  
+                     benstein_vazirani_15b_secret_128
+                     benstein_vazirani_15b_secret_16 
+                     benstein_vazirani_15b_secret_2  
+                     benstein_vazirani_15b_secret_32 
+                     benstein_vazirani_15b_secret_4  
+                     benstein_vazirani_15b_secret_64 
+                     benstein_vazirani_15b_secret_8  
+           36        vbeAdder_5b                     
+           43        cuccaroAdder_7b                 
+
+\end{verbatim}
 \end{itemize}
 
+
+
+\subsection*{Github repository}
+\label{sec:orgc2bf96d}
+
+Finally, all this information is detailed in the \href{https://github.com/QE-Lab/qbench}{qbench Github repo} where one can find all the benchmarks, as well.
+
 \section*{Error framework}
-\label{sec:org8b63c1b}
+\label{sec:org80e1604}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 
 \subsection*{Compiler (OpenQL, cQASM)?}
-\label{sec:org7871930}
+\label{sec:org06f6c35}
 [Intro]
 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/layers.png}
-\caption{\label{fig:org9338876}
+\caption{\label{fig:org3209de3}
 Compilation layers}
 \end{figure}
 
 
 \begin{itemize}
 \item cQASM
-\label{sec:org625aa1b}
+\label{sec:orgfae9130}
 
 
 \item OpenQL
-\label{sec:org9929300}
+\label{sec:orga0bed3d}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/openql.png}
-\caption{\label{fig:orgf70b7a9}
+\caption{\label{fig:org45b2ea9}
 OpenQL diagram}
 \end{figure}
 
@@ -345,14 +634,14 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{itemize}
 
 \subsection*{{\bfseries\sffamily TODO} quantumsim}
-\label{sec:orgabe2ebd}
+\label{sec:org34fe4c5}
 
 \begin{itemize}
 \item Error model parameters
-\label{sec:orgd00f79b}
+\label{sec:org24c7b33}
 
 \begin{table}[htbp]
-\caption{\label{tab:org702017c}
+\caption{\label{tab:org8b8fb16}
 Main error model parameters for simulation}
 \centering
 \tiny
@@ -379,7 +668,7 @@ In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrin
 \end{table}
 
 \item Error models
-\label{sec:org3da5bd5}
+\label{sec:org72b0f16}
 
 In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
 
@@ -389,14 +678,14 @@ where \(\sigma_i\) are the Pauli operators: \(\sigma_0 = I\), \(\sigma_1 = X\), 
 
 \begin{itemize}
 \item Qubit Idling
-\label{sec:org1ac957e}
+\label{sec:org7ba822c}
 
 While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
 The dephasing effect only appears in a superposition state.
 
 \begin{itemize}
 \item Amplitude-phase damping model
-\label{sec:org6c435ca}
+\label{sec:org97141b7}
 
 $$R_{\Lambda_{T_1}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
@@ -416,7 +705,7 @@ $$R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
 with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
 
 \item Qubit idling
-\label{sec:orgd6d6015}
+\label{sec:org2ddbe2f}
 
 Idling for a duration \(t\):
 
@@ -424,7 +713,7 @@ $$R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}$$
 \end{itemize}
 
 \item Single-qubit \(R_y(\pi /2)\) rotations
-\label{sec:org6c84f64}
+\label{sec:orgd1c48b1}
 
 "Single-qubit gates [\ldots{}] errors can mostly be attributed to Markovian noise. [\ldots{}] we thus model these errors as Markovian".
 
@@ -447,7 +736,7 @@ $$R_{dep} = \begin{bmatrix}
 and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
 
 \item CZ gates
-\label{sec:org26fb720}
+\label{sec:org6e3023b}
 
 "The C-Z gate is achieved by flux pulsing a transmon into the \(|11\rangle \leftrightarrow |02\rangle\) avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
 Holding the transmons here for \(\tau_{g,2Q}\) causes the probability amplitudes of \(|01\rangle\) and \(|11\rangle\) to acquire phases[\ldots{}]
@@ -456,16 +745,16 @@ Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ g
 
 
 \item Measurement
-\label{sec:orgef6a337}
+\label{sec:org751ee2f}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/measure_model.png}
-\caption{\label{fig:orgb1cc126}
+\caption{\label{fig:org727f4b9}
 The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\). At this point, the qubit state is sampled. The sampling result is subject to a declaration error \(\epsilon_{RO}\), and the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\) before the end of the measurement block}
 \end{figure}
 
-The initial dephasing step in the measurement model (Fig. \ref{fig:orgb1cc126}) occurs due to the \hyperref[sec:org4117334]{photon decay} effect.
+The initial dephasing step in the measurement model (Fig. \ref{fig:org727f4b9}) occurs due to the \hyperref[sec:orgb4704f7]{photon decay} effect.
 
 "We find that the readout errors \(\epsilon_{RO}^{|i\rangle}\) are almost independent of the qubit state \(|i\rangle\), and so we describe them with a single readout error parameter \(\epsilon_{RO}\)".
 The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%\) is extracted from experiments. 
@@ -473,13 +762,13 @@ The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1}
 They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
 
 \item Photon decay
-\label{sec:org4117334}
+\label{sec:orgb4704f7}
 In the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
 This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
 This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\).
 
 \item Flux Noise
-\label{sec:org88b6df2}
+\label{sec:org1075081}
 
 During a quantum algorithm, "transmons are repeatedly moved in frequency away from their sweetspot using flux pulses, either to implement a C-Z gate or to avoid one. Away from the sweetspot, transmons become first-order sensitive to flux noise, which causes an additional random phase shift."
 
@@ -493,7 +782,7 @@ As one could see in the figures 4 and 5 from the Supplemental information, a lit
 
 
 \item Effects not taking into account
-\label{sec:orgc6f940f}
+\label{sec:org48d78ab}
 
 They use a simple model for the CZ errors.
 They neglect leakage (previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%).
@@ -501,49 +790,49 @@ Of course this simplification is also in \textbf{quantumsim}.
 \end{itemize}
 
 \subsection*{Error Framework}
-\label{sec:org8e34b5f}
+\label{sec:org37ee8a8}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:orge88ed08}
+\caption{\label{fig:org7a5473e}
 Error Framework}
 \end{figure}
 
 \begin{itemize}
 \item Benchmark Object
-\label{sec:org53ce576}
+\label{sec:org9b1f4fe}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:orgddbe20a}
+\caption{\label{fig:orge0afd22}
 Benchmark Object \ldots{}}
 \end{figure}
 
 \item Mapping Analysis Object
-\label{sec:org4ab90d5}
+\label{sec:orge836258}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:org00226fd}
+\caption{\label{fig:org0e88074}
 Mapping Analysis Object \ldots{}}
 \end{figure}
 
 \item Database
-\label{sec:org3c10f68}
+\label{sec:orgd63c5b7}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:org116b57a}
+\caption{\label{fig:orga04c1f5}
 Database tables}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org8f4c5f3}
+\caption{\label{fig:org2ffec99}
 Database tables information}
 \end{figure}
 \end{itemize}
