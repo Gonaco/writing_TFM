@@ -13,7 +13,7 @@ In our case, a benchmark would be a quantum algorithm that we will map to the SC
 
 Under this approach, it was decided that the best methodology would go through four different steps.
 
-**** Build a list of quantum algorithms
+# **** Build a list of quantum algorithms
 
 # Build the algorithm list
 First, we built a list of quantum algorithms as benchmarks.
@@ -25,12 +25,12 @@ As mentioned in the introduction of this chapter and as it is shown in Section [
 Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
 We developed a parser in python in order to do that.
 
-**** Do the algorithms profile
+# **** Do the algorithms profile
 
 # Algorithms profile
 The second step
 
-**** Classify the algorithms
+# **** Classify the algorithms
 
 # Algorithms classification and selection
 The third step 
