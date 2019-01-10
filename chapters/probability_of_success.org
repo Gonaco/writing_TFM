@@ -4,15 +4,28 @@
 
 
 
-#+NAME: eq:
+#+NAME: eq:general_fidelity
 \begin{equation}
-
+{\displaystyle F(\rho ,\sigma )=\left(\operatorname {Tr} {\sqrt {{\sqrt {\rho }}\sigma {\sqrt {\rho }}}}\right)^{2},}
 \end{equation}
+
+where $\rho =\sum _{i}p_{i}|i\rangle \langle i|$ and $\sigma =\sum _{i}q_{i}|i\rangle \langle i|$.
+These states are named mixed states and they are defined as the weighted sum of different pure states.
+This is the general case in order to calculate the fidelity in any case.
+But, for a situation of having one of the states as pure state (eq. [[eq:fidelity_simple]]) or, even, having both (eq. [[eq:fidelity_super_simple]]); the fidelity calculation is much more simplistic.
 
 
 # Fidelity simplistic cases
 
+#+NAME: eq:fidelity_simple
+\begin{equation}
 
+\end{equation}
+
+#+NAME: eq:fidelity_super_simple
+\begin{equation}
+
+\end{equation}
 
 
 
