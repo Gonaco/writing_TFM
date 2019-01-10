@@ -53,12 +53,14 @@ from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper ci
     \fill[teal!40] (8,2) circle (1cm) coordinate (Q);
     \draw[gray,dashed] (5,4) ellipse (6cm and 4cm) coordinate (A);
     \draw (4,0) -- coordinate (L) (10,6.4) coordinate (Le);
- \node[main node] (1) [left=1.8cm of R] {RevLib};
- \node[main node] (2) [above of=Z] {Others from Zulehner's paper};
- \node[main node] (3) [above of=S] {ScaffCC};
- \node[main node] (4) [above right=1.4cm of Q] {QLib};
- \node[main node,draw] (5) [above left=0.1cm of L] {OPENQASM};
- \node[main node,draw] (6) [below=1cm of Le] {QLib QASM};
+ %\node[main node] (1) [left of R] {RevLib};
+\node[main node] at (3,6) {RevLib};
+\node[main node] (2) [above of=Z] {Others from Zulehner's paper};
+\node[main node] (3) [above of=S] {ScaffCC};
+%\node[main node] (4) [above right of Q] {QLib};
+\node[main node] at (8,2) {QLib};
+\node[main node,draw] (5) [above left  of=L] {OPENQASM};
+\node[main node,draw] (6) [below of=Le] {QLib QASM};
 \end{tikzpicture}
 }
 \label{fig:benchmarks_graph}
