@@ -1,5 +1,5 @@
 
-*** Intro                                                          :ignore:
+**** Intro                                                        :ignore:
 # Intro (motivation/why do we need them?) and Objective
 
 As stated in the Introduction, the research was conducted to analyze the different metrics to assert the quality of a mapping algorithm.
@@ -8,33 +8,10 @@ In general computing, a benchmark is a program or a set of programs used to asse
 In our case, a benchmark would be a quantum algorithm that we will map to the SC chips constrains and then simulate aiming to use them to understand the different metrics.
 
 
-*** Methodology                                                    :ignore:
+**** Methodology                                                  :ignore:
 # Methodology
 
 Under this approach, it was decided that the best methodology would go through four different steps.
-
-# **** Build a list of quantum algorithms
-
-# Build the algorithm list
-First, we built a list of quantum algorithms as benchmarks.
-We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
-As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks to be real and useful quantum algorithms, instead of random circuits.
-The sources we chose are RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, some benchmarks from Zulehner's et al. work cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
-The language description of the algorithms from those sources are different between them and any of the languages is the pure QASM, but OpenQASM or another altered QASM languages.
-As mentioned in the introduction of this chapter and as it is shown in Section [[id:e1f45d80-b828-4cc8-b14f-72258918626f]], in order to map the algorithms we will use the OpenQL tool.
-Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
-We developed a parser in python in order to do that.
-
-# **** Do the algorithms profile
-
-# Algorithms profile
-The second step
-
-# **** Classify the algorithms
-
-# Algorithms classification and selection
-The third step 
-
 
 Steps:
     
@@ -49,7 +26,30 @@ Steps:
       3. Are the algorithms working as expected? $\to$ check if the results are the ones that the algorithm should have.
 
 
-*** Benchmarks Graph                                         :BMCOL:ignore:
+***** Build a list of quantum algorithms
+
+# Build the algorithm list
+First, we built a list of quantum algorithms as benchmarks.
+We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
+As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks to be real and useful quantum algorithms, instead of random circuits.
+The sources we chose are RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, some benchmarks from Zulehner's et al. work cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
+The language description of the algorithms from those sources are different between them and any of the languages is the pure QASM, but OpenQASM or another altered QASM languages.
+As mentioned in the introduction of this chapter and as it is shown in Section [[id:e1f45d80-b828-4cc8-b14f-72258918626f]], in order to map the algorithms we will use the OpenQL tool.
+Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
+We developed a parser in python in order to do that.
+
+***** Do the algorithms profile
+
+# Algorithms profile
+The second step
+
+***** Classify the algorithms
+
+# Algorithms classification and selection
+The third step 
+
+
+**** Benchmarks Graph                                       :BMCOL:ignore:
     :PROPERTIES:
     :BEAMER_col: 0.6
     :END:
@@ -82,12 +82,12 @@ Steps:
 
 #+END_EXPORT
 
-*** Benchmarks data                                          :BMCOL:ignore:
+**** Benchmarks data                                        :BMCOL:ignore:
     :PROPERTIES:
     :BEAMER_col: 0.3
     :END:
     
-****                                                              :B_onlyenv:
+*****                                                         :B_onlyenv:
      :PROPERTIES:
      :BEAMER_env: onlyenv
      :BEAMER_act: <1>
@@ -101,7 +101,7 @@ Steps:
       - QLib (7)
 
 
-****                                                              :B_onlyenv:
+*****                                                         :B_onlyenv:
      :PROPERTIES:
      :BEAMER_env: onlyenv
      :BEAMER_act: <2>
@@ -114,9 +114,9 @@ Steps:
     - QLib QASM
       - QLib (3)
 
-*** Benchmarks data analysis
+**** Benchmarks data analysis
 
-***                                                               :B_onlyenv:
+****                                                           :B_onlyenv:
     :PROPERTIES:
     :BEAMER_env: onlyenv
     :BEAMER_act: <1>
@@ -124,7 +124,7 @@ Steps:
 
     The Clifford+T quantum algorithms gathered are not in pure QASM:
 
-***                                                               :B_onlyenv:
+****                                                           :B_onlyenv:
     :PROPERTIES:
     :BEAMER_env: onlyenv
     :BEAMER_act: <2>
@@ -134,7 +134,7 @@ Steps:
     
 
 
-*** OpenQL Translation                                              :B_block:
+**** OpenQL Translation                                          :B_block:
     :PROPERTIES:
     :BEAMER_env: block
     :BEAMER_act: <1>
@@ -142,7 +142,7 @@ Steps:
 
     So they should be translated to OpenQL an then compiled to QASM.
 
-*** TODO                                                           :B_noteNH:
+**** TODO                                                       :B_noteNH:
     :PROPERTIES:
     :BEAMER_env: noteNH
     :END:
@@ -194,176 +194,176 @@ Steps:
    Some of them have arbitrary rotation gates, which decomposition is not included yet in OpenQL, so I'm not going to translate them for now.
 
 
-*** Benchmarks Classification
+**** Benchmarks Classification
 
-* Benchmarks formation and classification
+# * Benchmarks formation and classification
     
 
-** Benchmarks statistics
+# ** Benchmarks statistics
 
-   # Also how the benchmarks are. I have to do here a bridge from the definition of the tasks to the work done.
+#    # Also how the benchmarks are. I have to do here a bridge from the definition of the tasks to the work done.
 
-*** Statistics
+# *** Statistics
     
-    - Number of different algorithms (without the decomposition): 53+3 = 56
-    - The highest amount of gates: ~hwb9_119~ with 207775 gates
-
-    
-***                                                                   :BMCOL:
-    :PROPERTIES:
-    :BEAMER_col: 0.4
-    :END:
-
-    You can find much more information in the [[https://github.com/QE-Lab/qbench][qbench]] repository in GitHub or in my thesis notes in ShareLaTeX.
-
-
-*** TODO                                                           :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-       After the translation, we have 56 different algorithms, in which the higgest amount of gates is around 208 000 gates.
-
-   Also I'm going to show you how is the qbench repo right now.
+#     - Number of different algorithms (without the decomposition): 53+3 = 56
+#     - The highest amount of gates: ~hwb9_119~ with 207775 gates
 
     
-    Things that may interest them:
-
-    - See the OpenQL code and the QASM code
-    - The organization of the repository
-    - The Benchmarks profile
-    - The configuration file of the compilation
-   
-# ** Algorithms Classification
-
-# *** Classification                                                :B_onlyenv:
+# ***                                                                   :BMCOL:
 #     :PROPERTIES:
-#     :BEAMER_act: <1>
-#     :BEAMER_env: onlyenv
+#     :BEAMER_col: 0.4
 #     :END:
 
-#     #+BEGIN_EXPORT latex
-# \begin{center}    
-# \begin{tikzpicture}[sibling distance=3pt]
-#   \tikzset{grow'=right,level distance=130pt}
-#   \tikzset{execute at begin node=\strut}
-#   \tikzset{every tree node/.style={align=center,anchor=base west}}
-#   %% \tikzset{edge from parent/.style={draw,
-#   %%     edge from parent path={(\tikzparentnode.east)
-#   %%       -- +(0,-8pt)
-#   %%       |- (\tikzchildnode)}}}
-#   \tikzset{level 2/.style={level distance=120pt}}
-#   %% \tikzset{level 3/.style={level distance=120pt}}
-#   %% \tikzset{level 4/.style={level distance=100pt}}
-#   %% \tikzset{frontier/.style={distance from root=500pt}}
-#   \Tree [.{Benchmarks Classes}
-#     {Quantum Gates}
-#     {Search Algorithms}
-#     {Encoding Functions}
-#     {Arithmetic Functions}
-#     {Miscellaneous}
-#     ]
-#     \end{tikzpicture}
-# \end{center}
-#     #+END_EXPORT
-
-# *** Classification                                                  :B_block:
-#     :PROPERTIES:
-#     :BEAMER_env: block
-#     :END:
-
-#     Based on the RevLib cite:Wille_2008 algorithm classification, for now, because most of the benchmarks come from that library.
-# *** Classification                                                :B_onlyenv:
-#     :PROPERTIES:
-#     :BEAMER_act: <2>
-#     :BEAMER_env: onlyenv
-#     :END:
-
-#     #+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{2.5cm}|p{3cm}p{3cm}
-#     |                      |                     |                |
-#     | Quantum gates        | Miller Gate         |                |
-#     |----------------------+---------------------+----------------|
-#     | Search Algorithms    | Grover's Search     |                |
-#     |----------------------+---------------------+----------------|
-#     |                      | Decod24             |                |
-#     | Encoding Functions   | Decod24 with enable |                |
-#     |                      | Graycode            |                |
-#     |                      | Hamming Code        |                |
-#     |----------------------+---------------------+----------------|
-#     |                      | 0410184             | mlp4           |
-#     |                      | 1-bit Adder / rd32  | mod5adder      |
-#     |                      | 4 greater than 10   | mod5d1         |
-#     |                      | 4 greater than 11   | mod5d2         |
-#     |                      | 4 greater than 12   | mod5mils       |
-#     |                      | 4 greater than 13   | plus127mod8192 |
-#     |                      | 4 greater than 4    | plus63mod4096  |
-#     |                      | 4 greater than 5    | plus63mod8192  |
-#     | Arithmetic Functions | 4 modulo 7          | radd           |
-#     |                      | ALUs                | rd32           |
-#     |                      | Check 4 modulo 5    | rd53           |
-#     |                      | Cuccaro Adder       | rd73           |
-#     |                      | Cuccaro Multiplier  | rd84           |
-#     |                      | Drapper Adder       | root           |
-#     |                      | Modulo 8/10 Counter | sqn            |
-
-# *** Classification                                                :B_onlyenv:
-#     :PROPERTIES:
-#     :BEAMER_act: <3>
-#     :BEAMER_env: onlyenv
-#     :END:
-
-#     #+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{2.5cm}|p{2.5cm}p{3.5cm} 
-#     |                      | One-Two-Three Counter | sqrt8                             |
-#     |                      | VBE Adder             | squar5                            |
-#     | Arithmetic Functions | dist                  | xor5                              |
-#     |                      | majority              | z4                                |
-#     |                      | max46                 |                                   |
-#     |----------------------+-----------------------+-----------------------------------|
-#     |                      | 9symml                | ex-1                              |
-#     |                      | adr4                  | ex1                               |
-#     |                      | aj-e11                | ex2                               |
-#     |                      | C17                   | ex3                               |
-#     |                      | clip                  | f2                                |
-#     |                      | cm152a                | inc                               |
-#     | Miscellaneous        | cm42a                 | life                              |
-#     |                      | cm82a                 | misex1                            |
-#     |                      | cm85a                 | pm1                               |
-#     |                      | co14                  | sao2                              |
-#     |                      | con1                  | sym10                             |
-#     |                      | cycle10_2             | sym6                              |
-#     |                      | dc1                   | sym9                              |
-#     |                      | dc2                   | Unstructured Reversible Functions |
-#     |                      | Hidden Weighted Bit   | 3_17                              |
-#     |                      |                       | 4_49                              |
+#     You can find much more information in the [[https://github.com/QE-Lab/qbench][qbench]] repository in GitHub or in my thesis notes in ShareLaTeX.
 
 
-# *** TODO :B_noteNH:
+# *** TODO                                                           :B_noteNH:
 #     :PROPERTIES:
 #     :BEAMER_env: noteNH
 #     :END:
 
-#     Benchmark classes:
+#        After the translation, we have 56 different algorithms, in which the higgest amount of gates is around 208 000 gates.
 
-#     - Quantum Gates: Circuits that are a decomposition of a Quantum Gate
-#     - Search Algorithms
-#     - Worst Cases: Circuits that were really difficult to generate for RevLib
-#       - HWB: is the simplesr function with exponential Ordered Binary Decision Diagrams (OBDD) size.
-#     - Encoding Functions: Classical codification functions
-#     - Arithmetic Functions: Functions that perform an arithmetic operation
-#     - Miscellaneous: Mix of different kind of algorithms that we do not know its expected behaviour
-    
-*** TODO                                                         :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-       After the building step, as I've already shown you, the profile realization and classification steps came.
-
-   Finally, right now I'm checking the algorithm correctness.
-    
+#    Also I'm going to show you how is the qbench repo right now.
 
     
-*** BIB                                                   :ignore:noexport:
+#     Things that may interest them:
 
-bibliography:../thesis_plan.bib
-bibliographystyle:plain
+#     - See the OpenQL code and the QASM code
+#     - The organization of the repository
+#     - The Benchmarks profile
+#     - The configuration file of the compilation
+   
+# # ** Algorithms Classification
+
+# # *** Classification                                                :B_onlyenv:
+# #     :PROPERTIES:
+# #     :BEAMER_act: <1>
+# #     :BEAMER_env: onlyenv
+# #     :END:
+
+# #     #+BEGIN_EXPORT latex
+# # \begin{center}    
+# # \begin{tikzpicture}[sibling distance=3pt]
+# #   \tikzset{grow'=right,level distance=130pt}
+# #   \tikzset{execute at begin node=\strut}
+# #   \tikzset{every tree node/.style={align=center,anchor=base west}}
+# #   %% \tikzset{edge from parent/.style={draw,
+# #   %%     edge from parent path={(\tikzparentnode.east)
+# #   %%       -- +(0,-8pt)
+# #   %%       |- (\tikzchildnode)}}}
+# #   \tikzset{level 2/.style={level distance=120pt}}
+# #   %% \tikzset{level 3/.style={level distance=120pt}}
+# #   %% \tikzset{level 4/.style={level distance=100pt}}
+# #   %% \tikzset{frontier/.style={distance from root=500pt}}
+# #   \Tree [.{Benchmarks Classes}
+# #     {Quantum Gates}
+# #     {Search Algorithms}
+# #     {Encoding Functions}
+# #     {Arithmetic Functions}
+# #     {Miscellaneous}
+# #     ]
+# #     \end{tikzpicture}
+# # \end{center}
+# #     #+END_EXPORT
+
+# # *** Classification                                                  :B_block:
+# #     :PROPERTIES:
+# #     :BEAMER_env: block
+# #     :END:
+
+# #     Based on the RevLib cite:Wille_2008 algorithm classification, for now, because most of the benchmarks come from that library.
+# # *** Classification                                                :B_onlyenv:
+# #     :PROPERTIES:
+# #     :BEAMER_act: <2>
+# #     :BEAMER_env: onlyenv
+# #     :END:
+
+# #     #+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{2.5cm}|p{3cm}p{3cm}
+# #     |                      |                     |                |
+# #     | Quantum gates        | Miller Gate         |                |
+# #     |----------------------+---------------------+----------------|
+# #     | Search Algorithms    | Grover's Search     |                |
+# #     |----------------------+---------------------+----------------|
+# #     |                      | Decod24             |                |
+# #     | Encoding Functions   | Decod24 with enable |                |
+# #     |                      | Graycode            |                |
+# #     |                      | Hamming Code        |                |
+# #     |----------------------+---------------------+----------------|
+# #     |                      | 0410184             | mlp4           |
+# #     |                      | 1-bit Adder / rd32  | mod5adder      |
+# #     |                      | 4 greater than 10   | mod5d1         |
+# #     |                      | 4 greater than 11   | mod5d2         |
+# #     |                      | 4 greater than 12   | mod5mils       |
+# #     |                      | 4 greater than 13   | plus127mod8192 |
+# #     |                      | 4 greater than 4    | plus63mod4096  |
+# #     |                      | 4 greater than 5    | plus63mod8192  |
+# #     | Arithmetic Functions | 4 modulo 7          | radd           |
+# #     |                      | ALUs                | rd32           |
+# #     |                      | Check 4 modulo 5    | rd53           |
+# #     |                      | Cuccaro Adder       | rd73           |
+# #     |                      | Cuccaro Multiplier  | rd84           |
+# #     |                      | Drapper Adder       | root           |
+# #     |                      | Modulo 8/10 Counter | sqn            |
+
+# # *** Classification                                                :B_onlyenv:
+# #     :PROPERTIES:
+# #     :BEAMER_act: <3>
+# #     :BEAMER_env: onlyenv
+# #     :END:
+
+# #     #+ATTR_LATEX: :booktabs :environment :font \tiny :width \textwidth :float t :align p{2.5cm}|p{2.5cm}p{3.5cm} 
+# #     |                      | One-Two-Three Counter | sqrt8                             |
+# #     |                      | VBE Adder             | squar5                            |
+# #     | Arithmetic Functions | dist                  | xor5                              |
+# #     |                      | majority              | z4                                |
+# #     |                      | max46                 |                                   |
+# #     |----------------------+-----------------------+-----------------------------------|
+# #     |                      | 9symml                | ex-1                              |
+# #     |                      | adr4                  | ex1                               |
+# #     |                      | aj-e11                | ex2                               |
+# #     |                      | C17                   | ex3                               |
+# #     |                      | clip                  | f2                                |
+# #     |                      | cm152a                | inc                               |
+# #     | Miscellaneous        | cm42a                 | life                              |
+# #     |                      | cm82a                 | misex1                            |
+# #     |                      | cm85a                 | pm1                               |
+# #     |                      | co14                  | sao2                              |
+# #     |                      | con1                  | sym10                             |
+# #     |                      | cycle10_2             | sym6                              |
+# #     |                      | dc1                   | sym9                              |
+# #     |                      | dc2                   | Unstructured Reversible Functions |
+# #     |                      | Hidden Weighted Bit   | 3_17                              |
+# #     |                      |                       | 4_49                              |
+
+
+# # *** TODO :B_noteNH:
+# #     :PROPERTIES:
+# #     :BEAMER_env: noteNH
+# #     :END:
+
+# #     Benchmark classes:
+
+# #     - Quantum Gates: Circuits that are a decomposition of a Quantum Gate
+# #     - Search Algorithms
+# #     - Worst Cases: Circuits that were really difficult to generate for RevLib
+# #       - HWB: is the simplesr function with exponential Ordered Binary Decision Diagrams (OBDD) size.
+# #     - Encoding Functions: Classical codification functions
+# #     - Arithmetic Functions: Functions that perform an arithmetic operation
+# #     - Miscellaneous: Mix of different kind of algorithms that we do not know its expected behaviour
+    
+# *** TODO                                                         :B_noteNH:
+#     :PROPERTIES:
+#     :BEAMER_env: noteNH
+#     :END:
+
+#        After the building step, as I've already shown you, the profile realization and classification steps came.
+
+#    Finally, right now I'm checking the algorithm correctness.
+    
+
+    
+# *** BIB                                                   :ignore:noexport:
+
+# bibliography:../thesis_plan.bib
+# bibliographystyle:plain
