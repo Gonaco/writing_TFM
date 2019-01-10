@@ -40,8 +40,8 @@ We developed a parser in python in order to do that.
 |-------------------+--------------|
 | OpenQASM          | Altered QASM |
 |-------------------+--------------|
-| RevLib (55)       | QLib (7)     |
-| ScaffCC (3)       |              |
+| RevLib ()         | QLib ()      |
+| ScaffCC ()        |              |
 | other Sources (1) |              |
 |-------------------+--------------|
 
@@ -218,118 +218,56 @@ From all the benchmarks we have, we can distinct six different classes.
 ***** Benchmarks selection
 
 The last step aims to have a small, but representative, set of benchmarks to map.
+This requirement comes by the fact that simulations are long and computationally exhaustive.
 In order to do that, we studied the different benchmark profiles looking for most illustrative cases.
+But we also set some restrictions.
+First of all, as soon as we are going to map the algorithms to the SC chips with a maximum number of 17 qubits, we need to look for the benchmarks with an amount of qubits below that.
+We also want to see how different gate quantities affect the mapping.
+Therefore, we need benchmarks with a number of gates as spread as possible.
+And, at the same time, several benchmarks presenting the same number of gates.
+We also tend to mix all the classes equally.
+And we try to have the less number of the same algorithm versions as possible.
+We only take the same algorithm versions for cases in which the number of qubits and the number of gates show an interesting combination.
+For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. [[tab:map_selected_benchs]].
+Finally, benchmarks with a known functionality are preferred.
 
+Once we had our requirements we could start the analysis and the selection afterwards.
+In the next figures, from Fig. \ref{code:no_q_statistics} to Fig. \ref{code:q_gate_bench}, we show the different steps and data of the analysis in order to do the selection.
+In Tab. [[tab:map_selected_benchs]] we show the final benchmark selection.
+The crossed out algorithms are the ones that, after the selection, the simulation failed because of their computational requirements.
 
 ****** Restrictions                                             :ignore:
 
-- # qubits < 17
-- # gates as spread as possible and in the case of repeated benchmark the minimum number of gates
-- The less number of the same algorithm versions as possible
-- The benchmarks that are repeated and have an interesting combination of No. qubits/No. gates are preferred
-- The benchmarks with a known functionality are preferred
-
-
-****** Selected (/for now/)                                       :ignore:
-
-43 benchmarks (with qubits numbers from 3 to 17 qubits) selected after applying the previous Restrictions to the analysis of the benchmarks described in the next section.
-
-| No. qubits | No. gates | Algorithm                        |
-|------------+-----------+----------------------------------|
-|          5 |        27 | 4gt11_82                         |
-|          6 |       228 | 4gt12-v1_89                      |
-|          6 |       258 | 4gt4-v0_72                       |
-|          7 |        70 | 4mod5-bdd_287                    |
-|          5 |        20 | 4mod5-v0_20                      |
-|          7 |        84 | alu-bdd_288                      |
-|          5 |        36 | alu-v0_27                        |
-|         17 |        35 | benstein_vazirani_15b_secret_128 |
-|         16 |       175 | +cnt3-5_179+                       |
-|          5 |         7 | cuccaroAdder_1b                  |
-|          7 |        11 | cuccaroMultiplier_1b             |
-|          6 |        73 | decod24-bdd_294                  |
-|          6 |       338 | decod24-enable_126               |
-|          6 |         5 | graycode6_47                     |
-|         13 |    360618 | +ground_state_estimation_10+       |
-|          3 |        16 | grover_orcl_toff                 |
-|          3 |        20 | ham3_102                         |
-|          5 |       233 | hwb4_49                          |
-|         10 |       200 | +ising_model_10+                   |
-|         11 |     22445 | +life_238+                         |
-|          3 |        50 | miller_11                        |
-|          5 |       288 | mini-alu_167                     |
-|         10 |       173 | +mini_alu_305+                     |
-|          5 |       178 | mod10_176                        |
-|          6 |       555 | mod5adder_127                    |
-|          5 |        22 | mod5d1_63                        |
-|          6 |       440 | mod8-10_177                      |
-|          5 |       132 | one-two-three-v1_99              |
-|          5 |        70 | one-two-three-v3_101             |
-|         13 |    128744 | +plus63mod4096_163+                |
-|         10 |       110 | +qft_10+                           |
-|          4 |        34 | rd32-v0_66                       |
-|          6 |       781 | sf_274                           |
-|          6 |       778 | sf_276                           |
-|         12 |      4792 | shor_15                          |
-|         12 |      3009 | sqrt8_260                        |
-|         13 |      1993 | +squar5_261+                       |
-|         15 |      7630 | +square_root_7+                    |
-|          7 |      3888 | sym6_145                         |
-|         14 |       270 | +sym6_316+                         |
-|          8 |     80480 | +urf2_152+                         |
-|          8 |     20112 | +urf2_277+                         |
-|          8 |        12 | vbeAdder_2b                      |
-|          6 |         7 | xor5_254                         |
-
-
-*After simulating the algorithms, some of them either return errors (segmentation fault) or are computationally exhausting to simulate them as they should be simulated.
-
-****** Post-selection analysis                                  :ignore:
-
-| Algorithm                        | Gate proportion |
-|----------------------------------+-----------------|
-| 4gt11_82                         | [[file:post_analysis/4gt11_82/output_instruction_types.png][histogram]]       |
-| 4gt12-v1_89                      | [[file:post_analysis/4gt12_v1_89/output_instruction_types.png][histogram]]       |
-| 4gt4-v0_72                       | [[file:post_analysis/4gt4_v0_72/output_instruction_types.png][histogram]]       |
-| 4mod5-bdd_287                    | [[file:post_analysis/4mod5_bdd_287/output_instruction_types.png][histogram]]       |
-| 4mod5-v0_20                      | [[file:post_analysis/4mod5_v0_20/output_instruction_types.png][histogram]]       |
-| alu-bdd_288                      | [[file:post_analysis/alu_bdd_288/output_instruction_types.png][histogram]]       |
-| alu-v0_27                        | [[file:post_analysis/alu_v0_27/output_instruction_types.png][histogram]]       |
-| benstein_vazirani_15b_secret_128 | [[file:post_analysis/benstein_vazirani_15b_secret_128/output_instruction_types.png][histogram]]       |
-| cuccaroAdder_1b                  | [[file:post_analysis/cuccaroAdder_1b/output_instruction_types.png][histogram]]       |
-| cuccaroMultiplier_1b             | [[file:post_analysis/cuccaroMultiplier_1b/output_instruction_types.png][histogram]]       |
-| decod24-bdd_294                  | [[file:post_analysis/decod24_bdd_294/output_instruction_types.png][histogram]]       |
-| decod24-enable_126               | [[file:post_analysis/decod24_enable_126/output_instruction_types.png][histogram]]       |
-| graycode6_47                     | [[file:post_analysis/graycode6_47/output_instruction_types.png][histogram]]       |
-| ham3_102                         | [[file:post_analysis/ham3_102/output_instruction_types.png][histogram]]       |
-| hwb4_49                          | [[file:post_analysis/hwb4_49/output_instruction_types.png][histogram]]       |
-| miller_11                        | [[file:post_analysis/miller_11/output_instruction_types.png][histogram]]       |
-| mini-alu_167                     | [[file:post_analysis/mini_alu_167/output_instruction_types.png][histogram]]       |
-| mod10_176                        | [[file:post_analysis/mod10_176/output_instruction_types.png][histogram]]       |
-| mod5adder_127                    | [[file:post_analysis/mod5adder_127/output_instruction_types.png][histogram]]       |
-| mod5d1_63                        | [[file:post_analysis/mod5d1_63/output_instruction_types.png][histogram]]       |
-| mod8-10_177                      | [[file:post_analysis/mod8_10_177/output_instruction_types.png][histogram]]       |
-| one-two-three-v1_99              | [[file:post_analysis/one_two_three_v1_99/output_instruction_types.png][histogram]]       |
-| one-two-three-v3_101             | [[file:post_analysis/one_two_three_v3_101/output_instruction_types.png][histogram]]       |
-| rd32-v0_66                       | [[file:post_analysis/rd32_v0_66/output_instruction_types.png][histogram]]       |
-| sf_274                           | [[file:post_analysis/sf_274/output_instruction_types.png][histogram]]       |
-| sf_276                           | [[file:post_analysis/sf_276/output_instruction_types.png][histogram]]       |
-| shor_15                          | [[file:post_analysis/shor_15/output_instruction_types.png][histogram]]       |
-| sqrt8_260                        | [[file:post_analysis/sqrt8_260/output_instruction_types.png][histogram]]       |
-| sym6_145                         | [[file:post_analysis/sym6_145/output_instruction_types.png][histogram]]       |
-| vbeAdder_2b                      | [[file:post_analysis/vbeAdder_2b/output_instruction_types.png][histogram]]       |
-| xor5_254                         | [[file:post_analysis/xor5_254/output_instruction_types.png][histogram]]       |
-
-
+#+caption: Restriction summary of the benchmark selection
+#+NAME: tab:bench_select_restrict
+#+ATTR_LATEX: :booktabs :environment :float t :align |l|
+|---------------------------------------------------------------------------------------------------------------|
+|                                                                                                               |
+| Restrictions:                                                                                                 |
+|                                                                                                               |
+| - # qubits < 17                                                                                               |
+| - # gates as spread as possible and in the case of repeated benchmark the minimum number of gates             |
+| - The less number of the same algorithm versions/classes as possible                                          |
+| - The benchmarks that are repeated and have an interesting combination of No. qubits/No. gates are  preferred |
+| - The benchmarks with a known functionality are preferred                                                     |
+|                                                                                                               |
+|---------------------------------------------------------------------------------------------------------------|
   
 ****** Preselection analysis                                    :ignore:
 
-******* Initial entries
+******* Initial entries                               :ignore:noexport:
 
 690
 
 
-******* Benchark amounts depending on the different possible number of qubits
+******* Benchark amounts depending on the different possible number of qubits :ignore:
+
+#+BEGIN_EXPORT latex
+
+\begin{figure}
+\centering
+
+#+END_EXPORT
 
 #+BEGIN_EXAMPLE
 
@@ -353,7 +291,18 @@ No. qubits
 
 #+END_EXAMPLE
 
-******* Different gate numbers for algorithms with less than 17 qubits
+#+BEGIN_EXPORT latex
+
+\label{code:no_q_statistics}
+\caption{Statistics of the amount of benchmarks wit the same number of qubits}
+\end{figure}
+
+#+END_EXPORT
+
+
+******* Different gate numbers for algorithms with less than 17 qubits :ignore:
+
+[TOPLOT]
 
 #+BEGIN_EXAMPLE
 
@@ -361,11 +310,18 @@ No. qubits
 
 #+END_EXAMPLE
 
-******* Amount of different no. of gates unique values
+******* Amount of different no. of gates unique values :noexport:ignore:
 
 157
 
-******* Amount of becnhmarks depending on the number of qubits and gates
+******* Amount of becnhmarks depending on the number of qubits and gates :ignore:
+
+#+BEGIN_EXPORT latex
+
+\begin{figure}
+\centering
+
+#+END_EXPORT
 
 #+BEGIN_EXAMPLE
 
@@ -437,7 +393,16 @@ No. qubits No. gates
 
 #+END_EXAMPLE
 
-******* with names
+
+#+BEGIN_EXPORT latex
+
+\label{code:q_gate_bench}
+\caption{Amount of benchmarks classified by the number of gates and the number of qubits}
+\end{figure}
+
+#+END_EXPORT
+
+******* with names                                    :ignore:noexport:
 
 #+BEGIN_EXAMPLE
 
@@ -505,6 +470,64 @@ No. qubits No. gates Algorithm
            43        cuccaroAdder_7b                 
 
 #+END_EXAMPLE
+
+****** Selected (/for now/)                                       :ignore:
+
+43 benchmarks (with qubits numbers from 3 to 17 qubits) selected after applying the previous Restrictions to the analysis of the benchmarks described in the next section.
+
+After simulating the algorithms, some of them either return errors (segmentation fault) or are computationally exhausting to simulate them as they should be simulated.
+
+#+caption: Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to computationally exhaustive and the simulations failed.
+#+NAME: tab:map_selected_benchs
+#+ATTR_LATEX: :booktabs :environment :float t :align lll
+|------------+-----------+----------------------------------|
+| No. qubits | No. gates | Algorithm                        |
+|------------+-----------+----------------------------------|
+|          5 |        27 | ~4gt11_82~                         |
+|          6 |       228 | ~4gt12-v1_89~                      |
+|          6 |       258 | ~4gt4-v0_72~                       |
+|          7 |        70 | ~4mod5-bdd_287~                    |
+|          5 |        20 | ~4mod5-v0_20~                      |
+|          7 |        84 | ~alu-bdd_288~                      |
+|          5 |        36 | ~alu-v0_27~                        |
+|         17 |        35 | ~benstein_vazirani_15b_secret_128~ |
+|         16 |       175 | ~+cnt3-5_179+~                     |
+|          5 |         7 | ~cuccaroAdder_1b~                  |
+|          7 |        11 | ~cuccaroMultiplier_1b~             |
+|          6 |        73 | ~decod24-bdd_294~                  |
+|          6 |       338 | ~decod24-enable_126~               |
+|          6 |         5 | ~graycode6_47~                     |
+|         13 |    360618 | ~+ground_state_estimation_10+~     |
+|          3 |        16 | ~grover_orcl_toff~                 |
+|          3 |        20 | ~ham3_102~                         |
+|          5 |       233 | ~hwb4_49~                          |
+|         10 |       200 | ~+ising_model_10+~                 |
+|         11 |     22445 | ~+life_238+~                       |
+|          3 |        50 | ~miller_11~                        |
+|          5 |       288 | ~mini-alu_167~                     |
+|         10 |       173 | ~+mini_alu_305+~                   |
+|          5 |       178 | ~mod10_176~                        |
+|          6 |       555 | ~mod5adder_127~                    |
+|          5 |        22 | ~mod5d1_63~                        |
+|          6 |       440 | ~mod8-10_177~                      |
+|          5 |       132 | ~one-two-three-v1_99~              |
+|          5 |        70 | ~one-two-three-v3_101~             |
+|         13 |    128744 | ~+plus63mod4096_163+~              |
+|         10 |       110 | ~+qft_10+~                         |
+|          4 |        34 | ~rd32-v0_66~                       |
+|          6 |       781 | ~sf_274~                           |
+|          6 |       778 | ~sf_276~                           |
+|         12 |      4792 | ~shor_15~                          |
+|         12 |      3009 | ~sqrt8_260~                        |
+|         13 |      1993 | ~+squar5_261+~                     |
+|         15 |      7630 | ~+square_root_7+~                  |
+|          7 |      3888 | ~sym6_145~                         |
+|         14 |       270 | ~+sym6_316+~                       |
+|          8 |     80480 | ~+urf2_152+~                       |
+|          8 |     20112 | ~+urf2_277+~                       |
+|          8 |        12 | ~vbeAdder_2b~                      |
+|          6 |         7 | ~xor5_254~                         |
+|------------+-----------+----------------------------------|
 
 
 
