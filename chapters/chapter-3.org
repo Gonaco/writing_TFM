@@ -19,13 +19,24 @@
 
 #+INCLUDE: mapping_model.org
 
-** Metrics
+** Mapping Metrics
 :PROPERTIES:
 :ID:       38ded492-56c6-4f6a-a629-06e342314cef
 :END:
-*** Number of SWAPS
+
+As mentioned in the [[id:e9551941-a680-421a-aecc-8b103368acd6][Mapping metrics]] section in the second chapter, we name mapping metrics to those metrics used to assert the quality of a mapper.
+In this section we will review the common metrics as the *number of SWAPs* or the *latency*, but we will also define -- and study in more detail -- some new mapping metrics that we incorporated, *probability of success* and *Quantum Volume*.
+
+*** Number of SWAPs
+
+
+
 *** Latency
+
 *** Probability of success
+
+#+INCLUDE: probability_of_success.org
+
 *** Quantum Volume
 
 #+INCLUDE: quantum_volume.org

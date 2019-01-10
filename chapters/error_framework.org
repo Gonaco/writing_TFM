@@ -19,6 +19,9 @@
 #+ATTR_LATEX: :width .75\textwidth
 [[file:figures/error_analysis.png]]
 
+
+# Admitting limitations
+
 ****** Database
 
 #+caption: Database tables

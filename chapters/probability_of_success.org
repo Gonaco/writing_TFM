@@ -1,0 +1,21 @@
+# Introduction
+
+# Fidelity definition
+
+
+
+#+NAME: eq:
+\begin{equation}
+
+\end{equation}
+
+
+# Fidelity simplistic cases
+
+
+
+
+
+
+# Fidelity vs. Probability of success (With the probability of success we take into account the measurement probability of error and it is much easier to calculate) (It could happen to have a bad fidelity but a correct probability of success)
+

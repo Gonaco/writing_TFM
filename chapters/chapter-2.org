@@ -20,5 +20,8 @@
 #+INCLUDE: state_of_the_art.org
 
 ** Mapping metrics
+:PROPERTIES:
+:ID:       e9551941-a680-421a-aecc-8b103368acd6
+:END:
 
 #+INCLUDE: explaining_metrics.org

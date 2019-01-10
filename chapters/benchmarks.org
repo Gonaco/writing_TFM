@@ -83,6 +83,11 @@ We developed a parser in python in order to do that.
 # Algorithms profile
 The goal of this second step is to understand the algorithms we have, extracting their statistics.
 We built a benchmark profile with the number of qubits used, the number of gates, the expected behaviour of the algorithm and different graphs, showing the percentage of the operations types or the number of operations running in parallel amongst others.
+Most of the benchmarks are classical algorithms adapted to quantum circuits.
+This means that they are not using the superposition quality as an advantage and, then, most of the results are binary.
+Or what is the same, qubits in either ground or excited state, but never superposition.
+As we will describe in [REFERENCE] section this will create a relaxation while computing the mapping quality.
+We will assume that a correct response after simulating them would be a binary result and, therefore, a resulting superposition state would mean an error.
 
 
 # - Number of different algorithms (without the decomposition): 53+3 = 56
