@@ -3,11 +3,18 @@
 #+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
 * Benchmarks and error framework
+
+# Intro to our work
+
 ** Benchmarks
 
 #+INCLUDE: benchmarks.org
 
 ** Error framework
+# Intro to the error framework section
+
+In this section we introduce the framework we developed in order to analyze the quantum metrics.
+
 *** Compiler (OpenQL, cQASM)?
 
 #+INCLUDE: compiler.org
@@ -16,7 +23,7 @@
 
 #+INCLUDE: quantumsim.org
 
-*** QX
+*** QX                                                           :noexport:
 
 #+INCLUDE: qx.org
 

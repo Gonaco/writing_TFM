@@ -1,41 +1,39 @@
 
-# Intro (motivation/why do we need them?)
+*** Intro                                                          :ignore:
+# Intro (motivation/why do we need them?) and Objective
 
+As stated in the Introduction, the research was conducted in order to analyze the different metrics to assert the quality of a mapping algorithm.
+Consequently, we used a classic technique, the benchmarking technique.
+In general computing, a benchmark is a program or a set of programs used to assess the performance of the host technology.
+In our case, a benchmark would be a quantum algorithm that we will map to the SC chips constraints and then simulate aiming to use them to understand the different metrics.
+Under this approach, it was decided that the best methodology would go through four different steps.
 
-# Objective
+*** Methodology                                                    :ignore:
 
-*** Objective                                                      :ignore:
-    
-    *Gather* a *useful* list of benchmarks from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014 in order to use them later for the "probability of success" analysis.
+First, we built a list of quantum algorithms as benchmarks.
+We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
+As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks to be real and useful quantum algorithms, instead of random circuits.
 
+from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
 
-    Steps:
-    
-   1. [X] Build algorithms list       
-      1. [X] Gather the algorithms from cite:zulehner17:effic_method_mappin_quant_circuit and cite:Lin_2014.
-      2. [X] Translate them from its QASM version to OpenQL.
-      3. [X] Compile OpenQL files to QASM.
-   2. [X] Algorithms profile (source, number of qubits, number of gates, gates percentage, ...).
-   3. [X] Algorithms classification.
-   4. [ ] Check algorithm correctness.
-      1. [ ] Are the original algorithms correct? $\to$ Check behaviour in the IBM Simulator.
-      2. [ ] Is my translation correct? $\to$ Simulate them in QX and compare the results with the ones of the previous step.
-      3. [ ] Are the algorithms working as expected? $\to$ check if the results are the ones that the algorithm should have.
-*** TODO :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-       So, the objective of this first approach is to gather a *useful* list of benchmarks from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014 in order to use them later for the "probability of success" analysis.
-
-   In order to do it, I'm following the next steps, note that the crosses mean that the work is already done.
-
-
-       I have collected the Clifford+T algorithms from  RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
 
    Then I had to translate them from its QASM version to OpenQL.
 
    And finally compile them.
+
+
+    Steps:
+    
+   1. Build algorithms list       
+      1. Gather the algorithms from cite:zulehner17:effic_method_mappin_quant_circuit and cite:Lin_2014.
+      2. Translate them from its QASM version to OpenQL.
+      3. Compile OpenQL files to QASM.
+   2. Algorithms profile (source, number of qubits, number of gates, gates percentage, ...).
+   3. Algorithms classification.
+   4. Check algorithm correctness.
+      1. Are the original algorithms correct? $\to$ Check behaviour in the IBM Simulator.
+      2. Is my translation correct? $\to$ Simulate them in QX and compare the results with the ones of the previous step.
+      3. Are the algorithms working as expected? $\to$ check if the results are the ones that the algorithm should have.
 
 
 *** Benchmarks Graph                                         :BMCOL:ignore:
@@ -64,7 +62,7 @@
 \end{tikzpicture}
 }
 \label{fig:benchmarks_graph}
-\caption{}
+\caption{Graph depicting the amount of benchmarks per source. The line splits the source depending on the description programming language}
 \end{figure}
 
 #+END_EXPORT
@@ -101,7 +99,7 @@
     - QLib QASM
       - QLib (3)
 
-** Benchmarks data analysis
+*** Benchmarks data analysis
 
 ***                                                               :B_onlyenv:
     :PROPERTIES:
@@ -349,49 +347,8 @@
    Finally, right now I'm checking the algorithm correctness.
     
 
-** Benchmarks formation and classification
-
-***                                                         :B_ignoreheading:
-    :PROPERTIES:
-    :BEAMER_env: ignoreheading
-    :END:
-
     
-    Check algorithm correctness:
-	  1. [ ] Are the original algorithms correct? $\to$ Check behavior in the IBM Simulator.
-	  2. [ ] Is my translation correct? $\to$ Simulate them in QX and compare the results with the ones of the previous step.
-	  3. [ ] Are the algorithms working as expected? $\to$ For the _set of algorithms_ that I am going to use check if the results are the ones that the algorithm should have.
-
-*** TODO :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-
-       I'm working with the IBM simulator in the develop server of the department, but it is too slow.
-   I'm still waiting for the results and learning about the IBM simulator.
-
-   After that I'll check if my translation is correct and finally if the algorithms are correct.
-
-   In order to do the last part I'm going to look if a certain set of algorithms are working as expected.
-   I want also to open a discussion with Zulehner and with you about how to assert the general correctness of the algorithms.
-    
-** Recap
-
-       Approaches for solving the problem:
-
-   1. Benchmarks formation and classification
-   2. "Probability of success" analysis
-   3. Mapping algorithms impact in the "probability of success"
-
-*** TODO :B_noteNH:
-    :PROPERTIES:
-    :BEAMER_env: noteNH
-    :END:
-
-       Ok, so a fast recap. After gathering the benchmarks the next approaches to do are the "Probability of success" analysis and the  Mapping algorithms impact in the "probability of success".
-
-* BIB                                                       :ignore:noexport:
+*** BIB                                                   :ignore:noexport:
 
 bibliography:../thesis_plan.bib
 bibliographystyle:plain
