@@ -125,6 +125,7 @@ Also comparable with the boolean gates, quantum operations can be decomposed in 
 *Universal set of gates* is a set of operations able to generate any other gate by combining them cite:Nielsen_2009.
 In classical computation, for example, the ~OR~ and the ~AND~ gates are able to generate any other logic gate.
 In quantum computation there are several universal set of gates.
+The most used one is the *Clifford+T* set, formed by the Clifford gate set -- phase shifts around the three axes, H and CNOT -- and the T gate.
 In the [[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-7 and -17 chips]] section we offer a table with a universal gate set with its decomposition, particularized for the SC-7 and -17 chips which specifications will be also described in that section.
 It is common to differ between single- and multiple-qubit gates, due to the complexity variation between them.
 It is generally accepted to analyze the multiple-qubit gate problem in its most elemental case, that is the two-qubit gates.

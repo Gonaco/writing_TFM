@@ -1,24 +1,24 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:org12da8b0}
+\label{sec:orgaf2fef4}
 
 In this chapter we describe the work developed during this study.
 Since our main aim was to research on the mapping quality and the metrics used to assess it, we had to develop a whole framework in order to map and simulate quantum algorithm.
 And, obviously, we had to have a set of quantum algorithms to map and simulate.
 
-In the \hyperref[sec:org058bf52]{Benchmarks} section we describe how we built the algorithm set.
-In the \hyperref[sec:orga19fa02]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
+In the \hyperref[sec:orgf61c758]{Benchmarks} section we describe how we built the algorithm set.
+In the \hyperref[sec:org8b63c1b]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
 In order to use the mapping algorithm described in the \href{chapter-3.org}{Mapping model} section, we use OpenQL, a high level programming language to describe quantum circuits.
 OpenQL is able to load a quantum device description and run our mapping algorithm, that is in its engine, to compile and export a mapped quantum circuit representation to the chosen device.
-OpenQL will be explained in much detail in the section \hyperref[sec:org4150227]{Compiler (OpenQL, cQASM)?}.
+OpenQL will be explained in much detail in the section \hyperref[sec:org7871930]{Compiler (OpenQL, cQASM)?}.
 
 \section*{Benchmarks}
-\label{sec:org058bf52}
+\label{sec:orgf61c758}
 As stated in the Introduction, the research was conducted to analyze the different metrics to assert the quality of a mapping algorithm.
 Consequently, we used a classic technique, the benchmarking technique.
 In general computing, a benchmark is a program or a set of programs used to assess the performance of the host technology.
 In our case, a benchmark would be a quantum algorithm that we will map to the SC chips constrains and then simulate aiming to use them to understand the different metrics.
-Under this approach, it was decided that the best methodology would go through four different steps.
+Under this approach, it was decided that the best methodology would be to follow four steps.
 
 Steps:
 
@@ -38,27 +38,33 @@ Steps:
 \end{enumerate}
 \end{enumerate}
 
-\subsection*{Build a list of quantum algorithms}
-\label{sec:org00e21a8}
+\begin{itemize}
+\item Build a list of quantum algorithms
+\label{sec:org4239dda}
 
 First, we built a list of quantum algorithms as benchmarks.
 We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
-As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks to be real and useful quantum algorithms, instead of random circuits.
-The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014}.
-The language description of the algorithms from those sources are different between them and any of the languages is the pure QASM, but OpenQASM or another altered QASM languages.
-As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:org4150227]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
+As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks should be real and useful quantum algorithms, instead of random circuits.
+The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} because of the variety of algorithms and because they are decomposed in the Clifford+T set.
+The counterpart is that the language description of the algorithms from those sources are different and any of them is the pure QASM, but OpenQASM or another altered QASM languages.
+As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:org7871930]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
 Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
 We developed a parser in python in order to do that.
 
-\subsection*{Do the algorithms profile}
-\label{sec:org9537f61}
-
-The second step
-
-\subsection*{Classify the algorithms}
-\label{sec:org1aa3926}
-
-The third step 
+\begin{table}[htbp]
+\caption{\label{tab:orgba17510}
+Amount of algorithms per source organized per the type of circuit description language used}
+\centering
+\begin{tabular}{lrr}
+\hline
+OpenQASM & Altered QASM\\
+\hline
+RevLib (55) & QLib (7)\\
+ScaffCC (3) & \\
+other Sources (1) & \\
+\hline
+\end{tabular}
+\end{table}
 
 \begin{figure}
 \centering
@@ -84,98 +90,67 @@ The third step
 \caption{Graph depicting the amount of benchmarks per source. The line splits the source depending on the description programming language}
 \end{figure}
 
-\subsection*{:B\(_{\text{onlyenv}}\):}
-\label{sec:orgf7c3192}
+\item Algorithms profile
+\label{sec:org50754a6}
+
+The goal of this second step is to understand the algorithms we have, extracting their statistics.
+We built an algorithm profile with the number of qubits used, the number of gates, the expected behaviour of the algorithm and different graphs, showing the percentage of the operations types or the number of operations running in parallel, amongst others.
+
+\item Benchmarks classification
+\label{sec:orgd1f339e}
+
+The third step 
+
+Benchmark classes:
+
 \begin{itemize}
-\item OPENQASM
+\item Quantum Gates: Circuits that are a decomposition of a Quantum Gate
+\item Search Algorithms
+\item Worst Cases: Circuits that were really difficult to generate for RevLib
 \begin{itemize}
-\item RevLib (55)
-\item ScaffCC (3)
-\item Others from Zulehner's paper (1)
+\item HWB: is the simplest function with exponential Ordered Binary Decision Diagrams (OBDD) size.
 \end{itemize}
-\item QLib QASM
-\begin{itemize}
-\item QLib (7)
-\end{itemize}
+\item Encoding Functions: Classical codification functions
+\item Arithmetic Functions: Functions that perform an arithmetic operation
+\item Miscellaneous: Mix of different kind of algorithms that we do not know its expected behavior
 \end{itemize}
 
 
-\subsection*{:B\(_{\text{onlyenv}}\):}
-\label{sec:org6ebb82d}
-\begin{itemize}
-\item OPENQASM
-\begin{itemize}
-\item RevLib (52)
-\item \sout{ScaffCC}
-\item Others from Zulehner's paper (1)
+\item Benchmarks selection
+\label{sec:org9ad4773}
+\item Github repository
+\label{sec:org19b3d62}
 \end{itemize}
-\item QLib QASM
-\begin{itemize}
-\item QLib (3)
-\end{itemize}
-\end{itemize}
-\subsection*{Benchmarks data analysis}
-\label{sec:orgf7cc1ab}
-
-\subsection*{:B\(_{\text{onlyenv}}\):}
-\label{sec:org051d17f}
-The Clifford+T quantum algorithms gathered are not in pure QASM:
-
-\subsection*{:B\(_{\text{onlyenv}}\):}
-\label{sec:org949e6c5}
-After the translation, despite gates that OpenQL is not able to decompose yet, the compiled QASM files are:
-
-
-
-\subsection*{OpenQL Translation}
-\label{sec:org1a17211}
-So they should be translated to OpenQL an then compiled to QASM.
-
-\subsection*{{\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):}
-\label{sec:orgbd71ce2}
-Now, I'm going to show you how the benchmarks are.
-
-Most of them are written in OPENQASM and are from RevLib.
-
-Moreover, Leon has contributed uploading more, but I haven't merge those with the ones I am describing.
-
-\hline
-
-Some of them have arbitrary rotation gates, which decomposition is not included yet in OpenQL, so I'm not going to translate them for now.
-
-
-\subsection*{Benchmarks Classification}
-\label{sec:orgfd62f7b}
 
 \section*{Error framework}
-\label{sec:orga19fa02}
+\label{sec:org8b63c1b}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 
 \subsection*{Compiler (OpenQL, cQASM)?}
-\label{sec:org4150227}
+\label{sec:org7871930}
 [Intro]
 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/layers.png}
-\caption{\label{fig:org07951fd}
+\caption{\label{fig:org9338876}
 Compilation layers}
 \end{figure}
 
 
 \begin{itemize}
 \item cQASM
-\label{sec:orgcbc6f9b}
+\label{sec:org625aa1b}
 
 
 \item OpenQL
-\label{sec:org94338dc}
+\label{sec:org9929300}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/openql.png}
-\caption{\label{fig:org7349a4b}
+\caption{\label{fig:orgf70b7a9}
 OpenQL diagram}
 \end{figure}
 
@@ -370,14 +345,14 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{itemize}
 
 \subsection*{{\bfseries\sffamily TODO} quantumsim}
-\label{sec:orgc48a05a}
+\label{sec:orgabe2ebd}
 
 \begin{itemize}
 \item Error model parameters
-\label{sec:org20f9309}
+\label{sec:orgd00f79b}
 
 \begin{table}[htbp]
-\caption{\label{tab:org640fad8}
+\caption{\label{tab:org702017c}
 Main error model parameters for simulation}
 \centering
 \tiny
@@ -404,7 +379,7 @@ In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrin
 \end{table}
 
 \item Error models
-\label{sec:org2f5b708}
+\label{sec:org3da5bd5}
 
 In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
 
@@ -414,14 +389,14 @@ where \(\sigma_i\) are the Pauli operators: \(\sigma_0 = I\), \(\sigma_1 = X\), 
 
 \begin{itemize}
 \item Qubit Idling
-\label{sec:orgf3fb1d7}
+\label{sec:org1ac957e}
 
 While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
 The dephasing effect only appears in a superposition state.
 
 \begin{itemize}
 \item Amplitude-phase damping model
-\label{sec:org3ebcbb7}
+\label{sec:org6c435ca}
 
 $$R_{\Lambda_{T_1}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
@@ -441,7 +416,7 @@ $$R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
 with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
 
 \item Qubit idling
-\label{sec:org45ee09a}
+\label{sec:orgd6d6015}
 
 Idling for a duration \(t\):
 
@@ -449,7 +424,7 @@ $$R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}$$
 \end{itemize}
 
 \item Single-qubit \(R_y(\pi /2)\) rotations
-\label{sec:orgc5e9cde}
+\label{sec:org6c84f64}
 
 "Single-qubit gates [\ldots{}] errors can mostly be attributed to Markovian noise. [\ldots{}] we thus model these errors as Markovian".
 
@@ -472,7 +447,7 @@ $$R_{dep} = \begin{bmatrix}
 and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
 
 \item CZ gates
-\label{sec:org5861cab}
+\label{sec:org26fb720}
 
 "The C-Z gate is achieved by flux pulsing a transmon into the \(|11\rangle \leftrightarrow |02\rangle\) avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
 Holding the transmons here for \(\tau_{g,2Q}\) causes the probability amplitudes of \(|01\rangle\) and \(|11\rangle\) to acquire phases[\ldots{}]
@@ -481,16 +456,16 @@ Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ g
 
 
 \item Measurement
-\label{sec:org5acd877}
+\label{sec:orgef6a337}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/measure_model.png}
-\caption{\label{fig:orgf18a2dd}
+\caption{\label{fig:orgb1cc126}
 The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\). At this point, the qubit state is sampled. The sampling result is subject to a declaration error \(\epsilon_{RO}\), and the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\) before the end of the measurement block}
 \end{figure}
 
-The initial dephasing step in the measurement model (Fig. \ref{fig:orgf18a2dd}) occurs due to the \hyperref[sec:orgfce9b16]{photon decay} effect.
+The initial dephasing step in the measurement model (Fig. \ref{fig:orgb1cc126}) occurs due to the \hyperref[sec:org4117334]{photon decay} effect.
 
 "We find that the readout errors \(\epsilon_{RO}^{|i\rangle}\) are almost independent of the qubit state \(|i\rangle\), and so we describe them with a single readout error parameter \(\epsilon_{RO}\)".
 The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%\) is extracted from experiments. 
@@ -498,13 +473,13 @@ The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1}
 They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
 
 \item Photon decay
-\label{sec:orgfce9b16}
+\label{sec:org4117334}
 In the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
 This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
 This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\).
 
 \item Flux Noise
-\label{sec:orgce294fe}
+\label{sec:org88b6df2}
 
 During a quantum algorithm, "transmons are repeatedly moved in frequency away from their sweetspot using flux pulses, either to implement a C-Z gate or to avoid one. Away from the sweetspot, transmons become first-order sensitive to flux noise, which causes an additional random phase shift."
 
@@ -518,7 +493,7 @@ As one could see in the figures 4 and 5 from the Supplemental information, a lit
 
 
 \item Effects not taking into account
-\label{sec:orgc191820}
+\label{sec:orgc6f940f}
 
 They use a simple model for the CZ errors.
 They neglect leakage (previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%).
@@ -526,49 +501,49 @@ Of course this simplification is also in \textbf{quantumsim}.
 \end{itemize}
 
 \subsection*{Error Framework}
-\label{sec:org0ccb94f}
+\label{sec:org8e34b5f}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:org4954c2b}
+\caption{\label{fig:orge88ed08}
 Error Framework}
 \end{figure}
 
 \begin{itemize}
 \item Benchmark Object
-\label{sec:orgee9b6e8}
+\label{sec:org53ce576}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:org67f6b7e}
+\caption{\label{fig:orgddbe20a}
 Benchmark Object \ldots{}}
 \end{figure}
 
 \item Mapping Analysis Object
-\label{sec:org3606022}
+\label{sec:org4ab90d5}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:org1391dcd}
+\caption{\label{fig:org00226fd}
 Mapping Analysis Object \ldots{}}
 \end{figure}
 
 \item Database
-\label{sec:org277c71e}
+\label{sec:org3c10f68}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:org83b574c}
+\caption{\label{fig:org116b57a}
 Database tables}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org768d724}
+\caption{\label{fig:org8f4c5f3}
 Database tables information}
 \end{figure}
 \end{itemize}
