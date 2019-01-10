@@ -2,32 +2,37 @@
 *** Intro                                                          :ignore:
 # Intro (motivation/why do we need them?) and Objective
 
-As stated in the Introduction, the research was conducted in order to analyze the different metrics to assert the quality of a mapping algorithm.
+As stated in the Introduction, the research was conducted to analyze the different metrics to assert the quality of a mapping algorithm.
 Consequently, we used a classic technique, the benchmarking technique.
 In general computing, a benchmark is a program or a set of programs used to assess the performance of the host technology.
-In our case, a benchmark would be a quantum algorithm that we will map to the SC chips constraints and then simulate aiming to use them to understand the different metrics.
+In our case, a benchmark would be a quantum algorithm that we will map to the SC chips constrains and then simulate aiming to use them to understand the different metrics.
 Under this approach, it was decided that the best methodology would go through four different steps.
+
 
 *** Methodology                                                    :ignore:
 
+# Build the algorithm list
 First, we built a list of quantum algorithms as benchmarks.
 We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
 As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks to be real and useful quantum algorithms, instead of random circuits.
 The sources we chose are RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, some benchmarks from Zulehner's et al. work cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
-The language description of the algorithms used by those sources is different and it is not the pure QASM, but OpenQASM or another altered QASM languages.
+The language description of the algorithms from those sources are different between them and any of the languages is the pure QASM, but OpenQASM or another altered QASM languages.
+As mentioned in the introduction of this chapter and as it is shown in Section [[id:e1f45d80-b828-4cc8-b14f-72258918626f]], in order to map the algorithms we will use the OpenQL tool.
+Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
+We developed a parser in python in order to do that.
+
+# Algorithms profile
+The second step
+
+# Algorithms classification and selection
+The third step 
 
 
-   Then I had to translate them from its QASM version to OpenQL.
-
-   And finally compile them.
-
-
-    Steps:
+Steps:
     
    1. Build algorithms list       
       1. Gather the algorithms from cite:zulehner17:effic_method_mappin_quant_circuit and cite:Lin_2014.
       2. Translate them from its QASM version to OpenQL.
-      3. Compile OpenQL files to QASM.
    2. Algorithms profile (source, number of qubits, number of gates, gates percentage, ...).
    3. Algorithms classification.
    4. Check algorithm correctness.
