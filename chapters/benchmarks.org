@@ -13,8 +13,8 @@ Under this approach, it was decided that the best methodology would go through f
 First, we built a list of quantum algorithms as benchmarks.
 We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
 As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks to be real and useful quantum algorithms, instead of random circuits.
-
-from RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, Zulehner's paper cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
+The sources we chose are RevLib cite:Wille_2008, ScaffCC cite:JavadiAbhari_2015, some benchmarks from Zulehner's et al. work cite:zulehner17:effic_method_mappin_quant_circuit and QLib cite:Lin_2014.
+The language description of the algorithms used by those sources is different and it is not the pure QASM, but OpenQASM or another altered QASM languages.
 
 
    Then I had to translate them from its QASM version to OpenQL.

@@ -1,10 +1,18 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:org46e470c}
+\label{sec:org01b0513}
+
+In this chapter we describe the work developed during this study.
+Since our main aim was to research on the mapping quality and the metrics used to assess it, we had to develop a whole framework in order to map and simulate quantum algorithm.
+And, obviously, we had to have a set of quantum algorithms to map and simulate.
+
+In the \hyperref[sec:org9b5be28]{Benchmarks} section we describe how we built the algorithm set.
+In the \hyperref[sec:org1d72d85]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
+In order to use the mapping algorithm described in the \href{chapter-3.org}{Mapping model} section, we use OpenQL, a high level programming language to describe quantum circuits.
+OpenQL is able to load a quantum device description and run our mapping, that it is in its engine, to compile and export a quantum circuit representation mapped to the chosen device.
 
 \section*{Benchmarks}
-\label{sec:org570cc00}
-
+\label{sec:org9b5be28}
 As stated in the Introduction, the research was conducted in order to analyze the different metrics to assert the quality of a mapping algorithm.
 Consequently, we used a classic technique, the benchmarking technique.
 In general computing, a benchmark is a program or a set of programs used to assess the performance of the host technology.
@@ -13,8 +21,8 @@ Under this approach, it was decided that the best methodology would go through f
 First, we built a list of quantum algorithms as benchmarks.
 We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
 As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks to be real and useful quantum algorithms, instead of random circuits.
-
-from RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, Zulehner's paper \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014}.
+The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014}.
+The language description of the algorithms used by those sources is different and it is not the pure QASM, but OpenQASM or another altered QASM languages.
 
 
 Then I had to translate them from its QASM version to OpenQL.
@@ -67,7 +75,7 @@ Steps:
 
 \begin{itemize}
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:orgf0004af}
+\label{sec:org91fff3f}
 \begin{itemize}
 \item OPENQASM
 \begin{itemize}
@@ -83,7 +91,7 @@ Steps:
 
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org952053b}
+\label{sec:org038482c}
 \begin{itemize}
 \item OPENQASM
 \begin{itemize}
@@ -97,24 +105,24 @@ Steps:
 \end{itemize}
 \end{itemize}
 \item Benchmarks data analysis
-\label{sec:orgf489be9}
+\label{sec:org2b5f230}
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org231da8d}
+\label{sec:orgf2bd27a}
 The Clifford+T quantum algorithms gathered are not in pure QASM:
 
 \item :B\(_{\text{onlyenv}}\):
-\label{sec:org0d768a2}
+\label{sec:org889bc24}
 After the translation, despite gates that OpenQL is not able to decompose yet, the compiled QASM files are:
 
 
 
 \item OpenQL Translation
-\label{sec:orgb1d53c0}
+\label{sec:org71b981b}
 So they should be translated to OpenQL an then compiled to QASM.
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org5fc32c8}
+\label{sec:org29ba6c0}
 Now, I'm going to show you how the benchmarks are.
 
 Most of them are written in OPENQASM and are from RevLib.
@@ -127,20 +135,20 @@ Some of them have arbitrary rotation gates, which decomposition is not included 
 
 
 \item Benchmarks Classification
-\label{sec:orgcb72ff5}
+\label{sec:org5f6f362}
 \end{itemize}
 
 \subsection*{Benchmarks formation and classification}
-\label{sec:orge03a2e5}
+\label{sec:org377fe78}
 
 
 \begin{itemize}
 \item Benchmarks statistics
-\label{sec:orgc7ef40d}
+\label{sec:orgd929384}
 
 \begin{itemize}
 \item Statistics
-\label{sec:org7031de1}
+\label{sec:org860eb5f}
 
 \begin{itemize}
 \item Number of different algorithms (without the decomposition): 53+3 = 56
@@ -149,12 +157,12 @@ Some of them have arbitrary rotation gates, which decomposition is not included 
 
 
 \item :BMCOL:
-\label{sec:org0b5d5d5}
+\label{sec:orgbe2a3f9}
 You can find much more information in the \href{https://github.com/QE-Lab/qbench}{qbench} repository in GitHub or in my thesis notes in ShareLaTeX.
 
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org6ba5b8f}
+\label{sec:orgefd94b6}
 After the translation, we have 56 different algorithms, in which the higgest amount of gates is around 208 000 gates.
 
 Also I'm going to show you how is the qbench repo right now.
@@ -170,7 +178,7 @@ Things that may interest them:
 \end{itemize}
 
 \item {\bfseries\sffamily TODO} :B\(_{\text{noteNH}}\):
-\label{sec:org5556120}
+\label{sec:orgc8271f0}
 After the building step, as I've already shown you, the profile realization and classification steps came.
 
 Finally, right now I'm checking the algorithm correctness.
@@ -178,11 +186,11 @@ Finally, right now I'm checking the algorithm correctness.
 \end{itemize}
 
 \section*{Error framework}
-\label{sec:orgfdd9514}
+\label{sec:org1d72d85}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 
 \subsection*{Compiler (OpenQL, cQASM)?}
-\label{sec:org229ed29}
+\label{sec:orgf873cf2}
 
 [Intro]
 
@@ -190,23 +198,23 @@ In this section we introduce the framework we developed in order to analyze the 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/layers.png}
-\caption{\label{fig:orgc6550a9}
+\caption{\label{fig:org7621a01}
 Compilation layers}
 \end{figure}
 
 
 \begin{itemize}
 \item cQASM
-\label{sec:org7b86bba}
+\label{sec:org255ec92}
 
 
 \item OpenQL
-\label{sec:orgbc715e2}
+\label{sec:org6ad8bf9}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/openql.png}
-\caption{\label{fig:org3add541}
+\caption{\label{fig:org77b0fc7}
 OpenQL diagram}
 \end{figure}
 
@@ -255,21 +263,160 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 
 \end{minted}
 
-\caption{QASM code describing the Gray code algorithm.}
-\label{code:qasm_gray_code}
+\caption{OpenQL description in python code describing the Gray code algorithm.}
+\label{code:openql_gray_code}
+\end{minipage}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{minipage}{\textwidth}
+
+\begin{minted}[frame=lines,fontsize=\scriptsize,linenos,breaklines,breakanywhere]{js}
+
+{
+   "eqasm_compiler" : "cc_light_compiler",
+
+   "hardware_settings": {
+	 "qubit_number": 7,
+	 "cycle_time" : 20,  
+     ...
+   },
+
+  "resources":
+   {
+    "qubits":
+    {
+      "description": "Each qubit can be used by only one gate at a time. There are 'count' qubits.",
+      "count": 7
+    },
+    "qwgs" :
+    {
+      "description": "Single-qubit rotation gates (instructions of 'mw' type) are controlled by qwgs.  Each qwg controls a private set of qubits.  A qwg can control multiple qubits at the same time, but only when they perform the same gate and started at the same time. There are 'count' qwgs. For each qwg it is described which set of qubits it controls.",
+      "count": 3,
+      "connection_map":
+      {
+	"0" : [0, 1],
+	"1" : [2, 3, 4],
+	"2" : [5, 6]
+      }
+    },
+    "meas_units" :
+    {
+      "description": "Single-qubit measurements (instructions of 'readout' type) are controlled by measurement units.  Each one controls a private set of qubits.  A measurement unit can control multiple qubits at the same time, but only when they started at the same time. There are 'count' measurement units. For each measurement unit it is described which set of qubits it controls.",
+      "count": 2,
+      "connection_map":
+      {
+	"0" : [0, 2, 3, 5, 6],
+	"1" : [1, 4]
+      }
+    },
+    "edges":
+    {
+      "description": "Two-qubit flux gates (instructions of 'flux' type) are controlled by qubit-selective frequency detuning.  Frequency-detuning may cause neighbor qubits (qubits connected by an edge) to inadvertently engage in a two-qubit flux gate as well. This happens when two connected qubits are both executing a two-qubit flux gate. Therefore, for each edge executing a two-qubit gate, certain other edges should not execute a two-qubit gate. There are 'count' edges. For each edge it is described which set of other edges cannot execute a two-qubit gate in parallel.",
+      "count": 16,
+      "connection_map":
+      {
+	"0": [2, 10], 
+	...
+	"15": [5, 13]
+      }
+    },
+    "detuned_qubits":
+    {
+      "description": "A two-qubit flux gate lowers the frequency of its source qubit to get near the frequency of its target qubit.  Any two qubits which have near frequencies execute a two-qubit flux gate.  To prevent any neighbor qubit of the source qubit that has the same frequency as the target qubit to interact as well, those neighbors must have their frequency detuned (lowered out of the way).  A detuned qubit cannot execute a single-qubit rotation (an instruction of 'mw' type).  An edge is a pair of qubits which can execute a two-qubit flux gate.  There are 'count' qubits. For each edge it is described, when executing a two-qubit gate for it, which set of qubits it detunes.",
+      "count": 7,
+      "connection_map":
+      {
+	"0": [3],
+	...
+	"15": []
+      }
+    }
+  },
+  "topology" : 
+  {
+    "description": "A qubit grid is rectangular. The coordinates in the X direction are 0 to x_size-1. In the Y direction they are 0 to y_size-1. In the grid real qubits are placed. Each qubit has an id (its index, used above in the resource descriptions, and used below as operands to gates), an x and a y coordinate. Qubits are connected in directed pairs, called edges. Each edge has an id (its index, used above in the resource descriptions), a source qubit and a destination qubit.",
+    "x_size": 5,
+    "y_size": 3,
+    "qubits": 
+    [ 
+      { "id": 0,  "x": 1, "y": 2 },
+      ...
+      { "id": 6,  "x": 3, "y": 0 }
+    ],
+    "edges": 
+    [
+      { "id": 0,  "src": 2, "dst": 0 },
+      ...
+      { "id": 15,  "src": 4, "dst": 6 }
+
+    ]
+  },
+
+   "instructions": {
+
+   "measure": {
+      "duration": 320,
+      "latency": 0,
+      "matrix": [ [0.0,1.0], [1.0,0.0], [1.0,0.0], [0.0,0.0] ],
+      "disable_optimization": false,
+      "type": "readout",
+      "cc_light_instr_type": "single_qubit_gate",
+      "cc_light_instr": "measz",
+      "cc_light_opcode": 4
+   },
+   "i": {
+      "duration": 20,
+      "latency": 0,
+      "matrix": [ [0.0,1.0], [1.0,0.0], [1.0,0.0], [0.0,0.0] ],
+      "disable_optimization": false,
+      "type": "mw",
+      "cc_light_instr_type": "single_qubit_gate",
+      "cc_light_instr": "i",
+      "cc_light_opcode": 5
+   },
+   "x": {
+      "duration": 20,
+      "latency": 0,
+      "matrix": [ [0.0,1.0], [1.0,0.0], [1.0,0.0], [0.0,0.0] ],
+      "disable_optimization": false,
+      "type": "mw",
+      "cc_light_instr_type": "single_qubit_gate",
+      "cc_light_instr": "x",
+      "cc_light_opcode": 6
+   }
+
+   ...
+
+   },
+
+    "gate_decomposition": {
+	"cnot %0 %1": ["ym90 %1","cz %0 %1","ry90 %1"],
+	"swap %0 %1": ["ym90 %1","cz %0 %1","ry90 %1", "ym90 %0","cz %1 %0","ry90 %0", "ym90 %1","cz %0 %1","ry90 %1"],
+	"z %0" : ["x %0","y %0"],
+    ...
+    }
+}
+
+
+\end{minted}
+
+\caption{JSON code that describe a quantum device characteristics and constrains}
+\label{code:json_sc7}
 \end{minipage}
 \end{figure}
 \end{itemize}
 
 \subsection*{{\bfseries\sffamily TODO} quantumsim}
-\label{sec:org344c0ef}
+\label{sec:orgfa9b7bc}
 
 \begin{itemize}
 \item Error model parameters
-\label{sec:org07a24b2}
+\label{sec:org9664f8a}
 
 \begin{table}[htbp]
-\caption{\label{tab:org4395d9d}
+\caption{\label{tab:orgfec0fcb}
 Main error model parameters for simulation}
 \centering
 \tiny
@@ -296,7 +443,7 @@ In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrin
 \end{table}
 
 \item Error models
-\label{sec:org8dffb3d}
+\label{sec:org2210ad3}
 
 In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
 
@@ -306,14 +453,14 @@ where \(\sigma_i\) are the Pauli operators: \(\sigma_0 = I\), \(\sigma_1 = X\), 
 
 \begin{itemize}
 \item Qubit Idling
-\label{sec:org8422bbd}
+\label{sec:orgcb5ac2c}
 
 While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
 The dephasing effect only appears in a superposition state.
 
 \begin{itemize}
 \item Amplitude-phase damping model
-\label{sec:org2611c22}
+\label{sec:org0049b56}
 
 $$R_{\Lambda_{T_1}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
@@ -333,7 +480,7 @@ $$R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
 with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
 
 \item Qubit idling
-\label{sec:org5e88c8d}
+\label{sec:orgd83b520}
 
 Idling for a duration \(t\):
 
@@ -341,7 +488,7 @@ $$R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}$$
 \end{itemize}
 
 \item Single-qubit \(R_y(\pi /2)\) rotations
-\label{sec:org6ed137e}
+\label{sec:orga1e0c51}
 
 "Single-qubit gates [\ldots{}] errors can mostly be attributed to Markovian noise. [\ldots{}] we thus model these errors as Markovian".
 
@@ -364,7 +511,7 @@ $$R_{dep} = \begin{bmatrix}
 and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
 
 \item CZ gates
-\label{sec:orgb6f3ece}
+\label{sec:org9ac369b}
 
 "The C-Z gate is achieved by flux pulsing a transmon into the \(|11\rangle \leftrightarrow |02\rangle\) avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
 Holding the transmons here for \(\tau_{g,2Q}\) causes the probability amplitudes of \(|01\rangle\) and \(|11\rangle\) to acquire phases[\ldots{}]
@@ -373,16 +520,16 @@ Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ g
 
 
 \item Measurement
-\label{sec:orgdbc0cad}
+\label{sec:orgece17cc}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/measure_model.png}
-\caption{\label{fig:org0c4366d}
+\caption{\label{fig:org78ed0fd}
 The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\). At this point, the qubit state is sampled. The sampling result is subject to a declaration error \(\epsilon_{RO}\), and the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\) before the end of the measurement block}
 \end{figure}
 
-The initial dephasing step in the measurement model (Fig. \ref{fig:org0c4366d}) occurs due to the \hyperref[sec:org16b078d]{photon decay} effect.
+The initial dephasing step in the measurement model (Fig. \ref{fig:org78ed0fd}) occurs due to the \hyperref[sec:org89f1867]{photon decay} effect.
 
 "We find that the readout errors \(\epsilon_{RO}^{|i\rangle}\) are almost independent of the qubit state \(|i\rangle\), and so we describe them with a single readout error parameter \(\epsilon_{RO}\)".
 The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%\) is extracted from experiments. 
@@ -390,13 +537,13 @@ The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1}
 They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
 
 \item Photon decay
-\label{sec:org16b078d}
+\label{sec:org89f1867}
 In the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
 This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
 This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\).
 
 \item Flux Noise
-\label{sec:org9948b52}
+\label{sec:orgd1da197}
 
 During a quantum algorithm, "transmons are repeatedly moved in frequency away from their sweetspot using flux pulses, either to implement a C-Z gate or to avoid one. Away from the sweetspot, transmons become first-order sensitive to flux noise, which causes an additional random phase shift."
 
@@ -410,7 +557,7 @@ As one could see in the figures 4 and 5 from the Supplemental information, a lit
 
 
 \item Effects not taking into account
-\label{sec:org611d3b8}
+\label{sec:org2e30c53}
 
 They use a simple model for the CZ errors.
 They neglect leakage (previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%).
@@ -418,49 +565,49 @@ Of course this simplification is also in \textbf{quantumsim}.
 \end{itemize}
 
 \subsection*{Error Framework}
-\label{sec:orgc444644}
+\label{sec:org146a8e5}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:org14e7c1e}
+\caption{\label{fig:orge7ad43d}
 Error Framework}
 \end{figure}
 
 \begin{itemize}
 \item Benchmark Object
-\label{sec:orgc1968f3}
+\label{sec:org414ff7f}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:org820b34b}
+\caption{\label{fig:org9d55ccc}
 Benchmark Object \ldots{}}
 \end{figure}
 
 \item Mapping Analysis Object
-\label{sec:org4a26228}
+\label{sec:org98713fb}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:orgc987e4f}
+\caption{\label{fig:org4846be0}
 Mapping Analysis Object \ldots{}}
 \end{figure}
 
 \item Database
-\label{sec:orge4c1797}
+\label{sec:orgb01951f}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:orgfdf8b19}
+\caption{\label{fig:org1ee3d3e}
 Database tables}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org57df4b5}
+\caption{\label{fig:org7e2924c}
 Database tables information}
 \end{figure}
 \end{itemize}

@@ -6,11 +6,27 @@
 
 # Intro to our work
 
+In this chapter we describe the work developed during this study.
+Since our main aim was to research on the mapping quality and the metrics used to assess it, we had to develop a whole framework in order to map and simulate quantum algorithm.
+And, obviously, we had to have a set of quantum algorithms to map and simulate.
+
+In the [[id:b34a4c5d-044f-4604-a95a-5028ee7f98ff][Benchmarks]] section we describe how we built the algorithm set.
+In the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Error framework]] section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
+In order to use the mapping algorithm described in the [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]] section, we use OpenQL, a high level programming language to describe quantum circuits.
+OpenQL is able to load a quantum device description and run our mapping, that it is in its engine, to compile and export a quantum circuit representation mapped to the chosen device.
+
 ** Benchmarks
+:PROPERTIES:
+:ID:       b34a4c5d-044f-4604-a95a-5028ee7f98ff
+:END:
 
 #+INCLUDE: benchmarks.org
 
 ** Error framework
+:PROPERTIES:
+:ID:       0f271e2b-2b00-49a2-8a9b-c942b2f367c3
+:END:
+
 # Intro to the error framework section
 
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
