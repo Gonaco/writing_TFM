@@ -10,21 +10,22 @@
 \end{equation}
 
 where $\rho =\sum _{i}p_{i}|i\rangle \langle i|$ and $\sigma =\sum _{i}q_{i}|i\rangle \langle i|$.
-These states are named mixed states and they are defined as the weighted sum of different pure states.
+These states are named *mixed states* and they are defined as the weighted sum of different pure states.
 This is the general case in order to calculate the fidelity in any case.
-But, for a situation of having one of the states as pure state (eq. [[eq:fidelity_simple]]) or, even, having both (eq. [[eq:fidelity_super_simple]]); the fidelity calculation is much more simplistic.
+But, for a situation with one of the states as pure state (${\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}$) the calculation of fidelity reduces its complexity as it can be understood from eq. [[eq:fidelity_simple]].
+Eq. [[eq:fidelity_super_simple]] the next step of simplicity, the one in which both states are pure (${\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}, {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|} {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|}$).
 
 
 # Fidelity simplistic cases
 
 #+NAME: eq:fidelity_simple
 \begin{equation}
-
+{\displaystyle F(\rho ,\sigma )=\operatorname {Tr} \left[{\sqrt {|\psi _{\rho }\rangle \langle \psi _{\rho }|\sigma |\psi _{\rho }\rangle \langle \psi _{\rho }|}}\right]^{2}=\langle \psi _{\rho }|\sigma |\psi _{\rho }\rangle \operatorname {Tr} \left[{\sqrt {|\psi _{\rho }\rangle \langle \psi _{\rho }|}}\right]^{2}=\langle \psi _{\rho }|\sigma |\psi _{\rho }\rangle .}
 \end{equation}
 
 #+NAME: eq:fidelity_super_simple
 \begin{equation}
-
+{\displaystyle F(\rho ,\sigma )=|\langle \psi _{\rho }|\psi _{\sigma }\rangle |^{2}}
 \end{equation}
 
 
