@@ -35,7 +35,7 @@ In this section we will review the common metrics as the *number of SWAPs* or th
 
 #+INCLUDE: latency.org
 
-*** Probability of success
+*** Probability of success and fidelity
 
 #+INCLUDE: probability_of_success.org
 
