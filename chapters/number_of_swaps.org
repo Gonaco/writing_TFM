@@ -1,0 +1,13 @@
+
+# Intro and definition of # SWAPs
+
+As explained before in the [[id:cb18cc44-b0eb-47b1-82db-85ab7c7c083c][Mapping of quantum circuits]] section, to route means to introduce SWAP operations -- or a decomposition of them.
+Whenever a two-qubit gate requests two qubits that are far apart, a path in the gridlike chip layout should be given.
+Each step on this grid would mean a SWAP operation between the vertex qubits of that step.
+We already know that quantum gates are error prone and that one of the main problems that the mapping task is dealing with is to use the least amount of gates as possible.
+Although the general mapping problem is to avoid the introduction of error to the original algorithm, that is caused by more sources apart from the number of gates.
+Nonetheless, the quantum gates is one of the main error sources altogether with the decoherence time.
+That is the reason why the number of SWAPs is commonly used to assert the quality of a mapper, but it is not enough.
+
+# Why the number of SWAPs is not enough? (..., shortest path is not always the best path, ...)
+...

@@ -3,7 +3,8 @@
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added *latency* and the *number* of introduced *operations* after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
 And latency is the time required to run a quantum circuit in a given quantum device.
-It depends on the chip cycle time and the *depth* of the circuit, that is the number of cycles the algorithm encloses.
+It depends on the chip cycle time and the *depth* of the circuit, $Latency = depth \times t_{cycle}$.
+Depth is the number of cycles the algorithm encloses.
 Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
 E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.

@@ -1,0 +1,18 @@
+
+Latency is the time required to run a quantum circuit in a given quantum device.
+The introduction of gates due to the mapping makes the target circuit longer.
+Or what is the same, the introduction of SWAPs -- or their decomposition -- adds several cycles to the depth of the circuit.
+Therefore, the latency of the circuit increases.
+For instance, ...
+
+[Example from the mapping section with latency data]
+
+One of the main source of errors is the decoherence, that is the quantum phenomena that makes the qubits loose their state along time.
+The longer a quantum device is running an algorithm, the more errors would appear.
+Or what is the same, the longer the circuit, the more erroneous will be the result.
+The task of the scheduler -- one of the three mapping steps -- is to look for gates that can be run in parallel
+Considering that time is one of the main error sources and that the scheduler task is to make operations simultaneously, one can understand why latency is used in order to assert the capacity of mapping algorithm
+Nonetheless, as the number of SWAPs this metric is not giving enough information for that.
+
+# Why is latency not good enough metric?
+...

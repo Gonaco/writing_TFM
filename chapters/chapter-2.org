@@ -12,6 +12,9 @@
 #+INCLUDE: quantum_computing.org
 
 ** Mapping of quantum circuits
+:PROPERTIES:
+:ID:       cb18cc44-b0eb-47b1-82db-85ab7c7c083c
+:END:
 
 #+INCLUDE: mapping_of_quantum_circuits.org
 
