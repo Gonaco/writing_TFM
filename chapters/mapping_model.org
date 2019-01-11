@@ -23,7 +23,13 @@ We believe this solution will aid researchers to investigate the best mapping, w
 
 ***** Circuit decomposition
 
+First, the mapper decomposes the gates from the quantum circuit into the gate set possible to run in the quantum device.
+
 ***** Pre-schedule
+
+After that, we pre-schedule the circuit in order to make it easier to understand to the initial placement and router.
+It will execute an ALAP scheduler, creating bundles of parallel gates and pushing them to the end of the circuit.
+The resolution of using an ALAP scheduler comes because the Bas's [REFER BAS THESIS] demonstrated it makes the router to find always a better path than if not.
 
 ***** Initial Virtual-to-Physical-map
 ***** Initial placement
