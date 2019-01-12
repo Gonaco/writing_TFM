@@ -13,7 +13,7 @@ There are not remarkable quantum solutions for this task, yet.
 We consider that a mapper is subdivided in three tasks: scheduler, initial placement and routing, as described in the [[id:cb18cc44-b0eb-47b1-82db-85ab7c7c083c][Mapping of quantum circuits]] section.
 Our procedure is modular, although the flow is restricted to the one described below.
 The mapper is fully adaptable to any device constrain.
-It also offers two different kinds of schedulers, as well as the option of running or not the initial placement and another options related to the chip constrains.
+It also offers two different kinds of schedulers and three router possibilities, as well as the option of running or not the initial placement and another options related to the chip constrains.
 We believe this solution will aid researchers to investigate the best mapping, with different configurations.
 
 #+caption: Mapping flow
@@ -24,6 +24,7 @@ We believe this solution will aid researchers to investigate the best mapping, w
 ***** Circuit decomposition
 
 First, the mapper decomposes the gates from the quantum circuit into the gate set that is possible to run in the quantum device.
+In our case, the mapper decomposes all the gates into the SC-17 and SC-7 chips gate set (Tab. \ref{uni_set_gatetime}).
 
 ***** Pre-scheduler
 
@@ -31,25 +32,58 @@ After that, we pre-schedule the circuit in order to make it easier to understand
 It will execute an ALAP scheduler, creating bundles of parallel gates and pushing them to the end of the circuit.
 The resolution of using an ALAP scheduler comes because the Bas's [REFER BAS THESIS] demonstrated it makes the router to find always a better path than if not.
 
-***** Initial Virtual-to-Physical-map
+***** Initial Virtual-to-Physical-mapping
+
+Due to the inherent behaviour of our mapper, before the initial placement calculation, it needs to relate the virtual qubits that are required with the physical ones in the device.
+This process will relate them in the order the qubits are set in the circuit.
+For instance, the first virtual qubit will be allocated as the first physical qubit, $q_0 \to Q0$.
+It will also check whether or not number of qubits required can be hosted or not in the quantum device.
+
 ***** Initial placement
+
+Once the mapper knows the qubits required, the mapper will try to find the best initial placement for the given circuit.
+First, it will check the first set of two-qubit gates and their target qubits.
+If those qubits are not NN, it will initiate an Integer Liner Programming (ILP) algorithm to find the optimal initial placement.
+The one which requires the minimum number of qubit movements.
+
+
 ***** Router
-***** Resource constrains scheduler
+
+Our router inspects all the gates, one by one, looking for non-NN qubits interactions.
+Whenever the router finds one, it will insert the SWAP operations (decomposed or not decomposed) required to follow the selected path by the router.
+A different path is generated depending on the router option that was selected by the user.
+Although, all of them will try to extend minimally the depth of the circuit.
+There are three options:
+
+1. The first one finds all the shortest paths and selects one of them randomly. The shortest paths are calculated based on the Manhattan distance, counting the number of steps that the qubits will need to move.
+2. The second one finds all the shortest paths as well, but selects the one that would combine the SWAPs extending minimally the gate duration [ASK HANS about this]
+3. The third approach is exactly the same as the second one, but taking into account the chip constraints while mapping. It will select one of the best paths that would interleave the least with the constraints.  
+
+
+***** Resource constrains (RC) -scheduler
+
+The RC-scheduler will finally scheduled the circuit using either an ALAP or an ASAP approach, depending on the user requirements.
+It will take into account the chip parallelism constraints, as the ones described in [REFERENCE TO THE CONSTRAINTS SECTION], scheduling in parallel only the possible operations.
+
 **** Why we choose this specific model                            :ignore:
 
 # Explaining why you chose your specific method, model, etc
+
+
 
 **** Benefits of our method                                       :ignore:
 
 # Describing benefits of your method
 
+
+
 **** Admitting limitations                                        :ignore:
 
 # Admitting limitations
 
-One downside factor regarding this methodology is that the mapper only takes into account one cycle every time.
-It does not look ahead in order to decide the best path also for next iterations.
+One downside factor regarding this methodology is that the mapper only takes into account one gate every time.
+It does not look ahead in order to decide the best path for next iterations.
 Or, what is the same, it does not always find the best mapping solution.
-This limitation comes from the fact that, the more steps you are looking ahead while mapping, the more computationally complex will be the mapper.
+This limitation comes from the fact that, the more steps you are looking ahead while mapping, the more computationally complex will the mapper be.
 We highlight that the mapping problem is an NP problem with complexity $O=...$.
 Therefore, this method represents a viable solution, although a lot of future work should be done.
