@@ -7,6 +7,7 @@
 # Qubit measurements are simulated as projective and following the Born rule, with projection probabilities given by the squared overlap of the input state with the measurement basis states. In order to capture empirical measurement errors, we implement a black-box measurement model by sandwiching the measurement between idling processes. After measuring some qubit they remove that qubit from the density matrix.
 
 
+
 **** Error model parameters
 
 #+caption: Main error model parameters for simulation

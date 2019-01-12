@@ -80,12 +80,11 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{figure}
 #+END_EXPORT
 
-
 #+BEGIN_EXPORT latex
 
 \begin{figure}
 \centering
-\begin{minipage}[t]{.45\textwidth}
+\subfigure[First part]{
 
 #+END_EXPORT
 
@@ -150,13 +149,17 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
      
      #+END_SRC
 
+
 #+BEGIN_EXPORT latex
 
-\end{minipage}
 
-\begin{minipage}[t]{.45\textwidth}
+}
+\label{code:json_sc7_first_part}
+
+\subfigure[Second part]{
 
 #+END_EXPORT
+
 
 #+BEGIN_SRC js
 
@@ -208,12 +211,15 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 
 #+END_SRC
 
+
 #+BEGIN_EXPORT latex
 
-\end{minipage}
+
+}
+\label{code:json_sc7_second_part}
 
 \caption{JSON code that describe a quantum device characteristics and constrains}
 \label{code:json_sc7}
 \end{figure}
-#+END_EXPORT
 
+#+END_EXPORT
