@@ -10,4 +10,8 @@ Nonetheless, the quantum gates is one of the main error sources altogether with 
 That is the reason why the number of SWAPs is commonly used to assert the quality of a mapper, but it is not enough.
 
 # Why the number of SWAPs is not enough? (..., shortest path is not always the best path, ...)
-...
+The number of SWAPs does not give any information about how long the circuit is, or how much it will be affected by decoherence.
+The higher number of SWAPs does not mean the longer the circuit necessarily.
+The SWAPs can be in parallel, for instance.
+It could be the case of a short circuit with a long number operation in parallel.
+# Also, the length of the path selected after routing is directly related with the number SWAPs and ... shortes path is not always the best path

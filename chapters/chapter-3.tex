@@ -1,12 +1,12 @@
 
 \chapter*{Mapping on superconducting quantum processors}
-\label{sec:orgb505949}
+\label{sec:orgda55137}
 \section*{Constraints of the Surface-7 and -17 chips}
-\label{sec:org543f39f}
+\label{sec:org1a0330f}
 \subfile{chapters/constraints}
 
 \section*{Mapping model}
-\label{sec:org5ea284a}
+\label{sec:org8681f7a}
 A mapping algorithm or mapper is an algorithm able to find a mapping solution given a quantum circuit and the target device constraints.
 As one could see in the \href{chapter-2.org}{State of the art}, the mapping algorithms are mostly classical.
 There are not remarkable quantum solutions for this task, yet.
@@ -19,25 +19,25 @@ We believe this solution will aid researchers to investigate the best mapping, w
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/mapping_flow2.png}
-\caption{\label{fig:org2497b30}
+\caption{\label{fig:org406ecf6}
 Mapping flow}
 \end{figure}
 
 \subsection*{Circuit decomposition}
-\label{sec:org9edf2a4}
+\label{sec:orgcea12a5}
 
 First, the mapper decomposes the gates from the quantum circuit into the gate set that is possible to run in the quantum device.
 In our case, the mapper decomposes all the gates into the SC-17 and SC-7 chips gate set (Tab. \ref{uni_set_gatetime}).
 
 \subsection*{Pre-scheduler}
-\label{sec:orged9a756}
+\label{sec:org239091c}
 
 After that, we pre-schedule the circuit in order to make it easier to understand to the initial placement and router.
 It will execute an ALAP scheduler, creating bundles of parallel gates and pushing them to the end of the circuit.
 The resolution of using an ALAP scheduler comes because the Bas's [REFER BAS THESIS] demonstrated it makes the router to find always a better path than if not.
 
 \subsection*{Initial Virtual-to-Physical-mapping}
-\label{sec:org6f51eca}
+\label{sec:orgdede893}
 
 Due to the inherent behaviour of our mapper, before the initial placement calculation, it needs to relate the virtual qubits that are required with the physical ones in the device.
 This process will relate them in the order the qubits are set in the circuit.
@@ -45,7 +45,7 @@ For instance, the first virtual qubit will be allocated as the first physical qu
 It will also check whether or not number of qubits required can be hosted or not in the quantum device.
 
 \subsection*{Initial placement}
-\label{sec:orge8733cb}
+\label{sec:org17271f8}
 
 Once the mapper knows the qubits required, the mapper will try to find the best initial placement for the given circuit.
 First, it will check the first set of two-qubit gates and their target qubits.
@@ -54,7 +54,7 @@ The one which requires the minimum number of qubit movements.
 
 
 \subsection*{Router}
-\label{sec:org9bf8cda}
+\label{sec:orgc71d458}
 
 Our router inspects all the gates, one by one, looking for non-NN qubits interactions.
 Whenever the router finds one, it will insert the SWAP operations (decomposed or not decomposed) required to follow the selected path by the router.
@@ -70,7 +70,7 @@ There are three options:
 
 
 \subsection*{Resource constrains (RC) -scheduler}
-\label{sec:orgaa2a40c}
+\label{sec:orgc47f99f}
 
 The RC-scheduler will finally scheduled the circuit using either an ALAP or an ASAP approach, depending on the user requirements.
 It will take into account the chip parallelism constraints, as the ones described in [REFERENCE TO THE CONSTRAINTS SECTION], scheduling in parallel only the possible operations.
@@ -82,12 +82,12 @@ We highlight that the mapping problem is an NP problem with complexity \$O=\ldot
 Therefore, this method represents a viable solution, although a lot of future work should be done.
 
 \section*{Mapping Metrics}
-\label{sec:orgcd731e4}
+\label{sec:org640950c}
 As mentioned in the \href{chapter-2.org}{Mapping metrics} section in the second chapter, we name mapping metrics to those metrics used to assert the quality of a mapper.
 In this section we will review the common metrics as the \textbf{number of SWAPs} or the \textbf{latency}, but we will also define -- and study in more detail -- some new mapping metrics that we incorporated, \textbf{probability of success} and \textbf{Quantum Volume}.
 
 \subsection*{Number of SWAPs}
-\label{sec:org2391f4b}
+\label{sec:org7dbf5e8}
 
 As explained before in the \href{chapter-2.org}{Mapping of quantum circuits} section, to route means to introduce SWAP operations -- or a decomposition of them.
 Whenever a two-qubit gate requests two qubits that are far apart, a path in the gridlike chip layout should be given.
@@ -97,10 +97,13 @@ Although the general mapping problem is to avoid the introduction of error to th
 Nonetheless, the quantum gates is one of the main error sources altogether with the decoherence time.
 That is the reason why the number of SWAPs is commonly used to assert the quality of a mapper, but it is not enough.
 
-\ldots{}
+The number of SWAPs does not give any information about how long the circuit is, or how much it will be affected by decoherence.
+The higher number of SWAPs does not mean the longer the circuit necessarily.
+The SWAPs can be in parallel, for instance.
+It could be the case of a short circuit with a long number operation in parallel.
 
 \subsection*{Latency}
-\label{sec:org24c2881}
+\label{sec:orgb6460b9}
 
 Latency is the time required to run a quantum circuit in a given quantum device.
 The introduction of gates due to the mapping makes the target circuit longer.
@@ -142,7 +145,7 @@ Nonetheless, as the number of SWAPs this metric is not giving enough information
 \ldots{}
 
 \subsection*{Probability of success and fidelity}
-\label{sec:orgd0011fb}
+\label{sec:org3e21198}
 
 We define probability of success as the probability of having the correct or expected results after running and measuring several times a quantum algorithm.
 For instance, if the expected result of an algorithm is \texttt{0100} and the results are either \texttt{0001} or \texttt{1111} we will get a failure.
@@ -160,27 +163,27 @@ Both compare two quantum states, but, while the success of an algorithm is a boo
 How far is one state from the other.
 As an analogy, if we consider the quantum states as vectors, the fidelity would be the dot product between them.
 However, the fidelity between orthogonal states -- states that differ in rotations around the x-axis as \(| 0100 \rangle\), \(| 0001 \rangle\) and \(| 1111 \rangle\) -- is also 0.
-In eq. \ref{eq:orgfc00939} the fidelity formula is shown to understand its behaviour.
+In eq. \ref{eq:org366cc2f} the fidelity formula is shown to understand its behaviour.
 
 \begin{equation}
-\label{eq:orgfc00939}
+\label{eq:org366cc2f}
 {\displaystyle F(\rho ,\sigma )=\left(\operatorname {Tr} {\sqrt {{\sqrt {\rho }}\sigma {\sqrt {\rho }}}}\right)^{2},}
 \end{equation}
 
 where \(\rho =\sum _{i}p_{i}|i\rangle \langle i|\) and \(\sigma =\sum _{i}q_{i}|i\rangle \langle i|\).
 These states are named \textbf{mixed states} and they are defined as the weighted sum of different pure states.
 This is the general case in order to calculate the fidelity in any case.
-But, for a situation with one of the states as pure state (\({\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}\)) the calculation of fidelity reduces its complexity as it can be understood from eq. \ref{eq:org9d2c19f}.
-Eq. \ref{eq:orgc4149f5} the next step of simplicity, the one in which both states are pure (\({\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}, {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|} {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|}\)).
+But, for a situation with one of the states as pure state (\({\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}\)) the calculation of fidelity reduces its complexity as it can be understood from eq. \ref{eq:org852555a}.
+Eq. \ref{eq:org2066836} the next step of simplicity, the one in which both states are pure (\({\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}, {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|} {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|}\)).
 
 
 \begin{equation}
-\label{eq:org9d2c19f}
+\label{eq:org852555a}
 {\displaystyle F(\rho ,\sigma )=\operatorname {Tr} \left[{\sqrt {|\psi _{\rho }\rangle \langle \psi _{\rho }|\sigma |\psi _{\rho }\rangle \langle \psi _{\rho }|}}\right]^{2}=\langle \psi _{\rho }|\sigma |\psi _{\rho }\rangle \operatorname {Tr} \left[{\sqrt {|\psi _{\rho }\rangle \langle \psi _{\rho }|}}\right]^{2}=\langle \psi _{\rho }|\sigma |\psi _{\rho }\rangle .}
 \end{equation}
 
 \begin{equation}
-\label{eq:orgc4149f5}
+\label{eq:org2066836}
 {\displaystyle F(\rho ,\sigma )=|\langle \psi _{\rho }|\psi _{\sigma }\rangle |^{2}}
 \end{equation}
 
@@ -193,7 +196,7 @@ It could be the case that a quantum state is erroneous before the measurement an
 At the same time, a correct quantum state could be measured wrongly due to the measurement errors.
 
 \subsection*{Quantum Volume}
-\label{sec:orgacaf930}
+\label{sec:orgc67bd3d}
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 A \textbf{hardware-independent measure} is required to depict whether a device is able to run a quantum circuit or not.
@@ -206,13 +209,13 @@ Our purpose is to assert how the mapping procedure affects the runnability of a 
 
 \begin{itemize}
 \item Definition
-\label{sec:orgc3accbc}
+\label{sec:orgc6ae7d5}
 
 In this section, we define the Quantum Volume metric as well as the insights and ideas motivated by its capabilities
 
 \begin{itemize}
 \item Hardware parameters
-\label{sec:org0b33216}
+\label{sec:org908a8b0}
 
 The Quantum Volume metric considers that a quantum computer's performance mainly depends on the next hardware specifications:
 
@@ -225,7 +228,7 @@ The Quantum Volume metric considers that a quantum computer's performance mainly
 \end{itemize}
 
 \item Definitions and metrics
-\label{sec:orga81b689}
+\label{sec:org3c05a24}
 
 In order to understand the metric of Quantum Volume, some concepts need to be defined first. 
 In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_2018} that are part of the rationale of Quantum Volume.
@@ -238,7 +241,7 @@ In this section we offer the inferred definitions from \cite{Bishop_2017,Moll_20
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/model_algorithm.png}
-\caption{\label{fig:org10cc29c}
+\caption{\label{fig:org3f3f412}
 Model algorithm example from \cite{Moll_2018}. Each step represents a possible combination of gates considered as \emph{model algorithm}. Notice that step 2 requires a mapping process that is shown afterwards.}
 \end{figure}
 
@@ -259,7 +262,7 @@ Model algorithm example from \cite{Moll_2018}. Each step represents a possible c
 \end{description}
 
 \item Runnability
-\label{sec:orgc53956f}
+\label{sec:org8ecac7c}
 
 After understading the concept of Quantum Volume, we derived some insights and we had ideas motivated by the possibilities that this new metric offers. 
 We define the \textbf{runnability} of a given quantum circuit on a device based on the separation of the concepts of \emph{device} Quantum Volume (\(V_Q\)) and \emph{algorithm} Quantum Volume (\(V^a_Q\)).
@@ -267,13 +270,13 @@ We define the \textbf{runnability} of a given quantum circuit on a device based 
 
 \begin{itemize}
 \item Quantum Volume of a device
-\label{sec:orgf21f6ab}
+\label{sec:org2b83ae0}
 
 Following \cite{Bishop_2017,Moll_2018}, we can expand the Quantum Volume general equation (\(\tilde{V}_Q\)) with the other definitions in the previous section and maximize for the biggest possible \(n\) in the device. 
 Then, the maximum Quantum Volume that a device could run is defined by:
 
 \begin{equation}
-\label{eq:orgeaa12df}
+\label{eq:orgf5b8c17}
 V_Q = \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2
 \end{equation}
 
@@ -288,17 +291,17 @@ Therefore, we outline that the main limit for the \(V_Q\) is the \(\epsilon_{eff
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/general_QV.png}
-\caption{\label{fig:org26f533b}
+\caption{\label{fig:orgd2426f6}
 Device Quantum Volume behaviour for values less than 1000 qubits and a \(\epsilon_eff < 10^{-5}\)}
 \end{figure}
 
 \item Quantum Volume of an algorithm
-\label{sec:org8510706}
+\label{sec:org0f85e58}
 
 As with \(V_Q\), we initially defined the algorithm's Quantum Volume from the general equation \(\tilde{V}_Q\), although we will adapt it later.
 
 \begin{equation}
-\label{eq:org589de9a}
+\label{eq:org0bd7f8d}
 V_Q^a = \min \left[ n,d \right]^2
 \end{equation}
 
@@ -310,8 +313,8 @@ The growth of both variables causes an equally exponential growth of \(V^a_Q\).
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/V_q_analysis_sym.png}
-\caption{\label{fig:org9ce736c}
-Algorithm Quantum Volume as in eq. \ref{eq:org589de9a} behaviour for values less than \(10^{4}\) qubits and depth less than \(10^{4}\)}
+\caption{\label{fig:org047b804}
+Algorithm Quantum Volume as in eq. \ref{eq:org0bd7f8d} behaviour for values less than \(10^{4}\) qubits and depth less than \(10^{4}\)}
 \end{figure}
 
 Fig. \ref{fig:algorithmQVasym} present the behaviour of \(V_Q^a\)
@@ -322,8 +325,8 @@ The function shows an asymteric beheviour due to \(d\) is much bigger than \(n\)
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/V_q_analysis_asym.png}
-\caption{\label{fig:orgf9aa21a}
-Algorithm Quantum Volume as in eq. \ref{eq:org589de9a} behaviour for values less than 1000 qubits and a depth less than \(10^{5}\)}
+\caption{\label{fig:org980590d}
+Algorithm Quantum Volume as in eq. \ref{eq:org0bd7f8d} behaviour for values less than 1000 qubits and a depth less than \(10^{5}\)}
 \end{figure}
 
 We aware that this approach has a limitation regarding the mapping of the quantum circuit.
@@ -343,7 +346,7 @@ As Moll et al. point out \cite{Moll_2018}, extreme cases of high \(n\) and low \
 But, considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we define the algorithm's Quantum Volume as:
 
 \begin{equation}
-\label{eq:orgf348f1e}
+\label{eq:org4eea9f1}
 V_Q^a =  n \times d
 \end{equation}
 
@@ -355,12 +358,12 @@ affecting equally and exponentially to the metric.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/V_q_analysis_mult.png}
-\caption{\label{fig:org31d2373}
-Algorithm Quantum Volume as in eq. \ref{eq:orgf348f1e} behaviour for values less than 1000 qubits and a depth less than \(10^{5}\)}
+\caption{\label{fig:org69fdb88}
+Algorithm Quantum Volume as in eq. \ref{eq:org4eea9f1} behaviour for values less than 1000 qubits and a depth less than \(10^{5}\)}
 \end{figure}
 
 \item Runnability
-\label{sec:org3ff4252}
+\label{sec:orgb8d7e1b}
 
 Finally, once the Quantum Volume of device and algorithm are stated, we define runnability as the condition for which the \(V_Q\) should be bigger than \(V^a_Q\).
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
@@ -376,14 +379,14 @@ But, as soon as the general behaviour of the final and the initial \(V^a_Q\) is 
 Therefore, we define runnability as the condition of:
 
 \begin{equation}
-\label{eq:org0f17c10}
+\label{eq:org21c579c}
 \max_{n \le N} \min \left[ n,\frac{1}{n \epsilon_{eff} (n)}\right]^2 > n \times d \quad \quad \text{ when } N \ge n
 \end{equation}
 \end{itemize}
 \end{itemize}
 
 \item Methodology
-\label{sec:orgfb70064}
+\label{sec:org19e41fd}
 
 After explaining the insights and our new concepts around the metric of Quantum Volume, let us now
 look at our methodology.
@@ -409,7 +412,7 @@ of success, if any.
 Finally, we will outline the runnability threshold of the algorithm.
 
 \begin{table}[htbp]
-\caption{\label{tab:org4b0fb89}
+\caption{\label{tab:orgd2b51c0}
 Summary of the steps to outline the range of possible values for running a given algorithm}
 \centering
 \small
