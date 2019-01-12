@@ -78,7 +78,7 @@ A sphere of radius one which z-axis extremes represent the ground and excited st
 \end{figure}
 #+END_EXPORT
 
-# Multiple qubits [Entanglement, Math operation (convolution), Hilbert space increments]
+# Multiple qubits [Entanglement, Math operation (convolution), Hilbert space increments] # Density matrices
 But a system with just one qubit is not useful.
 The power of quantum computers explodes with the number of qubits able to work with or, what is the same, the dimensions of the Hilbert space $\mathscr{H}$.
 The quantum state of $n$ qubits can be represented in bra-ket notation, with a $2^n$ size.
@@ -87,6 +87,10 @@ The linear operator that leads to the multiple qubit's state is the *outer produ
 The outer product is represented as $|\phi \rangle \,\langle \psi |$.
 In eq. [[eq:convolution_example]] and [[eq:convolution_example_entanglement]] an example of the outer product is offered.
 The second example represents the other main phenomenon in quantum physics, the *entanglement* state of two qubits ($\phi$ and $\psi$) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
+Another use of the outer product is the calculation of the *density matrices*.
+A density matrix is a state representation that is calculated as the outer product of the qubit state with itself $| \psi \rangle \,\langle \psi |$
+
+
 #+NAME: eq:convolution_example
 \begin{equation}
 |+\rangle \,\langle + | = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} 
