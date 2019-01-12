@@ -166,33 +166,15 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 
    "measure": {
       "duration": 320,
-      "latency": 0,
-      "matrix": [ [0.0,1.0], [1.0,0.0], [1.0,0.0], [0.0,0.0] ],
-      "disable_optimization": false,
-      "type": "readout",
-      "cc_light_instr_type": "single_qubit_gate",
-      "cc_light_instr": "measz",
-      "cc_light_opcode": 4
+      "matrix": ...
    },
    "i": {
       "duration": 20,
-      "latency": 0,
-      "matrix": [ [0.0,1.0], [1.0,0.0], [1.0,0.0], [0.0,0.0] ],
-      "disable_optimization": false,
-      "type": "mw",
-      "cc_light_instr_type": "single_qubit_gate",
-      "cc_light_instr": "i",
-      "cc_light_opcode": 5
+      "matrix": ...
    },
    "x": {
       "duration": 20,
-      "latency": 0,
-      "matrix": [ [0.0,1.0], [1.0,0.0], [1.0,0.0], [0.0,0.0] ],
-      "disable_optimization": false,
-      "type": "mw",
-      "cc_light_instr_type": "single_qubit_gate",
-      "cc_light_instr": "x",
-      "cc_light_opcode": 6
+      "matrix": ...
    }
 
    ...
