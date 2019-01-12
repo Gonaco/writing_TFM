@@ -160,7 +160,6 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 
 #+BEGIN_SRC js
 
-...
   "topology" : 
   {
     "x_size": 5,
@@ -207,7 +206,6 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
     }
 }
 
-
 #+END_SRC
 
 #+BEGIN_EXPORT latex
@@ -216,7 +214,6 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 
 \caption{JSON code that describe a quantum device characteristics and constrains}
 \label{code:json_sc7}
-\end{minipage}
 \end{figure}
 #+END_EXPORT
 
