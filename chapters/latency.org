@@ -43,4 +43,5 @@ Considering that time is one of the main error sources and that the scheduler ta
 Nonetheless, as the number of SWAPs this metric is not giving enough information for that.
 
 # Why is latency not good enough metric?
-...
+The latency of a circuit gives an intuition of how long it is but, unlike the number of operations, it gives no information about the number of operations it has.
+And, therefore, it gives no intuition about how the gate errors are affecting the algorithm final result.
