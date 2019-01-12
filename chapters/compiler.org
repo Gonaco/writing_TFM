@@ -85,7 +85,7 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 
 \begin{figure}
 \centering
-\begin{minipage}{.45\textwidth}
+\begin{minipage}[t]{.45\textwidth}
 
 #+END_EXPORT
 
@@ -154,7 +154,7 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 
 \end{minipage}
 
-\begin{minipage}{.45\textwidth}
+\begin{minipage}[t]{.45\textwidth}
 
 #+END_EXPORT
 
