@@ -1,19 +1,19 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:orgb82b579}
+\label{sec:orge4a3a07}
 
 In this chapter we describe the work developed during this study.
 Since our main aim was to research on the mapping quality and the metrics used to assess it, we had to develop a whole framework in order to map and simulate quantum algorithm.
 And, obviously, we had to have a set of quantum algorithms to map and simulate.
 
-In the \hyperref[sec:org5fe3cce]{Benchmarks} section we describe how we built the algorithm set.
-In the \hyperref[sec:org6d06b2b]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
+In the \hyperref[sec:org8ed61ef]{Benchmarks} section we describe how we built the algorithm set.
+In the \hyperref[sec:orgfabac74]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
 In order to use the mapping algorithm described in the \href{chapter-3.org}{Mapping model} section, we use OpenQL, a high level programming language to describe quantum circuits.
 OpenQL is able to load a quantum device description and run our mapping algorithm, that is in its engine, to compile and export a mapped quantum circuit representation to the chosen device.
-OpenQL will be explained in much detail in the section \hyperref[sec:org62d262d]{Compiler (OpenQL, cQASM)?}.
+OpenQL will be explained in much detail in the section \hyperref[sec:orga57b193]{Compiler (OpenQL, cQASM)?}.
 
 \section*{Benchmarks}
-\label{sec:org5fe3cce}
+\label{sec:org8ed61ef}
 As stated in the Introduction, the research was conducted to analyze the different metrics to assert the quality of a mapping algorithm.
 Consequently, we used a classic technique, the benchmarking technique.
 In general computing, a benchmark is a program or a set of programs used to assess the performance of the host technology.
@@ -32,19 +32,19 @@ Under this approach, it was decided that the best methodology would be to follow
 \end{enumerate}
 
 \subsection*{Build a list of quantum algorithms}
-\label{sec:org9a2fcd3}
+\label{sec:org96e9e14}
 
 First, we built a list of quantum algorithms as benchmarks.
 We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
 As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks should be real and useful quantum algorithms, instead of random circuits.
 The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} because of the variety of algorithms and because they are decomposed in the Clifford+T set.
 The counterpart is that the language description of the algorithms from those sources are different and any of them is the pure QASM, but OpenQASM or another altered QASM languages.
-As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:org62d262d]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
+As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:orga57b193]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
 Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
 We developed a parser in python in order to do that.
 
 \begin{table}[htbp]
-\caption{\label{tab:org7fea00a}
+\caption{\label{tab:org3651f92}
 Amount of algorithms per source organized per the type of circuit description language used}
 \centering
 \begin{tabular}{lrr}
@@ -83,7 +83,7 @@ other Sources (1) & \\
 \end{figure}
 
 \subsection*{Algorithms profile}
-\label{sec:orgc4618be}
+\label{sec:org43a5b2b}
 
 The goal of this second step is to understand the algorithms we have, extracting their statistics.
 We built a benchmark profile with the number of qubits used, the number of gates, the expected behaviour of the algorithm and different graphs, showing the percentage of the operations types or the number of operations running in parallel amongst others.
@@ -94,7 +94,7 @@ As we will describe in [REFERENCE] section this will create a relaxation while c
 We will assume that a correct response after simulating them would be a binary result and, therefore, a resulting superposition state would mean an error.
 
 \subsection*{Benchmarks classification}
-\label{sec:org850b2e8}
+\label{sec:org4e77f16}
 
 The third step is to classify the benchmarks depending on their behaviour.
 This is an important step because algorithms that do similar calculations are used to have common gates distribution.
@@ -114,7 +114,7 @@ From all the benchmarks we have, we can distinct six different classes.
 
 
 \subsection*{Benchmarks selection}
-\label{sec:orgf4985fa}
+\label{sec:org992f0aa}
 
 The last step aims to have a small, but representative, set of benchmarks to map.
 This requirement comes by the fact that simulations are long and computationally exhaustive.
@@ -127,15 +127,15 @@ And, at the same time, several benchmarks presenting the same number of gates.
 We also tend to mix all the classes equally.
 And we try to have the less number of the same algorithm versions as possible.
 We only take the same algorithm versions for cases in which the number of qubits and the number of gates show an interesting combination.
-For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. \ref{tab:orgdd2bc7a}.
+For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. \ref{tab:org8234a90}.
 Finally, benchmarks with a known functionality are preferred.
 
 Once we had our requirements we could start the analysis and the selection afterwards.
 In the next figures, from Fig. \ref{code:no_q_statistics} to Fig. \ref{code:q_gate_bench}, we show the different steps and data of the analysis in order to do the selection.
-In Tab. \ref{tab:orgdd2bc7a} we show the final benchmark selection.
+In Tab. \ref{tab:org8234a90} we show the final benchmark selection.
 The crossed out algorithms are the ones that, after the selection, the simulation failed because of their computational requirements.
 \begin{table}[htbp]
-\caption{\label{tab:org419054b}
+\caption{\label{tab:org57a5af3}
 Restriction summary of the benchmark selection}
 \centering
 \begin{tabular}{|l|}
@@ -273,7 +273,7 @@ No. qubits No. gates
 After simulating the algorithms, some of them either return errors (segmentation fault) or are computationally exhausting to simulate them as they should be simulated.
 
 \begin{table}[htbp]
-\caption{\label{tab:orgdd2bc7a}
+\caption{\label{tab:org8234a90}
 Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to computationally exhaustive and the simulations failed.}
 \centering
 \small
@@ -332,39 +332,39 @@ No. qubits & No. gates & Algorithm\\
 
 
 \subsection*{Github repository}
-\label{sec:org26dc9b1}
+\label{sec:orgb65b625}
 
 Finally, all this information is detailed in the \href{https://github.com/QE-Lab/qbench}{qbench Github repo} where one can find all the benchmarks, as well.
 
 \section*{Error framework}
-\label{sec:org6d06b2b}
+\label{sec:orgfabac74}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 
 \subsection*{Compiler (OpenQL, cQASM)?}
-\label{sec:org62d262d}
+\label{sec:orga57b193}
 [Intro]
 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/layers.png}
-\caption{\label{fig:orgaa510fa}
+\caption{\label{fig:org4501358}
 Compilation layers}
 \end{figure}
 
 
 \begin{itemize}
 \item cQASM
-\label{sec:org88f1959}
+\label{sec:org4b78059}
 
 
 \item OpenQL
-\label{sec:org8bf851c}
+\label{sec:orgf95ee3c}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/openql.png}
-\caption{\label{fig:org6d69258}
+\caption{\label{fig:org1235bcb}
 OpenQL diagram}
 \end{figure}
 
@@ -420,26 +420,150 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{itemize}
 
 \subsection*{quantumsim}
-\label{sec:org06a87c0}
+\label{sec:org6ff3881}
 
-Quantumsim is a simulator of superconducting systems designed to study the SC-7 and SC-17 chips and based on their behaviour on experiments.
+Quantumsim \cite{O_Brien_2017} is a simulator of superconducting systems designed to study the SC-7 and SC-17 chips and based on their behaviour on experiments.
 It performs calculations on \textbf{density matrices} instead of the compact representation of the quantum states because they permit the use of mixed states -- able to represent any kind of errors.
 As it can be inherited in the \href{quantum_computing.org}{Qubits} subsection, the density matrix size grows exponentially with the number of qubits it represents -- \(2^n \times 2^n\) where \(n\) is the number of qubits.
 Once the qubits state is ready as a density matrix, quantumsim applies the quantum gates in the \textbf{Pauli transfer matrix representation}.
-The Pauli representation builds positive matrices that preserves the trace properties of the original matrix, making the operations, either in the regular basis or the Pauli basis, equivalent.
+The Pauli representation builds positive matrices that preserves the trace properties of the original matrix -- Completely Positive Trace-Preserving (CPTP) transformation -- \cite{Merkel_2013} to represent the gates.
 In order to avoid non-efficient calculations, in place of building a huge density matrix considering all the qubits from the very beginning, quantumsim will enlarge dynamically the density matrix whenever a gate requires a new qubit.
 As this calculations are computationally hard, quantumsim has the possibility of boosting calculations with a Graphics Processing Unit (GPU).
 
+
 \begin{equation}
-\label{eq:org5b2c547}
+\label{eq:orgb6f006b}
 (R_{\Lambda})_{ij} = \frac{1}{2} Tr(\sigma_i \Lambda \sigma_j)
 \end{equation}
 
-where \(\sigma_i\) are the Pauli operators \(\sigma_0 = I\), \(\sigma_1 = X\), \(\sigma_2 = Y\), \(\sigma_3 = Z\), equivalent to rations in the main axes of the Bloch sphere.
+where \(\Lambda\) is the CPTP transformation and \(\sigma_i\) are the Pauli operators, viz. \(\sigma_0 = I\), \(\sigma_1 = X\), \(\sigma_2 = Y\), \(\sigma_3 = Z\), equivalent to rotations around the main axes of the Bloch sphere.
+
+
+
+
+\begin{itemize}
+\item Error model
+\label{sec:org8d7cded}
+
+Quantumsim considers six main error sources in the SC-7 and SC-17, of which three comes from the different operations -- single/two-qubit gates and measurement -- and the others are either decoherence or apparatus related errors -- photon decay and the flux noise.
+Each operation has its own model, based on the learning extracted from several experiments.
+The same happens to the other studied phenomena that are incorporated in different ways in the gate matrices.
+In this section we will describe the error sources and how they are simulated in quantumsim.
+From decoherence to the apparatus related errors -- that affect the gates error.
+Also, Tab. \ref{tab:org23a69ab} pinpoints exactly the value of the parameters used in the error model.
+
+
+\begin{itemize}
+\item Qubit Idling
+\label{sec:org1fe3b4e}
+
+While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
+The dephasing effect only appears in a superposition state.
+\begin{equation}
+\label{eq:org34ae206}
+
+R_{\Lambda_{T_1}} = \begin{bmatrix}
+ 1 & 0 & 0 & 0 \\
+ 0 & \sqrt{1 - p_1} & 0 & 0 \\
+ 0 & 0 & \sqrt{1 - p_1} & 0 \\
+ p_1 & 0 & 0 & 1 - p_1 \\
+\end{bmatrix}
+
+\end{equation}
+
+\begin{equation}
+\label{eq:orgde00172}
+
+R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
+ 1 & 0 & 0 & 0 \\
+ 0 & \sqrt{1 - p_{\phi}} & 0 & 0 \\
+ 0 & 0 & \sqrt{1 - p_{\phi}} & 0 \\
+ 0 & 0 & 0 & 1 \\
+\end{bmatrix}
+
+\end{equation}
+
+with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
+Idling for a duration \(t\):
+
+\begin{equation}
+\label{eq:orga135486}
+
+R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}
+
+\end{equation}
+
+\item Photon decay
+\label{sec:org1346030}
+While measuring a qubit state under the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
+This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
+This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\) in eq. \ref{eq:orga135486}.
+
+\item Flux Noise
+\label{sec:orgf343682}
+
+Whenever a two-qubit operation is done, qubits are moved in frequency away to their sweet spot (\(f_{q,max}\)) with flux pulses as it was seen in the \href{chapter-3.org}{Constraints of the Surface-7 and -17 chips} section.
+And the only affected qubits are not the targeted ones, but also the NN that need to avoid the effects of the operation.
+While outside their sweet spot, the qubits are highly affected by the noise inserted by the flux pulses.
+This noise causes a random phase shift in the qubit state.
+As soon as the power spectrum of the flux noise is \(1/f\) -- main contribution is related with low-frequencies --, adjusting the qubit frequency to a lower frequency makes the qubit even more sensitive to it.
+
+\item Single-qubit \(R_y(\pi /2)\) rotations
+\label{sec:org50f94e2}
+
+Quantumsim models single-qubit gates adding idle matrices of duration \(\frac{\tau_{g,1Q}}{2}\) before and after the CPTP gate representation, allowing the insertion of amplitude and phase damping (\(T_1\) and \(T_{\phi}\))).
+The addition of this error is equivalent to shrinking a quantum state towards the origin.
+Quantumsim considers this shrinking with a factor of \(1 - p_{axis}\) along the y-axis and \(1 - p_{plane}\) along the x- and z-axes as it is described in eq. \ref{eq:orge97a618}.
+
+\begin{equation}
+\label{eq:orge97a618}
+
+R_{R_y (\pi /2)} = R_{AP (\frac{\tau_{g,1Q}}{2})} R_{R_y (\pi /2)}' R_{dep} R_{AP (\frac{\tau_{g,1Q}}{2})}
+
+\end{equation}
+
+where
+
+$$R_{dep} = \begin{bmatrix}
+ 1 & 0 & 0 & 0 \\
+ 0 & 1 - p_{plane} & 0 & 0 \\
+ 0 & 0 & 1 - p_{axis} & 0 \\
+ 0 & 0 & 0 & 1 - p_{plane} \\
+\end{bmatrix}$$
+
+and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
+
+\item CZ gates
+\label{sec:orgf460e35}
+
+As it was described in the \href{chapter-3.org}{Constraints of the Surface-7 and -17 chips} section, a CZ gate is executed flu pulsing the frequency of the qubits in to a frequency in the middle of their sweet spots.
+That make both qubit states interact with each other in a CZ gate fashion, holding the qubits for a \(\tau_{g,2Q}\) period of time.
+Quantumsim's model of the CZ gate consists of a CZ representation adding the single-qubit phase error \(\delta_{\phi_{1Q}}\) as well as the two-qubit phase error \(\delta_{\phi_{2Q}} = \frac{\delta_{\phi_{1Q}}}{2}\).
+It will be also surrounded by idling intervals of duration \(\frac{\tau_{g,2Q}}{2}\).
+Quantumsim neglects leakage during the two-qubit gates because previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%.
+
+\item Measurement
+\label{sec:org1e662f8}
+
+The behaviour of the measurements in the simulations follow the Born rule \cite{O_Brien_2017}, giving projection probabilities calculated based on the quantum state probabilities.
+The measurements are implemented as black-boxes surrounded by idling steps (as the other quantum gates).
+The black-box consists of a dephasing -- due to the photon decay phenomena -- followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\).
+After that, the qubit state is collapsed with an error probability \(\epsilon_{RO}\) and, then, the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\).
+Finally, after measuring, quantumsim removes that qubit out of the main density matrix.
+Quantumsim ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/measure_model.png}
+\caption{\label{fig:orge4ffd14}
+Black box model from \cite{O_Brien_2017}}
+\end{figure}
+
+
 
 \begin{table}[htbp]
-\caption{\label{tab:orge9a1490}
-Main error model parameters for simulation}
+\caption{\label{tab:org23a69ab}
+Main error model parameters for simulation \cite{O_Brien_2017}}
 \centering
 \tiny
 \begin{tabular}{lccp{7cm}}
@@ -463,175 +587,59 @@ In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrin
 \hline
 \end{tabular}
 \end{table}
-
-
-
-\begin{itemize}
-\item Error model
-\label{sec:orgff6b529}
-
-The quantumsim error model details are described below.
-Quantumsim considers six main error sources in the SC-7 and SC-17, of which three comes from the different operations -- single/two-qubit gates and measurement -- and the others are either decoherence or apparatus related errors -- photon decay and the flux noise.
-Each operation has its own model, based on the learning extracted from several experiments.
-
-
-\begin{itemize}
-\item Qubit Idling
-\label{sec:orgcca8b5a}
-
-While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
-The dephasing effect only appears in a superposition state.
-
-\begin{itemize}
-\item Amplitude-phase damping model
-\label{sec:orgc64d1aa}
-
-$$R_{\Lambda_{T_1}} = \begin{bmatrix}
- 1 & 0 & 0 & 0 \\
- 0 & \sqrt{1 - p_1} & 0 & 0 \\
- 0 & 0 & \sqrt{1 - p_1} & 0 \\
- p_1 & 0 & 0 & 1 - p_1 \\
-\end{bmatrix}$$
-
-
-$$R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
- 1 & 0 & 0 & 0 \\
- 0 & \sqrt{1 - p_{\phi}} & 0 & 0 \\
- 0 & 0 & \sqrt{1 - p_{\phi}} & 0 \\
- 0 & 0 & 0 & 1 \\
-\end{bmatrix}$$
-
-with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}}}\) that are the probabilities for relaxation and pure dephasing, respectively.
-
-\item Qubit idling
-\label{sec:org7765c94}
-
-Idling for a duration \(t\):
-
-$$R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}$$
-\end{itemize}
-
-\item Single-qubit \(R_y(\pi /2)\) rotations
-\label{sec:org96da51e}
-
-"Single-qubit gates [\ldots{}] errors can mostly be attributed to Markovian noise. [\ldots{}] we thus model these errors as Markovian".
-
-"Single-qubit rotations are modeled by sandwiching an instantaneous Pauli transfer matrix, representing the rotation, with periods of duration \(\frac{\tau_{g,1Q}}{2}\) of amplitude and phase damping.
-This allows to model the gate for different \(T_1\) and \(T_{\phi}\) [\ldots{}]
-However, [\ldots{}] actual gates are more accurately described when adding a [\ldots{}] depolarizing noise to the instantaneous part.
-In the Bloch sphere, this decay corresponds to shrinking toward the origin, with factor  \(1 - p_{axis}\) along the y axis and \(1 - p_{plane}\) along the x- and z-axes":
-
-$$R_{R_y (\pi /2)} = R_{AP (\frac{\tau_{g,1Q}}{2})} R_{R_y (\pi /2)}' R_{dep} R_{AP (\frac{\tau_{g,1Q}}{2})}$$
-
-where
-
-$$R_{dep} = \begin{bmatrix}
- 1 & 0 & 0 & 0 \\
- 0 & 1 - p_{plane} & 0 & 0 \\
- 0 & 0 & 1 - p_{axis} & 0 \\
- 0 & 0 & 0 & 1 - p_{plane} \\
-\end{bmatrix}$$
-
-and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
-
-\item CZ gates
-\label{sec:org1be7f40}
-
-"The C-Z gate is achieved by flux pulsing a transmon into the \(|11\rangle \leftrightarrow |02\rangle\) avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
-Holding the transmons here for \(\tau_{g,2Q}\) causes the probability amplitudes of \(|01\rangle\) and \(|11\rangle\) to acquire phases[\ldots{}]
-
-Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ gate with single-qubit phase error \(\delta_{\phi_{1Q}}\) and two-qubit phase error \(\delta_{\phi_{2Q}} = \frac{\delta_{\phi_{1Q}}}{2}\), sandwiched by idling intervals of duration \(\frac{\tau_{g,2Q}}{2}\)."
-
-
-\item Measurement
-\label{sec:org807197d}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.5\textwidth]{figures/measure_model.png}
-\caption{\label{fig:org21b83d1}
-The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability \(p_{\uparrow / \downarrow}^{(1)}\). At this point, the qubit state is sampled. The sampling result is subject to a declaration error \(\epsilon_{RO}\), and the qubit state is subject to further decay or excitation with probabilities \(p_{\uparrow / \downarrow}^{(2)}\) before the end of the measurement block}
-\end{figure}
-
-The initial dephasing step in the measurement model (Fig. \ref{fig:org21b83d1}) occurs due to the \hyperref[sec:org8be1928]{photon decay} effect.
-
-"We find that the readout errors \(\epsilon_{RO}^{|i\rangle}\) are almost independent of the qubit state \(|i\rangle\), and so we describe them with a single readout error parameter \(\epsilon_{RO}\)".
-The outcome-independent declaration error of \(\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%\) is extracted from experiments. 
-
-They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
-
-\item Photon decay
-\label{sec:org8be1928}
-In the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
-This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
-This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\).
-
-\item Flux Noise
-\label{sec:org630ea94}
-
-During a quantum algorithm, "transmons are repeatedly moved in frequency away from their sweetspot using flux pulses, either to implement a C-Z gate or to avoid one. Away from the sweetspot, transmons become first-order sensitive to flux noise, which causes an additional random phase shift."
-
-"As this noise typically has a \(1/f\) power spectrum, the largest contribution comes from low-frequency components that are essentially static for a single run, but fluctuating between different runs."
-"Shifting the transmon from its sweetspot \(f_{q,max}\) to a lower frequency \(f_q (t)\) makes it first-order sensitive to flux noise".
-
-"In our simulation, we approximate the effect of this noise through ensemble averaging, with quasi-static phase error added to a transmon whenever it is flux pulsed."
-
-As one could see in the figures 4 and 5 from the Supplemental information, a little over-rotation  caused by inaccurate calibration of the flux pulse in a single- or two-qubit gate translates in a huge increase of the \(\epsilon_L\).
 \end{itemize}
 
 
-\item Effects not taking into account
-\label{sec:org9da4e2e}
+\item Github repository
+\label{sec:orgebe7718}
 
-They use a simple model for the CZ errors.
-They neglect leakage (previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%) .
-Of course this simplification is also in \textbf{quantumsim}.
+Quantumsim can be found as \textbf{python library} in its \href{https://github.com/quantumsim/quantumsim}{github repository} with instructions to install it and an overview of how to use it.
 \end{itemize}
 
 \subsection*{Error Framework}
-\label{sec:org9599a95}
+\label{sec:org2d710a0}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:orgd64bb74}
+\caption{\label{fig:orgf39a87d}
 Error Framework}
 \end{figure}
 
 \begin{itemize}
 \item Benchmark Object
-\label{sec:org5e8ef9e}
+\label{sec:org81ee96d}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:org7937618}
+\caption{\label{fig:org18bc473}
 Benchmark Object \ldots{}}
 \end{figure}
 
 \item Mapping Analysis Object
-\label{sec:orgc807323}
+\label{sec:org0a9c586}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:org8d73ace}
+\caption{\label{fig:orga6f4096}
 Mapping Analysis Object \ldots{}}
 \end{figure}
 
 \item Database
-\label{sec:org27d7f1a}
+\label{sec:orgae24f73}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:org0d26240}
+\caption{\label{fig:org8252755}
 Database tables}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org8790723}
+\caption{\label{fig:org8788a51}
 Database tables information}
 \end{figure}
 \end{itemize}

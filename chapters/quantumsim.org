@@ -100,9 +100,9 @@ This dephasing is then implemented via the same Pauli transfer matrix as $R_{\La
 
 ***** Flux Noise
 
-Whenever a two-qubit operation is done, qubits are moved in frequency away to their sweetspot ($f_{q,max}$) with flux pulses as it was seen in the [[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-7 and -17 chips]] section.
+Whenever a two-qubit operation is done, qubits are moved in frequency away to their sweet spot ($f_{q,max}$) with flux pulses as it was seen in the [[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-7 and -17 chips]] section.
 And the only affected qubits are not the targeted ones, but also the NN that need to avoid the effects of the operation.
-While outside their sweetspot, the qubits are highly affected by the noise inserted by the flux pulses.
+While outside their sweet spot, the qubits are highly affected by the noise inserted by the flux pulses.
 This noise causes a random phase shift in the qubit state.
 As soon as the power spectrum of the flux noise is $1/f$ -- main contribution is related with low-frequencies --, adjusting the qubit frequency to a lower frequency makes the qubit even more sensitive to it.
 
@@ -140,34 +140,31 @@ and $R_{R_y (\pi/2)}'$ is the Pauli transfer matrix describing the theoretical $
 
 ***** CZ gates
 
-"The C-Z gate is achieved by flux pulsing a transmon into the $|11\rangle \leftrightarrow |02\rangle$ avoided crossing with another, where the 2 denotes the second-excited state of the fluxed transmon.
-Holding the transmons here for $\tau_{g,2Q}$ causes the probability amplitudes of $|01\rangle$ and $|11\rangle$ to acquire phases[...]
-
-Our full (but simplistic) model of the CZ gate consists of an instantaneous CZ gate with single-qubit phase error $\delta_{\phi_{1Q}}$ and two-qubit phase error $\delta_{\phi_{2Q}} = \frac{\delta_{\phi_{1Q}}}{2}$, sandwiched by idling intervals of duration $\frac{\tau_{g,2Q}}{2}$."
-
+As it was described in the [[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-7 and -17 chips]] section, a CZ gate is executed flu pulsing the frequency of the qubits in to a frequency in the middle of their sweet spots.
+That make both qubit states interact with each other in a CZ gate fashion, holding the qubits for a $\tau_{g,2Q}$ period of time.
+Quantumsim's model of the CZ gate consists of a CZ representation adding the single-qubit phase error $\delta_{\phi_{1Q}}$ as well as the two-qubit phase error $\delta_{\phi_{2Q}} = \frac{\delta_{\phi_{1Q}}}{2}$.
+It will be also surrounded by idling intervals of duration $\frac{\tau_{g,2Q}}{2}$.
+Quantumsim neglects leakage during the two-qubit gates because previous experiments have reduced leakage probability per CZ to $\approx$ 0.3%.
 
 ***** Measurement
 
-# Qubit measurements are simulated as projective and following the Born rule, with projection probabilities given by the squared overlap of the input state with the measurement basis states. In order to capture empirical measurement errors, we implement a black-box measurement model by sandwiching the measurement between idling processes. After measuring some qubit they remove that qubit from the density matrix.
+The behaviour of the measurements in the simulations follow the Born rule cite:O_Brien_2017, giving projection probabilities calculated based on the quantum state probabilities.
+The measurements are implemented as black-boxes surrounded by idling steps (as the other quantum gates).
+The black-box consists of a dephasing -- due to the photon decay phenomena -- followed by a period of decay and excitation with probability $p_{\uparrow / \downarrow}^{(1)}$.
+After that, the qubit state is collapsed with an error probability $\epsilon_{RO}$ and, then, the qubit state is subject to further decay or excitation with probabilities $p_{\uparrow / \downarrow}^{(2)}$.
+Finally, after measuring, quantumsim removes that qubit out of the main density matrix.
+Quantumsim ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
 
-#+caption: The model for measurements consists of a dephasing of the qubit followed by a period of decay and excitation with probability $p_{\uparrow / \downarrow}^{(1)}$. At this point, the qubit state is sampled. The sampling result is subject to a declaration error $\epsilon_{RO}$, and the qubit state is subject to further decay or excitation with probabilities $p_{\uparrow / \downarrow}^{(2)}$ before the end of the measurement block
+#+caption: Black box model from cite:O_Brien_2017
 #+NAME: fig:meas_model
 #+ATTR_LATEX: :width 0.5\textwidth
 [[file:figures/measure_model.png]]
 
-The initial dephasing step in the measurement model (Fig. [[fig:meas_model]]) occurs due to the [[id:07599b1a-0150-4e80-ad59-8ce826f8d96a][photon decay]] effect.
 
-"We find that the readout errors $\epsilon_{RO}^{|i\rangle}$ are almost independent of the qubit state $|i\rangle$, and so we describe them with a single readout error parameter $\epsilon_{RO}$".
-The outcome-independent declaration error of $\epsilon_{RO} = \epsilon_{RO}^{1} = \epsilon_{RO}^{0} = 0.15 \%$ is extracted from experiments. 
-
-They ignore effects leading to measurement-induced mixing and non-linearity of the readout resonator, as well as residual photon numbers.
-
-**** Error model parameters                                       :ignore:
 
 #+caption: Main error model parameters for simulation cite:O_Brien_2017
 #+NAME: tab:err_pam
 #+ATTR_LATEX: :booktabs :environment :font \tiny :align lccp{7cm}
-#+TBLNAME: 
 |------------------------------------+--------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Parameter                          | Symbol                   | Value      | Explanation and notes                                                                                                                                            |
 |------------------------------------+--------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -186,71 +183,6 @@ They ignore effects leading to measurement-induced mixing and non-linearity of t
 | In-axis rotation error             | $p_{axis}$               | 1e-4       | Decay corresponding to shrinking along the y axis because of the single-qubit gates depolarizing noise                                                           |
 | In-plane rotation error            | $p_{plane}$              | 5e-4       | Decay corresponding to shrinking along the x and z axis because of the single-qubit gates depolarizing noise                                                     |
 |------------------------------------+--------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-#+TBLFM:
-
-
-**** Effects not taking into account
-
-They use a simple model for the CZ errors.
-They neglect leakage (previous experiments have reduced leakage probability per CZ to $\approx$ 0.3%) .
-Of course this simplification is also in *quantumsim*.
-
-**** The quantumsim simulation package                          :noexport:
-
-"Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [...]
-
-One-qubit and two- qubit gates are applied to the density matrix as completely positive, trace preserving maps represented by Pauli transfer matrices. When a gate involving a << new >> qubit must be performed, the density matrix of the system is dynamically enlarged to include that one [...]
-
-Qubit measurements are simulated as projective and following the Born rule, with projection probabilities given by the squared overlap of the input state with the measurement basis states. In order to capture empirical measurement errors, we implement a black-box measurement model by sandwiching the measurement between idling processes. After measuring some qubit they remove that qubit from the density matrix.
-
-
-**** Observations I find Interesting                            :noexport:
-***** Decoder Upper Bound explanation                          :noexport:
-
-"We obtain the probability of a final measurement falling within each coset by summing the probabilities from the diagonal of the reduced density matrix of the data qubits in the Z-basis.
-It contains the probability distribution for the 2^9 = 512 different possible measurement outcomes of the data qubits [...]
-
-Any decoder can give the correct result only for half of the measurement outcomes.
-No decoder can achieve a dec- laration fidelity larger than this maximal probability [...]
-
-Declarations must be equal if they differ by the application of one ore more X stabilizers (applying two different logical X operators amounts to the application of a product of X stabilizers).
-We thus group the outcomes in 32 cosets -- there are 4 X-stabilizers in SC-17, so there are 512/24 = 32 cosets --.
-For outcomes from the same coset, the declaration from a decoder must be the same.
-We further group the 32 cosets to 16 pairs, which differ by the application of a logical operator. 
-The upper bound is then obtained by selecting the more probable coset from each pair and summing the corresponding probabilities [...]
-
-We finally emphasize that the this upper bound can be found only because we have access to the complete probability distribution of outcomes.
-We do not expect that any decoder can actually achieve this upper bound".
-
-
-
-
-***** Optimization of logical error rates
-
-As they explain in the paper and one can see in Fig. [[fig:meas_t_optim]], they find that the optimal measuring time for the minimum $\epsilon_L$ is 280 ns.
-
-#+caption: Measure time optimization based on the SC-17 logical error rate. Optimal $\tau_m = 280$ ns
-#+NAME: fig:meas_t_optim
-#+ATTR_LATEX: :width 0.7\textwidth
-[[file:figures/measure_t_optimization.png]]
-
-
-***** Projected improvement with advances in quantum hardware
-
-- Memory figure of merit ($\gamma_m = \frac{\epsilon_{phys}}{\epsilon_{L}}$). How close are $\epsilon_{phys}$ and $\epsilon_{L}$. Metric to check how good the error correction is.
-
-- Computational performance ($\gamma_c = \frac{\epsilon_{phys} \tau_{g,1Q}}{\epsilon_L \tau_{cycle}}$), where, at $\gamma_c = 1$ the computational break-even point is defined.
-
-- A value of $T_1 > 80 \mu s$ for planar transmons is emerging.
-
-***** Other observations
-
-The following statements are fairly general:
-
-- "Small quasi-static qubit errors are suppressed by the repeated measurements"
-- If either the ancilla error rate ($\epsilon_{anc}$) or the \epsilon_{RO} are bigger than $\epsilon_{phys}$, $\epsilon_L$ becomes independent of both $\epsilon_{RO}$ and $\epsilon_{anc}$
-- "Optimal cycle parameters for logical error rates per cycle and per unit time are not the same. This implies that logical qubits functioning as quantum memory should be treated differently to those being used for computation"
-
 
 
 **** Github repository
