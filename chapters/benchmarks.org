@@ -484,7 +484,7 @@ After simulating the algorithms, some of them either return errors (segmentation
 
 #+caption: Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to computationally exhaustive and the simulations failed.
 #+NAME: tab:map_selected_benchs
-#+ATTR_LATEX: :booktabs :environment :float t :align lll
+#+ATTR_LATEX: :booktabs :environment :float t :font \small :align lll
 |------------+-----------+----------------------------------|
 | No. qubits | No. gates | Algorithm                        |
 |------------+-----------+----------------------------------|

@@ -1,8 +1,8 @@
 # Intro (what is quantumsim, advantages)
 
-Quantumsim is a quantum superconducting systems simulator designed to study the SC-7 and SC-17 chips.
-It performs calculations on density matrices
-It has the possibility of boosting calculations with a Graphics Processing Unit (GPU).
+Quantumsim is a simulator of superconducting systems designed to study the SC-7 and SC-17 chips.
+It performs calculations on *density matrices* instead of the compact representation of the quantum states because they permit the use of mixed states -- able to represent any kind of errors.
+As this calculations are computationally hard, quantumsim has the possibility of boosting calculations with a Graphics Processing Unit (GPU).
 
 # "Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [...]
 

@@ -88,12 +88,17 @@ The outer product is represented as $|\phi \rangle \,\langle \psi |$.
 In eq. [[eq:convolution_example]] and [[eq:convolution_example_entanglement]] an example of the outer product is offered.
 The second example represents the other main phenomenon in quantum physics, the *entanglement* state of two qubits ($\phi$ and $\psi$) also known as the Bell state or the Einstein-Podolsky-Rosen (EPR) pair.
 Another use of the outer product is the calculation of the *density matrices*.
-A density matrix is a state representation that is calculated as the outer product of the qubit state with itself $| \psi \rangle \,\langle \psi |$
+A density matrix is a state representation that is calculated as the outer product of the qubit state with itself $| \psi \rangle \,\langle \psi |$ as in eq. [[eq:outer_product]].
 
 
 #+NAME: eq:convolution_example
 \begin{equation}
-|+\rangle \,\langle + | = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \otimes \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} 
+|+\rangle \,| + \rangle = \frac{1}{\sqrt{4}} \left( \begin{bmatrix}1 \\ 1 \end{bmatrix} \, \begin{bmatrix}1 \\ 1 \end{bmatrix} \right) = \frac{1}{\sqrt{4}} \begin{bmatrix}1 \\ 1 \\ 1 \\ 1\end{bmatrix} 
+\end{equation}
+
+#+NAME: eq:outer_product
+\begin{equation}
+{\displaystyle {\begin{aligned}\mathbf {u} \otimes \mathbf {v} =\mathbf {u} \mathbf {v} ^{\top }={\begin{bmatrix}u_{1}\\u_{2}\\u_{3}\\u_{4}\end{bmatrix}}{\begin{bmatrix}v_{1}&v_{2}&v_{3}\end{bmatrix}}={\begin{bmatrix}u_{1}v_{1}&u_{1}v_{2}&u_{1}v_{3}\\u_{2}v_{1}&u_{2}v_{2}&u_{2}v_{3}\\u_{3}v_{1}&u_{3}v_{2}&u_{3}v_{3}\\u_{4}v_{1}&u_{4}v_{2}&u_{4}v_{3}\end{bmatrix}}.\end{aligned}}}
 \end{equation}
 
 #+NAME: eq:convolution_example_entanglement
