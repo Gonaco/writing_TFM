@@ -42,14 +42,12 @@ The dephasing effect only appears in a superposition state.
 
 #+NAME: eq:dephase_t1
 \begin{equation}
-
 R_{\Lambda_{T_1}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
  0 & \sqrt{1 - p_1} & 0 & 0 \\
  0 & 0 & \sqrt{1 - p_1} & 0 \\
  p_1 & 0 & 0 & 1 - p_1 \\
 \end{bmatrix}
-
 \end{equation}
 
 # #+ATTR_LATEX: :mode math :environment bmatrix
@@ -60,14 +58,12 @@ R_{\Lambda_{T_1}} = \begin{bmatrix}
 
 #+NAME: eq:dephase_t2
 \begin{equation}
-
 R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
  0 & \sqrt{1 - p_{\phi}} & 0 & 0 \\
  0 & 0 & \sqrt{1 - p_{\phi}} & 0 \\
  0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \end{equation}
 
 # #+ATTR_LATEX: :mode math :environment bmatrix
@@ -84,9 +80,7 @@ Idling for a duration $t$:
 
 #+NAME: eq:idling
 \begin{equation}
-
 R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}
-
 \end{equation}
 
 ***** Photon decay
@@ -114,9 +108,7 @@ Quantumsim considers this shrinking with a factor of $1 - p_{axis}$ along the y-
 
 #+NAME: eq:single_q_error
 \begin{equation}
-
 R_{R_y (\pi /2)} = R_{AP (\frac{\tau_{g,1Q}}{2})} R_{R_y (\pi /2)}' R_{dep} R_{AP (\frac{\tau_{g,1Q}}{2})}
-
 \end{equation}
 
 where
