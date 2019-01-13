@@ -1,10 +1,21 @@
 # Intro (what is quantumsim, advantages)
 
-Quantumsim is a simulator of superconducting systems designed to study the SC-7 and SC-17 chips.
+Quantumsim is a simulator of superconducting systems designed to study the SC-7 and SC-17 chips and based on their behaviour on experiments.
 It performs calculations on *density matrices* instead of the compact representation of the quantum states because they permit the use of mixed states -- able to represent any kind of errors.
+As it can be inherited in the [[id:68e8f11a-edd9-4e09-a99e-5ef841f010f7][Qubits]] subsection, the density matrix size grows exponentially with the number of qubits it represents -- $2^n \times 2^n$ where $n$ is the number of qubits.
+Once the qubits state is ready as a density matrix, quantumsim applies the quantum gates in the *Pauli transfer matrix representation*.
+The Pauli representation builds positive matrices that preserves the trace properties of the original matrix, making the operations, either in the regular basis or the Pauli basis, equivalent.
+In order to avoid non-efficient calculations, in place of building a huge density matrix considering all the qubits from the very beginning, quantumsim will enlarge dynamically the density matrix whenever a gate requires a new qubit.
 As this calculations are computationally hard, quantumsim has the possibility of boosting calculations with a Graphics Processing Unit (GPU).
 
-# "Quantumsim performs calculations on density matrices utilizing a graphics processing unit in a standard desktop computer [...]
+# In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
+
+#+NAME: eq:pauli_representation
+\begin{equation}
+(R_{\Lambda})_{ij} = \frac{1}{2} Tr(\sigma_i \Lambda \sigma_j)
+\end{equation}
+
+where $\sigma_i$ are the Pauli operators $\sigma_0 = I$, $\sigma_1 = X$, $\sigma_2 = Y$, $\sigma_3 = Z$, equivalent to rations in the main axes of the Bloch sphere.
 
 # One-qubit and two- qubit gates are applied to the density matrix as completely positive, trace preserving maps represented by Pauli transfer matrices. When a gate involving a << new >> qubit must be performed, the density matrix of the system is dynamically enlarged to include that one [...]
 
@@ -12,7 +23,7 @@ As this calculations are computationally hard, quantumsim has the possibility of
 
 
 
-**** Error model parameters
+**** Error model parameters                                       :ignore:
 
 #+caption: Main error model parameters for simulation
 #+NAME: tab:err_pam
@@ -38,13 +49,12 @@ As this calculations are computationally hard, quantumsim has the possibility of
 |------------------------------------+--------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 #+TBLFM:
 
-**** Error models
+**** Error model
 
-In the quantumsim module, all gates are applied in the Pauli transfer matrix representation:
+The quantumsim error model details are described below.
+Quantumsim considers six main error sources in the SC-7 and SC-17, of which three comes from the different operations -- single/two-qubit gates and measurement -- and the others are either decoherence or apparatus related errors -- photon decay and the flux noise.
+Each operation has its own model, based on the learning extracted from several experiments.
 
-$$(R_{\Lambda})_{ij} = \frac{1}{2} Tr(\sigma_i \Lambda \sigma_j)$$
-
-where $\sigma_i$ are the Pauli operators: $\sigma_0 = I$, $\sigma_1 = X$, $\sigma_2 = Y$, $\sigma_3 = Z$
 
 ***** Qubit Idling
 
@@ -164,7 +174,7 @@ As one could see in the figures 4 and 5 from the Supplemental information, a lit
 **** Effects not taking into account
 
 They use a simple model for the CZ errors.
-They neglect leakage (previous experiments have reduced leakage probability per CZ to $\approx$ 0.3%).
+They neglect leakage (previous experiments have reduced leakage probability per CZ to $\approx$ 0.3%) .
 Of course this simplification is also in *quantumsim*.
 
 **** The quantumsim simulation package                          :noexport:
@@ -224,3 +234,8 @@ The following statements are fairly general:
 - "Optimal cycle parameters for logical error rates per cycle and per unit time are not the same. This implies that logical qubits functioning as quantum memory should be treated differently to those being used for computation"
 
 
+
+**** BIB                                                 :ignore:noexport:
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain

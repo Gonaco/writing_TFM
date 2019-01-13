@@ -5,6 +5,9 @@
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/error_framework_diagram.png]]
 
+
+# Error framework flow
+
 ****** Benchmark Object
 
 #+caption: Benchmark Object ...

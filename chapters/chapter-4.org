@@ -39,7 +39,7 @@ In this section we introduce the framework we developed in order to analyze the 
 
 #+INCLUDE: compiler.org
 
-*** TODO quantumsim
+*** quantumsim
 
 #+INCLUDE: quantumsim.org
 
