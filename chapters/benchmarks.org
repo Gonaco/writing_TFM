@@ -415,7 +415,7 @@ The crossed out algorithms are the ones that, after the selection, the simulatio
 #+caption: Amount of benchmarks classified by the number of gates and the number of qubits
 #+NAME: fig:q_gate_bench
 #+ATTR_LATEX: :width 0.7\textwidth
-[[file:figures/number_of_benchmarks_depending_on_the_number_of_qubits.png]]
+[[file:figures/number_of_benchmarks_depending_on_the_number_of_qubits_and_gates.png]]
 
 ******* with names                                    :ignore:noexport:
 

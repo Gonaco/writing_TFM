@@ -1,19 +1,19 @@
 
 \chapter*{Benchmarks and error framework}
-\label{sec:org587f43f}
+\label{sec:org70759c1}
 
 In this chapter we describe the work developed during this study.
 Since our main aim was to research on the mapping quality and the metrics used to assess it, we had to develop a whole framework in order to map and simulate quantum algorithm.
 And, obviously, we had to have a set of quantum algorithms to map and simulate.
 
-In the \hyperref[sec:org302271f]{Benchmarks} section we describe how we built the algorithm set.
-In the \hyperref[sec:org5540150]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
+In the \hyperref[sec:org9ae1ff7]{Benchmarks} section we describe how we built the algorithm set.
+In the \hyperref[sec:org2f3db9d]{Error framework} section we describe the structure of the mapping of the algorithms procedure and its posterior metric calculation.
 In order to use the mapping algorithm described in the \href{chapter-3.org}{Mapping model} section, we use OpenQL, a high level programming language to describe quantum circuits.
 OpenQL is able to load a quantum device description and run our mapping algorithm, that is in its engine, to compile and export a mapped quantum circuit representation to the chosen device.
-OpenQL will be explained in much detail in the section \hyperref[sec:orga0be1da]{Compiler (OpenQL, cQASM)?}.
+OpenQL will be explained in much detail in the section \hyperref[sec:org6a5bf9c]{Compiler (OpenQL, cQASM)?}.
 
 \section*{Benchmarks}
-\label{sec:org302271f}
+\label{sec:org9ae1ff7}
 As stated in the Introduction, the research was conducted to analyze the different metrics to assert the quality of a mapping algorithm.
 Consequently, we used a classic technique, the benchmarking technique.
 In general computing, a benchmark is a program or a set of programs used to assess the performance of the host technology.
@@ -32,19 +32,19 @@ Under this approach, it was decided that the best methodology would be to follow
 \end{enumerate}
 
 \subsection*{Build a list of quantum algorithms}
-\label{sec:orgffe074e}
+\label{sec:orgbe24c27}
 
 First, we built a list of quantum algorithms as benchmarks.
 We opted to collect a big variety of different algorithms from different sources and libraries with a view to classify them and select the most interesting ones afterwards.
 As it is common to find in the literature [REFER ALL THE PAPERS WITH LIST OF REAL BENCHMARKS], we also decided the benchmarks should be real and useful quantum algorithms, instead of random circuits.
 The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} because of the variety of algorithms and because they are decomposed in the Clifford+T set.
 The counterpart is that the language description of the algorithms from those sources are different and any of them is the pure QASM, but OpenQASM or another altered QASM languages.
-As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:orga0be1da]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
+As mentioned in the introduction of this chapter and as it is shown in Section \hyperref[sec:org6a5bf9c]{Compiler (OpenQL, cQASM)?}, in order to map the algorithms we will use the OpenQL tool.
 Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
 We developed a parser in python in order to do that.
 
 \begin{table}[htbp]
-\caption{\label{tab:org74ae0e6}
+\caption{\label{tab:org6b27755}
 Amount of algorithms per source organized per the type of circuit description language used}
 \centering
 \begin{tabular}{lrr}
@@ -83,7 +83,7 @@ other Sources (1) & \\
 \end{figure}
 
 \subsection*{Algorithms profile}
-\label{sec:orgda817d9}
+\label{sec:org8ef37dd}
 
 The goal of this second step is to understand the algorithms we have, extracting their statistics.
 We built a benchmark profile with the number of qubits used, the number of gates, the expected behaviour of the algorithm and different graphs, showing the percentage of the operations types or the number of operations running in parallel amongst others.
@@ -94,7 +94,7 @@ As we will describe in [REFERENCE] section this will create a relaxation while c
 We will assume that a correct response after simulating them would be a binary result and, therefore, a resulting superposition state would mean an error.
 
 \subsection*{Benchmarks classification}
-\label{sec:org75dcea5}
+\label{sec:orgc6b8953}
 
 The third step is to classify the benchmarks depending on their behaviour.
 This is an important step because algorithms that do similar calculations are used to have common gates distribution.
@@ -114,7 +114,7 @@ From all the benchmarks we have, we can distinct six different classes.
 
 
 \subsection*{Benchmarks selection}
-\label{sec:org81f0530}
+\label{sec:orgcd2743b}
 
 The last step aims to have a small, but representative, set of benchmarks to map.
 This requirement comes by the fact that simulations are long and computationally exhaustive.
@@ -127,15 +127,15 @@ And, at the same time, several benchmarks presenting the same number of gates.
 We also tend to mix all the classes equally.
 And we try to have the less number of the same algorithm versions as possible.
 We only take the same algorithm versions for cases in which the number of qubits and the number of gates show an interesting combination.
-For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. \ref{tab:org0d96571}.
+For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. \ref{tab:org2e03c1a}.
 Finally, benchmarks with a known functionality are preferred.
 
 Once we had our requirements we could start the analysis and the selection afterwards.
-In the next figures, from Fig. \ref{fig:orgef0f905} to Fig. \ref{code:q_gate_bench}, we show the different steps and data of the analysis in order to do the selection.
-In Tab. \ref{tab:org0d96571} we show the final benchmark selection.
+In the next figures, from Fig. \ref{fig:org0677763} to Fig. \ref{code:q_gate_bench}, we show the different steps and data of the analysis in order to do the selection.
+In Tab. \ref{tab:org2e03c1a} we show the final benchmark selection.
 The crossed out algorithms are the ones that, after the selection, the simulation failed because of their computational requirements.
 \begin{table}[htbp]
-\caption{\label{tab:orge6265ca}
+\caption{\label{tab:org4efd1c5}
 Restriction summary of the benchmark selection}
 \centering
 \begin{tabular}{|l|}
@@ -155,7 +155,7 @@ Restrictions:\\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/number_of_benchmarks_depending_on_the_number_of_qubits.png}
-\caption{\label{fig:orgef0f905}
+\caption{\label{fig:org0677763}
 Statistics of the amount of benchmarks wit the same number of qubits}
 \end{figure}
 [TOPLOT]
@@ -167,8 +167,8 @@ Statistics of the amount of benchmarks wit the same number of qubits}
 \end{verbatim}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\textwidth]{figures/number_of_benchmarks_depending_on_the_number_of_qubits.png}
-\caption{\label{fig:org2729dca}
+\includegraphics[width=0.7\textwidth]{figures/number_of_benchmarks_depending_on_the_number_of_qubits_and_gates.png}
+\caption{\label{fig:org3437224}
 Amount of benchmarks classified by the number of gates and the number of qubits}
 \end{figure}
 43 benchmarks (with qubits numbers from 3 to 17 qubits) selected after applying the previous Restrictions to the analysis of the benchmarks described in the next section.
@@ -176,7 +176,7 @@ Amount of benchmarks classified by the number of gates and the number of qubits}
 After simulating the algorithms, some of them either return errors (segmentation fault) or are computationally exhausting to simulate them as they should be simulated.
 
 \begin{table}[htbp]
-\caption{\label{tab:org0d96571}
+\caption{\label{tab:org2e03c1a}
 Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to computationally exhaustive and the simulations failed.}
 \centering
 \small
@@ -235,39 +235,39 @@ No. qubits & No. gates & Algorithm\\
 
 
 \subsection*{Github repository}
-\label{sec:org5d9c26f}
+\label{sec:org943d7e8}
 
 Finally, all this information is detailed in the \href{https://github.com/QE-Lab/qbench}{qbench Github repo} where one can find all the benchmarks, as well.
 
 \section*{Error framework}
-\label{sec:org5540150}
+\label{sec:org2f3db9d}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 
 \subsection*{Compiler (OpenQL, cQASM)?}
-\label{sec:orga0be1da}
+\label{sec:org6a5bf9c}
 [Intro]
 
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/layers.png}
-\caption{\label{fig:org9d5de61}
+\caption{\label{fig:org487e44e}
 Compilation layers}
 \end{figure}
 
 
 \begin{itemize}
 \item cQASM
-\label{sec:orgb2c6939}
+\label{sec:orgaae9b36}
 
 
 \item OpenQL
-\label{sec:orgaaf2b21}
+\label{sec:orge3c2762}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\textwidth]{figures/openql.png}
-\caption{\label{fig:org1342c84}
+\caption{\label{fig:orga1c7e3f}
 OpenQL diagram}
 \end{figure}
 
@@ -323,7 +323,7 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{itemize}
 
 \subsection*{quantumsim}
-\label{sec:org05dd78a}
+\label{sec:orgf8182d0}
 
 Quantumsim \cite{O_Brien_2017} is a simulator of superconducting systems designed to study the SC-7 and SC-17 chips and based on their behaviour on experiments.
 It performs calculations on \textbf{density matrices} instead of the compact representation of the quantum states because they permit the use of mixed states -- able to represent any kind of errors.
@@ -335,7 +335,7 @@ As this calculations are computationally hard, quantumsim has the possibility of
 
 
 \begin{equation}
-\label{eq:org7d53dbd}
+\label{eq:orgcda1b51}
 (R_{\Lambda})_{ij} = \frac{1}{2} Tr(\sigma_i \Lambda \sigma_j)
 \end{equation}
 
@@ -346,24 +346,24 @@ where \(\Lambda\) is the CPTP transformation and \(\sigma_i\) are the Pauli oper
 
 \begin{itemize}
 \item Error model
-\label{sec:org881bb9e}
+\label{sec:org4f71981}
 
 Quantumsim considers six main error sources in the SC-7 and SC-17, of which three comes from the different operations -- single/two-qubit gates and measurement -- and the others are either decoherence or apparatus related errors -- photon decay and the flux noise.
 Each operation has its own model, based on the learning extracted from several experiments.
 The same happens to the other studied phenomena that are incorporated in different ways in the gate matrices.
 In this section we will describe the error sources and how they are simulated in quantumsim.
 From decoherence to the apparatus related errors -- that affect the gates error.
-Also, Tab. \ref{tab:org29d46a8} pinpoints exactly the value of the parameters used in the error model.
+Also, Tab. \ref{tab:orge156b08} pinpoints exactly the value of the parameters used in the error model.
 
 
 \begin{itemize}
 \item Qubit Idling
-\label{sec:orgae9ee83}
+\label{sec:org7e720aa}
 
 While idling for a time \(t\), a transmon in \(|1\rangle\) or in superposition could relax to \(|0\rangle\) or acquire random quantum phase shifts due to \(1/f\) noise sources (flux noise) or others.
 The dephasing effect only appears in a superposition state.
 \begin{equation}
-\label{eq:orge7af658}
+\label{eq:orge161f70}
 R_{\Lambda_{T_1}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
  0 & \sqrt{1 - p_1} & 0 & 0 \\
@@ -373,7 +373,7 @@ R_{\Lambda_{T_1}} = \begin{bmatrix}
 \end{equation}
 
 \begin{equation}
-\label{eq:org1c78305}
+\label{eq:org4e8c355}
 R_{\Lambda_{T_{\phi}}} = \begin{bmatrix}
  1 & 0 & 0 & 0 \\
  0 & \sqrt{1 - p_{\phi}} & 0 & 0 \\
@@ -386,18 +386,18 @@ with \(p_1 = 1 - e^{-\frac{t}{T_1}}\) and \(p_{\phi} = 1 - e^{-\frac{t}{T_{\phi}
 Idling for a duration \(t\):
 
 \begin{equation}
-\label{eq:org34577db}
+\label{eq:orgfa3c5c0}
 R_{AP (t)} = R_{\Lambda_{T_1}} R_{\Lambda_{T_{\phi}}}
 \end{equation}
 
 \item Photon decay
-\label{sec:org1538f8c}
+\label{sec:org79bd8e0}
 While measuring a qubit state under the presence of photons in a readout resonator, the coupled qubit is affected suffering a \(p_{\phi, photon}\) dephasing.
 This dephasing is present whenever the coupled qubit is brought into superposition before the readout resonator has returned to the vacuum state following the last measurement.
-This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\) in eq. \ref{eq:org34577db}.
+This dephasing is then implemented via the same Pauli transfer matrix as \(R_{\Lambda_{T_{\phi}}}\) in eq. \ref{eq:orgfa3c5c0}.
 
 \item Flux Noise
-\label{sec:orgc8b283e}
+\label{sec:orgd490e8a}
 
 Whenever a two-qubit operation is done, qubits are moved in frequency away to their sweet spot (\(f_{q,max}\)) with flux pulses as it was seen in the \href{chapter-3.org}{Constraints of the Surface-7 and -17 chips} section.
 And the only affected qubits are not the targeted ones, but also the NN that need to avoid the effects of the operation.
@@ -406,14 +406,14 @@ This noise causes a random phase shift in the qubit state.
 As soon as the power spectrum of the flux noise is \(1/f\) -- main contribution is related with low-frequencies --, adjusting the qubit frequency to a lower frequency makes the qubit even more sensitive to it.
 
 \item Single-qubit \(R_y(\pi /2)\) rotations
-\label{sec:org1b84900}
+\label{sec:org20198cf}
 
 Quantumsim models single-qubit gates adding idle matrices of duration \(\frac{\tau_{g,1Q}}{2}\) before and after the CPTP gate representation, allowing the insertion of amplitude and phase damping (\(T_1\) and \(T_{\phi}\))).
 The addition of this error is equivalent to shrinking a quantum state towards the origin.
-Quantumsim considers this shrinking with a factor of \(1 - p_{axis}\) along the y-axis and \(1 - p_{plane}\) along the x- and z-axes as it is described in eq. \ref{eq:org1d2756e}.
+Quantumsim considers this shrinking with a factor of \(1 - p_{axis}\) along the y-axis and \(1 - p_{plane}\) along the x- and z-axes as it is described in eq. \ref{eq:orgde4c13d}.
 
 \begin{equation}
-\label{eq:org1d2756e}
+\label{eq:orgde4c13d}
 R_{R_y (\pi /2)} = R_{AP (\frac{\tau_{g,1Q}}{2})} R_{R_y (\pi /2)}' R_{dep} R_{AP (\frac{\tau_{g,1Q}}{2})}
 \end{equation}
 
@@ -429,7 +429,7 @@ $$R_{dep} = \begin{bmatrix}
 and \(R_{R_y (\pi/2)}'\) is the Pauli transfer matrix describing the theoretical \(\pi /2\) rotation along the y axis.
 
 \item CZ gates
-\label{sec:orgafbf0ca}
+\label{sec:org1589696}
 
 As it was described in the \href{chapter-3.org}{Constraints of the Surface-7 and -17 chips} section, a CZ gate is executed flu pulsing the frequency of the qubits in to a frequency in the middle of their sweet spots.
 That make both qubit states interact with each other in a CZ gate fashion, holding the qubits for a \(\tau_{g,2Q}\) period of time.
@@ -438,7 +438,7 @@ It will be also surrounded by idling intervals of duration \(\frac{\tau_{g,2Q}}{
 Quantumsim neglects leakage during the two-qubit gates because previous experiments have reduced leakage probability per CZ to \(\approx\) 0.3\%.
 
 \item Measurement
-\label{sec:org76372d2}
+\label{sec:orgbd932f3}
 
 The behaviour of the measurements in the simulations follow the Born rule \cite{O_Brien_2017}, giving projection probabilities calculated based on the quantum state probabilities.
 The measurements are implemented as black-boxes surrounded by idling steps (as the other quantum gates).
@@ -450,14 +450,14 @@ Quantumsim ignore effects leading to measurement-induced mixing and non-linearit
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/measure_model.png}
-\caption{\label{fig:org9b0dbf8}
+\caption{\label{fig:orgec34f62}
 Black box model from \cite{O_Brien_2017}}
 \end{figure}
 
 
 
 \begin{table}[htbp]
-\caption{\label{tab:org29d46a8}
+\caption{\label{tab:orge156b08}
 quantumsim main error model parameters}
 \centering
 \tiny
@@ -486,55 +486,55 @@ In-plane rotation error & \(p_{plane}\) & 5\,(-4) & Decay corresponding to shrin
 
 
 \item Github repository
-\label{sec:org9cf89aa}
+\label{sec:orgb24a819}
 
 Quantumsim can be found as \textbf{python library} in its \href{https://github.com/quantumsim/quantumsim}{github repository} with instructions to install it and an overview of how to use it.
 \end{itemize}
 
 \subsection*{Error Framework}
-\label{sec:orgdd41a9b}
+\label{sec:orgf492514}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:org7d40de7}
+\caption{\label{fig:orgd13d0da}
 Error Framework}
 \end{figure}
 
 \begin{itemize}
 \item Benchmark Object
-\label{sec:org19a4d1c}
+\label{sec:orgfcc1564}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:orga8e05a5}
+\caption{\label{fig:orgb09974d}
 Benchmark Object \ldots{}}
 \end{figure}
 
 \item Mapping Analysis Object
-\label{sec:orgd797e7c}
+\label{sec:org5d2fe72}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:org6b876bd}
+\caption{\label{fig:org904b5cd}
 Mapping Analysis Object \ldots{}}
 \end{figure}
 
 \item Database
-\label{sec:org329d80f}
+\label{sec:org3408b35}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:orgdbbc753}
+\caption{\label{fig:org198b03c}
 Database tables}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org20e91de}
+\caption{\label{fig:orga2a98d6}
 Database tables information}
 \end{figure}
 \end{itemize}
