@@ -326,91 +326,96 @@ The crossed out algorithms are the ones that, after the selection, the simulatio
 
 ******* Amount of becnhmarks depending on the number of qubits and gates :ignore:
 
-#+BEGIN_EXPORT latex
+# #+BEGIN_EXPORT latex
 
-\begin{figure}
-\centering
+# \begin{figure}
+# \centering
 
-#+END_EXPORT
+# #+END_EXPORT
 
-#+BEGIN_EXAMPLE
+# #+BEGIN_EXAMPLE
 
-                      Benchmarks ammount
-No. qubits No. gates
-3          6                           7
-           7                           1
-           19                          1
-           20                          1
-           36                          1
-           50                          1
-4          8                           6
-           9                           2
-           34                          1
-           36                          1
-           51                          1
-           52                          1
-5          4                           1
-           7                           1
-           10                          5
-           11                          3
-           18                          1
-           20                          1
-           21                          1
-           22                          1
-           23                          1
-           27                          1
-           35                          2
-           36                          2
-           37                          5
-           52                          1
-           53                          1
-           66                          1
-           68                          1
-           69                          3
-...                                  ...
-13         128744                      1
-           360618                      1
-14         28                          1
-           29                          8
-           211                         1
-           270                         1
-           1776                        2
-           11414                       1
-           33827                       1
-           38577                       1
-           187112                      1
-15         31                          8
-           37                          1
-           343                         1
-           4813                        1
-           7630                        1
-           8763                        1
-           9462                        1
-           17936                       1
-           171840                      1
-16         33                          8
-           175                         1
-           272                         1
-           326                         1
-           485                         1
-           10619                       1
-           18852                       1
-17         35                          8
-           36                          1
-           43                          1
+#                       Benchmarks ammount
+# No. qubits No. gates
+# 3          6                           7
+#            7                           1
+#            19                          1
+#            20                          1
+#            36                          1
+#            50                          1
+# 4          8                           6
+#            9                           2
+#            34                          1
+#            36                          1
+#            51                          1
+#            52                          1
+# 5          4                           1
+#            7                           1
+#            10                          5
+#            11                          3
+#            18                          1
+#            20                          1
+#            21                          1
+#            22                          1
+#            23                          1
+#            27                          1
+#            35                          2
+#            36                          2
+#            37                          5
+#            52                          1
+#            53                          1
+#            66                          1
+#            68                          1
+#            69                          3
+# ...                                  ...
+# 13         128744                      1
+#            360618                      1
+# 14         28                          1
+#            29                          8
+#            211                         1
+#            270                         1
+#            1776                        2
+#            11414                       1
+#            33827                       1
+#            38577                       1
+#            187112                      1
+# 15         31                          8
+#            37                          1
+#            343                         1
+#            4813                        1
+#            7630                        1
+#            8763                        1
+#            9462                        1
+#            17936                       1
+#            171840                      1
+# 16         33                          8
+#            175                         1
+#            272                         1
+#            326                         1
+#            485                         1
+#            10619                       1
+#            18852                       1
+# 17         35                          8
+#            36                          1
+#            43                          1
 
-[180 rows x 1 columns]
+# [180 rows x 1 columns]
 
-#+END_EXAMPLE
+# #+END_EXAMPLE
 
 
-#+BEGIN_EXPORT latex
+# #+BEGIN_EXPORT latex
 
-\label{code:q_gate_bench}
-\caption{Amount of benchmarks classified by the number of gates and the number of qubits}
-\end{figure}
+# \label{code:q_gate_bench}
+# \caption{Amount of benchmarks classified by the number of gates and the number of qubits}
+# \end{figure}
 
-#+END_EXPORT
+# #+END_EXPORT
+
+#+caption: Amount of benchmarks classified by the number of gates and the number of qubits
+#+NAME: fig:q_gate_bench
+#+ATTR_LATEX: :width 0.7\textwidth
+[[file:figures/number_of_benchmarks_depending_on_the_number_of_qubits.png]]
 
 ******* with names                                    :ignore:noexport:
 
