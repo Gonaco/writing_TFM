@@ -23,7 +23,7 @@ where $\Lambda$ is the CPTP transformation and $\sigma_i$ are the Pauli operator
 
 
 
-**** Error model
+*** Error model
 
 Quantumsim considers six main error sources in the SC-7 and SC-17, of which three comes from the different operations -- single/two-qubit gates and measurement -- and the others are either decoherence or apparatus related errors -- photon decay and the flux noise.
 Each operation has its own model, based on the learning extracted from several experiments.
@@ -154,7 +154,7 @@ Quantumsim ignore effects leading to measurement-induced mixing and non-linearit
 
 
 
-#+caption: Main error model parameters for simulation cite:O_Brien_2017
+#+caption: quantumsim main error model parameters
 #+NAME: tab:err_pam
 #+ATTR_LATEX: :booktabs :environment :font \tiny :align lccp{7cm}
 |------------------------------------+--------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -177,11 +177,11 @@ Quantumsim ignore effects leading to measurement-induced mixing and non-linearit
 |------------------------------------+--------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 
-**** Github repository
+*** Github repository
 
 Quantumsim can be found as *python library* in its [[https://github.com/quantumsim/quantumsim][github repository]] with instructions to install it and an overview of how to use it.
 
-**** BIB                                                 :ignore:noexport:
+*** BIB                                                   :ignore:noexport:
 
 bibliography:../thesis_plan.bib
 bibliographystyle:plain
