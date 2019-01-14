@@ -237,7 +237,7 @@ For example, two similar algorithms which number of qubits or number of gates ar
 Finally, benchmarks with a known functionality are preferred.
 
 Once we had our requirements we could start the analysis and the selection afterwards.
-In the next figures, from Fig. \ref{code:no_q_statistics} to Fig. \ref{code:q_gate_bench}, we show the different steps and data of the analysis in order to do the selection.
+In the next figures, from Fig. fig:no_q_statistics]] to Fig. \ref{code:q_gate_bench}, we show the different steps and data of the analysis in order to do the selection.
 In Tab. [[tab:map_selected_benchs]] we show the final benchmark selection.
 The crossed out algorithms are the ones that, after the selection, the simulation failed because of their computational requirements.
 
@@ -267,42 +267,47 @@ The crossed out algorithms are the ones that, after the selection, the simulatio
 
 ******* Benchark amounts depending on the different possible number of qubits :ignore:
 
-#+BEGIN_EXPORT latex
+# #+BEGIN_EXPORT latex
 
-\begin{figure}
-\centering
+# \begin{figure}
+# \centering
 
-#+END_EXPORT
+# #+END_EXPORT
 
-#+BEGIN_EXAMPLE
+# #+BEGIN_EXAMPLE
 
-            Benchmarks ammount
-No. qubits
-3                           12
-4                           12
-5                           57
-6                           31
-7                           22
-8                           16
-9                           15
-10                          21
-11                          17
-12                          14
-13                          18
-14                          17
-15                          16
-16                          14
-17                          10
+#             Benchmarks ammount
+# No. qubits
+# 3                           12
+# 4                           12
+# 5                           57
+# 6                           31
+# 7                           22
+# 8                           16
+# 9                           15
+# 10                          21
+# 11                          17
+# 12                          14
+# 13                          18
+# 14                          17
+# 15                          16
+# 16                          14
+# 17                          10
 
-#+END_EXAMPLE
+# #+END_EXAMPLE
 
-#+BEGIN_EXPORT latex
+# #+BEGIN_EXPORT latex
 
-\label{code:no_q_statistics}
-\caption{Statistics of the amount of benchmarks wit the same number of qubits}
-\end{figure}
+# \label{code:no_q_statistics}
+# \caption{Statistics of the amount of benchmarks wit the same number of qubits}
+# \end{figure}
 
-#+END_EXPORT
+# #+END_EXPORT
+
+#+caption: Statistics of the amount of benchmarks wit the same number of qubits
+#+NAME: fig:no_q_statistics
+#+ATTR_LATEX: :width 0.7\textwidth
+[[../figures/number_of_benchmarks_depending_on_the_number_of_qubits.png]]
 
 
 ******* Different gate numbers for algorithms with less than 17 qubits :ignore:
