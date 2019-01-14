@@ -307,7 +307,7 @@ The crossed out algorithms are the ones that, after the selection, the simulatio
 #+caption: Statistics of the amount of benchmarks wit the same number of qubits
 #+NAME: fig:no_q_statistics
 #+ATTR_LATEX: :width 0.7\textwidth
-[[figures/number_of_benchmarks_depending_on_the_number_of_qubits.png]]
+[[file:figures/number_of_benchmarks_depending_on_the_number_of_qubits.png]]
 
 
 ******* Different gate numbers for algorithms with less than 17 qubits :ignore:
