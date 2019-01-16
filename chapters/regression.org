@@ -1,0 +1,6 @@
+*** Intro                                                          :ignore:
+
+*** BIB                                                   :ignore:noexport:
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain
