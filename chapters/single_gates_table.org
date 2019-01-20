@@ -5,7 +5,6 @@
 #+END_EXPORT
 
 #+caption: Most common single qubit gates
-#+NAME: tab:single_q_gates
 #+ATTR_LATEX: :booktabs :environment :width \textwidth :float t :align ccccccc
 | Identity                               | Pauli-X                                | Pauli-Y                                 | Pauli-Z                                 | Hadamard                                                  | S gate                                 | T gate                                              |
 | \input{figures/i_gate}                 | \input{figures/x_gate}                 | \input{figures/y_gate}                  | \input{figures/z_gate}                  | \input{figures/h_gate}                                    | \input{figures/s_gate}                 | \input{figures/t_gate}                              |
@@ -13,6 +12,7 @@
 
 #+BEGIN_EXPORT latex
 
+\label{fig:single_q_gates}
 \end{figure}
 
 #+END_EXPORT
