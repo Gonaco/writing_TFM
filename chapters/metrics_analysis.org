@@ -1,5 +1,261 @@
 *** Intro                                                          :ignore:
 
+**** Fidelity and probabilty of success correlation               :ignore:
+
+
+
+[[file:figures/f_ps_correlation_with_meas_error.png]]
+
+[[file:figures/f_ps_correlation_no_meas_error.png]]
+
+
+***** No Measurement error                                     :noexport:
+
+SIGO FILTRANDO FIDELITY > 0.5
+
+
+#+BEGIN_SRC C
+
+Analysis For Decoherence Time = 3000 and Error Measurement = 0.005
+
+        -------------------------------
+
+        -- Correlation between the Fidelity and Probability of Success
+
+Polynomial function:
+
+0.5914 x + 0.4081
+----------------------------
+
+(0.9192199104316764, 3.767553069709704e-25)
+
+        Analysis For Decoherence Time = 3000 and Error Measurement = 0
+
+        -------------------------------
+
+        -- Correlation between the Fidelity and Probability of Success
+
+Polynomial function:
+
+0.6267 x + 0.3777
+----------------------------
+
+(0.9358217171375378, 1.410870124624645e-26)
+
+#+END_SRC
+
+
+***** With measurement error                                   :noexport:
+
+SIGO FILTRANDO FIDELITY > 0.5
+
+#+BEGIN_SRC c
+
+Analysis For Decoherence Time = 3000 and Error Measurement = 0.005
+
+        -------------------------------
+
+        -- Correlation between the Fidelity and Probability of Success
+
+Polynomial function:
+
+0.5914 x + 0.4081
+----------------------------
+
+(0.9192199104316764, 3.767553069709704e-25)
+
+        Analysis For Decoherence Time = 1000 and Error Measurement = 0.005
+
+        -------------------------------
+
+        -- Correlation between the Fidelity and Probability of Success
+
+Polynomial function:
+
+0.7122 x + 0.3026
+----------------------------
+
+(0.9560273488297862, 4.0669039495216075e-12)
+
+#+END_SRC
+
+**** Metrics behaviour
+
+
+
+
+*****                                                          :noexport:
+
+SIGO FILTRANDO FIDELITY > 0.5
+
+#+BEGIN_SRC C
+
+        Analysis For Decoherence Time = 3000 and Error Measurement = 0.005
+
+        -------------------------------
+
+        -- Correlation between Fidelity and:
+
+- # of Gates:
+
+Polynomial function:
+           2
+1.534e-07 x - 0.000523 x + 1.005
+----------------------------
+
+(-0.8630740403512944, 7.492413733912921e-19)
+
+- # of two-qubit gates:
+
+Polynomial function:
+           2
+3.049e-06 x - 0.002383 x + 1.004
+----------------------------
+
+(-0.863286950097695, 7.18389012251959e-19)
+
+- Depth:
+
+Polynomial function:
+           2
+3.203e-07 x - 0.0007814 x + 1.019
+----------------------------
+
+(-0.8305711564938272, 2.2460770328365885e-16)
+
+- Quantum Volume:
+
+Polynomial function:
+           2
+4.242e-09 x - 8.926e-05 x + 0.9828
+----------------------------
+
+(-0.7902264007122082, 6.045814411414274e-14)
+
+
+        -- Correlation between Probability of Success and:
+
+- # of Gates:
+
+Polynomial function:
+           2
+1.425e-07 x - 0.0003704 x + 1.008
+----------------------------
+
+(-0.6324404022306189, 5.9408960728175597e-08)
+
+- # of two-qubit gates:
+
+Polynomial function:
+           2
+2.769e-06 x - 0.001732 x + 1.01
+----------------------------
+
+(-0.6441233355408925, 2.8150298712169916e-08)
+
+- Depth:
+
+Polynomial function:
+           2
+2.584e-07 x - 0.0005238 x + 1.014
+----------------------------
+
+(-0.6174470539858588, 1.4818911589874065e-07)
+
+- Quantum Volume:
+
+Polynomial function:
+           2
+3.169e-09 x - 5.64e-05 x + 0.988
+----------------------------
+
+(-0.5724133147384978, 1.7659969011385104e-06)
+
+        Analysis For Decoherence Time = 1000 and Error Measurement = 0.005
+
+        -------------------------------
+
+        -- Correlation between Fidelity and:
+
+- # of Gates:
+
+Polynomial function:
+           2
+5.383e-07 x - 0.001103 x + 0.9934
+----------------------------
+
+(-0.897561920337874, 1.4957448590931355e-08)
+
+- # of two-qubit gates:
+
+Polynomial function:
+          2
+1.629e-05 x - 0.005348 x + 0.9712
+----------------------------
+
+(-0.7785748517752366, 1.975273755557373e-05)
+
+- Depth:
+
+Polynomial function:
+           2
+1.651e-06 x - 0.001773 x + 1.009
+----------------------------
+
+(-0.8194633195943474, 3.078535631273159e-06)
+
+- Quantum Volume:
+
+Polynomial function:
+           2
+2.687e-08 x - 0.000201 x + 0.9471
+----------------------------
+
+(-0.6784205747012305, 0.0005194496207515033)
+
+
+        -- Correlation between Probability of Success and:
+
+- # of Gates:
+
+Polynomial function:
+          2
+2.03e-08 x - 0.0006141 x + 0.9941
+----------------------------
+
+(-0.8447301986384201, 7.618304513439932e-07)
+
+- # of two-qubit gates:
+
+Polynomial function:
+           2
+3.226e-06 x - 0.002616 x + 0.9647
+----------------------------
+
+(-0.6901152561603443, 0.00037894800783273185)
+
+- Depth:
+
+Polynomial function:
+           2
+6.506e-07 x - 0.001068 x + 1.009
+----------------------------
+
+(-0.792713984206436, 1.0880694258391198e-05)
+
+- Quantum Volume:
+
+Polynomial function:
+           2
+1.125e-08 x - 0.0001186 x + 0.9648
+----------------------------
+
+(-0.6477821957243156, 0.0011155566982108602)
+
+
+#+END_SRC
+
+
 *** BIB                                                   :ignore:noexport:
 
 bibliography:../thesis_plan.bib
