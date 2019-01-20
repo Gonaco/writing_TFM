@@ -1,39 +1,62 @@
 *** Intro                                                          :ignore:
 
 #+caption: Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to
-#+ATTR_LATEX: :booktabs :environment :float t :font \small :align lll                                      
+#+ATTR_LATEX: :booktabs :environment :float t :font \small :align llll                                     
 |----------------------+----------+---------+---------------------|
 | Benchmark            | # qubits | # gates | two-qubit gates (%) |
 |----------------------+----------+---------+---------------------|
-| 4gt11_82             |        5 |      27 |               0.667 |
-| 4gt12_v1_89          |        6 |     228 |               0.439 |
-| 4gt4_v0_72           |        6 |     258 |               0.438 |
-| 4mod5_bdd_287        |        7 |      70 |               0.443 |
-| 4mod5_v0_20          |        5 |      20 |               0.500 |
-| alu_bdd_288          |        7 |      84 |               0.452 |
-| alu_v0_27            |        5 |      36 |               0.472 |
-| decod24_bdd_294      |        6 |      73 |               0.438 |
-| decod24_enable_126   |        6 |     338 |               0.441 |
-| graycode6_47         |        6 |       5 |               1.000 |
-| ham3_102             |        3 |      20 |               0.550 |
-| hwb4_49              |        5 |     233 |               0.459 |
-| mod10_176            |        5 |     178 |               0.438 |
+| sf_274               |        6 |     781 |               0.430 |
 | mod5adder_127        |        6 |     555 |               0.431 |
-| mod5d1_63            |        5 |      22 |               0.591 |
+| sf_276               |        6 |     778 |               0.432 |
+| 4gt4_v0_72           |        6 |     258 |               0.438 |
+| decod24_bdd_294      |        6 |      73 |               0.438 |
+| mod10_176            |        5 |     178 |               0.438 |
+| sym6_145             |        7 |    3888 |               0.438 |
+| 4gt12_v1_89          |        6 |     228 |               0.439 |
+| decod24_enable_126   |        6 |     338 |               0.441 |
+| 4mod5_bdd_287        |        7 |      70 |               0.443 |
 | mod8_10_177          |        6 |     440 |               0.445 |
 | one_two_three_v1_99  |        5 |     132 |               0.447 |
+| alu_bdd_288          |        7 |      84 |               0.452 |
 | one_two_three_v3_101 |        5 |      70 |               0.457 |
+| hwb4_49              |        5 |     233 |               0.459 |
 | rd32_v0_66           |        4 |      34 |               0.471 |
-| sf_274               |        6 |     781 |               0.430 |
-| sf_276               |        6 |     778 |               0.432 |
-| sym6_145             |        7 |    3888 |               0.438 |
+| alu_v0_27            |        5 |      36 |               0.472 |
+| 4mod5_v0_20          |        5 |      20 |               0.500 |
+| ham3_102             |        3 |      20 |               0.550 |
+| mod5d1_63            |        5 |      22 |               0.591 |
+| 4gt11_82             |        5 |      27 |               0.667 |
 | xor5_254             |        6 |       7 |               0.714 |
+| graycode6_47         |        6 |       5 |               1.000 |
 |----------------------+----------+---------+---------------------|
 
 #+BEGIN_EXPORT latex
 \label{tab:map_selected_benchs}
 #+END_EXPORT
 
+
+**** bar plot                                                     :ignore:
+
+#+caption: 
+#+NAME: fig:
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/f_diff_bar_plot.png]]
+
+**** - infidelity percentage against depth                        :ignore:
+
+#+caption: 
+#+NAME: fig:
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/infid_percentage_depth_before_mapping.png]]
+
+
+*****                                                          :noexport:
+
+- In order to get this figure we filter fidelity. Only f>0.5 is plot
+- Infidelity: $\frac{f_a - f_b}{1 - f_b}$
+- Depth is the depth before mapping
+- We decided to see it like this in order to cluster the same benchmark mapped in different ways
+- We can conclude that the mapper quality is critical for benchmarks with small depth before being mapped, but for long circuits the mapper quality gets diminished. This means that simple and, therefore, faster mappers can be implemented for long circuits making possible the mapping on the fly, for instance
 *** BIB                                                   :ignore:noexport:
 
 bibliography:../thesis_plan.bib
