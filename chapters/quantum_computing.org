@@ -107,7 +107,7 @@ The most used one is the *Clifford+T* set, formed by the Clifford gate set -- ph
 Single qubit gates represent quantum operations that involve just one qubit.
 They are represented as a box with one input and one output, evincing that a single qubit will be the input and output of the operation.
 As explained before, single-qubit gates can be represented as $2^1 \times 2^1$ square matrices that should be unitary.
-Both representations of the most common single-qubit gates can be found in Table \ref{fig:single_q_gates}.
+Both representations of the most common single-qubit gates can be found in Table [[tab:single_q_gates]].
 
 #+INCLUDE: single_gates_table.org::tab:single_q_gates
 
