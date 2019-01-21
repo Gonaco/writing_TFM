@@ -1,6 +1,6 @@
 # Intro (what is quantumsim, advantages)
 
-Quantumsim cite:O_Brien_2017 is a simulator of superconducting systems designed to study the SC-17 chip.
+Quantumsim cite:O_Brien_2017 is a simulator for superconducting systems and designed to study the SC-17 chip.
 Its error model has been induced from the chip's behaviour after several experiments.
 Therefore, quantumsim's error model is much more complete for the superconducting case than other general simulators.
 Although, at the same time, the detail in its error model makes each simulation computationally harder.
