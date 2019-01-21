@@ -1,11 +1,11 @@
 
-\chapter*{Benchmarks and simulation framework}
-\label{sec:org2740419}
+\chapter*{Benchmarks and analysis framework}
+\label{sec:org848d3ef}
 
 In this chapter we describe the benchmarks that will be mapped to the surface code chip and the framework develop for the study of the mapping metrics.
 
 \section*{Benchmarks}
-\label{sec:org5fe30ac}
+\label{sec:org87f661a}
 As stated in the Introduction, the research was conducted to analyze the different metrics to assess the quality of a mapping algorithm.
 To this purpose, we selected a set of quantum algorithms available in the literature.
 
@@ -44,7 +44,7 @@ We came up with a list of 84 different algorithms -- 697 benchmarks taking into 
 These algorithms cannot only be used for the mapping problem but also for the other activities in our group.
 
 \subsection*{Benchmark selection}
-\label{sec:org97a7e3c}
+\label{sec:orga1d7cbd}
 
 In order to have a small, but representative, set of benchmarks to map, we selected just some of them.
 This requirement comes by the fact that simulations are long and computationally exhaustive.
@@ -62,7 +62,7 @@ For example, two similar algorithms which number of qubits or number of gates ar
 Once we had our requirements we could start the analysis and the selection afterwards.
 In Tab. \ref{tab:map_selected_benchs} we show the final benchmark selection.
 \begin{table}[htbp]
-\caption{\label{tab:orgc867dfc}
+\caption{\label{tab:org312b0df}
 Restriction summary of the benchmark selection}
 \centering
 \begin{tabular}{|l|}
@@ -81,14 +81,14 @@ Restrictions:\\
 43 benchmarks (with qubits numbers from 3 to 17 qubits) selected after applying the previous Restrictions to the analysis of the benchmarks described in the next section (see Table \ref{tab:map_selected_benchs}).
 After simulating the algorithms, few of them returned errors (segmentation fault) and some others .
 
-\section*{Simulation framework}
-\label{sec:org311b249}
+\section*{Analysis framework}
+\label{sec:orge875139}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 It is based on two steps: \textbf{compilation} and \textbf{simulation}.
 With this purpose we connect two tools, OpenQL and quantumsim, and we build a whole framework over them.
 
 \subsection*{Compiler (OpenQL)}
-\label{sec:orgff7c703}
+\label{sec:orgc4198e6}
 OpenQL is a framework for high-level quantum programming developed by our group.
 It is able to describe both, quantum circuits and quantum devices.
 The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages.
@@ -148,7 +148,7 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{figure}
 
 \subsection*{quantumsim}
-\label{sec:orge732141}
+\label{sec:org1be9b29}
 
 Quantumsim \cite{O_Brien_2017} is a simulator for superconducting systems and designed to study the SC-17 chip.
 Its error model has been induced from the chip's behaviour after several experiments.
@@ -157,50 +157,55 @@ Although, at the same time, the detail in its error model makes each simulation 
 As a matter of fact, quantumsim is able to boost its calculations with a Graphics Processing Unit (GPU).
 Quantumsim can be found as \textbf{python library} in its \href{https://github.com/quantumsim/quantumsim}{github repository} with instructions to install it and an overview of how to use it.
 
-\subsection*{Simulation Framework}
-\label{sec:orgff13d9b}
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:org3a0f35c}
-Error Framework}
-\end{figure}
+\subsection*{Analysis Framework}
+\label{sec:org93ec6a6}
+[General overview of what the framework does]
+
+
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{epstopdf}
+
+\begin{sidewaysfigure}[ht]
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{figures/error_framework_diagram.png}
+\end{center}
+
+
+    \caption{Framework Analysis}
+    \label{fig:general_error_}
+\end{sidewaysfigure}
 
 \begin{itemize}
-\item Benchmark Object
-\label{sec:orge2b37d9}
+\item Benchmark mapping
+\label{sec:org53f1364}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:orgf8b9852}
-Benchmark Object \ldots{}}
+\caption{\label{fig:org5e30ca0}
+Benchmark mapping process}
 \end{figure}
 
-\item Mapping Analysis Object
-\label{sec:orgccdac2e}
+\item Mapping Analysis
+\label{sec:orgee2a61e}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:orge946d9c}
-Mapping Analysis Object \ldots{}}
+\caption{\label{fig:org0035d0a}
+Mapping Analysis process}
 \end{figure}
 
 \item Database
-\label{sec:orga307fae}
+\label{sec:orgd2ffbc2}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:org8013fae}
+\caption{\label{fig:org844f2b9}
 Database tables}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org18b3601}
-Database tables information}
 \end{figure}
 \end{itemize}

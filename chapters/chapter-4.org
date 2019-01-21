@@ -2,7 +2,7 @@
 #+EXCLUDE_TAGS: noexport thesisnoexport
 #+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
-* Benchmarks and simulation framework
+* Benchmarks and analysis framework
 
 # Intro to our work
 
@@ -15,7 +15,7 @@ In this chapter we describe the benchmarks that will be mapped to the surface co
 
 #+INCLUDE: benchmarks.org
 
-** Simulation framework
+** Analysis framework
 :PROPERTIES:
 :ID:       0f271e2b-2b00-49a2-8a9b-c942b2f367c3
 :END:
@@ -41,5 +41,5 @@ With this purpose we connect two tools, OpenQL and quantumsim, and we build a wh
 
 #+INCLUDE: qx.org
 
-*** Simulation Framework
+*** Analysis Framework
 #+INCLUDE: error_framework.org

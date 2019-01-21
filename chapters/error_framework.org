@@ -1,23 +1,45 @@
 # Intro
 
-#+caption: Error Framework
-#+NAME: fig:general_error_framework
-#+ATTR_LATEX: :width \textwidth
+[General overview of what the framework does]
+
+# #+caption: Framework analysis
+# #+NAME: fig:general_error_framework
+# #+ATTR_LATEX: :width \textwidth
+# [[file:figures/error_framework_diagram.png]]
+
+#+BEGIN_EXPORT latex
+
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{epstopdf}
+
+\begin{sidewaysfigure}[ht]
+
+#+END_EXPORT
+
 [[file:figures/error_framework_diagram.png]]
 
+#+BEGIN_EXPORT latex
 
-# Error framework flow
+    \caption{Framework Analysis}
+    \label{fig:general_error_}
+\end{sidewaysfigure}
 
-****** Benchmark Object
+#+END_EXPORT
 
-#+caption: Benchmark Object ...
+# Analysis framework flow
+
+****** Benchmark mapping
+
+#+caption: Benchmark mapping process
 #+NAME: fig:benchmark_object
 #+ATTR_LATEX: :width .5\textwidth
 [[file:figures/benchmark_object.png]]
 
-****** Mapping Analysis Object
+****** Mapping Analysis
 
-#+caption: Mapping Analysis Object ...
+#+caption: Mapping Analysis process
 #+NAME: fig:error_analysis
 #+ATTR_LATEX: :width .75\textwidth
 [[file:figures/error_analysis.png]]
@@ -32,7 +54,7 @@
 #+ATTR_LATEX: :width .5\textwidth
 [[file:figures/database_scheme_detail.png]]
 
-#+caption: Database tables information
-#+NAME: fig:error_analysis
-#+ATTR_LATEX: :width \textwidth
-[[file:figures/database_scheme_general.png]]
+# #+caption: Database tables information
+# #+NAME: fig:error_analysis
+# #+ATTR_LATEX: :width \textwidth
+# [[file:figures/database_scheme_general.png]]
