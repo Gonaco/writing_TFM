@@ -23,6 +23,8 @@ In this chapter we describe the benchmarks that will be mapped to the surface co
 # Intro to the error framework section
 
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
+It is based on two steps: *compilation* and *simulation*.
+With this purpose we connect two tools, OpenQL and quantumsim, and we build a whole framework over them.
 
 *** Compiler (OpenQL)
 :PROPERTIES:

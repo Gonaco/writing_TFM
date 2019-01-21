@@ -4,10 +4,9 @@ It is able to describe both, quantum circuits and quantum devices.
 The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages.
 The quantum chips and their constrains are described in a JSON file that is imported in the circuit description.
 OpenQL is able to compile quantum circuits for specific devices and export a code understandable by a quantum simulator.
-One of it's compiler processes is the mapper algorithm developed by our group.
+One of it's compiler processes is the *mapper* algorithm developed by our group.
 Therefore we will use OpenQL to describe the circuit and compile it for the SC-17 chip.
 In Fig. \ref{code:openql_gray_code} we show an example of OpenQL code using Python that describes the Gray encoder quantum circuit (Fig. \ref{fig:circuit_example}).
-We offer a sample of how the JSON description file is in Fig. \ref{code:json_sc7}.
 More insights can be found in the [[https://github.com/QE-Lab/OpenQL][github repository]].
 # Intro (what is OpenQL, advantages, abilities, ...)
 
@@ -63,79 +62,79 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{figure}
 #+END_EXPORT
 
-#+BEGIN_EXPORT latex
+# #+BEGIN_EXPORT latex
 
-\begin{figure}
-\centering
+# \begin{figure}
+# \centering
 
-#+END_EXPORT
+# #+END_EXPORT
 
-     #+BEGIN_SRC js
+#      #+BEGIN_SRC js
 
-{
-   "eqasm_compiler" : "cc_light_compiler",
+# {
+#    "eqasm_compiler" : "cc_light_compiler",
 
-   "hardware_settings": {
-	 "qubit_number": 7,
-	 "cycle_time" : 20,  
-     ...
-   },
+#    "hardware_settings": {
+# 	 "qubit_number": 7,
+# 	 "cycle_time" : 20,  
+#      ...
+#    },
 
-  "resources":
-   {
-    "qubits":
-    {
-      "count": 7
-    },
-    "qwgs" :
-    {
-      "count": 3,
-      "connection_map":
-      {
-        "0" : [0, 1],
-        ...
-        "2" : [5, 6]
-      }
-    },
-    "meas_units" :
-    {
-      "count": 2,
-      "connection_map":
-      {
-        "0" : [0, 2, 3, 5, 6],
-        "1" : [1, 4]
-      }
-    },
-    "edges":
-    {  
-      "count": 16,
-      "connection_map":
-      {
-        "0": [2, 10], 
-        ...
-        "15": [5, 13]
-      }
-    },
-    "detuned_qubits":
-    {     
-      "count": 7,
-      "connection_map":
-      {
-        "0": [3],
-        ...
-        "15": []
-      }
-    }
-  },
-...
+#   "resources":
+#    {
+#     "qubits":
+#     {
+#       "count": 7
+#     },
+#     "qwgs" :
+#     {
+#       "count": 3,
+#       "connection_map":
+#       {
+#         "0" : [0, 1],
+#         ...
+#         "2" : [5, 6]
+#       }
+#     },
+#     "meas_units" :
+#     {
+#       "count": 2,
+#       "connection_map":
+#       {
+#         "0" : [0, 2, 3, 5, 6],
+#         "1" : [1, 4]
+#       }
+#     },
+#     "edges":
+#     {  
+#       "count": 16,
+#       "connection_map":
+#       {
+#         "0": [2, 10], 
+#         ...
+#         "15": [5, 13]
+#       }
+#     },
+#     "detuned_qubits":
+#     {     
+#       "count": 7,
+#       "connection_map":
+#       {
+#         "0": [3],
+#         ...
+#         "15": []
+#       }
+#     }
+#   },
+# ...
      
-     #+END_SRC
+#      #+END_SRC
 
 
-#+BEGIN_EXPORT latex
+# #+BEGIN_EXPORT latex
 
-\caption{Example of a configuration file in JSON code that describes a quantum device characteristics and constrains}
-\label{code:json_sc7}
-\end{figure}
+# \caption{Example of a configuration file in JSON code that describes a quantum device characteristics and constrains}
+# \label{code:json_sc7}
+# \end{figure}
 
-#+END_EXPORT
+# #+END_EXPORT
