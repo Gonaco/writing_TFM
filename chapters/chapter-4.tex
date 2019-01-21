@@ -1,11 +1,11 @@
 
 \chapter*{Benchmarks and simulation framework}
-\label{sec:orged53702}
+\label{sec:orgde0353b}
 
 In this chapter we describe the benchmarks that will be mapped to the surface code chip and the framework develop for the study of the mapping metrics.
 
 \section*{Benchmarks}
-\label{sec:orgdcccba1}
+\label{sec:org4683992}
 As stated in the Introduction, the research was conducted to analyze the different metrics to assess the quality of a mapping algorithm.
 To this purpose, we selected a set of quantum algorithms available in the literature.
 
@@ -44,7 +44,7 @@ We came up with a list of 84 different algorithms -- 697 benchmarks taking into 
 These algorithms cannot only be used for the mapping problem but also for the other activities in our group.
 
 \subsection*{Benchmark selection}
-\label{sec:org1814076}
+\label{sec:orgf6f6f0c}
 
 In order to have a small, but representative, set of benchmarks to map, we selected just some of them.
 This requirement comes by the fact that simulations are long and computationally exhaustive.
@@ -62,7 +62,7 @@ For example, two similar algorithms which number of qubits or number of gates ar
 Once we had our requirements we could start the analysis and the selection afterwards.
 In Tab. \ref{tab:map_selected_benchs} we show the final benchmark selection.
 \begin{table}[htbp]
-\caption{\label{tab:org456e9dd}
+\caption{\label{tab:orgc6ea375}
 Restriction summary of the benchmark selection}
 \centering
 \begin{tabular}{|l|}
@@ -82,17 +82,21 @@ Restrictions:\\
 After simulating the algorithms, few of them returned errors (segmentation fault) and some others .
 
 \section*{Simulation framework}
-\label{sec:orged1ff3b}
+\label{sec:org9b2f460}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 
 \subsection*{Compiler (OpenQL)}
-\label{sec:org739bcdd}
-[Intro]
-
-
-\begin{itemize}
-\item OpenQL
-\label{sec:orgbd49e28}
+\label{sec:orgc30df36}
+OpenQL is a framework for high-level quantum programming developed by our group.
+It is able to describe both, quantum circuits and quantum devices.
+The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages.
+The quantum chips and their constrains are described in a JSON file that is imported in the circuit description.
+OpenQL is able to compile quantum circuits for specific devices and export a code understandable by a quantum simulator.
+One of it's compiler processes is the mapper algorithm developed by our group.
+Therefore we will use OpenQL to describe the circuit and compile it for the SC-17 chip.
+In Fig. \ref{code:openql_gray_code} we show an example of OpenQL code using Python that describes the Gray encoder quantum circuit (Fig. \ref{fig:circuit_example}).
+We offer a sample of how the JSON description file is in Fig. \ref{code:json_sc7}.
+More insights can be found in the \href{https://github.com/QE-Lab/OpenQL}{github repository}.
 
 \begin{figure}
 \centering
@@ -101,8 +105,6 @@ In this section we introduce the framework we developed in order to analyze the 
 \begin{minted}[frame=lines,fontsize=\scriptsize,linenos,breaklines,breakanywhere]{python}
 
 from openql import openql as ql
-import os
-import argparse
 
 def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', initial_placement='no', output_dir_name='test_output', optimize='no', measurement=True, log_level='LOG_WARNING'):
     curdir = os.path.dirname(__file__)
@@ -143,10 +145,80 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \label{code:openql_gray_code}
 \end{minipage}
 \end{figure}
-\end{itemize}
+
+
+\begin{figure}
+\centering
+
+\begin{minted}[frame=lines,fontsize=\scriptsize,linenos,breaklines,breakanywhere]{js}
+
+{
+   "eqasm_compiler" : "cc_light_compiler",
+
+   "hardware_settings": {
+	 "qubit_number": 7,
+	 "cycle_time" : 20,  
+     ...
+   },
+
+  "resources":
+   {
+    "qubits":
+    {
+      "count": 7
+    },
+    "qwgs" :
+    {
+      "count": 3,
+      "connection_map":
+      {
+	"0" : [0, 1],
+	...
+	"2" : [5, 6]
+      }
+    },
+    "meas_units" :
+    {
+      "count": 2,
+      "connection_map":
+      {
+	"0" : [0, 2, 3, 5, 6],
+	"1" : [1, 4]
+      }
+    },
+    "edges":
+    {  
+      "count": 16,
+      "connection_map":
+      {
+	"0": [2, 10], 
+	...
+	"15": [5, 13]
+      }
+    },
+    "detuned_qubits":
+    {     
+      "count": 7,
+      "connection_map":
+      {
+	"0": [3],
+	...
+	"15": []
+      }
+    }
+  },
+...
+
+\end{minted}
+
+
+
+\caption{Example of a configuration file in JSON code that describes a quantum device characteristics and constrains}
+\label{code:json_sc7}
+\end{figure}
 
 \subsection*{quantumsim}
-\label{sec:org7d8456a}
+\label{sec:orgde8df74}
 
 Quantumsim \cite{O_Brien_2017} is a simulator of superconducting systems designed to study the SC-17 chip.
 Its error model has been induced from the chip's behaviour after several experiments.
@@ -156,49 +228,49 @@ As a matter of fact, quantumsim is able to boost its calculations with a Graphic
 Quantumsim can be found as \textbf{python library} in its \href{https://github.com/quantumsim/quantumsim}{github repository} with instructions to install it and an overview of how to use it.
 
 \subsection*{Simulation Framework}
-\label{sec:org96102ac}
+\label{sec:org86159fc}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/error_framework_diagram.png}
-\caption{\label{fig:org7fb87fe}
+\caption{\label{fig:org9efe695}
 Error Framework}
 \end{figure}
 
 \begin{itemize}
 \item Benchmark Object
-\label{sec:orge8e0abc}
+\label{sec:org1d0ca4c}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/benchmark_object.png}
-\caption{\label{fig:org4613228}
+\caption{\label{fig:org215f44f}
 Benchmark Object \ldots{}}
 \end{figure}
 
 \item Mapping Analysis Object
-\label{sec:org8987396}
+\label{sec:orge22e61b}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.75\textwidth]{figures/error_analysis.png}
-\caption{\label{fig:org05e58df}
+\caption{\label{fig:orgcf2ea48}
 Mapping Analysis Object \ldots{}}
 \end{figure}
 
 \item Database
-\label{sec:orgf67bdda}
+\label{sec:org4045142}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=.5\textwidth]{figures/database_scheme_detail.png}
-\caption{\label{fig:orge2660d1}
+\caption{\label{fig:org32c9b65}
 Database tables}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/database_scheme_general.png}
-\caption{\label{fig:org769212d}
+\caption{\label{fig:orgf5d5491}
 Database tables information}
 \end{figure}
 \end{itemize}
