@@ -10,11 +10,11 @@
     \node [draw, rectangle] (e) at (0,1) {e};
     \node [draw, rectangle] (f) at (0,0) {f};
     
-    \node [draw, ellipse] (cnot1) at (2,4.5) {CNOT a,b};
-    \node [draw, ellipse] (cnot2) at (4,3.5) {CNOT b,c};
-    \node [draw, ellipse] (cnot3) at (6,2.5) {CNOT c,d};
-    \node [draw, ellipse] (cnot4) at (8,1.5) {CNOT d,e};
-    \node [draw, ellipse] (cnot5) at (10,0.5) {CNOT e,f};
+    \node [draw, ellipse] (cnot1) at (2,4.5) {CNOT b,a};
+    \node [draw, ellipse] (cnot2) at (4,3.5) {CNOT c,b};
+    \node [draw, ellipse] (cnot3) at (6,2.5) {CNOT d,c};
+    \node [draw, ellipse] (cnot4) at (8,1.5) {CNOT e,d};
+    \node [draw, ellipse] (cnot5) at (10,0.5) {CNOT f,e};
 
 
     \draw (a) -- (cnot1);

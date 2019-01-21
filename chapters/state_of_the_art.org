@@ -4,18 +4,16 @@
 
 Quantum algorithms are meant to leverage the promising power of quantum computers cite:coles18:quant_algor_implem_begin.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
-Due to the variety of technologies that emerged with diverse specifications, there is a vast amount of literature on the algorithms -- high abstraction level --, neglecting hardware constraints.
+However, as we have seen they need to be adapted -- mapped -- to the quantum device limitations.
+The main constraints in all of them is the limited connectivity between qubits.
+There is a vast amount of literature on the algorithms -- high abstraction level --, neglecting hardware constraints.
 From ion traps [? paper on ion traps] to superconducting qubits cite:Barends_2014,Versluis_2017, through quantum dots cite:Hill_2015,Li_2018, each layout has its own requirements and constraints.
 Although all of them are arranged in a 2D -- planar -- structure, ion traps technologies are capable to connect the qubits in all-to-all networks while superconducting technologies connections form a grid shaped network where each qubit is connected to a maximum of four neighbors.
 This grid behaviour establishes one of the main connectivity limitation in today's quantum chips, the NN constraint.
 Also industry's superconducting chip layouts from IBM cite:IBM_QX, Google cite:boixo16:charac_quant_suprem_near_term_devic and Rigetti cite:Sete_2016 follow this structural limitations.
-
-# [Mapping problem (because quantum devices are error prone -> QEC ..., therefore the longer the circuit the more errors -> paper that demonstrate it: cite:O_Brien_2017,Linke_2017)]
-# [Mapping definition//As explained before, mapping is...]? (We consider that the mapping task is divided in 3 subtasks: scheduling, initial placement and routing)
-
 As for the high abstraction level of the quantum algorithm, a link between the algorithms and the devices is required cite:Fu_2016.
-As in classical computation, the algorithms should go through a compilation process in order to adapt them to the hosting device.
-Certainly, the mapping procedure is an important element of this process based on three sub-tasks: scheduling, initial placement and routing; as we considered before.
+As in classical computation, the algorithms should go through a transformation process in order to adapt them to the hosting device.
+Certainly, the mapping procedure is an important element of this process.
 
 # [Mapping solutions (Distinguish between the works minimizing in # SWAPS or in latency)]
 
@@ -30,7 +28,7 @@ As it will be explained in the next section, to minimize in latency stands for t
 Following a similar reasoning as the first approaches, more complex solutions cite:booth18:compar_integ_const_progr_tempor have been published using Constraint Programming together with temporal planning, optimizing in latency as well.
 Also, several publications cite:Lye_2015,Wille_2016 outline only the routing sub-task using the number of SWAPS as the metric to minimize.
 
-A recent review of the literature on the mapping topic focused on device specific mapping algorithms, with promising results.
+A recent review of the literature on the mapping topic focused on device specific mapping algorithms.
 In all the cases, taking into account the specific chip connectivity constrain.
 IBM's chip have been gaining much attention due to the open online tools that make the chips accessible to everybody.
 Various approaches to mapping algorithms for the IBM family of chips have been proposed cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018.

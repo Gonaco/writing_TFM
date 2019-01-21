@@ -1,6 +1,7 @@
 # Intro to metrics from the state of the art [As outlined in the state of the art, the literature considers mainly two metrics to report the mapping quality of their algorithms.]
 
-As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms, the added *latency* and the *number* of introduced *operations* after the mapping procedure.
+As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms and as an output to evaluate how good the mapping is.
+The added *latency* and the *number* of introduced *operations* after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
 And latency is the time required to run a quantum circuit in a given quantum device.
 It depends on the chip cycle time and the *depth* of the circuit, $Latency = depth \times t_{cycle}$.
@@ -8,52 +9,6 @@ Depth is the number of cycles the algorithm encloses.
 Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
 E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
-
-# [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]
-
-          #+BEGIN_EXPORT latex
-
-\begin{figure}
-    \centering
-
-\subfigure[Gray encoder quantum circuit]{
-
-\resizebox{0.3\textwidth}{!}{
-   \Qcircuit @C=1em @R=.7em {
-\lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
-\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
-\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
-\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
-\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
-}
-}
-
-}
-\label{fig:latency_swaps_ex_orig}
-
-\subfigure[Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle]{
-
-\resizebox{0.4\textwidth}{!}{
-    \Qcircuit @C=.5em @R=.7em {
- \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
-\lstick{c \to Q_2} & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \ctrl{-3} & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
-\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
-\lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
- }
-}
-
-}
-\label{fig:latency_swaps_ex_map}
-
-\caption{Circuit mapping example}
-\label{fig:latency_swaps_ex}
-\end{figure}
-
-
-   #+END_EXPORT
 
 # Metrics criticism [Research has tended to focus on either depth or number of SWAPS rather than the error produced by the mapping.]
 
@@ -81,5 +36,12 @@ But, in order to do that, a precise prediction of the error should be done and t
 
 # Explaining our purpose and the other metrics (fidelity, prob. success, quantum volume)
 
-So that we could do a proper assessment of mapping algorithms, in our research we analyzed these two metrics amongst other different ones as fidelity, probability of success or quantum volume and their relationship with the error generated after the mapping.
-We will define these metrics in the [[id:38ded492-56c6-4f6a-a629-06e342314cef][Metrics]] section.
+# So that we could do a proper assessment of mapping algorithms, in our research we analyzed these two metrics amongst other different ones as fidelity, probability of success or quantum volume and their relationship with the error generated after the mapping.
+# We will define these metrics in the [[id:38ded492-56c6-4f6a-a629-06e342314cef][Metrics]] section.
+To perform the analysis we will map several small quantum algorithms on the superconducting quantum chip develop at Qutech by DiCarlo's group cite:Versluis_2017.
+In the next chapters, we will explain the constraints of this chip and the mapping model we will use.
+
+*** BIB                                                          :noexport:
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain
