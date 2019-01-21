@@ -128,9 +128,9 @@ In general, the two-qubit gates execute a single-qubit operation over one of the
 The qubits that goes through the operation is called *target*, while the other is called the *control* qubit.
 The most common two-qubit gates are represented in Table [[tab:two_q_gates]].
 The /CNOT/ gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the state of the control qubit will be executed or not.
-As the CNOT, the /CZ/ gate is a Controlled-Z operations that, in this case, executes a Pauli-z gate depending on the state of the control qubit.
-Finally, the /SWAP/ gate "swaps" the state of two qubits.
-It moves the state of one to the other and viceversa.
+If the control qubit is $| 1 \rangle$ the, the Pauli-x will be activated and the target qubit's state will be rotated.
+As the CNOT, the /CZ/ gate is a Controlled-Z operation that, in this case, executes a Pauli-z gate depending on the state of the control qubit.
+Finally, the /SWAP/ gate exchanges the state of two qubits.
 This gate is mostly used for routing purposes as it will be seen in the next sections.
 
 #+INCLUDE: two_q_gates_table.org::tab:two_q_gates
@@ -140,14 +140,10 @@ This gate is mostly used for routing purposes as it will be seen in the next sec
 Quantum circuits are quantum algorithms descriptions.
 As mentioned before, they are formed by quantum gates and qubits connected in circuit fashion.
 As most of the algorithm description models -- no matter if classical or quantum --, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
-They are general descriptions of quantum algorithms.
-Besides the circuit description model, quantum algorithms are commonly described as instruction languages like QASM (Quantum ASseMbly) cite:Nielsen_2009 or its related posterior languages -- cQASM, OpenQASM, etc.
 In fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
 It is composed by CNOT gates only.
 An example of the Gray code is shown in \ref{fig:gray_code_example} for different number of bits ($n$).
-Also, the QASM algorithm representation can be seen in Fig. \ref{code:qasm_gray_code}.
-# This example will accompany us through the whole thesis as a circuit example.
 
 #+BEGIN_EXPORT latex
 \begin{figure}
@@ -174,39 +170,6 @@ Also, the QASM algorithm representation can be seen in Fig. \ref{code:qasm_gray_
 #+ATTR_LATEX: :width 0.3\textwidth
 [[file:figures/gray_code.png]]
 
-#+BEGIN_EXPORT latex
-\begin{figure}
-\centering
-\begin{minipage}{.45\textwidth}
-#+END_EXPORT
-
-     #+BEGIN_SRC C
-
-     #QASM code
-     
-     # qubit declaration
-     qubit a
-     qubit b
-     qubit c
-     qubit d
-     qubit e
-     qubit f
-     
-     # gates declaration
-     cnot b,a
-     cnot c,b
-     cnot d,c
-     cnot e,d
-     cnot f,d
-     
-     #+END_SRC
-
-#+BEGIN_EXPORT latex
-\caption{QASM code describing the Gray code algorithm.}
-\label{code:qasm_gray_code}
-\end{minipage}
-\end{figure}
-#+END_EXPORT
 
 *** Qubits are faulty
 :PROPERTIES:
