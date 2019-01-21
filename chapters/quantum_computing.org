@@ -12,10 +12,13 @@ Quantum bit (or qubits) and quantum gates are the basic ingredients in quantum c
 As in classical computation with boolean gates and bits, quantum gates operate on the qubits to change their state and return the desired result or calculation.
 
 **** Qubits
-
 :PROPERTIES:
 :ID:       68e8f11a-edd9-4e09-a99e-5ef841f010f7
 :END:
+
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
 
 A qubit is the basic unit of information.
 A classical bit state can be either ~0~ or ~1~.

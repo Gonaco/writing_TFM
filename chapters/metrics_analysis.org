@@ -81,10 +81,17 @@ Polynomial function:
 
 **** Metrics behaviour
 
+#+caption: 
+#+NAME: fig:
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/f_metrics_correlation.png]]
 
+#+caption: 
+#+NAME: fig:
+#+ATTR_LATEX: :width \textwidth
+[[file:figures/ps_metrics_correlation.png]]
 
-
-*****                                                          :noexport:
+*****  Notes                                                   :noexport:
 
 SIGO FILTRANDO FIDELITY > 0.5
 

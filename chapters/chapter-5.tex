@@ -1,9 +1,9 @@
 
 \chapter*{Results}
-\label{sec:orgdc906dd}
+\label{sec:orgf38b310}
 
 \section*{Impact of mapping in the overall circuit error}
-\label{sec:orga4d162e}
+\label{sec:org0d1f74c}
 
 \begin{table}[htbp]
 \caption{Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to}
@@ -44,30 +44,18 @@ graycode6\(_{\text{47}}\) & 6 & 5 & 1.000\\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/f_diff_bar_plot.png}
-\caption{\label{fig:orgdd3a509}
+\caption{\label{fig:orgbd5cc35}
 }
 \end{figure}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/infid_percentage_depth_before_mapping.png}
-\caption{\label{fig:org9be5637}
+\caption{\label{fig:org01d5b3f}
 }
 \end{figure}
 
-
-\subsection*{:noexport:}
-\label{sec:orgd07399d}
-
-\begin{itemize}
-\item In order to get this figure we filter fidelity. Only f>0.5 is plot
-\item Infidelity: \(\frac{f_a - f_b}{1 - f_b}\)
-\item Depth is the depth before mapping
-\item We decided to see it like this in order to cluster the same benchmark mapped in different ways
-\item We can conclude that the mapper quality is critical for benchmarks with small depth before being mapped, but for long circuits the mapper quality gets diminished. This means that simple and, therefore, faster mappers can be implemented for long circuits making possible the mapping on the fly, for instance
-\end{itemize}
-
 \section*{Analysis of the mapping metrics}
-\label{sec:orgd531432}
+\label{sec:orgfea681e}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{figures/f_ps_correlation_with_meas_error.png}
@@ -79,184 +67,21 @@ graycode6\(_{\text{47}}\) & 6 & 5 & 1.000\\
 
 
 \subsection*{Metrics behaviour}
-\label{sec:orgb965b8d}
-
-
-
-
-\begin{itemize}
-\item :noexport:
-\label{sec:org18e6dcf}
-
-SIGO FILTRANDO FIDELITY > 0.5
-
-\begin{minted}[frame=lines,fontsize=\scriptsize,linenos,breaklines,breakanywhere]{c}
-
-	Analysis For Decoherence Time = 3000 and Error Measurement = 0.005
-
-	-------------------------------
-
-	-- Correlation between Fidelity and:
-
-- # of Gates:
-
-Polynomial function:
-	   2
-1.534e-07 x - 0.000523 x + 1.005
-----------------------------
-
-(-0.8630740403512944, 7.492413733912921e-19)
-
-- # of two-qubit gates:
-
-Polynomial function:
-	   2
-3.049e-06 x - 0.002383 x + 1.004
-----------------------------
-
-(-0.863286950097695, 7.18389012251959e-19)
-
-- Depth:
-
-Polynomial function:
-	   2
-3.203e-07 x - 0.0007814 x + 1.019
-----------------------------
-
-(-0.8305711564938272, 2.2460770328365885e-16)
-
-- Quantum Volume:
-
-Polynomial function:
-	   2
-4.242e-09 x - 8.926e-05 x + 0.9828
-----------------------------
-
-(-0.7902264007122082, 6.045814411414274e-14)
-
-
-	-- Correlation between Probability of Success and:
-
-- # of Gates:
-
-Polynomial function:
-	   2
-1.425e-07 x - 0.0003704 x + 1.008
-----------------------------
-
-(-0.6324404022306189, 5.9408960728175597e-08)
-
-- # of two-qubit gates:
-
-Polynomial function:
-	   2
-2.769e-06 x - 0.001732 x + 1.01
-----------------------------
-
-(-0.6441233355408925, 2.8150298712169916e-08)
-
-- Depth:
-
-Polynomial function:
-	   2
-2.584e-07 x - 0.0005238 x + 1.014
-----------------------------
-
-(-0.6174470539858588, 1.4818911589874065e-07)
-
-- Quantum Volume:
-
-Polynomial function:
-	   2
-3.169e-09 x - 5.64e-05 x + 0.988
-----------------------------
-
-(-0.5724133147384978, 1.7659969011385104e-06)
-
-	Analysis For Decoherence Time = 1000 and Error Measurement = 0.005
-
-	-------------------------------
-
-	-- Correlation between Fidelity and:
-
-- # of Gates:
-
-Polynomial function:
-	   2
-5.383e-07 x - 0.001103 x + 0.9934
-----------------------------
-
-(-0.897561920337874, 1.4957448590931355e-08)
-
-- # of two-qubit gates:
-
-Polynomial function:
-	  2
-1.629e-05 x - 0.005348 x + 0.9712
-----------------------------
-
-(-0.7785748517752366, 1.975273755557373e-05)
-
-- Depth:
-
-Polynomial function:
-	   2
-1.651e-06 x - 0.001773 x + 1.009
-----------------------------
-
-(-0.8194633195943474, 3.078535631273159e-06)
-
-- Quantum Volume:
-
-Polynomial function:
-	   2
-2.687e-08 x - 0.000201 x + 0.9471
-----------------------------
-
-(-0.6784205747012305, 0.0005194496207515033)
-
-
-	-- Correlation between Probability of Success and:
-
-- # of Gates:
-
-Polynomial function:
-	  2
-2.03e-08 x - 0.0006141 x + 0.9941
-----------------------------
-
-(-0.8447301986384201, 7.618304513439932e-07)
-
-- # of two-qubit gates:
-
-Polynomial function:
-	   2
-3.226e-06 x - 0.002616 x + 0.9647
-----------------------------
-
-(-0.6901152561603443, 0.00037894800783273185)
-
-- Depth:
-
-Polynomial function:
-	   2
-6.506e-07 x - 0.001068 x + 1.009
-----------------------------
-
-(-0.792713984206436, 1.0880694258391198e-05)
-
-- Quantum Volume:
-
-Polynomial function:
-	   2
-1.125e-08 x - 0.0001186 x + 0.9648
-----------------------------
-
-(-0.6477821957243156, 0.0011155566982108602)
-
-
-\end{minted}
-\end{itemize}
+\label{sec:org1e88750}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/f_metrics_correlation.png}
+\caption{\label{fig:org59441c5}
+}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/ps_metrics_correlation.png}
+\caption{\label{fig:org75f0d0b}
+}
+\end{figure}
 
 \section*{Advice}
-\label{sec:org62947ed}
+\label{sec:org76f049f}

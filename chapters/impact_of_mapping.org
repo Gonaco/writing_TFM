@@ -50,7 +50,7 @@
 [[file:figures/infid_percentage_depth_before_mapping.png]]
 
 
-*****                                                          :noexport:
+***** Notes                                                    :noexport:
 
 - In order to get this figure we filter fidelity. Only f>0.5 is plot
 - Infidelity: $\frac{f_a - f_b}{1 - f_b}$
