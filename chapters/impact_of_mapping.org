@@ -1,7 +1,7 @@
 *** Intro                                                          :ignore:
 
 #+caption: Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to
-#+ATTR_LATEX: :booktabs :environment :float t :font \small :align llll                                     
+#+ATTR_LATEX: :booktabs :environment :float t :font \small :align lrrr                                     
 |----------------------+----------+---------+---------------------|
 | Benchmark            | # qubits | # gates | two-qubit gates (%) |
 |----------------------+----------+---------+---------------------|

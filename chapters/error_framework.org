@@ -1,6 +1,16 @@
 # Intro
+# [General overview of what the framework does]
+In order to study the metrics, we developed a simulation framework.
+This framework was developed in order to be a tool extensively used by our group.
+For this reason it was thought as a modular system.
+The framework maps a quantum algorithm to a given device, using OpenQL.
+Then it simulates it with quantumsim.
+Later on, the framework will execute an analysis of the simulation results.
+The analysis is based on the fidelity, probability of success and quantum volume calculations besides the depth, number of added SWAPs and the total number of operations extracted from the different circuit descriptions.
+Finally, all the data is stored in a database with the aim to do an exercise of data analysis to study the mapping metrics.
+The framework flow can be followed in the Fig. \ref{fig:general_error_framework}.
+Note that, although we choose quantumsim to run our experiments, we could have introduced any other simulator due to the modular nature of the framework.
 
-[General overview of what the framework does]
 
 # #+caption: Framework analysis
 # #+NAME: fig:general_error_framework
@@ -8,11 +18,6 @@
 # [[file:figures/error_framework_diagram.png]]
 
 #+BEGIN_EXPORT latex
-
-\usepackage{wrapfig}
-\usepackage{lscape}
-\usepackage{rotating}
-\usepackage{epstopdf}
 
 \begin{sidewaysfigure}[ht]
 
@@ -22,8 +27,8 @@
 
 #+BEGIN_EXPORT latex
 
-    \caption{Framework Analysis}
-    \label{fig:general_error_}
+    \caption{Analysis Framework}
+    \label{fig:general_error_framework}
 \end{sidewaysfigure}
 
 #+END_EXPORT
@@ -32,29 +37,59 @@
 
 ****** Benchmark mapping
 
-#+caption: Benchmark mapping process
-#+NAME: fig:benchmark_object
-#+ATTR_LATEX: :width .5\textwidth
-[[file:figures/benchmark_object.png]]
+First, the framework compiles the benchmarks described in OpenQL depending on the *configuration* introduced.
+The configuration options are the mapper characteristics (scheduler, initial placement and router) and the JSON file describing the quantum device for which the algorithm should be mapped.
+OpenQL exports the mapped version of the circuit in a language understandable by a simulator, in either quantumsim or cQASM cite:khammassi18 code.
+From all the circuits descriptions -- before and after being mapped --, the framework extracts the algorithm name, the number of qubits used and the number of operations.
+Also, from the circuits before mapping it will extract the source and the functionality and from the ones mapped the depth and the number of SWAPs added.
+All this information will be stored in the database.
 
-****** Mapping Analysis
+# #+caption: Benchmark mapping process
+# #+NAME: fig:benchmark_object
+# #+ATTR_LATEX: :width .5\textwidth
+# [[file:figures/benchmark_object.png]]
 
-#+caption: Mapping Analysis process
-#+NAME: fig:error_analysis
-#+ATTR_LATEX: :width .75\textwidth
-[[file:figures/error_analysis.png]]
+****** Mapping simulation
+
+After being mapped, the simulator will load the mapped circuit and the simulation characteristics.
+The mapped algorithm will be simulated first without errors, in order to know what is the correct result or the result we should expect from this circuit.
+We store both, the resultant quantum state $\psi$ and its ideal measurement $M(\psi)$.
+Note that, as soon as our benchmarks are all deterministic (see the [[id:b34a4c5d-044f-4604-a95a-5028ee7f98ff][Benchmarks]] section) the quantum state and the measurement will be the same.
+After saving the correct result, the framework proceeds to simulate $N$ times the benchmark.
+The results affected by the errors will be used to calculate the fidelity -- between the quantum state $\psi'$ and the expected one $\psi$ -- as well as the probability of success -- between the measurement $M(\psi')$ and the expected one $M(\psi)$.
+The final value for fidelity and probability of success will be calculated averaging all the fidelities and probabilities of success calculated per simulation.
+At the same time the quantum volume will be calculated with the depth and the number of qubits from the qubits mapped.
+Finally these results and the simulations parameters will be stored in the database.
+
+# #+caption: Mapping Analysis process
+# #+NAME: fig:error_analysis
+# #+ATTR_LATEX: :width .75\textwidth
+# [[file:figures/error_analysis.png]]
 
 
 # Admitting limitations
 
 ****** Database
 
-#+caption: Database tables
-#+NAME: fig:error_analysis
-#+ATTR_LATEX: :width .5\textwidth
-[[file:figures/database_scheme_detail.png]]
+The database is conformed by six different table.
+The /Benchmarks/ table will store the information from the circuits before being mapped: the algorithm name, its source and functionality, the number of qubits used and the number of operations.
+The /Configurations/ table will save the device configuration and the mapper characteristics.
+/HardwareBenchs/ will store the name, the number of qubits and operations from the mapped algorithms as well as the SWAPs added and the circuit depth.
+/Simulations/ will save the simulator options as the simulator used, the number of simulations, the error rate, the decoherence times and the measurement error.
+The /Results/ table stores all the results from the simulations and the /Experiments/ table saves data about the moment when the framework was used in order to identify the different experiments done.
+
+# #+caption: Database tables
+# #+NAME: fig:error_analysis
+# #+ATTR_LATEX: :width .5\textwidth
+# [[file:figures/database_scheme_detail.png]]
 
 # #+caption: Database tables information
 # #+NAME: fig:error_analysis
 # #+ATTR_LATEX: :width \textwidth
 # [[file:figures/database_scheme_general.png]]
+
+
+****** BIB                                             :ignore:noexport:
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain
