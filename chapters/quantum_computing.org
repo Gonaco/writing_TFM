@@ -96,7 +96,7 @@ U |\psi\rangle=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{b
 \end{equation}
 
 # Universal set of gates + ¿Intro to differentiation of single- and two-qubit gates?
-*Universal set of gates* is a set of operations able to generate any other gate by combining them cite:Nielsen_2009.
+A *universal set of gates* is a set of operations able to generate any other gate by combining them cite:Nielsen_2009.
 In classical computation, for example, the ~OR~ and the ~AND~ gates are able to generate any other logic gate.
 Also comparable with the boolean gates, quantum operations can be decomposed in other set of quantum operations.
 In quantum computation there are several universal set of gates.
