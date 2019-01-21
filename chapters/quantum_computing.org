@@ -17,7 +17,7 @@ As in classical computation with boolean gates and bits, quantum gates operate o
 :END:
 
 #+BEGIN_EXPORT latex
-
+%% Space
 #+END_EXPORT
 
 A qubit is the basic unit of information.

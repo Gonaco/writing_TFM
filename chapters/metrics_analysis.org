@@ -1,6 +1,6 @@
 *** Intro                                                          :ignore:
 
-**** Fidelity and probabilty of success correlation               :ignore:
+**** Fidelity and probability of success correlation              :ignore:
 
 
 

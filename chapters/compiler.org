@@ -2,29 +2,11 @@
 [Intro]
 
 
-#+caption: Compilation layers
-#+NAME: fig:compilation_layers
-#+ATTR_LATEX: :width \textwidth
-[[file:figures/layers.png]]
-
-
-****** cQASM
-
-# Common QASM (cQASM) aims to abstract away qubit technology details
-# and guarantee the interoperability between all the quantum
-# compilation and simulation tools supporting this standard. Our
-# vision is to enable an extensive quantum computing toolbox
-# shared by all the quantum computing community.
-
-
 ****** OpenQL
 
 # Intro (what is OpenQL, advantages, abilities, ...)
 
-#+caption: OpenQL diagram
-#+NAME: fig:openql
-#+ATTR_LATEX: :width 0.9\textwidth
-[[file:figures/openql.png]]
+
 
 #+BEGIN_EXPORT latex
 \begin{figure}
