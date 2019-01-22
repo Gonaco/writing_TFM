@@ -1,6 +1,3 @@
-#+LATEX_CLASS: book
-#+EXCLUDE_TAGS: noexport thesisnoexport
-#+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
 
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, ...), it is often difficult to benchmark the usefulness or power of quantum systems. 

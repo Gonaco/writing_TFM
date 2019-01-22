@@ -1,11 +1,14 @@
 #+LATEX_CLASS: book
 #+EXCLUDE_TAGS: noexport thesisnoexport
 #+OPTIONS: tags:nil <:nil author:nil date:nil title:nil toc:nil
-# num:nil
+
 
 * Mapping on superconducting quantum processors
+
 # Intro (Although the work done is general and it could serve to any quantum technology we will focus our studies in the SC-7 and SC-17 chips... -> Presentation of the chips)
+
 Although the work done is general and it could serve to any quantum technology we will focus our studies in the SC-7 and SC-17 chips...
+
 ** Constraints of the Surface-7 and -17 chips
 :PROPERTIES:
 :ID:       5fc58a48-9874-45ed-94ff-095153aeea0f
