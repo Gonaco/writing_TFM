@@ -4,10 +4,8 @@
 **** Intro                                                        :ignore:
 
 # Intro
-
+In order to map quantum circuits on the superconducting quantum chip we will use the mapping model developed in our group.
 A mapping algorithm or mapper is an algorithm able to find a mapping solution given a quantum circuit and the target device constraints.
-As one could see in the [[id:322a9393-f13b-4992-9751-fea71fed93f0][State of the art]], the mapping algorithms are mostly classical.
-There are not remarkable quantum solutions for this task, yet.
 
 ***** Explanation of the mapping flow                            :ignore:
 
@@ -18,35 +16,32 @@ Our procedure is modular, although the flow is restricted to the one described b
 The mapper is fully adaptable to any device constrain.
 It also offers two different kinds of schedulers and three router possibilities, as well as the option of running or not the initial placement and another options related to the chip constrains.
 We believe this solution will aid researchers to investigate the best mapping, with different configurations.
+The mapping model works as follows.
 
-#+caption: Mapping flow
-#+NAME: fig:mapping_flow
-#+ATTR_LATEX: :width 0.5\textwidth
-[[file:figures/mapping_flow2.png]]
 
-****** Circuit decomposition
+# ****** Circuit decomposition
 
-First, the mapper decomposes the gates from the quantum circuit into the gate set that is possible to run in the quantum device.
-In our case, the mapper decomposes all the gates into the SC-17 and SC-7 chips gate set (Tab. \ref{uni_set_gatetime}).
+# First, the mapper decomposes the gates from the quantum circuit into the gate set that is possible to run in the quantum device.
+# In our case, the mapper decomposes all the gates into the SC-17 and SC-7 chips gate set (Tab. \ref{uni_set_gatetime}).
 
-****** Pre-scheduler
+# ****** Pre-scheduler
 
-After that, we pre-schedule the circuit in order to make it easier to understand to the initial placement and router.
-It will execute an ALAP scheduler, creating bundles of parallel gates and pushing them to the end of the circuit.
-The resolution of using an ALAP scheduler comes because the Bas's [REFER BAS THESIS] demonstrated it makes the router to find always a better path than if not.
+# After that, we pre-schedule the circuit in order to make it easier to understand to the initial placement and router.
+# It will execute an ALAP scheduler, creating bundles of parallel gates and pushing them to the end of the circuit.
+# The resolution of using an ALAP scheduler comes because the Bas's [REFER BAS THESIS] demonstrated it makes the router to find always a better path than if not.
 
-****** Initial Virtual-to-Physical-mapping
+# ****** Initial Virtual-to-Physical-mapping
 
-Due to the inherent behaviour of our mapper, before the initial placement calculation, it needs to relate the virtual qubits that are required with the physical ones in the device.
-This process will relate them in the order the qubits are set in the circuit.
-For instance, the first virtual qubit will be allocated as the first physical qubit, $q_0 \to Q0$.
-It will also check whether or not number of qubits required can be hosted or not in the quantum device.
+# Due to the inherent behaviour of our mapper, before the initial placement calculation, it needs to relate the virtual qubits that are required with the physical ones in the device.
+# This process will relate them in the order the qubits are set in the circuit.
+# For instance, the first virtual qubit will be allocated as the first physical qubit, $q_0 \to Q0$.
+# It will also check whether or not number of qubits required can be hosted or not in the quantum device.
 
 ****** Initial placement
 
 Once the mapper knows the qubits required, the mapper will try to find the best initial placement for the given circuit.
 First, it will check the first set of two-qubit gates and their target qubits.
-If those qubits are not NN, it will initiate an Integer Liner Programming (ILP) algorithm to find the optimal initial placement.
+If those qubits are not NN, it will initiate an Integer Liner Programming (ILP) algorithm cite:Lao_2018 to find the optimal initial placement.
 The one which requires the minimum number of qubit movements.
 
 
@@ -63,7 +58,7 @@ There are three options:
 3. The third approach is exactly the same as the second one, but taking into account the chip constraints while mapping. It will select one of the best paths that would interleave the least with the constraints.  
 
 
-****** Resource constrains (RC) -scheduler
+****** Scheduler
 
 The RC-scheduler will finally scheduled the circuit using either an ALAP or an ASAP approach, depending on the user requirements.
 It will take into account the chip parallelism constraints, as the ones described in [REFERENCE TO THE CONSTRAINTS SECTION], scheduling in parallel only the possible operations

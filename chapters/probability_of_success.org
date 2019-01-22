@@ -1,6 +1,26 @@
 
 # Introduction
 
+#+BEGIN_EXPORT latex
+\begin{figure}
+    \centering
+
+\resizebox{0.5\textwidth}{!}{
+   \Qcircuit @C=1em @R=.7em {
+&&&&\mbox{fidelity}&&\mbox{prob. success}&\\
+\lstick{a} & \targ & \qw & \qw & \qw & \qw \barrier[-1.95em]{5} & \meter \barrier{5} & \rstick{0} \qw\\
+\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \meter & \rstick{0} \qw\\
+\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \meter & \rstick{0} \qw\\
+\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \meter & \rstick{0} \qw\\
+\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \meter & \rstick{0} \qw\\
+\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \meter & \rstick{1} \qw
+}
+}
+\caption{Example of the fidelity and probability of success calculation in the Gray encoder quantum circuit}
+\label{fig:latency_swaps_ex_orig}
+\end{figure}
+#+END_EXPORT
+
 We define probability of success as the probability of having the correct or expected results after running and measuring several times a quantum algorithm.
 For instance, if the expected result of an algorithm is ~0100~ and the results are either ~0001~ or ~1111~ we will get a failure.
 We will only get a success if the algorithm returns ~0100~.

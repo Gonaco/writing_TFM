@@ -27,21 +27,21 @@ We will explain the mapping model and the metrics used in the work.
 
 #+INCLUDE: mapping_model.org
 
-** Mapping Metrics
+** New Mapping Metrics
 :PROPERTIES:
 :ID:       38ded492-56c6-4f6a-a629-06e342314cef
 :END:
 
-As mentioned in the [[id:e9551941-a680-421a-aecc-8b103368acd6][Mapping metrics]] section in the second chapter, we name mapping metrics to those metrics used to assert the quality of a mapper.
+As mentioned in the [[id:e9551941-a680-421a-aecc-8b103368acd6][Mapping metrics]] section in the second chapter, we name /mapping metrics/ to those metrics used to assert the quality of a mapper and that are also used by the mapper algorithm as an heuristic.
 In this section we will review the common metrics as the *number of SWAPs* or the *latency*, but we will also define -- and study in more detail -- some new mapping metrics that we incorporated, *probability of success* and *Quantum Volume*.
 
-*** Number of SWAPs
+# *** Number of SWAPs
 
-#+INCLUDE: number_of_swaps.org
+# #+INCLUDE: number_of_swaps.org
 
-*** Latency
+# *** Latency
 
-#+INCLUDE: latency.org
+# #+INCLUDE: latency.org
 
 *** Probability of success and fidelity
 

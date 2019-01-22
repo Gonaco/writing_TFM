@@ -10,6 +10,16 @@ Actually, most of the studies [REFERENCES] assert the latency in terms of circui
 E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
 
+*** Number of SWAPs
+
+#+INCLUDE: number_of_swaps.org
+
+*** Latency
+
+#+INCLUDE: latency.org
+
+*** Criticism
+
 # Metrics criticism [Research has tended to focus on either depth or number of SWAPS rather than the error produced by the mapping.]
 
 The ideal mapping would be the one affecting the least as possible the original circuit or, what is the same, introducing the least amount of errors.
