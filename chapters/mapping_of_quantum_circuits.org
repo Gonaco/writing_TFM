@@ -85,18 +85,20 @@ Considering the gate times for this device the same ones as the ones described i
 \centering
 \subfigure[Gray code circuit to map]{
 \input{figures/map_ex_circuit}
-}
 \label{fig:map_ex_circ}
+}
 
 \subfigure[Dependence graph of the circuit]{
 \input{figures/map_ex_depend}
-}
 \label{fig:map_ex_depend}
+}
+
 
 \subfigure[Chip layout where to map the example circuit]{
 \input{figures/map_ex_chip}
-}
 \label{fig:map_ex_chip}
+}
+
 
 \label{fig:map_ex_def}
 \caption{Mapping example draft}
@@ -124,8 +126,8 @@ No routing would be required.
 \lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
 %}
-}
 \label{fig:map_ex_circ_optim}
+}
 
 \subfigure[Chip layout with the qubits with optimal initial placement]{
      \resizebox{0.45\textwidth}{!}{%
@@ -190,8 +192,8 @@ No routing would be required.
 
  \end{tikzpicture}
  }
-}
 \label{fig:map_ex_chip_optim}
+}
 
 \label{fig:optimal_init_place}
 \caption{Optimal initial placement}
@@ -215,13 +217,13 @@ As shown in Fig. \ref{fig:map_ex_wrong_init}.
 \centering
 \subfigure[Qubits initialization in a naive way]{
 \input{figures/map_ex_circuit_wrong_init}
-}
 \label{fig:map_ex_circ_wrong}
+}
 
 \subfigure[Qubit disposition in the chip layout]{
 \input{figures/map_ex_chip_wrong_init}
-}
 \label{fig:map_ex_chip_wrong}
+}
 
 \label{fig:map_ex_wrong_init}
 \caption{Naive initial placement}
@@ -255,8 +257,8 @@ The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
  }
 }
 
-}
 \label{fig:map_ex_circ_route}
+}
 
 \subfigure[Dependence graph after routing]{
 
@@ -318,8 +320,8 @@ The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
 \end{tikzpicture}
 }
 
-}
 \label{fig:map_ex_depend_resch}
+}
 
 \label{fig:map_ex_routing}
 \caption{Naive initial placement after routing}
@@ -382,8 +384,8 @@ We summary a comparison between the naive and optimal initial placement in terms
 }
 }
 
-}
 \label{fig:latency_swaps_ex_orig}
+}
 
 \subfigure[Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle]{
 
@@ -398,8 +400,8 @@ We summary a comparison between the naive and optimal initial placement in terms
  }
 }
 
-}
 \label{fig:latency_swaps_ex_map}
+}
 
 \caption{Circuit mapping example}
 \label{fig:latency_swaps_ex}
