@@ -363,49 +363,49 @@ We summary a comparison between the naive and optimal initial placement in terms
 
 # [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]
 
-          #+BEGIN_EXPORT latex
+#           #+BEGIN_EXPORT latex
 
-\begin{figure}
-    \centering
+# \begin{figure}
+#     \centering
 
-\subfigure[Gray encoder quantum circuit]{
+# \subfigure[Gray encoder quantum circuit]{
 
-\resizebox{0.3\textwidth}{!}{
-   \Qcircuit @C=1em @R=.7em {
-\lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
-\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
-\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
-\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
-\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
-}
-}
+# \resizebox{0.3\textwidth}{!}{
+#    \Qcircuit @C=1em @R=.7em {
+# \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
+# \lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
+# \lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
+# \lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
+# \lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
+# \lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
+# }
+# }
 
-\label{fig:latency_swaps_ex_orig}
-}
+# \label{fig:latency_swaps_ex_orig}
+# }
 
-\subfigure[Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle]{
+# \subfigure[Mapped Gray encoder for the SC-7 chip. Each circuit part surrounded by a dashed line is a cycle]{
 
-\resizebox{0.4\textwidth}{!}{
-    \Qcircuit @C=.5em @R=.7em {
- \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
-\lstick{c \to Q_2} & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
-\lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \ctrl{-3} & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
-\lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
-\lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
- }
-}
+# \resizebox{0.4\textwidth}{!}{
+#     \Qcircuit @C=.5em @R=.7em {
+#  \lstick{a \to Q_0} & \qw & \qw & \qw & \qw & \targ & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+# \lstick{b \to Q_1} & \qswap & \push{d} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{2} & \targ & \qw & \qw & \qw & \qw & \qswap & \push{f} \qw & \targ & \qw\\
+# \lstick{c \to Q_2} & \qw & \qw & \qswap & \push{f} \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qswap & \push{b} \qw & \qw & \qw & \qw & \qw & \qw & \qw\\
+# \lstick{d \to Q_3} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \ctrl{-3} & \targ & \qswap & \push{c} \qw & \targ & \qw & \qw & \qw & \qswap & \push{f} \qw & \qswap \qwx[-2] & \push{d} \qw & \qw & \qw\\
+# \lstick{e \to Q_4} & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw & \qw & \qw & \qw & \qw & \qw & \ctrl{-3} & \qw\\
+# \lstick{f \to Q_5} & \qw & \qw & \qswap \qwx[-3] & \push{c} \qw & \qw & \ctrl{-2} & \qswap \qwx[-2] & \push{b} \qw & \qw & \qw & \qswap \qwx[-3] & \push{f} \qw & \qswap \qwx[-2] & \push{c} \qw & \qw & \qw & \qw & \qw \gategroup{1}{2}{6}{5}{.7em}{--} \gategroup{1}{6}{6}{6}{.7em}{--} \gategroup{1}{7}{6}{7}{.7em}{--} \gategroup{1}{8}{6}{9}{.7em}{--} \gategroup{1}{10}{6}{10}{.7em}{--} \gategroup{1}{11}{6}{13}{.7em}{--} \gategroup{1}{14}{6}{15}{.7em}{--} \gategroup{1}{16}{6}{17}{.7em}{--} \gategroup{1}{18}{6}{18}{.7em}{--}
+#  }
+# }
 
-\label{fig:latency_swaps_ex_map}
-}
+# \label{fig:latency_swaps_ex_map}
+# }
 
-\caption{Circuit mapping example}
-\label{fig:latency_swaps_ex}
-\end{figure}
+# \caption{Circuit mapping example}
+# \label{fig:latency_swaps_ex}
+# \end{figure}
 
 
-   #+END_EXPORT
+#    #+END_EXPORT
 
 #+caption: Difference between the naive initial placement and the optimal one in terms of number of operations and latency
 #+NAME: tab:optima_vs_naive
