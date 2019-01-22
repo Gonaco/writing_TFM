@@ -5,15 +5,16 @@
 \begin{figure}
     \centering
 
-\resizebox{0.5\textwidth}{!}{
+\resizebox{0.3\textwidth}{!}{
    \Qcircuit @C=1em @R=.7em {
-&&&&\mbox{fidelity}&&\mbox{prob. success}&\\
-\lstick{a} & \targ & \qw & \qw & \qw & \qw \barrier[-1.95em]{5} & \meter \barrier{5} & \rstick{0} \qw\\
-\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \meter & \rstick{0} \qw\\
-\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \meter & \rstick{0} \qw\\
-\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \meter & \rstick{0} \qw\\
-\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \meter & \rstick{0} \qw\\
-\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \meter & \rstick{1} \qw
+&&&&&\mbox{fidelity}&&&&\mbox{prob. success}\\
+&&&&&&&&&\\
+\lstick{a} & \targ & \qw & \qw & \qw & \qw \ar@{.}[]+<0.75em,1em>;[d]+<0.75em,-9em> & \meter \ar@{.}[]+<2em,1em>;[d]+<2em,-9em> & \rstick{0} \qw&&\\
+\lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \meter & \rstick{0} \qw&&\\
+\lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \meter & \rstick{0} \qw&&\\
+\lstick{d} & \qw & \qw & \ctrl{-1} & \targ & \qw & \meter & \rstick{0} \qw&&\\
+\lstick{e} & \qw & \qw & \qw & \ctrl{-1} & \targ & \meter & \rstick{0} \qw&&\\
+\lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \meter & \rstick{1} \qw&&
 }
 }
 \caption{Example of the fidelity and probability of success calculation in the Gray encoder quantum circuit}

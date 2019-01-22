@@ -11,7 +11,7 @@ A mapping algorithm or mapper is an algorithm able to find a mapping solution gi
 
 # Explanation of the mapping flow
 
-We consider that a mapper is subdivided in three tasks: scheduler, initial placement and routing, as described in the [[id:cb18cc44-b0eb-47b1-82db-85ab7c7c083c][Mapping of quantum circuits]] section.
+We consider that a mapper is subdivided in three tasks: scheduler, initial placement and routing, as described in the [[id:cb18cc44-b0eb-47b1-82db-85ab7c7c083c]] section.
 Our procedure is modular, although the flow is restricted to the one described below.
 The mapper is fully adaptable to any device constrain.
 It also offers two different kinds of schedulers and three router possibilities, as well as the option of running or not the initial placement and another options related to the chip constrains.
@@ -51,17 +51,18 @@ Our router inspects all the gates, one by one, looking for non-NN qubits interac
 Whenever the router finds one, it will insert the SWAP operations (decomposed or not decomposed) required to follow the selected path by the router.
 A different path is generated depending on the router option that was selected by the user.
 Although, all of them will try to extend minimally the depth of the circuit.
-There are three options:
+They always choose the path base on the latency or, what is the same, how well the SWAPs interleave with previous operations.
+There are three router options:
 
-1. The first one finds all the shortest paths and selects one of them randomly. The shortest paths are calculated based on the Manhattan distance, counting the number of steps that the qubits will need to move.
-2. The second one finds all the shortest paths as well, but selects the one that would combine the SWAPs extending minimally the gate duration [ASK HANS about this]
-3. The third approach is exactly the same as the second one, but taking into account the chip constraints while mapping. It will select one of the best paths that would interleave the least with the constraints.  
+1. ~base~ finds all the shortest paths and selects one of them randomly. The shortest paths are calculated based on the Manhattan distance, counting the number of steps that the qubits will need to move.
+2. ~minextend~ finds all the shortest paths as well, but selects the one that would combine the SWAPs extending minimally the gate duration.
+3. The ~minextendrc~ approach is exactly the same as the second one, but taking into account the chip constraints while mapping. It will select one of the best paths that would interleave the least with the constraints.  
 
 
 ****** Scheduler
 
 The RC-scheduler will finally scheduled the circuit using either an ALAP or an ASAP approach, depending on the user requirements.
-It will take into account the chip parallelism constraints, as the ones described in [REFERENCE TO THE CONSTRAINTS SECTION], scheduling in parallel only the possible operations
+It will take into account the chip parallelism constraints, as the ones described in [[id:5fc58a48-9874-45ed-94ff-095153aeea0f]], scheduling in parallel only the possible operations
 
 **** Why we choose this specific model                            :ignore:
 
