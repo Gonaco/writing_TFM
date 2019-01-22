@@ -121,7 +121,7 @@ It is equivalent to no applying any operation for a cycle.
 The /Pauli-x, -y and -z/ gates are 180° rotation over the x-, y- and z-axis respectively.
 Eg. a qubit with state $|+\rangle$ that is equivalent to the position $\theta = \frac{\pi}{2}, \phi = 0$ in the Bloch sphere is rotated in the y-axis with a Pauli-y gate, $Y|+\rangle = \frac{i}{\sqrt{2}} \begin{bmatrix}-1 \\ 1 \end{bmatrix}$.
 This resulting state is located in $\theta = \frac{\pi}{2}, \phi = \pi$, that is a 180° rotation in the Y axis.
-The /Hadamard/ gate is also a 180° rotation, but over the diagonal axis between the x- and z-axes, $\frac{({\hat {x}}+{\hat {z}})}{\sqrt {2}}}$.
+The /Hadamard/ gate is also a 180° rotation, but over the diagonal axis between the x- and z-axes, $\frac{({\hat {x}}+{\hat {z}})}{\sqrt {2}}$.
 The /S/ and /T/ gates are also rotations over the z-axis but of 90° and 45° respectively.
 
 
