@@ -3,7 +3,8 @@
 #+EXCLUDE_TAGS: noexport thesisnoexport
 
 
-#+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
+#+OPTIONS: tags:nil <:nil author:nil date:nil title:nil toc:nil
+# num:nil
 
 * Quantum computers and mapping of quantum circuits
 
