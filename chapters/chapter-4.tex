@@ -1,11 +1,11 @@
 
-\chapter*{Benchmarks and analysis framework}
-\label{sec:orge2afc1b}
+\chapter{Benchmarks and analysis framework}
+\label{sec:org17c0cef}
 
 In this chapter we describe the benchmarks that will be mapped to the surface code chip and the framework develop for the study of the mapping metrics.
 
-\section*{Benchmarks}
-\label{sec:org7aebf47}
+\section{Benchmarks}
+\label{sec:orga02804b}
 As stated in the Introduction, the research was conducted to analyze the different metrics to assess the quality of a mapping algorithm.
 To this purpose, we selected a set of quantum algorithms available in the literature.
 
@@ -43,8 +43,8 @@ From all the benchmarks we have, we can distinct six different classes.
 We came up with a list of 84 different algorithms -- 697 benchmarks taking into account the different versions of the same functionality -- that can be found in the \href{https://github.com/QE-Lab/qbench}{qbench Github repo}, as well as the previous information much more detailed.
 These algorithms cannot only be used for the mapping problem but also for the other activities in our group.
 
-\subsection*{Benchmark selection}
-\label{sec:orgbd07fff}
+\subsection{Benchmark selection}
+\label{sec:org80c681f}
 
 In order to have a small, but representative, set of benchmarks to map, we selected just some of them.
 This requirement comes by the fact that simulations are long and computationally exhaustive.
@@ -62,7 +62,7 @@ For example, two similar algorithms which number of qubits or number of gates ar
 Once we had our requirements we could start the analysis and the selection afterwards.
 In Tab. \ref{tab:map_selected_benchs} we show the final benchmark selection.
 \begin{table}[htbp]
-\caption{\label{tab:org01a2106}
+\caption{\label{tab:org0f8ca31}
 Restriction summary of the benchmark selection}
 \centering
 \begin{tabular}{|l|}
@@ -81,14 +81,14 @@ Restrictions:\\
 43 benchmarks (with qubits numbers from 3 to 17 qubits) selected after applying the previous Restrictions to the analysis of the benchmarks described in the next section (see Table \ref{tab:map_selected_benchs}).
 After simulating the algorithms, few of them returned errors (segmentation fault) and some others .
 
-\section*{Analysis framework}
-\label{sec:orgf36b625}
+\section{Analysis framework}
+\label{sec:orgc0c805b}
 In this section we introduce the framework we developed in order to analyze the quantum metrics.
 It is based on two steps: \textbf{compilation} and \textbf{simulation}.
 With this purpose we connect two tools, OpenQL and quantumsim, and we build a whole framework over them.
 
-\subsection*{Compiler (OpenQL)}
-\label{sec:org6f76046}
+\subsection{Compiler (OpenQL)}
+\label{sec:orgeebd0c8}
 OpenQL is a framework for high-level quantum programming developed by our group.
 It is able to describe both, quantum circuits and quantum devices.
 The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages.
@@ -148,8 +148,8 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 \end{minipage}
 \end{figure}
 
-\subsection*{quantumsim}
-\label{sec:org38b5af4}
+\subsection{quantumsim}
+\label{sec:org96b0d71}
 
 Quantumsim \cite{O_Brien_2017} is a simulator for superconducting systems and designed to study the SC-17 chip.
 Its error model has been induced from the chip's behaviour after several experiments.
@@ -159,8 +159,8 @@ Although the detail in its error model makes each simulation computationally har
 As a matter of fact, quantumsim is able to boost its calculations with a Graphics Processing Unit (GPU).
 Quantumsim can be found as a \textbf{python library} in its \href{https://github.com/quantumsim/quantumsim}{github repository} with instructions to install it and an overview of how to use it.
 
-\subsection*{Analysis Framework}
-\label{sec:org4983c4b}
+\subsection{Analysis Framework}
+\label{sec:org60b7659}
 In order to study the metrics, we developed a simulation framework.
 This framework was developed in order to be a tool extensively used by our group.
 For this reason it was thought as a modular system.
@@ -185,9 +185,9 @@ Note that, although we choose quantumsim to run our experiments, we could have i
     \label{fig:general_error_framework}
 \end{sidewaysfigure}
 
-\begin{itemize}
+\begin{enumerate}
 \item Benchmark mapping
-\label{sec:org503e156}
+\label{sec:orge67926f}
 
 First, the framework compiles the benchmarks described in OpenQL depending on the \textbf{configuration} introduced.
 The configuration options are the mapper characteristics (scheduler, initial placement and router) and the JSON file describing the quantum device for which the algorithm should be mapped.
@@ -197,12 +197,12 @@ Also, from the circuits before mapping it will extract the source and the functi
 All this information will be stored in the database.
 
 \item Mapping simulation
-\label{sec:org34d6e85}
+\label{sec:org033fd05}
 
 After being mapped, the simulator will load the mapped circuit and the simulation characteristics.
 The mapped algorithm will be simulated first without errors, in order to know what is the correct result or the result we should expect from this circuit.
 We store both, the resultant quantum state \(\psi\) and its ideal measurement \(M(\psi)\).
-Note that, as soon as our benchmarks are all deterministic (see the \hyperref[sec:org7aebf47]{Benchmarks} section) the quantum state and the measurement will be the same.
+Note that, as soon as our benchmarks are all deterministic (see the \hyperref[sec:orga02804b]{Benchmarks} section) the quantum state and the measurement will be the same.
 After saving the correct result, the framework proceeds to simulate \(N\) times the benchmark.
 The results affected by the errors will be used to calculate the fidelity -- between the quantum state \(\psi'\) and the expected one \(\psi\) -- as well as the probability of success -- between the measurement \(M(\psi')\) and the expected one \(M(\psi)\).
 The final value for fidelity and probability of success will be calculated averaging all the fidelities and probabilities of success calculated per simulation.
@@ -210,7 +210,7 @@ At the same time the quantum volume will be calculated with the depth and the nu
 Finally these results and the simulations parameters will be stored in the database.
 
 \item Database
-\label{sec:org0c95875}
+\label{sec:orgb5f5bb4}
 
 The database is conformed by six different table.
 The \emph{Benchmarks} table will store the information from the circuits before being mapped: the algorithm name, its source and functionality, the number of qubits used and the number of operations.
@@ -218,4 +218,4 @@ The \emph{Configurations} table will save the device configuration and the mappe
 \emph{HardwareBenchs} will store the name, the number of qubits and operations from the mapped algorithms as well as the SWAPs added and the circuit depth.
 \emph{Simulations} will save the simulator options as the simulator used, the number of simulations, the error rate, the decoherence times and the measurement error.
 The \emph{Results} table stores all the results from the simulations and the \emph{Experiments} table saves data about the moment when the framework was used in order to identify the different experiments done.
-\end{itemize}
+\end{enumerate}
