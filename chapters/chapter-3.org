@@ -7,9 +7,11 @@
 
 # Intro (Although the work done is general and it could serve to any quantum technology we will focus our studies in the SC-7 and SC-17 chips... -> Presentation of the chips)
 
-Although the work done is general and it could serve to any quantum technology we will focus our studies in the SC-7 and SC-17 chips...
+In this chapter we describe the setup in which we focused on.
+Although the work done is general and it could serve to any quantum technology we limit our studies on the SC-17 chip constrains.
+We will explain the mapping model and the metrics used in the work.
 
-** Constraints of the Surface-7 and -17 chips
+** Constraints of the Surface-17 chip
 :PROPERTIES:
 :ID:       5fc58a48-9874-45ed-94ff-095153aeea0f
 :END:
