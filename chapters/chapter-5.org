@@ -5,6 +5,11 @@
 
 * Results
 
+In this section the simulation results are presented.
+We first show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase.
+Finally, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
+
 ** Impact of mapping in the overall circuit error 
 
 #+INCLUDE: impact_of_mapping.org

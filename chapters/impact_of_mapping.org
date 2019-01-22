@@ -1,5 +1,13 @@
 *** Intro                                                          :ignore:
 
+After the selection of benchmarks in the [[id:b34a4c5d-044f-4604-a95a-5028ee7f98ff]] section, we started their simulations with the simulation framework.
+Not surprisingly, some of the benchmarks had very long simulations times or were even impossible to simulate in our lab servers.
+Most of them with more than ten qubits.
+As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
+As the number of qubits or the longitude of the circuit increases, the harder would be to simulate them.
+And even more in our case, that we need to run multiple simulations in a complex error model.
+Therefore, as it can be seen in \ref{tab:map_selected_benchs}, we aware the low number of qubits limitation in the analysis.
+
 #+caption: Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to
 #+ATTR_LATEX: :booktabs :environment :float t :font \small :align lrrr                                     
 |----------------------+----------+---------+---------------------|
@@ -37,6 +45,9 @@
 
 **** bar plot                                                     :ignore:
 
+[How fidelity changes after mapping]
+[Describe a bit the characteristics of these benchmarks]
+
 #+caption: 
 #+NAME: fig:
 #+ATTR_LATEX: :width \textwidth
@@ -44,10 +55,16 @@
 
 **** - infidelity percentage against depth                        :ignore:
 
+In this figure we can see [explain the points htat I'm plotting and the selection of them as well as what we are trying to show]
+
 #+caption: 
 #+NAME: fig:
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/infid_percentage_depth_before_mapping.png]]
+
+We can inherit that the longer the circuit is before being mapped, the less impact the mapping will have over it.
+In this case, even before mapped, the circuit is going to have a low fidelity or probability of success.
+And after mapped, that situation does not change that much.
 
 
 ***** Notes                                                    :noexport:

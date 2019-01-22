@@ -1,9 +1,22 @@
 
 \chapter{Results}
-\label{sec:org7081afb}
+\label{sec:org89605da}
+
+In this section the simulation results are presented.
+We first show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase.
+Finally, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
 
 \section{Impact of mapping in the overall circuit error}
-\label{sec:orgd8582a3}
+\label{sec:org885658c}
+
+After the selection of benchmarks in the \url{chapter-4.org} section, we started their simulations with the simulation framework.
+Not surprisingly, some of the benchmarks had very long simulations times or were even impossible to simulate in our lab servers.
+Most of them with more than ten qubits.
+As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
+As the number of qubits or the longitude of the circuit increases, the harder would be to simulate them.
+And even more in our case, that we need to run multiple simulations in a complex error model.
+Therefore, as it can be seen in \ref{tab:map_selected_benchs}, we aware the low number of qubits limitation in the analysis.
 
 \begin{table}[htbp]
 \caption{Table of the selected benchmarks to be mapped. Note that the crossed ones mean that they were to}
@@ -41,21 +54,30 @@ graycode6\(_{\text{47}}\) & 6 & 5 & 1.000\\
 \end{table}
 
 \label{tab:map_selected_benchs}
+[How fidelity changes after mapping]
+[Describe a bit the characteristics of these benchmarks]
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/f_diff_bar_plot.png}
-\caption{\label{fig:org5edca82}
+\caption{\label{fig:org047ac6b}
 }
 \end{figure}
+In this figure we can see [explain the points htat I'm plotting and the selection of them as well as what we are trying to show]
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/infid_percentage_depth_before_mapping.png}
-\caption{\label{fig:org9ff43dd}
+\caption{\label{fig:orgd3d0e79}
 }
 \end{figure}
 
+We can inherit that the longer the circuit is before being mapped, the less impact the mapping will have over it.
+In this case, even before mapped, the circuit is going to have a low fidelity or probability of success.
+And after mapped, that situation does not change that much.
+
 \section{Analysis of the mapping metrics}
-\label{sec:orgf6e872b}
+\label{sec:org6cf7738}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{figures/f_ps_correlation_with_meas_error.png}
@@ -67,21 +89,21 @@ graycode6\(_{\text{47}}\) & 6 & 5 & 1.000\\
 
 
 \subsection{Metrics behaviour}
-\label{sec:org985dd6b}
+\label{sec:org9cbd9bb}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/f_metrics_correlation.png}
-\caption{\label{fig:orga2c57b7}
+\caption{\label{fig:orgeef9ab9}
 }
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/ps_metrics_correlation.png}
-\caption{\label{fig:org13fcc01}
+\caption{\label{fig:orgb4b1581}
 }
 \end{figure}
 
 \section{Advice}
-\label{sec:org628b541}
+\label{sec:org01c1deb}
