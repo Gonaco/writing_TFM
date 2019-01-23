@@ -10,11 +10,13 @@ As expected, our experiments prove that both metrics are highly linearly correla
 We also appreciated the fact that the probability of success is always higher than the fidelity.
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, although this could be caused by the fact that our algorithms are deterministic.
 While comparing the results with different decoherence times, we noticed as well that the more errors introduced in the system, the closer are the values of the probability of success and fidelity.
+
 In Fig. [[fig:f_ps_correlation_with_meas_error]] we plot the results of the framework in terms of probability of success and fidelity. 
 Each dot is a different benchmark configuration and the colors represent different decoherence times in the simulation, blue for 30 $\mu s$ and orange for 10 $\mu s$.
 The figure highlights the linear correlation as well as the line bias proving the fact that the probability of success is always higher than the fidelity.
 It can be seen that the inclination and bias of the fitting line changes depending on the decoherence time.
 Showing that, the higher amount of errors in the system, the more diagonal the fitting line gets.
+The cluster that appears between the 0.9 and 1.0 values is due to the amount of simple benchmarks in the selection, as we previously mentioned.
 
 #+caption: Correlation between fidelity and probability of success for two different decoherence times
 #+NAME: fig:f_ps_correlation_with_meas_error
@@ -103,6 +105,8 @@ Polynomial function:
 #+END_SRC
 
 **** Metrics behaviour                                            :ignore:
+
+The results of the rest of the mapping metrics 
 
 #+caption: Correlation between fidelity and the mapping metrics.
 #+NAME: fig:f_metrics_correlation.png
