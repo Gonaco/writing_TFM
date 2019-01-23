@@ -12,6 +12,8 @@
 
 ** Motivation
 
+#+INCLUDE: motivation.org
+
 ** Problem Statement
 
 #+INCLUDE: problem_statement.org

@@ -5,6 +5,10 @@ From the classical ones -- number of SWAPs and depth -- to the ones we proposed 
 
 **** Fidelity and probability of success correlation              :ignore:
 
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
+
 First we analyze the probability of success and fidelity correlation.
 As expected, our experiments prove that both metrics are highly linearly correlated.
 We also appreciated the fact that the probability of success is always higher than the fidelity.
@@ -105,6 +109,10 @@ Polynomial function:
 #+END_SRC
 
 **** Metrics behaviour                                            :ignore:
+
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
 
 The results of the rest of the mapping metrics 
 
