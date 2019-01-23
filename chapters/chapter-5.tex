@@ -1,6 +1,6 @@
 
 \chapter{Results}
-\label{sec:org2c899d3}
+\label{sec:org954ea29}
 
 In this section the simulation results are presented.
 We first show how the mapping procedure affects the general increment of error.
@@ -8,7 +8,7 @@ After that, we analyze the metrics and their correlation with the error increase
 Finally, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
 
 \section{Impact of mapping in the overall circuit error}
-\label{sec:orga9bbafb}
+\label{sec:orgec4f977}
 
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations with the simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers.
@@ -65,24 +65,23 @@ We also tried different configurations regarding the decoherence time and the er
 
 
 The framework results immediately confirmed that the mapping procedure affects the error amount in the quantum system.
-In Fig. \ref{fig:orgeb9d965} we highlight the difference in fidelity some benchmarks difference in fidelity between being the non mapped circuit
-
-
-[How fidelity changes after mapping]
-[Describe a bit the characteristics of these benchmarks]
+In Fig. \ref{fig:org14484e5} we highlight the difference in fidelity of some benchmarks before and after being mapped.
+The mapped data we plot comes from the router \texttt{minextendrc}.
+We can see how the fidelity is smaller for long circuits -- like \texttt{sf\_274} or \texttt{mod5adder\_127} -- than for the short ones -- \texttt{graycode6\_47} or \texttt{xor5\_254}.
+We show the exact result values in \href{appendix-1.org}{Appendix A}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/f_diff_bar_plot.png}
-\caption{\label{fig:orgeb9d965}
-}
+\caption{\label{fig:org14484e5}
+Difference of fidelities before and after mapping with the \texttt{minextendrc} router for five different benchmarks.}
 \end{figure}
 In this figure we can see [explain the points htat I'm plotting and the selection of them as well as what we are trying to show]
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/infid_percentage_depth_before_mapping.png}
-\caption{\label{fig:org922ea2e}
+\caption{\label{fig:org30326f0}
 }
 \end{figure}
 
@@ -91,7 +90,7 @@ In this case, even before mapped, the circuit is going to have a low fidelity or
 And after mapped, that situation does not change that much.
 
 \section{Analysis of the mapping metrics}
-\label{sec:org939f5d2}
+\label{sec:orgc52a2a8}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{figures/f_ps_correlation_with_meas_error.png}
@@ -103,14 +102,14 @@ And after mapped, that situation does not change that much.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/f_metrics_correlation.png}
-\caption{\label{fig:org57a0dbd}
+\caption{\label{fig:orge2ebade}
 }
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/ps_metrics_correlation.png}
-\caption{\label{fig:org1825695}
+\caption{\label{fig:org28a20bf}
 }
 \end{figure}
 
@@ -120,4 +119,4 @@ Quantum's Volume little lack of correlation can be attributed to the imprecise f
 Given that this was only a preliminary attempt to include the Quantum Volume as mapping metric it is hardly surprising that the results are not directly correlating it with the mapping quality.
 
 \section{Advice}
-\label{sec:org4e2eebd}
+\label{sec:orgbec5c9f}
