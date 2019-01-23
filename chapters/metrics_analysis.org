@@ -114,22 +114,38 @@ Polynomial function:
 
 #+END_EXPORT
 
-The results of the rest of the mapping metrics 
+We use the Pearson correlation to measure which metric is the most correlated one with fidelity and probability of success.
+As it can be seen in the Pearson values (Tab. [REFER TO TAB]) the metric most correlated is the number of two-qubit gates.
+These results hold the fact that the quality of the mapping depends on the longitude of the targeted circuit, making crucial the mapping quality for small benchmarks.
+
+[CORRELATION TABLE]
+
+Quantum's Volume small lack of correlation can be attributed to the imprecise formula that we chose to calculate it.
+Given that this was only a preliminary attempt to include the Quantum Volume as mapping metric it is hardly surprising that the results are not directly correlating it with the mapping quality.
+
+The results of the main mapping metrics against fidelity are depicted in Fig. [[ref:fig:f_metrics_correlation][ref:fig:f_metrics_correlation]].
+As in previous plots, we show the results for two different decoherence times, 30 $\mu s$ (blue dots) and 10 $\mu s$ (orange dots).
+We observe that, for all the cases, the fidelity decreases with an inverse exponential behaviour.
 
 #+caption: Correlation between fidelity and the mapping metrics.
 #+NAME: fig:f_metrics_correlation
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/f_metrics_correlation.png]]
 
+The correlation between the probability of success and the other metrics can be see in Fig. [[ref:fig:ps_metrics_correlation][ref:fig:ps_metrics_correlation]].
+As with the study on fidelity correlation we plot two decoherence times, 30 $\mu s$ (blue) and 10 $\mu s$ (orange).
+We also observe a decreasing behaviour, although the shape is not as clear as in the case of fidelity.
+This could be provoked by the final error added by the measurement gate and by the fact that, most of the times, the measurement is correcting the wrong solutions.
+
 #+caption: Correlation between probability of success and the mapping metrics.
 #+NAME: fig:ps_metrics_correlation
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/ps_metrics_correlation.png]]
 
+We can also see in both figures that, as announced before, there is a cluster of benchmarks with high fidelity and high probability of success.
+This happens because of the high concentration of small benchmarks, due to the simulation difficulties.
+On the contrary, the rest of the values are a bit sparsed.
 
-
-Quantum's Volume little lack of correlation can be attributed to the imprecise formula that we chose to calculate it.
-Given that this was only a preliminary attempt to include the Quantum Volume as mapping metric it is hardly surprising that the results are not directly correlating it with the mapping quality.
 
 *****  Notes                                                   :noexport:
 
