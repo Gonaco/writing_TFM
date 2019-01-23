@@ -54,8 +54,14 @@ We also tried different configurations regarding the decoherence time and the er
 
 **** bar plot                                                     :ignore:
 
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
+
 The framework results immediately confirmed that the mapping procedure affects the error amount in the quantum system.
-In Fig. [[fig:f_diff_bar_plot]] we highlight some benchmarks difference in fidelity between being the non mapped circuit
+In Fig. [[fig:f_diff_bar_plot]] we highlight the difference in fidelity some benchmarks difference in fidelity between being the non mapped circuit
+
+
 [How fidelity changes after mapping]
 [Describe a bit the characteristics of these benchmarks]
 

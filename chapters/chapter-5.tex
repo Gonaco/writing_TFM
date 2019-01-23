@@ -1,6 +1,6 @@
 
 \chapter{Results}
-\label{sec:org2ef2771}
+\label{sec:org2c899d3}
 
 In this section the simulation results are presented.
 We first show how the mapping procedure affects the general increment of error.
@@ -8,7 +8,7 @@ After that, we analyze the metrics and their correlation with the error increase
 Finally, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
 
 \section{Impact of mapping in the overall circuit error}
-\label{sec:org2e6d4fb}
+\label{sec:orga9bbafb}
 
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations with the simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers.
@@ -60,17 +60,21 @@ As explained in the \href{chapter-4.org}{Analysis Framework} section, after runn
 We also extract other metrics like the number of SWAPs added and the depth of the circuits, between others.
 To match the three router algorithms developed in our group (see \href{chapter-3.org}{Mapping model}) we compiled the list of benchmarks with four different configurations.
 One per router and another one without mapping the algorithms to any device.
-For a fair comparison, the non-mapped configuration will make the compiler to decompose the circuit gates in the SC-17 gate set (see Fig. \ref{fig:decompositions}).
-We will also try different configurations regarding the decoherence time and the error rates.
-The results after simulating immediately confirmed that the mapping procedure affects the error amount in the quantum system.
-In Fig. \ref{fig:orgc0918b6} we highlight some benchmarks difference in fidelity between being the non mapped circuit
+For a fair comparison, the non-mapped configuration make the compiler to decompose the circuit gates in the SC-17 gate set (see Fig. \ref{fig:decompositions}).
+We also tried different configurations regarding the decoherence time and the error rates in order to study the mappers in different error regimes.
+
+
+The framework results immediately confirmed that the mapping procedure affects the error amount in the quantum system.
+In Fig. \ref{fig:orgeb9d965} we highlight the difference in fidelity some benchmarks difference in fidelity between being the non mapped circuit
+
+
 [How fidelity changes after mapping]
 [Describe a bit the characteristics of these benchmarks]
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/f_diff_bar_plot.png}
-\caption{\label{fig:orgc0918b6}
+\caption{\label{fig:orgeb9d965}
 }
 \end{figure}
 In this figure we can see [explain the points htat I'm plotting and the selection of them as well as what we are trying to show]
@@ -78,7 +82,7 @@ In this figure we can see [explain the points htat I'm plotting and the selectio
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/infid_percentage_depth_before_mapping.png}
-\caption{\label{fig:org60a403d}
+\caption{\label{fig:org922ea2e}
 }
 \end{figure}
 
@@ -87,7 +91,7 @@ In this case, even before mapped, the circuit is going to have a low fidelity or
 And after mapped, that situation does not change that much.
 
 \section{Analysis of the mapping metrics}
-\label{sec:orgfd85ca4}
+\label{sec:org939f5d2}
 
 \begin{center}
 \includegraphics[width=.9\linewidth]{figures/f_ps_correlation_with_meas_error.png}
@@ -99,14 +103,14 @@ And after mapped, that situation does not change that much.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/f_metrics_correlation.png}
-\caption{\label{fig:org987da6c}
+\caption{\label{fig:org57a0dbd}
 }
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/ps_metrics_correlation.png}
-\caption{\label{fig:orgcb7380e}
+\caption{\label{fig:org1825695}
 }
 \end{figure}
 
@@ -116,4 +120,4 @@ Quantum's Volume little lack of correlation can be attributed to the imprecise f
 Given that this was only a preliminary attempt to include the Quantum Volume as mapping metric it is hardly surprising that the results are not directly correlating it with the mapping quality.
 
 \section{Advice}
-\label{sec:org4c41b5a}
+\label{sec:org4e2eebd}
