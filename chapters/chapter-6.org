@@ -11,3 +11,7 @@
 [More #qubit values]
 
 [Better Quantum Volume]
+
+[General regression formula for fidelity an probability of success]
+
+[Investigate why the Probability of success is always higher than fidelity]

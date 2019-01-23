@@ -1,38 +1,28 @@
 
 \chapter{Introduction}
-\label{sec:orgae6eeaf}
+\label{sec:org961b6e3}
 \section{Motivation}
-\label{sec:orgaf3be1e}
-
-\section{Problem Statement}
-\label{sec:org3eee55a}
-
-\subsection{Motivation}
-\label{sec:orga202d4f}
-\emph{Can some device run a given algorithm?}
-
-\emph{How the mapping process affect the circuit "probability of success"?}
+\label{sec:orgb5c1163}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/system_stack.png}
-\caption{\label{fig:orgefabe52}
+\caption{\label{fig:orgecea1a1}
 Full stack implementation}
 \end{figure}
 
-\subsection{Realization}
-\label{sec:orgc159807}
-The work is centered in:
+\section{Problem Statement}
+\label{sec:orgd35490c}
 
-\begin{itemize}
-\item SC-7 and SC-17 chips
-\item Physical level, without error correction
-\item Two error models:
-\begin{itemize}
-\item Pauli Noise (QX simulator)
-\item Complex empirical error model (quantumsim)
-\end{itemize}
-\end{itemize}
+Quantum algorithms are represented as quantum circuits.
+This notation is hardware agnostic.
+Mapping models are required to have a version of the quantum algorithm adapted to the quantum device and, therefor, executable in that device.
+This mapping process increases the probability of getting errors in the run of a given device, making the algorithm's results too noisy to be used.
+Therefore, mapping models require an optimization process in search of the best circuit version that is executable in a given device.
+Most of the works done about the mapping task optimize in terms of two parameters, either the number of added operations in the adapted version of the circuit or the latency added to the circuit.
+Moreover, these works asses the quality of their mapping algorithms in one of those two metrics.
+But, the information given by any of the two is enough to certify the quality of a mapping algorithm.
+Given this panorama, the aim of this thesis is to study metrics to asses the quality of a mapper of quantum algorithms.
 
 \section{Structure of the thesis}
-\label{sec:orgb8ade80}
+\label{sec:org2a9c2ee}

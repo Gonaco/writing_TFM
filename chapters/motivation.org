@@ -1,0 +1,7 @@
+
+
+
+#+caption: Full stack implementation
+#+NAME: fig:system_stack
+#+ATTR_LATEX: :width 0.7\textwidth
+[[file:figures/system_stack.png]]
