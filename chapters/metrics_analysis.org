@@ -1,12 +1,70 @@
 *** Intro                                                          :ignore:
 
+In this section we evaluate the behaviour and quality of the mapping metrics.
+From the classical ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
+
 **** Fidelity and probability of success correlation              :ignore:
 
+First we analyze the probability of success and fidelity correlation.
+As expected, our experiments prove that both metrics are highly linearly correlated.
+We also appreciated the fact that the probability of success is always higher than the fidelity.
+This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, although this could be caused by the fact that our algorithms are deterministic.
+While comparing the results with different decoherence times, we noticed as well that the more errors introduced in the system, the closer are the values of the probability of success and fidelity.
+In Fig. [[fig:f_ps_correlation_with_meas_error]] we plot the results of the framework in terms of probability of success and fidelity. 
+Each dot is a different benchmark configuration and the colors represent different decoherence times in the simulation, blue for 30 $\mu s$ and orange for 10 $\mu s$.
+The figure highlights the linear correlation as well as the line bias proving the fact that the probability of success is always higher than the fidelity.
+It can be seen that the inclination and bias of the fitting line changes depending on the decoherence time.
+Showing that, the higher amount of errors in the system, the more diagonal the fitting line gets.
 
-
+#+caption: Correlation between fidelity and probability of success for two different decoherence times
+#+NAME: fig:f_ps_correlation_with_meas_error
+#+ATTR_LATEX: :width 0.7\textwidth
 [[file:figures/f_ps_correlation_with_meas_error.png]]
 
-[[file:figures/f_ps_correlation_no_meas_error.png]]
+# In Fig. [[fig:f_ps_correlation_no_meas_error]] we plot the results of the framework with and without introducing errors in the measurement.
+# The blue dots are, as in Fig. [[fig:f_ps_correlation_with_meas_error]], the different benchmark configurations simulated with a decoherence time of 30 $\mu s$ and measurement errors.
+# On the other hand, this time, the orange dots represent benchmark configurations simulated with a decoherence time of 30 $\mu s$ without measurement errors.
+# As we expected, the ... [We are not showing anything in this figure!]
+
+# #+caption: Correlation between fidelity and probability of success for the case of having errors in the measurement and not having errors
+# #+NAME: fig:f_ps_correlation_no_meas_error
+# #+ATTR_LATEX: :width 0.6\textwidth
+# [[file:figures/f_ps_correlation_no_meas_error.png]]
+
+
+***** With measurement error                                   :noexport:
+
+SIGO FILTRANDO FIDELITY > 0.5
+
+#+BEGIN_SRC c
+
+Analysis For Decoherence Time = 3000 and Error Measurement = 0.005
+
+        -------------------------------
+
+        -- Correlation between the Fidelity and Probability of Success
+
+Polynomial function:
+
+0.5914 x + 0.4081
+----------------------------
+
+(0.9192199104316764, 3.767553069709704e-25)
+
+        Analysis For Decoherence Time = 1000 and Error Measurement = 0.005
+
+        -------------------------------
+
+        -- Correlation between the Fidelity and Probability of Success
+
+Polynomial function:
+
+0.7122 x + 0.3026
+----------------------------
+
+(0.9560273488297862, 4.0669039495216075e-12)
+
+#+END_SRC
 
 
 ***** No Measurement error                                     :noexport:
@@ -44,50 +102,15 @@ Polynomial function:
 
 #+END_SRC
 
-
-***** With measurement error                                   :noexport:
-
-SIGO FILTRANDO FIDELITY > 0.5
-
-#+BEGIN_SRC c
-
-Analysis For Decoherence Time = 3000 and Error Measurement = 0.005
-
-        -------------------------------
-
-        -- Correlation between the Fidelity and Probability of Success
-
-Polynomial function:
-
-0.5914 x + 0.4081
-----------------------------
-
-(0.9192199104316764, 3.767553069709704e-25)
-
-        Analysis For Decoherence Time = 1000 and Error Measurement = 0.005
-
-        -------------------------------
-
-        -- Correlation between the Fidelity and Probability of Success
-
-Polynomial function:
-
-0.7122 x + 0.3026
-----------------------------
-
-(0.9560273488297862, 4.0669039495216075e-12)
-
-#+END_SRC
-
 **** Metrics behaviour                                            :ignore:
 
-#+caption: 
-#+NAME: fig:
+#+caption: Correlation between fidelity and the mapping metrics.
+#+NAME: fig:f_metrics_correlation.png
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/f_metrics_correlation.png]]
 
-#+caption: 
-#+NAME: fig:
+#+caption: Correlation between probability of success and the mapping metrics.
+#+NAME: fig:ps_metrics_correlation
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/ps_metrics_correlation.png]]
 
