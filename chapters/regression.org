@@ -1,8 +1,13 @@
 *** Intro                                                          :ignore:
 
-After 
-
-In the Fig. [[ref:fig:f_metrics_correlation]] and [[ref:fig:ps_metrics_correlation]] regress
+After analyzing the correlation between metrics we begin the regression analysis.
+We aim to understand the behaviour of our data and be able to predict the fidelity or the probability of success given the circuit parameters and the error rates.
+Our regression model is based on a double regression model.
+First our model learns and predicts from the samples with Support Vector Machines (SVM) using as kernel the Radial Basis Function (RBF) and then, with those predictions we feed a second regression model in order to shaped the first analysis.
+For the second regression model we use different much simpler regression algorithms with the intention to find the model that fits the data the best.
+The SVM model was chosen because it is one of the most practical, rapid and ergonomic ways to commit a regression model.
+The flexibility of the regression model is critical in our case due to the non-linear aspect of the data.
+In the Fig. [[ref:fig:f_metrics_correlation]] and [[ref:fig:ps_metrics_correlation]] we present fitting lines predicted after the regression model we used.
 
 *** Regression                                                     :ignore:
 
