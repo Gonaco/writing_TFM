@@ -74,6 +74,12 @@ We show the exact result values in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Ap
 In Fig. [[fig:infid_percentage_depth_before_mapping]] we can see [explain the points that I'm plotting and the selection of them as well as what we are trying to show]
 I WANT TO FIND A BETTER WAY TO SHOW THIS INSIGHTS BEFORE I EXPLAIN THEM
 
+- In order to get this figure we filter fidelity. Only f>0.5 is plot
+- Infidelity: $\frac{f_a - f_b}{1 - f_b}$
+- Depth is the depth before mapping
+- We decided to see it like this in order to cluster the same benchmark mapped in different ways
+- We can conclude that the mapper quality is critical for benchmarks with small depth before being mapped, but for long circuits the mapper quality gets diminished. This means that simple and, therefore, faster mappers can be implemented for long circuits making possible the mapping on the fly, for instance
+
 #+caption: 
 #+NAME: fig:infid_percentage_depth_before_mapping
 #+ATTR_LATEX: :width 0.7\textwidth

@@ -117,7 +117,7 @@ Polynomial function:
 The results of the rest of the mapping metrics 
 
 #+caption: Correlation between fidelity and the mapping metrics.
-#+NAME: fig:f_metrics_correlation.png
+#+NAME: fig:f_metrics_correlation
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/f_metrics_correlation.png]]
 
