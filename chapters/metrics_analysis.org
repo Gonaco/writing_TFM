@@ -79,7 +79,7 @@ Polynomial function:
 
 #+END_SRC
 
-**** Metrics behaviour
+**** Metrics behaviour                                            :ignore:
 
 #+caption: 
 #+NAME: fig:
@@ -90,6 +90,11 @@ Polynomial function:
 #+NAME: fig:
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/ps_metrics_correlation.png]]
+
+
+
+Quantum's Volume little lack of correlation can be attributed to the imprecise formula that we chose to calculate it.
+Given that this was only a preliminary attempt to include the Quantum Volume as mapping metric it is hardly surprising that the results are not directly correlating it with the mapping quality.
 
 *****  Notes                                                   :noexport:
 

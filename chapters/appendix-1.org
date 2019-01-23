@@ -3,6 +3,11 @@
 #+OPTIONS: tags:nil <:nil author:nil date:nil num:nil title:nil toc:nil
 
 * Appendix A
+
+[ADD ALL THE TABLES]
+
+[EXPLAIN WHY THE NON MAPPED VERSION HAS MORE GATES IN THE CIRCUIT THAN THE NUMBER OF GATES THAT APPEAR IN THE SELECTION TABLE]
+
 ** 4gt11_82
 
 #+caption: Step 1 results after 1000 iterations
