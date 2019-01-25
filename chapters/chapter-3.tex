@@ -4,8 +4,8 @@
 \label{sec:org0c87802}
 
 In this chapter we will describe the superconducting quantum processor used in this thesis and its constraints. 
-Although the work done in this thesis  could be apply to any quantum technology, we limit our study to the surface code 17 chip (SC-17) developed by Leo Di Carlo's group at QuTech \textcolor{red}{Daniel, please add the refenece to richard's paper}
-In addtion, we will explain the mapping model and the metrics used in this work.
+Although the work done in this thesis  could be apply to any quantum technology, we limit our study to the surface code 17 chip (Surface-17) developed by Leo Di Carlo's group at QuTech \textcolor{red}{Daniel, please add the reference to richard's paper}
+In addition, we will explain the mapping model and the metrics used in this work.
 
 \section{Constraints of the Surface-17 chip}
 \label{sec:org168a66d}
@@ -13,47 +13,46 @@ In addtion, we will explain the mapping model and the metrics used in this work.
 
 \section{Mapping model}
 \label{sec:org19dc500}
-In order to map quantum circuits on the superconducting quantum chip we will use the mapping model developed in our group.
-A mapping algorithm or mapper is an algorithm able to find a mapping solution given a quantum circuit and the target device constraints.
+In order to map quantum circuits on the superconducting quantum chip we will use the mapping model developed in our group \textcolor{red}{Add reference to Lingling's paper}.
+A mapping algorithm or mapper is an algorithm able to find a mapping solution given a quantum circuit and a target device.
 We consider that a mapper is subdivided in three tasks: scheduler, initial placement and routing, as described in the \url{chapter-2.org} section.
 Our procedure is modular, although the flow is restricted to the one described below.
 The mapper is fully adaptable to any device constrain.
-It also offers two different kinds of schedulers and three router possibilities, as well as the option of running or not the initial placement and another options related to the chip constrains.
+As we will explain, it also offers two different kinds of schedulers and three router possibilities, as well as the option of running or not the initial placement and another options related to the chip constrains.
 We believe this solution will aid researchers to investigate the best mapping, with different configurations.
 The mapping model works as follows.
 
 \subsection{Initial placement}
 \label{sec:org4fe48f6}
 
-Once the mapper knows the qubits required, the mapper will try to find the best initial placement for the given circuit.
+The first step is to map the virtual qubits (the ones of the circuit) to the physical ones (the ones in the quantum chip).
+Once the mapper knows the qubits required by the algorithm, it will try to find the best initial placement for the given circuit, that is, the placement that requires less movements of qubits.
 First, it will check the first set of two-qubit gates and their target qubits.
 If those qubits are not NN, it will initiate an Integer Liner Programming (ILP) algorithm \cite{Lao_2018} to find the optimal initial placement.
-The one which requires the minimum number of qubit movements.
+This optimal initial placement tries to place the qubits in a way that the minimum number of qubit movements are required.
 
 
 \subsection{Router}
 \label{sec:org18105df}
+The function of the router is to move non-neighbouring qubits to adjacent positions whenever they need to interact. To this purpose, our router inspects all the gates, one by one, looking for non-NN qubits interactions.
+Whenever the router finds one, it will calculate several paths and select one of them. This path is selected based on the circuit depth, that is, the path that better interleaves with the previous operations.
+Then, it will insert the SWAP operations (decomposed or not decomposed) required to follow the selected path.
 
-Our router inspects all the gates, one by one, looking for non-NN qubits interactions.
-Whenever the router finds one, it will insert the SWAP operations (decomposed or not decomposed) required to follow the selected path by the router.
-A different path is generated depending on the router option that was selected by the user.
-Although, all of them will try to extend minimally the depth of the circuit.
-They always choose the path base on the latency or, what is the same, how well the SWAPs interleave with previous operations.
-There are three router options:
+
+There are three router options, and a different path is generated depending on the router option that was selected by the user:
 
 \begin{enumerate}
 \item \texttt{base} finds all the shortest paths and selects one of them randomly. The shortest paths are calculated based on the Manhattan distance, counting the number of steps that the qubits will need to move.
-\item \texttt{minextend} finds all the shortest paths as well, but selects the one that would combine the SWAPs extending minimally the gate duration.
-\item The \texttt{minextendrc} approach is exactly the same as the second one, but taking into account the chip constraints while mapping. It will select one of the best paths that would interleave the least with the constraints.
+\item \texttt{minextend} finds all the shortest paths as well, but selects the one that will minimally increase the circuit depth. In this case, only gate dependencies are considered, not chip constraints that limits the parallelism.
+\item The \texttt{minextendrc} approach is exactly the same as the second one, but taking into account the chip constraints when selecting the path.
 \end{enumerate}
 
 
 \subsection{Scheduler}
 \label{sec:org2ec75f3}
 
-The RC-scheduler will finally scheduled the circuit using either an ALAP or an ASAP approach, depending on the user requirements.
-It will take into account the chip parallelism constraints, as the ones described in \ref{sec:org168a66d}, scheduling in parallel only the possible operations
-.
+The RC-scheduler will finally schedule the circuit using either an ALAP or an ASAP approach, depending on the user requirements.
+It will take into account the chip parallelism constraints, as the ones described in \ref{sec:org168a66d}.
 
 One downside factor regarding this methodology is that the mapper only takes into account one gate every time.
 It does not look ahead in order to decide the best path for next iterations.
