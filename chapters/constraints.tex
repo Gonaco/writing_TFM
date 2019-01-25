@@ -1,18 +1,15 @@
 
 
-In this section the constraints for the superconducting Surface-17 quantum processor developed at QuTech by Di Carlo's group are summarized. 
+In this section the constraints of the superconducting Surface-17 quantum processor developed at QuTech by Di Carlo's group are summarized. To operate on this kind of qubits, analogue signals with a specific frequency, amplitude and envelop are sent.
 
 \subsection{Superconducting quantum processor architecture}
 \label{sec:topology}
 
-Figure \ref{fig:sc_17} shows a schematic of the layout for the Surface-17 chip where the circles represent the qubits \cite{versluis2016scalable}.
-In order to perform a single-qubit gate microwave pulses are used whereas flux-pulses (qubit specific detuning sequence) are used for two-qubit gates. 
-With this purpose every qubit has a dedicated flux-control line (yellow) and microwave-drive line (red) to control the qubit frequency and send operating waves, respectively.
-At the same time, to measure a qubit its radiating waves need to be read, and that is the aim of the readout resonator (purple).
-Only qubits connected by bus resonators (in orange) can interact.
-Diagonal blue lines are feedlines for measurement of qubits.
-Note that readout resonators are simultaneously interrogated using frequency-division multiplexing.
-For more details, read \cite{versluis2016scalable,versluis2017scalable}.
+Figure \ref{fig:sc_17} shows a schematic of the layout for the Surface-17 chip where the circles represent the qubits \cite{versluis2016scalable} and the different colors the frequency used for single-qubit microwave control. In order to perform a single-qubit gate microwave pulses are used, whereas flux-pulses (qubit specific detuning sequence) are used for two-qubit gates. 
+To this purpose, every qubit has a dedicated flux-control line (yellow) and microwave-drive line (red) to control the qubit frequency and send operating waves, respectively.
+Several qubits are connected through a readout resonator (in purple) to the feedlines (diagonal blue lines) that are used for measuring them. Note that readout resonators are simultaneously interrogated using frequency-division multiplexing.
+Finally, only qubits connected by bus resonators (in orange) can interact, this is the nearest-neighbour constraint. 
+For more details, please read \cite{versluis2016scalable,versluis2017scalable}.
 
 [ADD LEGEND TO \ref{fig:sc_17}]
 
@@ -42,8 +39,8 @@ Numbers  are the physical addresses of the qubit. As we just mentioned the diffe
 \label{sec:orgd576c64}
 
 In order to perform universal computation, a whole set of universal gates should be executable in a given device.
-And, as we mentioned, not ll the kind of gates are supported in real quantum processors.
-In our case, any kind of single qubit rotation can be performed on the superconducting quantum processor. However, gates need to be calibrated before performing any experiment and obviously one cannot calibrate infinite amount of gates. Furthermore, Z rotations do not perform very well on this kind of superconducting qubits. Based on these observations, we will limit single qubit gates to X and Y rotations, in which the most common are  $\pm$ 90 (degrees) and $\pm$ 180. Conditional-phase (CZ) gates and measurement in the Z basis are also possible. Therefore, the gates supported (elementary gates) by the superconducting quantum processor are:
+However, not all kind of gates are supported in real quantum processors.
+In our case, any kind of single qubit rotation can be performed on the superconducting quantum processor, but gates need to be calibrated before performing any experiment and obviously one cannot calibrate infinite amount of gates. Furthermore, Z rotations do not perform very well on this kind of superconducting qubits. Based on these observations, we will limit single qubit gates to X and Y rotations, in which the most common are  $\pm$ 90 (degrees) and $\pm$ 180. Conditional-phase (CZ) gates and measurement in the Z basis are also possible. Therefore, the gates supported (elementary gates) by the superconducting quantum processor are:
 
 \begin{itemize}
 \item X gate with arbitrary angle rotation. Most common  \(\pm 90\) and \(\pm180\) degrees rotations
@@ -74,6 +71,7 @@ For the mapping process, we assume that arbitrary rotations and multi-qubit gate
 These gates need to be further decomposed into the elementary gates as shown in Figure \ref{fig:decompositions} and their gate time is shown in Table \ref{uni_set_gatetime}.
 %\textcolor{red}{We still need to include SWAP decomposition}
 
+\textcolor{red}{Daniel, Table 3.3 is not mentioned in the text.}
 
   \begin{figure}[t!]     
 \begin{center}
@@ -212,7 +210,7 @@ In Surface-17 each qubit is connected to a maximum of four qubits, the nearest-n
 
 
 
-This constraint implies that in Surface-17
+This constraint implies that in Surface-17 (see Figure \ref{fig:simple_sc_17})
 
 
 
@@ -289,7 +287,7 @@ Also, the character '\texttt{|}' represents the operations that can be executed 
 
 \subsubsection{Single-qubit gates}
 
-In order to perform single-qubit gates, electromagnetic microwaves are sent. As shown in Figures \ref{fig:simple_sc_17}, three or four different frequencies for single-qubit microwave control can be used in Surface-17. In principle, any qubit can be operated individually and then any combination of single-qubit gates can be performed in parallel. However, qubits using the same frequency are controlled by the same QWG and then they are limiting the possible parallelism of operations.
+In order to perform single-qubit gates, electromagnetic microwaves are sent. As shown in Figures \ref{fig:simple_sc_17}, three or four different frequencies for single-qubit microwave control can be used in Surface-17. In principle, any qubit can be operated individually and then any combination of single-qubit gates can be performed in parallel. However, qubits using the same frequency are controlled by the same Quantum Waveform Generator (QWG) and then they are limiting the possible parallelism of operations.
 
 
 \begin{table}[h!]
@@ -311,7 +309,7 @@ QWG & Qubits & Frequency Group\\
 %\end{minipage}
 
 \newpage
-It is not possible to perform two different single-qubit gates at the same time on qubits using the same frequency (same color, connected to the same QWG). For instance in SC-17,
+It is not possible to perform two different single-qubit gates at the same time on qubits using the same frequency and operated by the  same QWG. For instance in SC-17,
 
 \begin{minipage}[t]{.45\textwidth}
 
@@ -344,7 +342,7 @@ Obviously, it is not possible to perform more than one single-qubit gate on the 
 
 \subsubsection{Two-qubit gates}
 
-In order to perform a two quibt gate in transmons, interacting qubits need to be brought to a specific close frequencies \cite{versluis2016scalable}. More specifically, $CZ_f$ gates are performed between qubits at $f^{int}_1$ and $f_2$ or at $f^{int}_2$ and $f_3$ as shown in Figure \ref{detuning}. This limits the amount of two-qubit gates that can be performed in parallel (hardware constraint). In addition, note that, different frequency arrangements can be used as shown in Figure \ref{sequence}. 
+In order to perform a two-quibt gate in superconducting qubits, interacting qubits need to be brought to a specific close frequencies \cite{versluis2016scalable}. More specifically, $CZ_f$ gates are performed between qubits at $f^{int}_1$ and $f_2$ or at $f^{int}_2$ and $f_3$ as shown in Figure \ref{detuning}. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. This limits the amount of two-qubit gates that can be performed in parallel (hardware constraint). %In addition, note that, different frequency arrangements can be used as shown in Figure \ref{sequence}. 
 
 
 \begin{figure}[h!]
@@ -450,22 +448,22 @@ Based on the notation in Figure \ref{cell} and assuming the frequency scheme of 
 
 %% \subsubsection*{Summary for single-qubit and two-qubit gates}
 
-\textbf{Single-qubit gates:} for performing a single-qubit gate on a qubit, one needs to send the required electromagnetic microwave to it.  \textbf{The same} single-qubit gate can be performed in parallel in all or some of the qubits connected to the same QWG. However, it is not possible to perform in parallel a different single qubit-gate in qubits connected to the same QWG.
+%\textbf{Single-qubit gates:} for performing a single-qubit gate on a qubit, one needs to send the required electromagnetic microwave to it.  \textbf{The same} single-qubit gate can be performed in parallel in all or some of the qubits connected to the same QWG. However, it is not possible to perform in parallel a different single qubit-gate in qubits connected to the same QWG.
 
-\textbf{Two-qubit gates:} in order to perform a two-qubit gate in transmons, interacting qubits need to be brought to a specific close frequencies. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. %% For instance, in SC-17, when performing a CZ(11,14), q16 and q10 need to be detunned to $f_{2}^{park}$. Note that it is not possible to perform a single-qubit gate (in parallel with the two-qubit gate) on the qubits that have been detunned to  $f_{1}^{int}$,  $f_{2}^{park}$, $f_{2}^{int}$ or $f_{3}^{park}$.
+%\textbf{Two-qubit gates:} in order to perform a two-qubit gate in transmons, interacting qubits need to be brought to a specific close frequencies. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. %% For instance, in SC-17, when performing a CZ(11,14), q16 and q10 need to be detunned to $f_{2}^{park}$. Note that it is not possible to perform a single-qubit gate (in parallel with the two-qubit gate) on the qubits that have been detunned to  $f_{1}^{int}$,  $f_{2}^{park}$, $f_{2}^{int}$ or $f_{3}^{park}$.
 
-As an example, in fig. \ref{fig:two_qubit_gate_ex}, a CZ gate is applied between qubits 11 and 14 (\texttt{cz (q[11], q[14])}). Thus, both qubits need to be tuned to closer frequencies -- $f_1^{int}$ and $f_2$ in this case. And, as explained before, in order to not create intereferences between qubits some of them should be detunned away. Specifically, qubits 10 and 16 need to be detunned to $f_2^{park}$ because they share a connection with the qubits performing the CZ gate. This means that no single-qubit gate can be applied to these qubits that are outside their main frequency ($f_2$). And, also, that they cannot perform another two-qubit gate at the same time with any other qubit from the QWG 0 -- the red qubits with main frequency $f_1$ -- because it is required to tune them to $f_2$.
+As an example, in Figure \ref{fig:two_qubit_gate_ex}, a CZ gate is applied between qubits 11 and 14 (\texttt{cz (q[11], q[14])}). Thus, both qubits need to be tuned to closer frequencies -- $f_1^{int}$ and $f_2$ in this case. And, as explained before, in order to not create intereferences between qubits some of them should be detunned away. Specifically, qubits 10 and 16 need to be detunned to $f_2^{park}$ because they share a connection with the qubits performing the CZ gate. This means that no single-qubit gate can be applied to these qubits that are outside their main frequency ($f_2$). And, also, that they cannot perform another two-qubit gate at the same time with any other qubit from the QWG 0 -- the red qubits with main frequency $f_1$ -- because it is required to tune them to $f_2$.
 
-Finally, for both instances in fig. \ref{fig:two_qubit_gate_ex}, all the qubits that are already in use cannot be used at the same time. Therefore, qubits 11 and 14 in the example cannot be used in any single- or two-qubit gates.
+Finally, all the qubits that are already in use cannot be used at the same time. Therefore, qubits 11 and 14 in the example cannot be used in any single- or two-qubit gates.
 
-
+\textcolor{red}{Delete SC-7 in Figure 3.4}
 
 \begin{figure}[h!]
 \centering
 %\includegraphics[width=\textwidth]{figures/two_qubit_constraint_sc17.png}
 \includegraphics[width=\textwidth]{figures/two_qubit_constraint_sc17_w_cnnct.png}
 \caption{\label{fig:two_qubit_gate_ex}
-Example of a two qubit gate and the consequences of it in SC-17}
+Example of a two qubit gate and allowed and not allowed parallel gates in SC-17}
 \end{figure}
 
 %More specifically, the two next connection in the same axis will be forbidden for two-qubit interactions. The first connection as a consequence of the qubit exclusivity constraint because one of the qubits is being used.
