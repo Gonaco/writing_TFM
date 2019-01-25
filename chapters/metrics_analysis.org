@@ -130,7 +130,7 @@ We observe that, for all the cases, the fidelity decreases with an inverse expon
 #+caption: Correlation between fidelity and the mapping metrics.
 #+NAME: fig:f_metrics_correlation
 #+ATTR_LATEX: :width \textwidth
-[[file:figures/f_metrics_correlation.eps]]
+[[file:figures/f_metrics_correlation_poly.eps]]
 
 The correlation between the probability of success and the other metrics can be see in Fig. [[ref:fig:ps_metrics_correlation][ref:fig:ps_metrics_correlation]].
 As with the study on fidelity correlation we plot two decoherence times, 30 $\mu s$ (blue) and 10 $\mu s$ (orange).
