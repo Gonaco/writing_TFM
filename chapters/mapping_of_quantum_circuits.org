@@ -363,8 +363,8 @@ Note that the dashed boxes enclose all the parallel operations in a cycle.
  }
 }
 
-\label{fig:map_ex_resch}
 \caption{Naive initial placement routed and re-scheduled}
+\label{fig:map_ex_resch}
 \end{figure}
 
 #+END_EXPORT

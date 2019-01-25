@@ -175,9 +175,8 @@ It is composed by CNOT gates only.
 \lstick{f} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
 }
 }
-
-\label{fig:circuit_example}
 \caption{Gray encoder quantum circuit.}
+\label{fig:circuit_example}
 \end{figure}
 #+END_EXPORT
 
