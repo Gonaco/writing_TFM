@@ -2,26 +2,25 @@
 \chapter{Benchmarks and analysis framework}
 \label{sec:org17c0cef}
 
-In this chapter we describe the benchmarks that will be mapped to the surface code chip and the framework develop for the study of the mapping metrics.
+In this chapter we describe the benchmarks that will be mapped to the Surface-17 chip and the simulation framework develop for the study of the mapping metrics.
 
 \section{Benchmarks}
 \label{sec:orga02804b}
-As stated in the Introduction, the research was conducted to analyze the different metrics to assess the quality of a mapping algorithm.
-To this purpose, we selected a set of quantum algorithms available in the literature.
+In order to analyze the different metrics to assess the quality of a mapping algorithm, we selected a set of quantum algorithms available in the literature.
 
-We built a list of quantum algorithms coming from different sources.
+I built a list of quantum algorithms coming from different sources.
 The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} because of the variety of algorithms and because they are already decomposed in the Clifford+T set.
-Note the language used to describe the algorithm varies from source to source.
-Although, they all are a QASM-based language, there are small syntax differences.
-As we will explain the next section, we will use our own programming languages -- OpenQL -- and compiler.
-Therefore we had to translate algorithms from their QASM versions to the OpenQL notation.
-We developed a parser in order to do that.
+Note that the language used to describe the algorithm varies from source to source.
+Although, they all use a  a QASM-based language, there are small syntax differences.
+As we will explain in the next section, we will use our own programming languages -- OpenQL and cQASM -- and compiler.
+Therefore we had to translate all the selected algorithms from their QASM versions to the OpenQL notation.
+I developed a parser in order to do that.
 
-We also built a benchmark profile that includes: the number of qubits of the algorithm, the number of gates, the functionality of the algorithm and different graphs, showing the percentage of the operations types or the degree of parallelism of the algorithm.
+I also profiled each benchmark including: the number of qubits of the algorithm, the number of gates, the functionality of the algorithm and different graphs, showing the percentage of the operations types or the degree of parallelism of the algorithm.
 Most of the benchmarks are classical algorithms adapted to quantum circuits.
-They are deterministic and the result it is always the same if there are no errors.
-This means that their results are always binary.
-Or what is the same, qubits in either ground or excited state, but never superposition.
+They are deterministic and then the result is always the same if there are no errors.
+%This means that their results are always binary.
+This is because  at the end of the circuit, before measuring the qubits, qubits are in either ground or excited state, but never superposition.
 
 
 The benchmarks were also classified depending on their functionality.
@@ -40,8 +39,8 @@ From all the benchmarks we have, we can distinct six different classes.
 \item Miscellaneous: Mix of different kind of algorithms
 \end{itemize}
 
-We came up with a list of 84 different algorithms -- 697 benchmarks taking into account the different versions of the same functionality -- that can be found in the \href{https://github.com/QE-Lab/qbench}{qbench Github repo}, as well as the previous information much more detailed.
-These algorithms cannot only be used for the mapping problem but also for the other activities in our group.
+We came up with a list of 84 different algorithms -- 697 benchmarks taking into account the different versions of the same functionality -- that can be found in the \href{https://github.com/QE-Lab/qbench}{qbench Github repo}, as well as the previous information in much more detail.
+These algorithms cannot only be used for the mapping problem but also for other activities in our group.
 
 \subsection{Benchmark selection}
 \label{sec:org80c681f}
@@ -49,13 +48,10 @@ These algorithms cannot only be used for the mapping problem but also for the ot
 In order to have a small, but representative, set of benchmarks to map, we selected just some of them.
 This requirement comes by the fact that simulations are long and computationally exhaustive.
 In order to do that, we studied the different benchmark profiles looking for most illustrative cases.
-But we also set some restrictions.
-First of all, as soon as we are going to map the algorithms to the SC chips with a maximum number of 17 qubits, we need to look for the benchmarks with an amount of qubits below that.
-We also want to see how different gate quantities affect the mapping.
-Therefore, we need benchmarks with a number of gates as spread as possible.
-And, at the same time, several benchmarks presenting the same number of gates.
-We also tend to mix all the classes equally.
-And we try to have the less number of the same algorithm versions as possible.
+The criteria used for selecting the algorithms used in this work are: 
+i) the number of qubits of the algorithm. It should be less than 17 as we will use the Surface-17 chip; ii) the number of gates.
+we select benchmarks with a number of gates as spread as possible; iii) different functionality.
+We try to have the less number of the same algorithm versions as possible.
 We only take the same algorithm versions for cases in which the number of qubits and the number of gates show an interesting combination.
 For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. \ref{tab:map_selected_benchs}.
 
@@ -68,7 +64,7 @@ Restriction summary of the benchmark selection}
 \begin{tabular}{|l|}
 \hline
 \\
-Restrictions:\\
+Criteria:\\
 \\
 - \# qubits < 17\\
 - \# gates as spread as possible and in the case of repeated benchmark the minimum number of gates\\
