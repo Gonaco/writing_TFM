@@ -102,8 +102,8 @@ Quantum operations change the state of the qubit.
 We consider three kind of operations in quantum computing: gates, qubits' measurements and qubit initialization processes.
 Quantum gates are represented as square matrices of $2^{n} \times 2^{n}$, where $n$ is the number of qubits involved in the operation.
 This matrices should be unitary respecting the qubit state vector unitary property ($|\alpha_0|^2 + |\alpha_1|^2 = 1$).
-Single-qubit operations can be represented as state rotations in the Bloch sphere (fig. \ref{fig:bloch_sphere}).
-For instance, ab x gate is a rotation of 180° in x-axis of the Bloch sphere and the qubit state from $| 0 \rangle$ to $| 1 \rangle$, or viceversa.
+Single-qubit operations can be represented as state rotations in the Bloch sphere (Fig. \ref{fig:bloch_sphere}).
+For instance, an X gate is a rotation of 180° in x-axis of the Bloch sphere and the qubit state from $| 0 \rangle$ to $| 1 \rangle$, or viceversa.
 An example of the matrix representation of a quantum operation and the way to operate with qubits is shown in eq. ref:eq:inner_prod_ex.
 
 #+NAME: eq:inner_prod_ex
@@ -156,7 +156,7 @@ The most used one is the *Clifford+T* set, formed by the Clifford gate set -- ph
 Quantum algorithms can be described by quantum circuits when the circuit model of computation is adopted.
 As mentioned before, they consist of quantum gates and qubits connected in circuit fashion.
 As most of the algorithm description models -- no matter if classical or quantum --, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
-In fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
+In Fig. ref:fig:circuit_example we present an example of a quantum circuit.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
 It is composed by CNOT gates only.
 # An example of the Gray code is shown in \ref{fig:gray_code_example} for different number of bits ($n$).
@@ -166,7 +166,7 @@ It is composed by CNOT gates only.
     \centering
 
 \resizebox{0.2\textwidth}{!}{
-   \Qcircuit @C=1em @R=.7em {
+\Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
 \lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\

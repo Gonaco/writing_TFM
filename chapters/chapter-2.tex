@@ -1,9 +1,9 @@
 
 \chapter{Quantum computers and mapping of quantum circuits}
-\label{sec:orgda696aa}
+\label{sec:org0f23d9b}
 
 \section{Quantum computing}
-\label{sec:org4ac3409}
+\label{sec:org8162490}
 
 Quantum computers will be able to solve problems that are intractable for classical computers.
 Due to the quantum phenomena, quantum computers are able to explore a whole solution space at once.
@@ -13,14 +13,14 @@ In general, quantum computers are a promising technology able to solve problems 
 In the next sections we will explain the basics of quantum computation.
 
 \subsection{Essential elements of quantum computation}
-\label{sec:org06ec179}
+\label{sec:org490490e}
 
 Quantum bit (or qubits) and quantum gates are the basic ingredients in quantum computation.
 As in classical computation with boolean gates and bits, quantum gates operate on the qubits to change their state and return the desired result or calculation.
 
 \begin{enumerate}
 \item Qubits
-\label{sec:org94066fd}
+\label{sec:orgdaa844f}
 %% Space
 
 A qubit is the basic unit of information.
@@ -90,15 +90,15 @@ Another important quantum property is \textbf{entanglement}, which qubits are co
 
 
 \item Quantum Operations
-\label{sec:org01170aa}
+\label{sec:org5cc5e2c}
 
 Quantum operations leverage the power of quantum computers enabling calculations on the qubits.
 Quantum operations change the state of the qubit.
 We consider three kind of operations in quantum computing: gates, qubits' measurements and qubit initialization processes.
 Quantum gates are represented as square matrices of \(2^{n} \times 2^{n}\), where \(n\) is the number of qubits involved in the operation.
 This matrices should be unitary respecting the qubit state vector unitary property (\(|\alpha_0|^2 + |\alpha_1|^2 = 1\)).
-Single-qubit operations can be represented as state rotations in the Bloch sphere (fig. \ref{fig:bloch_sphere}).
-For instance, ab x gate is a rotation of 180° in x-axis of the Bloch sphere and the qubit state from \(| 0 \rangle\) to \(| 1 \rangle\), or viceversa.
+Single-qubit operations can be represented as state rotations in the Bloch sphere (Fig. \ref{fig:bloch_sphere}).
+For instance, an X gate is a rotation of 180° in x-axis of the Bloch sphere and the qubit state from \(| 0 \rangle\) to \(| 1 \rangle\), or viceversa.
 An example of the matrix representation of a quantum operation and the way to operate with qubits is shown in eq. \ref{eq:inner_prod_ex}.
 
 \begin{equation}
@@ -109,7 +109,7 @@ U |\psi\rangle=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{b
 
 \begin{enumerate}
 \item Single-qubit gates
-\label{sec:orgb8030f6}
+\label{sec:orge017ebf}
 
 Single qubit gates operate just on one qubit.
 As explained before, single-qubit gates can be represented as \(2^1 \times 2^1\) square matrices that should be unitary.
@@ -137,7 +137,7 @@ The \emph{S} and \emph{T} gates are also rotations over the z-axis but of 90° a
 
 
 \item Two-qubit gates
-\label{sec:orgbfc0330}
+\label{sec:orga78c621}
 
 Two-qubit gates are quantum operations that involve two qubits.
 In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
@@ -164,7 +164,7 @@ CNOT & CZ & SWAP\\
 \end{table}
 
 \item Universality
-\label{sec:org6086fcd}
+\label{sec:org69c02ff}
 
 A \textbf{universal set of gates} is a set of operations able to generate any other gate by combining them \cite{Nielsen_2009}.
 In classical computation, for example, the \texttt{OR} and the \texttt{AND} gates are able to generate any other logic gate.
@@ -175,12 +175,12 @@ The most used one is the \textbf{Clifford+T} set, formed by the Clifford gate se
 \end{enumerate}
 
 \subsection{Quantum Circuits}
-\label{sec:orgfcf0d52}
+\label{sec:orgf312520}
 
 Quantum algorithms can be described by quantum circuits when the circuit model of computation is adopted.
 As mentioned before, they consist of quantum gates and qubits connected in circuit fashion.
 As most of the algorithm description models -- no matter if classical or quantum --, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
-In fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
+In Fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
 It is composed by CNOT gates only.
 
@@ -188,7 +188,7 @@ It is composed by CNOT gates only.
     \centering
 
 \resizebox{0.2\textwidth}{!}{
-   \Qcircuit @C=1em @R=.7em {
+\Qcircuit @C=1em @R=.7em {
 \lstick{a} & \targ & \qw & \qw & \qw & \qw & \qw\\
 \lstick{b} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
 \lstick{c} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
@@ -204,7 +204,7 @@ It is composed by CNOT gates only.
 
 
 \subsection{Qubits are faulty}
-\label{sec:orge3e1cc8}
+\label{sec:org7d22e9a}
 Quantum operations are faulty and qubits are not able to hold the desired state for long times, gradually rotating to another state -- the qubit decoheres.
 For instance, in the case of superconducting technologies \cite{O_Brien_2017}, the chips bear with decoherence times of \(\sim 30 \mu s\) for qubit relaxation and \(\sim 60 \mu s\) for qubit dephase.
 The error rates of single-qubit gates are less than 0.1\% taking \(> 20 ns\) to be executed, while two-qubit gates error rate is 0.6\% with times of \(40 ns\) and measurement error rates around 1\% with execution times of \(\sim 300 ns\) \cite{O_Brien_2017,Versluis_2017}.
@@ -212,7 +212,7 @@ This creates an undesirable environment to compute the most useful algorithms.
 Therefore, in order to fight the errors generated by this behaviour, fault-tolerant (FT) and quantum error correction (QEC) mechanisms have been developed during the last years \cite{Nielsen_2009}.
 
 \section{Mapping of quantum circuits}
-\label{sec:org3e9461b}
+\label{sec:org21b108e}
 As it was described in the \href{chapter-1.org}{Motivation} section, the mapping step is a critical part of the process to run quantum algorithms.
 Quantum algorithms can be described by quantum circuits, that are hardware agnostic and assume any interaction between qubits possible.
 They assume the qubits are all-to-all connected.
@@ -226,21 +226,21 @@ The mapping process adapts a quantum circuit representation to the requirements 
 It brings ideal algorithms down to earth, to the limitations of the quantum chips.
 Therefore, the mapping accounts for the realization of quantum algorithms in quantum chips.
 In order to this, the qubits states need to switch places between them -- introducing SWAP gates -- whenever an interaction between two qubits that are not NN is required. 
-But, as explained in the previous section (\hyperref[sec:orge3e1cc8]{Qubits are faulty}), quantum gates are faulty and the longer a circuit is, the more errors appear.
+But, as explained in the previous section (\hyperref[sec:org7d22e9a]{Qubits are faulty}), quantum gates are faulty and the longer a circuit is, the more errors appear.
 Then, the extra addition of gates or the circuit depth increment due to the mapping task, causes quantum algorithms to accumulate errors and results in more noisy or even useless results.
 Therefore, the optimal mapping would be the one that alters the least the original circuit.
 In order to address the mapping problem, we split it in three steps: \textbf{scheduling}, \textbf{initial placement} and \textbf{routing}.
 These steps can be executed several times, or even continuously, and in any order, depending on the mapping approach.
 
 \subsection{Initial placement}
-\label{sec:orgeb220a6}
+\label{sec:org0224e58}
 
 Throughout this thesis we use the terms \textbf{\emph{virtual} qubits} and \textbf{\emph{physical} qubits} referring to the qubits from the circuit that will be mapped to the real qubits of the quantum chip, respectively.
 The initial placement task is responsible to relate the virtual qubits with the physical ones, trying to find the best arrangement in order to minimize non-NN interactions.
 As we will see in the example below, an optimal initial placement may help to reduce the number of SWAP gates introduced by the routing step.
 
 \subsection{Routing}
-\label{sec:orgefdca5b}
+\label{sec:org911413e}
 
 When two qubits that need to interact -- i.e. perform a two-qubit gate -- are not NN, they have to be moved or 'routed' to adjacent positions.
 The routing process accounts for finding the best path between two qubits far away in the chip that need to interact.
@@ -248,7 +248,7 @@ It introduces the SWAP gates to move the qubit states from one point to another.
 Therefore, it is a decisive step in order to reduce the number of added gates to the circuit and the circuit depth.
 
 \subsection{Scheduling}
-\label{sec:org2a14bed}
+\label{sec:org23d0041}
 
 A scheduler organizes the circuit operations through the circuit time,
 finding whether several operations can be executed in parallel -- at the same time -- or not.
@@ -259,7 +259,7 @@ Starting from the qubits, it chains all the gates with them.
 It is really convenient while mapping, mostly scheduling and finding the parallel operations.
 The gates that are in the same graph column can run in parallel.
 \subsection{Mapping example}
-\label{sec:orgabbcdd9}
+\label{sec:org9ebb9ee}
 
 
 In order to illustrate the mapping steps let us consider the following circuit (see Fig. \ref{fig:map_ex_circ}) and the device's chip layout in Fig. \ref{fig:map_ex_chip}, we need to map the quantum circuit to its requirements.
@@ -294,7 +294,7 @@ Considering the gate times for this device the same ones as the ones described i
 
 \begin{enumerate}
 \item Initial placement
-\label{sec:orgcd81f0d}
+\label{sec:org3e16c53}
 
 As it can be seen in the dependence graph in Fig. \ref{fig:map_ex_depend}, there is no possible schedule -- all the gates depend to the previous one.
 If we place the qubits based on the required interactions -- that is: \(q_1\) next to \(q_2\), \(q_2\) next to \(q_5\) and so on -- we can find in this case a placement in which all qubits can perform the required two-qubit gates.
@@ -389,7 +389,7 @@ No routing would be required.
 \end{figure}
 
 
-However, if we do a naive initial placement in which, for instance, the virtual qubits ( \(a, b, c\) \ldots{}) are mapped to the physical ones \(Q_0, Q_1, Q_2\) \ldots{} in alphabetical order (see Fig. \ref{fig:map_ex_wrong_init}).
+However, if we do a naive initial placement in which, for instance, the virtual qubits ( \(a, b, c\) \ldots{}) are mapped to the physical ones \(Q_0, Q_1, Q_2\) \ldots{} in alphabetical order (see Fig. \ref{fig:map_ex_circ_wrong}).
 We will need to start routing them.
 
 
@@ -410,12 +410,12 @@ We will need to start routing them.
 \end{figure}
 
 \item Routing
-\label{sec:orgaa00df8}
+\label{sec:orgdbee1a9}
 
 In order to allow the non-NN qubits to interact, we need to move them to adjacent positions and then we insert SWAPs.
 The mapping brings smartly the qubits close to the next operation qubit as well.
 For example, it routes \(b\) next to \(a\) but also close to \(c\), avoiding a path increment for the next operation.
-The result can be seen in Fig. \ref{fig:map_ex_routing}.
+The result can be seen in Fig. \ref{fig:map_ex_circ_route}.
 After every SWAP, the interchanged virtual qubits appear to follow easily the mapping.
 The latency after the routing increases in 1440 ns, \(1440 + 400 = 1840\) ns.
 
@@ -506,9 +506,9 @@ The latency after the routing increases in 1440 ns, \(1440 + 400 = 1840\) ns.
 \end{figure}
 
 \item Scheduling
-\label{sec:org06ac32f}
+\label{sec:org2b0e01f}
 
-As one could notice in the dependence graph (Fig. \ref{fig:map_ex_depend_resch}), there are several operations that can be parallelized.
+As one could notice in the dependence graph (Fig. \ref{fig:map_ex_resch}), there are several operations that can be parallelized.
 Therefore, we can apply a scheduling.
 In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, reducing the latency to 1520 ns.
 Note that the dashed boxes enclose all the parallel operations in a cycle.
@@ -534,7 +534,7 @@ Note that the dashed boxes enclose all the parallel operations in a cycle.
 \end{figure}
 
 
-We summarize the results of using a naive and an optimal initial placement in terms of number of gates and latency in \ref{fig:optimal_init_place}.
+We summarize the results of using a naive and an optimal initial placement in terms of number of gates and latency in Tab. \ref{tab:optima_vs_naive}.
 
 
 \begin{table}[htbp]
@@ -553,7 +553,7 @@ latency & 400 ns & 1520 ns\\
 \end{enumerate}
 
 \section{State of the art on the mapping of quantum circuits}
-\label{sec:org1edb72e}
+\label{sec:org70f0047}
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
 However, as we have seen they need to be adapted -- mapped -- to the quantum device limitations.
@@ -597,7 +597,7 @@ And, recently, Quantum Volume has been defined to assert the capability of a qua
 In the next section and in the \href{chapter-3.org}{New metrics} section we offer an overview of the important metrics in this work.
 
 \section{Mapping metrics}
-\label{sec:org67025be}
+\label{sec:org3c1a5c4}
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms and as an output to evaluate how good the mapping is.
 These are the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around.
@@ -610,9 +610,9 @@ From five cycles depth in the original circuit to nine cycles.
 
 
 \subsection{Number of SWAPs}
-\label{sec:org0b2d0fd}
+\label{sec:org07de9b7}
 
-As explained before in the \hyperref[sec:org3e9461b]{Mapping of quantum circuits} section, to route means to introduce SWAP operations -- or a decomposition of them.
+As explained before in the \hyperref[sec:org21b108e]{Mapping of quantum circuits} section, to route means to introduce SWAP operations -- or a decomposition of them.
 Whenever a two-qubit gate requests two qubits that are far apart, a path in the gridlike chip layout should be given.
 Each step on this grid would mean a SWAP operation between the vertex qubits of that step.
 We already know that quantum gates are error prone and that one of the main problems that the mapping task is dealing with is to use the least amount of gates as possible.
@@ -626,13 +626,13 @@ The SWAPs can be in parallel, for instance.
 It could be the case of a short circuit with a long number operation in parallel.
 
 \subsection{Latency}
-\label{sec:org1feff41}
+\label{sec:orgd2825ac}
 
 Latency is the time required to run a quantum circuit in a given quantum device.
 The introduction of gates due to the mapping makes the target circuit longer.
 Or what is the same, the introduction of SWAPs -- or their decomposition -- adds several cycles to the depth of the circuit.
 Therefore, the latency of the circuit increases.
-For instance, in the \hyperref[sec:orgabbcdd9]{Mapping example}, we can see how the latency grows after the circuit is routed to 1840 ns and then it is reduced to 1520 ns after re-scheduling.
+For instance, in the \hyperref[sec:org9ebb9ee]{Mapping example}, we can see how the latency grows after the circuit is routed to 1840 ns and then it is reduced to 1520 ns after re-scheduling.
 
 
 
@@ -647,7 +647,7 @@ The latency of a circuit gives an intuition of how long it is but, unlike the nu
 And, therefore, it gives no intuition about how the gate errors are affecting the algorithm final result.
 
 \subsection{Criticism}
-\label{sec:org57afac2}
+\label{sec:orgeab66ae}
 
 The ideal mapping would be the one affecting the least as possible the original circuit or, what is the same, introducing the least amount of errors.
 Clearly, both, latency and number of SWAPs, are direct effects of the mapping procedure that have an impact in the error increase as well.

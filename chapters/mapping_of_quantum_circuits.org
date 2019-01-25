@@ -218,7 +218,7 @@ No routing would be required.
 
 #+END_EXPORT
 
-However, if we do a naive initial placement in which, for instance, the virtual qubits ( $a, b, c$ ...) are mapped to the physical ones $Q_0, Q_1, Q_2$ ... in alphabetical order (see Fig. \ref{fig:map_ex_wrong_init}).
+However, if we do a naive initial placement in which, for instance, the virtual qubits ( $a, b, c$ ...) are mapped to the physical ones $Q_0, Q_1, Q_2$ ... in alphabetical order (see Fig. \ref{fig:map_ex_circ_wrong}).
 We will need to start routing them.
 
 #+BEGIN_EXPORT latex
@@ -246,7 +246,7 @@ We will need to start routing them.
 In order to allow the non-NN qubits to interact, we need to move them to adjacent positions and then we insert SWAPs.
 The mapping brings smartly the qubits close to the next operation qubit as well.
 For example, it routes $b$ next to $a$ but also close to $c$, avoiding a path increment for the next operation.
-The result can be seen in Fig. \ref{fig:map_ex_routing}.
+The result can be seen in Fig. \ref{fig:map_ex_circ_route}.
 After every SWAP, the interchanged virtual qubits appear to follow easily the mapping.
 The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
 
@@ -341,7 +341,7 @@ The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
 
 **** Scheduling
 
-As one could notice in the dependence graph (Fig. \ref{fig:map_ex_depend_resch}), there are several operations that can be parallelized.
+As one could notice in the dependence graph (Fig. \ref{fig:map_ex_resch}), there are several operations that can be parallelized.
 Therefore, we can apply a scheduling.
 In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, reducing the latency to 1520 ns.
 Note that the dashed boxes enclose all the parallel operations in a cycle.
@@ -375,7 +375,7 @@ Note that the dashed boxes enclose all the parallel operations in a cycle.
 
 #+END_EXPORT
 
-We summarize the results of using a naive and an optimal initial placement in terms of number of gates and latency in \ref{fig:optimal_init_place}.
+We summarize the results of using a naive and an optimal initial placement in terms of number of gates and latency in Tab. ref:tab:optima_vs_naive.
 
 
 # [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]
