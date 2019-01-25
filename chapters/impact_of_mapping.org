@@ -44,7 +44,7 @@ We are also conscious that the percentage of two-qubit gates in the used benchma
 \label{tab:map_selected_benchs}
 #+END_EXPORT
 
-As explained in the [[id:1ba756c0-572f-456f-b537-8c7ec9ce7bbd][Analysis Framework]] section, after running the benchmarks the results obtained are the fidelity, the probability of success and the Quantum Volume.
+As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks the results obtained are the fidelity, the probability of success and the Quantum Volume.
 We also extract other metrics like the number of SWAPs added and the depth of the circuits, between others.
 To match the three router algorithms developed in our group (see [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]]) we compiled the list of benchmarks with four different configurations.
 One per router and another one without mapping the algorithms to any device.
@@ -67,7 +67,7 @@ We show the exact result values in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Ap
 #+caption: Difference of fidelities before and after mapping with the ~minextendrc~ router for five different benchmarks.
 #+NAME: fig:f_diff_bar_plot
 #+ATTR_LATEX: :width 0.7\textwidth
-[[file:figures/f_diff_bar_plot.png]]
+[[file:figures/f_diff_bar_plot.eps]]
 
 **** - infidelity percentage against depth                        :ignore:
 
