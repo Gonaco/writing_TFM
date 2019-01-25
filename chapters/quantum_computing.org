@@ -3,7 +3,10 @@
 # In this section ...
 
 Quantum computers will be able to solve problems that are intractable for classical computers.
+Due to the quantum phenomena, quantum computers are able to explore a whole solution space at once.
 For example, Shor's quantum algorithm is an integer factorization algorithm able to calculate prime numbers in polynomial time -- what is a main issue in computer security.
+Another example is the Grover's search quantum algorithm which, given the data and condition, is able to look for the samples that fulfills that condition.
+In general, quantum computers are a promising technology able to solve problems considered hard in classical computation.
 In the next sections we will explain the basics of quantum computation.
 
 *** Essential elements of quantum computation
@@ -21,13 +24,13 @@ As in classical computation with boolean gates and bits, quantum gates operate o
 #+END_EXPORT
 
 A qubit is the basic unit of information.
-A classical bit state can be either ~0~ or ~1~.
+A classical bit can be either ~0~ or ~1~.
 A qubit's state could be either ~0~ or ~1~ or both at the same time, what is called *superposition*.
 Both, ground or excited states, are represented in the Dirac's bra-ket notation cite:Nielsen_2009, $| 0 \rangle$ and $| 1 \rangle$ respectively.
 A qubit is described as in a probabilistic state $| \psi \rangle = \alpha_0 | 0 \rangle + \alpha_1 | 1 \rangle$, where $\alpha_0, \alpha_1 \in \mathbb{C}$ are the so-called probability amplitudes.
 $|\alpha_0|^2$ is the probability of measuring $| 0 \rangle$ and $|\alpha_1|^2$ is the probability of measuring $| 1 \rangle$.
-In other words, when a qubit is measured, the measurement results '0' with probability $|\alpha_0|^2$ and '1' with probability $|\alpha_1|^2$.
-And the qubit's state collapses to either $| 0 \rangle$ or $| 1 \rangle$, respectively.
+In other words, when a qubit is measured, one can get the measurement result '0' with probability $|\alpha_0|^2$ and '1' with probability $|\alpha_1|^2$.
+In addition, the qubit's state collapses to either $| 0 \rangle$ or $| 1 \rangle$, respectively.
 As $|\alpha_0|^2$ and $|\alpha_1|^2$  are probabilities, the sum of them should be $|\alpha_0|^2 + |\alpha_1|^2 = 1$.
 Therefore a qubit state can be represented as a vector (eq. \ref{eq:org1bd4103}).
 
@@ -42,7 +45,7 @@ Therefore a qubit state can be represented as a vector (eq. \ref{eq:org1bd4103})
 As soon as the vectors are 2-dimensional, complex and unitary they can also be described in phase notation cite:Nielsen_2009.
 Like the complex numbers, although requiring two angles in this case.
 This notation lead us to an understandable way to visualize the quantum states, the *Bloch sphere* (fig. \ref{fig:bloch_sphere}).
-A sphere of radius one which z-axis extremes represent the ground and excited states.
+A sphere of radius one, which z-axis extremes represent the ground and excited states.
 
 #+BEGIN_EXPORT latex
 \begin{figure}
@@ -75,29 +78,71 @@ A sphere of radius one which z-axis extremes represent the ground and excited st
 \end{figure}
 #+END_EXPORT
 
-A system with just one qubit is not useful.
-The power of quantum computers explodes with the number of qubits able to work with.
+The power of quantum computers comes from the combination of several qubits.
 The quantum state of $n$ qubits can be represented in bra-ket notation, with a $2^n$ size.
-The *entanglement* of qubits ($\phi$ and $\psi$) is the other main phenomenon in quantum physics that describes the fact that several qubits behave like the same one cite:Nielsen_2009.
+For instance, the state of two and qubits is represented in the eq. \ref{eq:two_q_state} and \ref{eq:multiple_q_state}
+Another important quantum property is *entanglement*, which qubits are correlated with each other.
+# The *entanglement* of qubits ($\phi$ and $\psi$) is the other main phenomenon in quantum physics that describes the fact that several qubits behave like the same one cite:Nielsen_2009.
+
+#+NAME: eq:two_q_state
+\begin{equation}
+|\psi\rangle = \alpha_0 |00\rangle + \alpha_1 |01\rangle + \alpha_2 |10\rangle + \alpha_3 |11\rangle
+\end{equation}
+
+#+NAME: eq:multiple_q_state
+\begin{equation}
+|\psi\rangle = \alpha_0 |0...0\rangle + \alpha_1 |0...1\rangle + ... + \alpha_{n-1} |1...1\rangle
+\end{equation}
 
 
 **** Quantum Operations
 
 Quantum operations leverage the power of quantum computers enabling calculations on the qubits.
-Quantum operations change the state of qubit.
-One can find a parallelism with the classical computation fundamental operations, the logical operations.
-As their classical siblings, the quantum operations are usually represented as gates in a circuit, a so-called quantum circuit.
-Quantum operations can be described in Dirac's notation as well.
-They are represented as square matrices of $2^{n} \times 2^{n}$, where $n$ is the number of qubits involved in the operation.
+Quantum operations change the state of the qubit.
+We consider three kind of operations in quantum computing: gates, qubits' measurements and qubit initialization processes.
+Quantum gates are represented as square matrices of $2^{n} \times 2^{n}$, where $n$ is the number of qubits involved in the operation.
 This matrices should be unitary respecting the qubit state vector unitary property ($|\alpha_0|^2 + |\alpha_1|^2 = 1$).
-Quantum operations can be represented as state rotations in the Bloch sphere (fig. \ref{fig:bloch_sphere}).
-Although, while implying multiple qubits, the quantum operations are more complex than just rotations, as it will be seen below.
-For instance, a rotation of 180° in x-axis of the Bloch sphere is the same as an operation that changes the qubit state from $| 0 \rangle$ to $| 1 \rangle$, or viceversa.
+Single-qubit operations can be represented as state rotations in the Bloch sphere (fig. \ref{fig:bloch_sphere}).
+For instance, ab x gate is a rotation of 180° in x-axis of the Bloch sphere and the qubit state from $| 0 \rangle$ to $| 1 \rangle$, or viceversa.
+An example of the matrix representation of a quantum operation and the way to operate with qubits is shown in eq. ref:eq:inner_prod_ex.
 
 #+NAME: eq:inner_prod_ex
 \begin{equation}
 U |\psi\rangle=\begin{bmatrix}u_{00}&u_{01}\\u_{10}&u_{11}\end{bmatrix} \begin{bmatrix}\alpha_0 \\ \alpha_1 \end{bmatrix} = \begin{bmatrix}\alpha_0 u_{00} + \alpha_1 u_{01} \\ \alpha_0 u_{10} + \alpha_1 u_{11} \end{bmatrix}
 \end{equation}
+
+
+***** Single-qubit gates
+
+Single qubit gates operate just on one qubit.
+As explained before, single-qubit gates can be represented as $2^1 \times 2^1$ square matrices that should be unitary.
+The symbol and the matrix representation of the most common single-qubit gates can be found in Table [[tab:single_q_gates]].
+
+#+INCLUDE: single_gates_table.org::tab:single_q_gates
+
+# Each gate explanation
+The /Identity/ gate is the idling operation.
+It is equivalent to no applying any operation for a cycle.
+The /Pauli-x, -y and -z/ gates are 180° rotation over the x-, y- and z-axis, respectively.
+The /Hadamard/ gate is also a 180° rotation, but over the diagonal axis between the x- and z-axes, $\frac{({\hat {x}}+{\hat {z}})}{\sqrt {2}}$.
+The /S/ and /T/ gates are also rotations over the z-axis but of 90° and 45° respectively.
+
+
+***** Two-qubit gates
+
+Two-qubit gates are quantum operations that involve two qubits.
+In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
+The qubits that goes through the operation is called *target*, while the other is called the *control* qubit.
+The most common two-qubit gates are represented in Table [[tab:two_q_gates]].
+The /CNOT/ gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the state of the control qubit will be executed or not.
+If the control qubit is $| 1 \rangle$ the, the Pauli-x will be executed and the target qubit's state will be rotated.
+As the CNOT, the /CZ/ gate is a Controlled-Z operation that, in this case, performs a Pauli-z gate in the target qubit when the control qubit is $|1\rangle$.
+Finally, the /SWAP/ gate exchanges the state of two qubits.
+This gate is mostly used for routing purposes as it will be seen in the next sections.
+
+#+INCLUDE: two_q_gates_table.org::tab:two_q_gates
+
+***** Universality
 
 # Universal set of gates + ¿Intro to differentiation of single- and two-qubit gates?
 A *universal set of gates* is a set of operations able to generate any other gate by combining them cite:Nielsen_2009.
@@ -106,43 +151,10 @@ Also comparable with the boolean gates, quantum operations can be decomposed in 
 In quantum computation there are several universal set of gates.
 The most used one is the *Clifford+T* set, formed by the Clifford gate set -- phase shifts around the three axes, H and CNOT -- and the T gate.
 
-***** Single-qubit gates
-
-Single qubit gates represent quantum operations that involve just one qubit.
-They are represented as a box with one input and one output, evincing that a single qubit will be the input and output of the operation.
-As explained before, single-qubit gates can be represented as $2^1 \times 2^1$ square matrices that should be unitary.
-Both representations of the most common single-qubit gates can be found in Table [[tab:single_q_gates]].
-
-#+INCLUDE: single_gates_table.org::tab:single_q_gates
-
-# Each gate explanation
-The /Identity/ gate is the idling operation.
-It is equivalent to no applying any operation for a cycle.
-The /Pauli-x, -y and -z/ gates are 180° rotation over the x-, y- and z-axis respectively.
-Eg. a qubit with state $|+\rangle$ that is equivalent to the position $\theta = \frac{\pi}{2}, \phi = 0$ in the Bloch sphere is rotated in the y-axis with a Pauli-y gate, $Y|+\rangle = \frac{i}{\sqrt{2}} \begin{bmatrix}-1 \\ 1 \end{bmatrix}$.
-This resulting state is located in $\theta = \frac{\pi}{2}, \phi = \pi$, that is a 180° rotation in the Y axis.
-The /Hadamard/ gate is also a 180° rotation, but over the diagonal axis between the x- and z-axes, $\frac{({\hat {x}}+{\hat {z}})}{\sqrt {2}}$.
-The /S/ and /T/ gates are also rotations over the z-axis but of 90° and 45° respectively.
-
-
-***** Two-qubit gates
-
-Two-qubit gates are quantum operations that involve two qubits at the same time.
-In general, the two-qubit gates execute a single-qubit operation over one of the qubits, depending on the state of the other.
-The qubits that goes through the operation is called *target*, while the other is called the *control* qubit.
-The most common two-qubit gates are represented in Table [[tab:two_q_gates]].
-The /CNOT/ gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the state of the control qubit will be executed or not.
-If the control qubit is $| 1 \rangle$ the, the Pauli-x will be activated and the target qubit's state will be rotated.
-As the CNOT, the /CZ/ gate is a Controlled-Z operation that, in this case, executes a Pauli-z gate depending on the state of the control qubit.
-Finally, the /SWAP/ gate exchanges the state of two qubits.
-This gate is mostly used for routing purposes as it will be seen in the next sections.
-
-#+INCLUDE: two_q_gates_table.org::tab:two_q_gates
-
 *** Quantum Circuits
 
-Quantum circuits are quantum algorithms descriptions.
-As mentioned before, they are formed by quantum gates and qubits connected in circuit fashion.
+Quantum algorithms can be described by quantum circuits when the circuit model of computation is adopted.
+As mentioned before, they consist of quantum gates and qubits connected in circuit fashion.
 As most of the algorithm description models -- no matter if classical or quantum --, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
 In fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
@@ -150,7 +162,7 @@ It is composed by CNOT gates only.
 # An example of the Gray code is shown in \ref{fig:gray_code_example} for different number of bits ($n$).
 
 #+BEGIN_EXPORT latex
-\begin{figure}
+\begin{figure}[H]
     \centering
 
 \resizebox{0.2\textwidth}{!}{

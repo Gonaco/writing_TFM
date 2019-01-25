@@ -1,14 +1,15 @@
 # Intro to metrics from the state of the art [As outlined in the state of the art, the literature considers mainly two metrics to report the mapping quality of their algorithms.]
 
 As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms and as an output to evaluate how good the mapping is.
-The added *latency* and the *number* of introduced *operations* after the mapping procedure.
-The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around in the layout.
+These are the added *latency* and the *number* of introduced *operations* after the mapping procedure.
+The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around.
 And latency is the time required to run a quantum circuit in a given quantum device.
 It depends on the chip cycle time and the *depth* of the circuit, $Latency = depth \times t_{cycle}$.
 Depth is the number of cycles the algorithm encloses.
-Actually, most of the studies [REFERENCES] assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
+Actually, most of the studies cite:Metodi_2006,Whitney_2007,Bahreini_2015 assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
 E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
+
 
 *** Number of SWAPs
 
@@ -25,17 +26,19 @@ From five cycles depth in the original circuit to nine cycles.
 The ideal mapping would be the one affecting the least as possible the original circuit or, what is the same, introducing the least amount of errors.
 Clearly, both, latency and number of SWAPs, are direct effects of the mapping procedure that have an impact in the error increase as well.
 To optimize in any of them stands on correct -- but not sufficient -- reasoning.
-Latency optimization deems that the leading error source comes from the qubit lifetime.
+Latency optimization assumes that the most important error source comes from the qubit lifetime.
 And, indeed, time is a main issue in quantum computing.
 Decoherence time is not only a maximum qubit lifetime, it is harder and harder to hold a quantum state for use times closer to the decoherence time.
-On the other hand, to optimize in number of SWAPs stands on the intuition that the gate error is the preeminent error in a quantum device.
-Although intuitively one can think that the more operations are in a circuit, the longer it will be; as seen in the [PROBLEM STATEMENT SECTION], the higher the number of operations does not necessarily mean the longer circuit depth.
+On the other hand, to optimize in number of SWAPs stands on the intuition that the gate error is the prominent error in a quantum device.
+Although intuitively one can think that the more operations are in a circuit, the longer it will be; as seen in the [[id:03773b8b-5b3c-43c7-88da-5d9432cc439e][Problem Statement]] section, the higher the number of operations does not necessarily mean the longer circuit depth.
 Several operations can be run in parallel in the same cycle -- at the same time.
 Actually, to minimize in latency is to maximize in parallelism.
 Therefore, even though related, to optimize in one or the other holds different baselines.
 # It bets to different horses.
 
 Nonetheless, these metrics are not enough to assert how good the mapping process is.
+These metrics do not tell you how the algorithm is affected by them.
+In other words, my algorithm will still produce good results after the mapping.
 They are related with the error rate increase but the relationship is not totally clear.
 For instance, it could be the case that concatenation of errors introduced by contiguous gates would end up in a correction of the first error.
 Or, that the busier the qubit is, the less affected by decoherence would be.
@@ -48,8 +51,11 @@ But, in order to do that, a precise prediction of the error should be done and t
 
 # So that we could do a proper assessment of mapping algorithms, in our research we analyzed these two metrics amongst other different ones as fidelity, probability of success or quantum volume and their relationship with the error generated after the mapping.
 # We will define these metrics in the [[id:38ded492-56c6-4f6a-a629-06e342314cef][Metrics]] section.
-To perform the analysis we will map several small quantum algorithms on the superconducting quantum chip develop at Qutech by DiCarlo's group cite:Versluis_2017.
-In the next chapters, we will explain the constraints of this chip and the mapping model we will use.
+In this thesis we will analyze how the mapping quality is affected by the different metrics.
+Moreover, we will try to find out the best circuit parameter to work as a quality metric of the mapping algorithms.
+To perform the analysis we will map several small quantum algorithms on the superconducting quantum chip develop at Qutech by DiCarlo's group 
+cite:Versluis_2017.
+In the next chapter, we will explain the constraints of this chip and the mapping model we will use.
 
 *** BIB                                                          :noexport:
 

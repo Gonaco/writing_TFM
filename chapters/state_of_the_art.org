@@ -9,7 +9,7 @@ The main constraints in all of them is the limited connectivity between qubits.
 There is a vast amount of literature on the algorithms -- high abstraction level --, neglecting hardware constraints.
 From ion traps [? paper on ion traps] to superconducting qubits cite:Barends_2014,Versluis_2017, through quantum dots cite:Hill_2015,Li_2018, each layout has its own requirements and constraints.
 Although all of them are arranged in a 2D -- planar -- structure, ion traps technologies are capable to connect the qubits in all-to-all networks while superconducting technologies connections form a grid shaped network where each qubit is connected to a maximum of four neighbors.
-This grid behaviour establishes one of the main connectivity limitation in today's quantum chips, the NN constraint.
+This grid structure establishes one of the main connectivity limitation in today's quantum chips, the NN constraint.
 Also industry's superconducting chip layouts from IBM cite:IBM_QX, Google cite:boixo16:charac_quant_suprem_near_term_devic and Rigetti cite:Sete_2016 follow this structural limitations.
 As for the high abstraction level of the quantum algorithm, a link between the algorithms and the devices is required cite:Fu_2016.
 As in classical computation, the algorithms should go through a transformation process in order to adapt them to the hosting device.
@@ -21,14 +21,14 @@ Certainly, the mapping procedure is an important element of this process.
 
 There is a considerable amount of literature on the mapping task.
 Initial works on this field cite:Metodi_2006,Whitney_2007,Bahreini_2015 focused primarily on the definition of what they characterized as a /scheduler/ able to parallelize operations and add the required gates to route qubits.
-They would consider general connectivity constraints as the NN one, common for most of the devices -- although the works were examining ion-traps as hardware implementations.
+They consider general connectivity constraints as the NN one, common for most of the devices -- although the works were examining ion-traps as hardware implementations.
 The proposed techniques by these works examine a dependency graph looking for the best way to organize qubits and operations.
 The majority of the methods use latency as the metric to minimize, however some of them cite:Farghadan_2017 would minimize in number of SWAP operations.
-As it will be explained in the next section, to minimize in latency stands for time optimization while minimize in number of SWAP operations means to find the minimal number of operations required.
+As it will be explained in the next section, to minimize in latency stands for time optimization while minimize in number of SWAP operations means to find the path that introduces the minimal number of SWAP operations.
 Following a similar reasoning as the first approaches, more complex solutions cite:booth18:compar_integ_const_progr_tempor have been published using Constraint Programming together with temporal planning, optimizing in latency as well.
 Also, several publications cite:Lye_2015,Wille_2016 outline only the routing sub-task using the number of SWAPS as the metric to minimize.
 
-A recent review of the literature on the mapping topic focused on device specific mapping algorithms.
+A recent review of the literature on the mapping topic focused on mapping quantum algorithms on a specific quantum device.
 In all the cases, taking into account the specific chip connectivity constrain.
 IBM's chip have been gaining much attention due to the open online tools that make the chips accessible to everybody.
 Various approaches to mapping algorithms for the IBM family of chips have been proposed cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018.
@@ -50,21 +50,20 @@ Also, apart from the works related to the IBM devices, Rigetti's devices have be
 
 Many attempts have been made cite:Dousti_2014,Heckey_2015,hwang18:hierar_system_mappin_large_scale,murphy18:contr,Lao_2018 with the purpose of develop a FT mapping able to work at the logical -- qubit -- level.
 However, due to the high complexity of the QEC techniques, quantum chips with large amounts of qubits are still theory.
-More recent evidence cite:Preskill_2018, proposes the Noisy Intermediate-Scale Quantum (NISQ) devices as the next step for near future hardware with an amount of 50-100 qubits and without QEC or much simpler encodings.
+Current and near-future quantum processors are what Preskill cite:Preskill_2018 calls Noisy Intermediate-Scale Quantum (NISQ) devices; chips with an amount of 50-100 qubits and without QEC or much simpler encodings.
 Several studies, for instance cite:tannu18:case_variab_aware_polic_nisq,paler18:nisq,paler18:influen_initial_qubit_placem_durin, have been conducted on the mapping algorithms required for NISQ devices.
 Also, the works on device specific solutions cite:zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018,Venturelli_2018 described before, could be considered part of the NISQ works collection.
-Although they do not approach the NISQ problem in general, it is true that the devices they tackle are NISQ devices, they have low number of qubits and high error rates.
 
 # Conclusion related with the metrics and introducing the next section?
 
-Besides latency and the number of operations that serve to feedback the quality of a mapping algorithm, few studies have been published on quantum metrics.
-Although widely investigated, there are not too many quantum metrics.
+Besides latency and the number of operations that serve to analyze the quality of a mapping algorithm, few studies have been published on quantum metrics.
+In this thesis, we will propose another metrics to evaluate the mapping process.
 Fidelity has been addressed in order to characterize the error of a quantum circuit based on the qubits state cite:Jozsa_1994,Nielsen_2009.
 And, recently, Quantum Volume has been defined to assert the capability of a quantum computer cite:Moll_2018.
-In the next section and in [[id:38ded492-56c6-4f6a-a629-06e342314cef][Metrics]] we offer an overview of the important metrics in this work.
+In the next section and in the [[id:38ded492-56c6-4f6a-a629-06e342314cef][New metrics]] section we offer an overview of the important metrics in this work.
 
 
-* Summary table                                             :ignore:noexport:
+*** Summary table                                         :ignore:noexport:
 
 #+caption: Summary of the mapping papers that influenced this work
 #+NAME: tab:mapping_ref
@@ -98,71 +97,71 @@ In the next section and in [[id:38ded492-56c6-4f6a-a629-06e342314cef][Metrics]] 
 |                                            |                    | Rigetti's chip                                 | cite:Venturelli_2018                                |
 |--------------------------------------------+--------------------+------------------------------------------------+-----------------------------------------------------|
 
-* BIB                                                 :ignore:thesisnoexport:
+*** BIB                                             :ignore:thesisnoexport:
 
 bibliography:../../thesis_plan.bib
 bibliographystyle:plain
 
-** List of papers for the State of the Art                        :noexport:
+**** List of papers for the State of the Art                    :noexport:
 
 
-*** Quantum Technologies
+***** Quantum Technologies
 
-**** Superconducting
+****** Superconducting
 
-***** cite:Barends_2014
+******* cite:Barends_2014
 
-***** Superconducting Surface Code cite:Versluis_2017
+******* Superconducting Surface Code cite:Versluis_2017
 
-**** Quantum dots
+****** Quantum dots
 
-***** cite:Hill_2015
+******* cite:Hill_2015
 
-***** cite:Li_2018
+******* cite:Li_2018
 
-**** Other chips
+****** Other chips
 
-***** Google
+******* Google
 
-****** cite:boixo16:charac_quant_suprem_near_term_devic
+******** cite:boixo16:charac_quant_suprem_near_term_devic
 
-***** IBM
+******* IBM
 
-****** cite:IBM_QX
+******** cite:IBM_QX
 
-***** Rigetti
+******* Rigetti
 
-****** cite:Sete_2016
+******** cite:Sete_2016
 
-*** Compilers
+***** Compilers
 
-**** cite:Fu_2016
+****** cite:Fu_2016
 
-*** ? Metrics for quantum computation quality
+***** ? Metrics for quantum computation quality
 
-**** Quantum Volume
+****** Quantum Volume
 
-***** cite:Moll_2018
+******* cite:Moll_2018
 
-**** Probability of success
+****** Probability of success
 
-***** cite:Linke_2017
+******* cite:Linke_2017
 
-**** Fidelity
+****** Fidelity
 
-***** cite:Jozsa_1994,Nielsen_2009
-*** Mapping
-**** General (for any device) mapping solutions
+******* cite:Jozsa_1994,Nielsen_2009
+***** Mapping
+****** General (for any device) mapping solutions
 
-***** cite:Metodi_2006 Metric: *latency* (general but based on ion traps) (Results based on QEC encoders)
+******* cite:Metodi_2006 Metric: *latency* (general but based on ion traps) (Results based on QEC encoders)
 
 Mapping as an algorithm (QPOS) solving the whole problem of mapping, (except the initial placement)?
 
-***** cite:Whitney_2007 Metric: *latency* (general but based on ion traps) (Results based on QEC encoders) (whole compiler flow)
+******* cite:Whitney_2007 Metric: *latency* (general but based on ion traps) (Results based on QEC encoders) (whole compiler flow)
 
 Computer-aided design (CAD) flow to automate the laying out of a quantum circuit to generate a physical layout, an intelligent initial placement of qubits, the associated classical control logic (HDL) and annotations to help the online scheduler better use the layout optimizations as they were intended.
 
-***** cite:Bahreini_2015 Metric: *latency* (general but based on ion traps) (Results based on both QEC encoders and benchmarks)
+******* cite:Bahreini_2015 Metric: *latency* (general but based on ion traps) (Results based on both QEC encoders and benchmarks)
 
 Mapping that starts to care about the larger circuits.
 
@@ -171,56 +170,56 @@ It is proved to be NP-complete combinatorial optimization, impossible to find op
 Therefore, a metaheuristic solution method is developed (Genetic Algorithm (GA) and tabu search (TS)).
 They split for the first time scheduling and placement.
 
-***** cite:Farghadan_2017 Metric: *#SWAPS* (general but based on ion-traps) (whole compiler flow) (what is the order? is the scheduling?)
+******* cite:Farghadan_2017 Metric: *#SWAPS* (general but based on ion-traps) (whole compiler flow) (what is the order? is the scheduling?)
 
 A flow for physical design of quantum circuits on a 2D grid is proposed.
 It contains three algorithms for finding the order of qubit placement, physical qubit placement, and routing.
 
 Better than PACQS cite:Lin_2015
 
-***** ? cite:Venturelli_2018 Metric: *latency* (but using Rigetti's as an example)
+******* ? cite:Venturelli_2018 Metric: *latency* (but using Rigetti's as an example)
 
-The previous work of [[id:92d95c11-9075-4030-8250-b0f7d1ddb100][cite:booth18:compar_integ_const_progr_tempor]] where the temporal planner is coming from
+The previous work of cite:booth18:compar_integ_const_progr_tempor where the temporal planner is coming from
 
-***** cite:booth18:compar_integ_const_progr_tempor Metric: *latency and #SWAPS* (but using Rigetti's as an example ) 
+******* cite:booth18:compar_integ_const_progr_tempor Metric: *latency and #SWAPS* (but using Rigetti's as an example ) 
 :PROPERTIES:
 :ID:       92d95c11-9075-4030-8250-b0f7d1ddb100
 :END:
 
 They use Constraint Programming together with temporal planning. An hybrid solution
-**** Only Routing (General)
+****** Only Routing (General)
 
-***** cite:Lye_2015 Metric: *#SWAPS* (results base on benchmarks)
+******* cite:Lye_2015 Metric: *#SWAPS* (results base on benchmarks)
 
 Exact scheme for nearest neighbor optimization in multi-dimensional quantum circuits.
 
-***** cite:Wille_2016 Metric: *#SWAPS* (results base on benchmarks)
+******* cite:Wille_2016 Metric: *#SWAPS* (results base on benchmarks)
 
 Routing looking-ahead
-**** Distributed Quantum Computing
+****** Distributed Quantum Computing
 
 cite:brierley15:effic_quant
 
-**** Ion traps mapping or general?
+****** Ion traps mapping or general?
 
-***** cite:Dousti_2012
+******* cite:Dousti_2012
 
 
-***** cite:Yazdani_2013 (general but based on ion trap technology) (Design flow) (Divides the problem in scheduling and initial placement/routing as a layout export) (Results on both QEC encoders and normal benchmarks)
+******* cite:Yazdani_2013 (general but based on ion trap technology) (Design flow) (Divides the problem in scheduling and initial placement/routing as a layout export) (Results on both QEC encoders and normal benchmarks)
 
 Schedule a quantum application and generate the layout while taking into account the cost of communications and classical resources as well as the maximum exploitable parallelism.
 
-**** IBM's chip mapping
-***** cite:zulehner17:effic_method_mappin_quant_circuit Metric: *#SWAPS*
-***** cite:Siraichi_2018 Metric: *#SWAPS*
-***** cite:mckay18:qiskit_backen_specif_openq_openp_exper
-***** cite:Dueck_2018
-**** Rigetti's chip mapping
-***** cite:Venturelli_2018
-**** Google's chip mapping?
-**** FT Mapping (Logical Qubits mapping)
+****** IBM's chip mapping
+******* cite:zulehner17:effic_method_mappin_quant_circuit Metric: *#SWAPS*
+******* cite:Siraichi_2018 Metric: *#SWAPS*
+******* cite:mckay18:qiskit_backen_specif_openq_openp_exper
+******* cite:Dueck_2018
+****** Rigetti's chip mapping
+******* cite:Venturelli_2018
+****** Google's chip mapping?
+****** FT Mapping (Logical Qubits mapping)
 
-***** ? cite:Dousti_2013 (Estimation tool, not a mapper)
+******* ? cite:Dousti_2013 (Estimation tool, not a mapper)
 
 Latency *estimation* tool for evaluating the performance of a quantum algorithm mapped to a quantum chip.
 It considers scheduling, placement and routing.
@@ -229,13 +228,13 @@ It considers logical qubits and operations to logical qubits.
 But, the layout is too idealistic.
 They consider a 2D layout that is an array of Universal Logic Blocks (ULB) -- a logical qubit or set of logical qubits capable of performing any FT operations -- separated by routing channels, used to move logical qubits.
 
-***** cite:Dousti_2014 Metric: *Latency* (whole processor architecture)
+******* cite:Dousti_2014 Metric: *Latency* (whole processor architecture)
 
 Multi-core reconfigurable quantum processor architecture (Requp) which supports a layered approach to mapping a quantum algorithm.
 The scalable mapper algorithm is called Squash.
 It divides a given quantum circuit into a number of quantum kernels -- each kernel comprises $k$ parts such that each part will run on exactly one of $k$ available cores.
 
-***** cite:Heckey_2015
+******* cite:Heckey_2015
 
 This paper proposes the Mult-SIMD QC architecture and then proposes and evaluates effective schedulers to map benchmark descriptions.
 The Multi-SIMD model consist on small number of SIMD regions, each of which may support operations on up to thousands of qubits per cycle.
@@ -243,16 +242,16 @@ They separate memory and calculation spaces in the quantum chip.
 
 They pinpoint that to reduce communication with memory and use small memories is good for the mapper
 
-***** cite:hwang18:hierar_system_mappin_large_scale
-***** cite:murphy18:contr
+******* cite:hwang18:hierar_system_mappin_large_scale
+******* cite:murphy18:contr
 
-***** cite:Lao_2018
-**** Mapping for NISQ devices
+******* cite:Lao_2018
+****** Mapping for NISQ devices
 
-***** cite:tannu18:case_variab_aware_polic_nisq
+******* cite:tannu18:case_variab_aware_polic_nisq
 
-***** cite:paler18:influen_initial_qubit_placem_durin
+******* cite:paler18:influen_initial_qubit_placem_durin
 
-***** cite:paler18:nisq
-*** NISQ
-**** cite:Preskill_2018
+******* cite:paler18:nisq
+***** NISQ
+****** cite:Preskill_2018

@@ -11,10 +11,16 @@
 :END:
 
 ** Motivation
+:PROPERTIES:
+:ID:       2e94c91e-9346-4b39-829f-de5777cd7665
+:END:
 
 #+INCLUDE: motivation.org
 
 ** Problem Statement
+:PROPERTIES:
+:ID:       03773b8b-5b3c-43c7-88da-5d9432cc439e
+:END:
 
 #+INCLUDE: problem_statement.org
 

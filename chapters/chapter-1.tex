@@ -1,19 +1,17 @@
 
 \chapter{Introduction}
-\label{sec:org961b6e3}
+\label{sec:orga3cd0bf}
 \section{Motivation}
-\label{sec:orgb5c1163}
-
+\label{sec:orgcd9d217}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/system_stack.png}
-\caption{\label{fig:orgecea1a1}
+\caption{\label{fig:system_stack}
 Full stack implementation}
 \end{figure}
 
 \section{Problem Statement}
-\label{sec:orgd35490c}
-
+\label{sec:orge8770ed}
 Quantum algorithms are represented as quantum circuits when the circuit model of computation is adopted. Quantum circuits consist of quantum bits and gates operating on them.
 This representation (at high-levels of the system stack) is hardware agnostic; that is, it does not take into account the possible constraints of the quantum chip. Therefore, mapping models are required to have a version of the quantum algorithm adapted to the quantum device and that can be executed on it. 
 
@@ -22,7 +20,7 @@ The mapping process results in an increase of the number of gates of the circuit
 
 Most of the works done about the mapping task optimize in terms of two parameters, either the number of added operations in the adapted version of the circuit or the latency added to the circuit. Moreover, these works asses the quality of their mapping algorithms based on one of those two metrics. It is clear that both parameters shold be as small as possible. However, these metrics are not complete and do not tell you anything about how the mapping affects the algorithm's reliability.
 
-Given this scenario, the aim of this thesis is two fold: i) to propose different metrics that show how the algorithm's reliability is affected by the mapping process. To this purpose, we will focus on the fidelity, the probability of success and the quantum volume; and ii) to analyze how... \textcolor{red}{Daniel, finish this sentence based on the results chapter and on what we discussed last week}
+Given this scenario, the aim of this thesis is two fold: i) to propose different metrics that show how the algorithm's reliability is affected by the mapping process. To this purpose, we will focus on the fidelity, the probability of success and the quantum volume; and ii) to analyze how\ldots{} \textcolor{red}{Daniel, finish this sentence based on the results chapter and on what we discussed last week}
 
 \section{Structure of the thesis}
-\label{sec:org2a9c2ee}
+\label{sec:orgb7f181d}

@@ -1,12 +1,13 @@
 
+*** Intro                                                          :ignore:
 # Intro (what is mapping)
 # Given a quantum circuit representation that is hardware agnostic, adapt it to the requirements of a real quantum processor.
-As it was described in the [LINK TO THE SECTION DESCRIBING THE FULL STACK] the mapping step is a critical part of the process to run quantum algorithms.
+As it was described in the [[id:2e94c91e-9346-4b39-829f-de5777cd7665][Motivation]] section, the mapping step is a critical part of the process to run quantum algorithms.
 Quantum algorithms can be described by quantum circuits, that are hardware agnostic and assume any interaction between qubits possible.
 They assume the qubits are all-to-all connected.
-However, quantum chips have limitations ([[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-7 and -17 chips]]).
+However, quantum chips have limitations (see [[id:5fc58a48-9874-45ed-94ff-095153aeea0f][Constraints of the Surface-17 chips]]).
 One of the main constraints is the Nearest Neighbor (NN) constraint.
-Instead of connected in an all-to-all fashion, the qubits are arranged in a two-dimensional grid shape, connecting each qubit to other four qubits -- its neighbours.
+Instead of connected in an all-to-all fashion, the qubits are arranged in a two-dimensional grid in which connectivity between qubits is limited; each qubit connects at most with four neighbours.
 Then, the circuits need a transformation in order to be executed in real quantum device.
 This transformation is the so-called mapping process.
 
@@ -14,25 +15,31 @@ The mapping process adapts a quantum circuit representation to the requirements 
 It brings ideal algorithms down to earth, to the limitations of the quantum chips.
 Therefore, the mapping accounts for the realization of quantum algorithms in quantum chips.
 In order to this, the qubits states need to switch places between them -- introducing SWAP gates -- whenever an interaction between two qubits that are not NN is required. 
-But, as explained in the previous section ([[id:016d3e26-fc74-45a4-a459-1934d84c24bf]]), quantum gates are faulty and the longer a circuit is the more errors appear.
-Then, the extra addition of gates or the circuit depth increment due to the mapping task causes quantum algorithms to accumulate error and result in noisy or even useless results.
+But, as explained in the previous section ([[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]]), quantum gates are faulty and the longer a circuit is, the more errors appear.
+Then, the extra addition of gates or the circuit depth increment due to the mapping task, causes quantum algorithms to accumulate errors and results in more noisy or even useless results.
 Therefore, the optimal mapping would be the one that alters the least the original circuit.
 In order to address the mapping problem, we split it in three steps: *scheduling*, *initial placement* and *routing*.
 These steps can be executed several times, or even continuously, and in any order, depending on the mapping approach.
 
-***** Initial placement
+*** Mapping sub-tasks                                              :ignore:
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
+
+**** Initial placement
 
 # [INITIAL PLACEMENT DEFINITION].
-Throughout this thesis we use the terms */virtual/ qubits* and */physical/ qubits* referring to the qubits from the circuit we would be to map to the real qubits of the quantum chip, respectively.
-The initial placement task is responsible to relate the virtual qubits with the physical ones finding the best 
-As one can see in the example below, an optimal initial placement may help to reduce the number of SWAP gates introduced by the routing step.
+Throughout this thesis we use the terms */virtual/ qubits* and */physical/ qubits* referring to the qubits from the circuit that will be mapped to the real qubits of the quantum chip, respectively.
+The initial placement task is responsible to relate the virtual qubits with the physical ones, trying to find the best arrangement in order to minimize non-NN interactions.
+As we will see in the example below, an optimal initial placement may help to reduce the number of SWAP gates introduced by the routing step.
 
-***** Routing
+**** Routing
 
 # [ROUTING DEFINITION]
-The routing process accounts for finding the best path between two qubits far away in the chip layout that need to interact.
+When two qubits that need to interact -- i.e. perform a two-qubit gate -- are not NN, they have to be moved or 'routed' to adjacent positions.
+The routing process accounts for finding the best path between two qubits far away in the chip that need to interact.
 It introduces the SWAP gates to move the qubit states from one point to another.
-Therefore, it is a decisive step in order to reduce the number of added gates to the circuit.
+Therefore, it is a decisive step in order to reduce the number of added gates to the circuit and the circuit depth.
 # Then, the routed best path is the one that introduces the less number of gates to the overall circuit.
 # It could be the case that the best path for some two-qubit gate would introduce the least number of operations for this operation but it could make the overall circuit bigger.
 # Eg. let us consider three qubits far away-- $q_1, q_2, q_3$ -- and two operations, ~CNOT q1,q2~ and ~CNOT q1,q3~.
@@ -41,7 +48,7 @@ Therefore, it is a decisive step in order to reduce the number of added gates to
 # On the contrary, if the mapping algorithm would decide to move $q_2$ closer to $q_1$, it would make the overall number of added gates much smaller.
 # We will appreciate the behaviour of the initial placement and the routing steps as an example in the next subsection ([[id:d1e90d41-ecaa-46b4-9f20-7a7726caa34a][Mapping example]]).
 
-***** Scheduling
+**** Scheduling
 
 # [SCHEDULING DEFINITION].
 # [MAIN SCHEDULING TYPES (ALAP, ASAP)]
@@ -69,6 +76,10 @@ The gates that are in the same graph column can run in parallel.
 :END:
 
 **** Example definition                                           :ignore:
+
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
 
 In order to illustrate the mapping steps let us consider the following circuit (see Fig. \ref{fig:map_ex_circ}) and the device's chip layout in Fig. \ref{fig:map_ex_chip}, we need to map the quantum circuit to its requirements.
 The mapping flow that we will follow starts with a scheduler, then we set the initial placement, route and, finally, we re-schedule in order to make all the gate additions as parallel as possible.
@@ -103,9 +114,11 @@ Considering the gate times for this device the same ones as the ones described i
 
 #+END_EXPORT
 
-**** Optimal approach                                    :ignore:
+**** Initial placement
 
-With an optimal initial placement, we can observe that the circuit could be the same without adding any gate.
+As it can be seen in the dependence graph in Fig. \ref{fig:map_ex_depend}, there is no possible schedule -- all the gates depend to the previous one.
+If we place the qubits based on the required interactions -- that is: $q_1$ next to $q_2$, $q_2$ next to $q_5$ and so on -- we can find in this case a placement in which all qubits can perform the required two-qubit gates.
+Then, with an optimal initial placement, we can observe that the circuit could be the same without adding any gate.
 No routing would be required.
 
 #+BEGIN_EXPORT latex
@@ -199,14 +212,14 @@ No routing would be required.
 #+END_EXPORT
 
 
-**** Wrong initial placement                                      :ignore:
+***** Wrong initial placement                                    :ignore:
 
-But in order to show the other steps and the importance of the initial placement, we will do a naive initial placement.
-Our naive initial placement will relate the virtual qubits ( $a, b, c$ ...) to the physical ones $Q_0, Q_1, Q_2$ ... in alphabetical order.
-Our next step in the mapping flow is to set the initial placement.
-So, $a \to Q_0$, $b \to Q_1$, etc.
-As shown in Fig. \ref{fig:map_ex_wrong_init}.
+#+BEGIN_EXPORT latex
 
+#+END_EXPORT
+
+However, if we do a naive initial placement in which, for instance, the virtual qubits ( $a, b, c$ ...) are mapped to the physical ones $Q_0, Q_1, Q_2$ ... in alphabetical order (see Fig. \ref{fig:map_ex_wrong_init}).
+We will need to start routing them.
 
 #+BEGIN_EXPORT latex
 
@@ -228,12 +241,12 @@ As shown in Fig. \ref{fig:map_ex_wrong_init}.
 
 #+END_EXPORT
      
-**** Routing the wrong initial placement                          :ignore:
+**** Routing
 
-As for the routing, in order to connect the not NN we insert SWAPs to connect the required qubits.
+In order to allow the non-NN qubits to interact, we need to move them to adjacent positions and then we insert SWAPs.
 The mapping brings smartly the qubits close to the next operation qubit as well.
 For example, it routes $b$ next to $a$ but also close to $c$, avoiding a path increment for the next operation.
-The result can be seen in Fig. \ref{fig:map_ex_routing} as well as its dependence graph after the swap addition.
+The result can be seen in Fig. \ref{fig:map_ex_routing}.
 After every SWAP, the interchanged virtual qubits appear to follow easily the mapping.
 The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
 
@@ -273,12 +286,12 @@ The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
     \node (swap2) at (2,1.5) {SWAP c,f};
     \node (cnot1) at (4,4.5) {CNOT b,a};
     \node (cnot2) at (6,3) {CNOT c,b};
-    \node (swap3) at (8,2.25) {SWAP};
+    \node (swap3) at (8,2.25) {SWAP c,b};
     \node (cnot3) at (10,2.5) {CNOT d,c};
     \node (cnot4) at (12,1.75) {CNOT e,d};
-    \node (swap4) at (12,0.5) {SWAP};
-    \node (swap5) at (14,1.5) {SWAP};
-    \node (swap6) at (16,0.75) {SWAP};
+    \node (swap4) at (12,0.5) {SWAP b,f};
+    \node (swap5) at (14,1.5) {SWAP f,c};
+    \node (swap6) at (16,0.75) {SWAP f,d};
     \node (cnot5) at (18,1.5) {CNOT f,e};
     
     \draw (b) -- (swap1);
@@ -296,8 +309,8 @@ The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
     \draw (cnot2) -- (swap3) node [midway, above, sloped] {b};
     \draw (swap2) -- (swap3) node [midway, above, sloped] {c};
     
-    \draw (swap1) -- (cnot3) node [midway, above, sloped] {d};
-    \draw (swap3) -- (cnot3) node [midway, above, sloped] {c};
+    \draw (swap1) -- (cnot3) node [midway, below, sloped] {d};
+    \draw (swap3) -- (cnot3) node [midway, below, sloped] {c};
     
     \draw (cnot3) -- (cnot4) node [midway, above, sloped] {d};
     \draw (e) -- (cnot4);
@@ -308,7 +321,7 @@ The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
     \draw (cnot3) -- (swap5) node [midway, above, sloped] {c};
     \draw (swap4) -- (swap5) node [midway, above, sloped] {f};
     
-    \draw (cnot4) -- (swap6) node [midway, above, sloped] {d};
+    \draw (cnot4) -- (swap6) node [midway, below, sloped] {d};
     \draw (swap5) -- (swap6) node [midway, above, sloped] {f};
     
     \draw (swap6) -- (cnot5) node [midway, above, sloped] {f};
@@ -326,10 +339,10 @@ The latency after the routing increases in 1440 ns, $1440 + 400 = 1840$ ns.
 
 #+END_EXPORT
 
-**** Re-scheduling the wrong initial placement                    :ignore:
+**** Scheduling
 
-As one could notice in the dependence graph (Fig. \ref{fig:map_ex_depend_resch}), there were several parallel operations.
-Therefore, we can apply a scheduling, indeed.
+As one could notice in the dependence graph (Fig. \ref{fig:map_ex_depend_resch}), there are several operations that can be parallelized.
+Therefore, we can apply a scheduling.
 In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, reducing the latency to 1520 ns.
 Note that the dashed boxes enclose all the parallel operations in a cycle.
 
@@ -356,9 +369,13 @@ Note that the dashed boxes enclose all the parallel operations in a cycle.
 
 #+END_EXPORT
 
-**** Optimal approach vs Naive                                    :ignore:
+***** Optimal approach vs Naive                                  :ignore:
 
-We summary a comparison between the naive and optimal initial placement in terms of number of gates and latency in \ref{fig:optimal_init_place}.
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
+
+We summarize the results of using a naive and an optimal initial placement in terms of number of gates and latency in \ref{fig:optimal_init_place}.
 
 
 # [FIGURE WITH A QUANTUM CIRCUIT FROM THE EXAMPLE OF THE MAPPING]

@@ -19,7 +19,7 @@
 
 #+INCLUDE: mapping_of_quantum_circuits.org
 
-** State of the art
+** State of the art on the mapping of quantum circuits
 :PROPERTIES:
 :ID:       322a9393-f13b-4992-9751-fea71fed93f0
 :END:
