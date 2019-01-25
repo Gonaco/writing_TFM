@@ -1,15 +1,15 @@
 
 \chapter{Results}
-\label{sec:org1e871b0}
+\label{sec:org083f03f}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:orge9b3249]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org76a7108]{Analysis of the mapping metrics} section.
-Finally, in the \hyperref[sec:org26ee608]{Advice} section, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
+First, in the \hyperref[sec:org3b398e4]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgc67c7fa]{Analysis of the mapping metrics} section.
+Finally, in the \hyperref[sec:org534476a]{Advice} section, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
 
 \section{Impact of mapping in the overall circuit error}
-\label{sec:orge9b3249}
+\label{sec:org3b398e4}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations with the simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers.
 Most of them had more than ten qubits.
@@ -65,7 +65,7 @@ We also tried different configurations regarding the decoherence time and the er
 
 
 The framework results immediately confirmed that the mapping procedure affects the error amount in the quantum system.
-In Fig. \ref{fig:orgc12435e} we highlight the difference in fidelity of some benchmarks before and after being mapped.
+In Fig. \ref{fig:orgc2820de} we highlight the difference in fidelity of some benchmarks before and after being mapped.
 The mapped data we plot comes from the router \texttt{minextendrc}.
 We can see how the fidelity is smaller for long circuits -- like \texttt{sf\_274} or \texttt{mod5adder\_127} -- than for the short ones -- \texttt{graycode6\_47} or \texttt{xor5\_254}.
 We show the exact result values in \href{appendix-1.org}{Appendix A}.
@@ -73,10 +73,10 @@ We show the exact result values in \href{appendix-1.org}{Appendix A}.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/f_diff_bar_plot.eps}
-\caption{\label{fig:orgc12435e}
+\caption{\label{fig:orgc2820de}
 Difference of fidelities before and after mapping with the \texttt{minextendrc} router for five different benchmarks.}
 \end{figure}
-In Fig. \ref{fig:org075bd3a} we can see [explain the points that I'm plotting and the selection of them as well as what we are trying to show]
+In Fig. \ref{fig:org20df243} we can see [explain the points that I'm plotting and the selection of them as well as what we are trying to show]
 I WANT TO FIND A BETTER WAY TO SHOW THIS INSIGHTS BEFORE I EXPLAIN THEM
 
 \begin{itemize}
@@ -90,7 +90,7 @@ I WANT TO FIND A BETTER WAY TO SHOW THIS INSIGHTS BEFORE I EXPLAIN THEM
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/infid_percentage_depth_before_mapping.png}
-\caption{\label{fig:org075bd3a}
+\caption{\label{fig:org20df243}
 }
 \end{figure}
 
@@ -99,7 +99,7 @@ In this case, even before mapped, the circuit is going to have a low fidelity or
 And after mapped, that situation does not change that much.
 
 \section{Analysis of the mapping metrics}
-\label{sec:org76a7108}
+\label{sec:orgc67c7fa}
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the classical ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
 
@@ -110,7 +110,7 @@ We also appreciated the fact that the probability of success is always higher th
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, although this could be caused by the fact that our algorithms are deterministic.
 While comparing the results with different decoherence times, we noticed as well that the more errors introduced in the system, the closer are the values of the probability of success and fidelity.
 
-In Fig. \ref{fig:orgc8c0130} we plot the results of the framework in terms of probability of success and fidelity. 
+In Fig. \ref{fig:org8e6f028} we plot the results of the framework in terms of probability of success and fidelity. 
 Each dot is a different benchmark configuration and the colors represent different decoherence times in the simulation, blue for 30 \(\mu s\) and orange for 10 \(\mu s\).
 The figure highlights the linear correlation as well as the line bias proving the fact that the probability of success is always higher than the fidelity.
 It can be seen that the inclination and bias of the fitting line changes depending on the decoherence time.
@@ -119,8 +119,8 @@ The cluster that appears between the 0.9 and 1.0 values is due to the amount of 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\textwidth]{figures/f_ps_correlation_with_meas_error.eps}
-\caption{\label{fig:orgc8c0130}
+\includegraphics[width=0.7\textwidth]{figures/f_ps_correlation.eps}
+\caption{\label{fig:org8e6f028}
 Correlation between fidelity and probability of success for two different decoherence times}
 \end{figure}
 
@@ -142,7 +142,7 @@ We observe that, for all the cases, the fidelity decreases with an inverse expon
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/f_metrics_correlation.eps}
-\caption{\label{fig:org8ae3a70}
+\caption{\label{fig:org209edb2}
 Correlation between fidelity and the mapping metrics.}
 \end{figure}
 
@@ -154,7 +154,7 @@ This could be provoked by the final error added by the measurement gate and by t
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/ps_metrics_correlation.eps}
-\caption{\label{fig:org646897e}
+\caption{\label{fig:org4c06ae4}
 Correlation between probability of success and the mapping metrics.}
 \end{figure}
 
@@ -163,7 +163,7 @@ This happens because of the high concentration of small benchmarks, due to the s
 On the contrary, the rest of the values are a bit sparsed.
 
 \section{Advice}
-\label{sec:org26ee608}
+\label{sec:org534476a}
 After analyzing the correlation between metrics we begin the regression analysis.
 We aim to understand the behaviour of our data and be able to predict the fidelity or the probability of success given the circuit parameters and the error rates.
 
@@ -175,11 +175,11 @@ For the second regression model we use different, much simpler, regression algor
 In the Fig. \ref{fig:f_metrics_correlation} and \ref{fig:ps_metrics_correlation} we present fitting lines predicted after the regression model we used.
 
 \subsection{Fidelity}
-\label{sec:orgf36d383}
+\label{sec:org988ab30}
 
 For the model between the metrics and the fidelity we opted for a [POLYNOMIAL/EXPONENTIAL] regression model as the second regression algorithm.
 
 \subsection{Probability of success}
-\label{sec:org7d62608}
+\label{sec:org5ea15f2}
 
 In the case of the probability of success model we opted for a [LINEAL] regression mode for the second regression process.

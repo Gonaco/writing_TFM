@@ -25,7 +25,7 @@ The cluster that appears between the 0.9 and 1.0 values is due to the amount of 
 #+caption: Correlation between fidelity and probability of success for two different decoherence times
 #+NAME: fig:f_ps_correlation_with_meas_error
 #+ATTR_LATEX: :width 0.7\textwidth
-[[file:figures/f_ps_correlation_with_meas_error.eps]]
+[[file:figures/f_ps_correlation.eps]]
 
 # In Fig. [[fig:f_ps_correlation_no_meas_error]] we plot the results of the framework with and without introducing errors in the measurement.
 # The blue dots are, as in Fig. [[fig:f_ps_correlation_with_meas_error]], the different benchmark configurations simulated with a decoherence time of 30 $\mu s$ and measurement errors.
