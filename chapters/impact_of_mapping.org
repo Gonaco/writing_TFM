@@ -2,12 +2,12 @@
 
 After the selection of benchmarks in the [[id:b34a4c5d-044f-4604-a95a-5028ee7f98ff][Benchmarks]] section, we started their simulations with the simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers.
-Most of them had more than ten qubits.
+In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
-As the number of qubits or the longitude of the circuit increases, the harder is to simulate them.
-A critical issue in our case, that we need to run multiple simulations in a complex error model.
-Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we aware that the final benchmark selection has a limitation in the number of qubits.
-We are also conscious that the percentage of two-qubit gates in the used benchmarks has a majority of values around the 40%.
+As the number of qubits or the longitude of the circuit increase, the harder is to simulate them.
+Indeed, it is a critical issue in our case, as soon as we need to run multiple simulations in a complex error model.
+Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we address that the final benchmark selection has a limitation in the number of qubits.
+# We are also conscious that the percentage of two-qubit gates in the used benchmarks has a majority of values around the 40%, so that our results will be biased in that sense.
 # because this variable was omitted through the selection.
 
 #+caption: Table of the selected benchmarks to be mapped.
@@ -44,11 +44,11 @@ We are also conscious that the percentage of two-qubit gates in the used benchma
 \label{tab:map_selected_benchs}
 #+END_EXPORT
 
-As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks the results obtained are the fidelity, the probability of success and the Quantum Volume.
-We also extract other metrics like the number of SWAPs added and the depth of the circuits, between others.
-To match the three router algorithms developed in our group (see [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]]) we compiled the list of benchmarks with four different configurations.
-One per router and another one without mapping the algorithms to any device.
-For a fair comparison, the non-mapped configuration make the compiler to decompose the circuit gates in the SC-17 gate set (see Fig. \ref{fig:decompositions}).
+As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks, the results obtained are the fidelity, the probability of success and the Quantum Volume.
+We also extract other metrics like the number of SWAPs added and the depth of the circuits, between other circuit statistics.
+To match the three router algorithms developed in our group (see [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]]), we compiled the list of benchmarks with four different configurations.
+We defined one configuration per router and another one without mapping the algorithms to any device.
+For a fair comparison, the non-mapped configuration decomposes the circuit gates in the SC-17 gate set (see Fig. \ref{fig:decompositions}).
 We also tried different configurations regarding the decoherence time and the error rates in order to study the mappers in different error regimes.
 
 

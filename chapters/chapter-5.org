@@ -9,7 +9,7 @@ In this chapter the simulation results are presented with reference to the aim o
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
 First, in the [[id:96ce8da9-08d8-4fbb-9b15-8b044f01f1b7][Impact of mapping in the overall circuit error]] section we show how the mapping procedure affects the general increment of error.
 After that, we analyze the metrics and their correlation with the error increase in the [[id:586ca325-54d8-4b90-93a0-1253140147c4][Analysis of the mapping metrics]] section.
-Finally, in the [[id:5520e10c-045c-445a-a863-7eb221ad05c4][Advice]] section, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
+Finally, in the [[id:5520e10c-045c-445a-a863-7eb221ad05c4][Regression analysis]] section, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
 
 ** Impact of mapping in the overall circuit error 
 :PROPERTIES:
@@ -25,9 +25,17 @@ Finally, in the [[id:5520e10c-045c-445a-a863-7eb221ad05c4][Advice]] section, aft
 
 #+INCLUDE: metrics_analysis.org
 
-** Advice
+*** Regression analysis
 :PROPERTIES:
 :ID:       5520e10c-045c-445a-a863-7eb221ad05c4
 :END:
 
 #+INCLUDE: regression.org
+
+** Advice
+:PROPERTIES:
+:ID:       21bf261d-1457-4453-8a65-acf55aa6d363
+:END:
+
+
+#+INCLUDE: advice.org
