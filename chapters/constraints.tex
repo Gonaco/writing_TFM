@@ -11,7 +11,7 @@ Several qubits are connected through a readout resonator (in purple) to the feed
 Finally, only qubits connected by bus resonators (in orange) can interact, this is the nearest-neighbour constraint. 
 For more details, please read \cite{versluis2016scalable,versluis2017scalable}.
 
-[ADD LEGEND TO \ref{fig:sc_17}]
+%% [ADD LEGEND TO \ref{fig:sc_17}]
 
 
 Figures \ref{fig:simple_sc_17}  show a schematic of the topology for the Surface-17 quantum chip.
@@ -22,7 +22,7 @@ Numbers  are the physical addresses of the qubit. As we just mentioned the diffe
 \begin{figure}[h!]
 \centerline{\subfigure[Schematic of the realization of SC-17 chip \cite{versluis2016scalable}]{\includegraphics[width=3in]{figures/sc-17}
 \label{fig:sc_17}}
-\subfigure[Simpler layout of the SC-17. All the examples will refer to this picture]{\includegraphics[width=3.5in]{figures/sc17_w_cnnct.png}
+\subfigure[Simpler layout of the SC-17. All the examples will refer to this picture]{\includegraphics[width=3.5in]{figures/sc17_w_cnnct.eps}
 \label{fig:simple_sc_17}}}
 \caption{SC-17 chip layouts describing its architecture}
 \label{Surafce17b}
@@ -68,10 +68,11 @@ $M_{z}$  & 600 ns    & $\sim 99.5 \%$     \\
 \end{table}
 
 For the mapping process, we assume that arbitrary rotations and multi-qubit gates are first decomposed to the Clifford+T group, \{H,T,S,CNOT\}. Although this is a universal gate set that is not directly supported by the quantum chip. 
-These gates need to be further decomposed into the elementary gates as shown in Figure \ref{fig:decompositions} and their gate time is shown in Table \ref{uni_set_gatetime}.
+These gates need to be further decomposed into the elementary gates as shown in Figure \ref{fig:decompositions}.
+Their gate time -- shown in Table \ref{uni_set_gatetime} -- depends on the gate time of the gates in which is decomposed.
+We show the gates time of the allowed gates in Table \ref{sc_set_gatetime}.
 %\textcolor{red}{We still need to include SWAP decomposition}
 
-\textcolor{red}{Daniel, Table 3.3 is not mentioned in the text.}
 
   \begin{figure}[t!]     
 \begin{center}
@@ -456,12 +457,10 @@ As an example, in Figure \ref{fig:two_qubit_gate_ex}, a CZ gate is applied betwe
 
 Finally, all the qubits that are already in use cannot be used at the same time. Therefore, qubits 11 and 14 in the example cannot be used in any single- or two-qubit gates.
 
-\textcolor{red}{Delete SC-7 in Figure 3.4}
-
 \begin{figure}[h!]
 \centering
 %\includegraphics[width=\textwidth]{figures/two_qubit_constraint_sc17.png}
-\includegraphics[width=\textwidth]{figures/two_qubit_constraint_sc17_w_cnnct.png}
+\includegraphics[width=\textwidth]{figures/two_qubit_constraint_sc17_w_cnnct.eps}
 \caption{\label{fig:two_qubit_gate_ex}
 Example of a two qubit gate and allowed and not allowed parallel gates in SC-17}
 \end{figure}
