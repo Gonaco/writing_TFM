@@ -15,7 +15,7 @@ In addition, we will explain the mapping model and the metrics used in this work
 \label{sec:org19dc500}
 In order to map quantum circuits on the superconducting quantum chip we will use the mapping model developed in our group \cite{Lao_2018}.
 A mapping algorithm or mapper is an algorithm able to find a mapping solution given a quantum circuit and a target device.
-We consider that a mapper is subdivided in three tasks: scheduler, initial placement and routing, as described in the \url{chapter-2.org} section.
+We consider that a mapper is subdivided in three tasks: scheduler, initial placement and routing, as described in the \hyperref[sec:orgd680d43]{Mapping of quantum circuits} section.
 Our procedure is modular, although the flow is restricted to the one described below.
 The mapper is fully adaptable to any device constrain.
 As we will explain, it also offers two different kinds of schedulers and three router possibilities, as well as the option of running or not the initial placement and another options related to the chip constrains.
@@ -63,7 +63,7 @@ Therefore, this method represents a viable solution, although a lot of future wo
 
 \section{New Mapping Metrics}
 \label{sec:org27990de}
-As mentioned in the \url{chapter-2.org} section in the second chapter, we name \emph{mapping metrics} to those metrics used to assert the quality of a mapper and that are also used by the mapper algorithm as an heuristic.
+As mentioned in the \hyperref[sec:orgc729465]{Mapping metrics} section in the second chapter, we name \emph{mapping metrics} to those metrics used to assert the quality of a mapper and that are also used by the mapper algorithm as an heuristic.
 In this section we will review the common metrics as the \textbf{number of SWAPs} or the \textbf{latency}, but we will also define -- and study in more detail -- some new mapping metrics that we incorporated, \textbf{probability of success} and \textbf{Quantum Volume}.
 
 \subsection{Fidelity and probability of success}
@@ -143,24 +143,24 @@ At the same time, a correct quantum state could be measured wrongly due to the m
 \label{sec:org3029336}
 
 Another metric we think it can be useful for the mapping quality assessment is Quantum Volume \cite{Bishop_2017,Moll_2018}.
-Quantum Volume is metric developed by IBM to depict whether a device is able to run a quantum circuit or not.
+Quantum Volume is a metric developed by IBM to depict whether a device is able to run a quantum circuit or not.
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 The aim of Quantum Volume is to quantify the computational power of quantum devices. 
-Consequently we will use it as a metric to measure the runnability of the quantum algorithms and the quantum devices.
+Consequently we will use it as a metric to measure the runnability of the quantum algorithms on the quantum devices.
 But, while the device is the basis of the Quantum Volume metric, we fix our attention on the circuit.
 Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the fidelity and the probability of success.
 
-The general Quantum Volume formula is defined in eq. \ref{eq:general_qv} where \(N\) is the number of physical qubits and \(d(N)\) is the achievable circuit depth, the maximum circuit depth for which the results, after running it on some device, are correctable and useful.
+The general Quantum Volume formula is defined in eq. \ref{eq:general_qv} where \(N\) is the number of physical qubits and \(d(N)\) is the achievable circuit depth; the maximum circuit depth for which the results, after running it on some device, are correctable and useful.
 \(d(N)\) depends on the number of qubits in the circuit as well as the error rate of the quantum device.
-I our case, we want to relate the Quantum Volume of a device with the circuit.
+In our case, we want to relate the Quantum Volume of a device with the circuit.
 Therefore, we define the \textbf{algorithms Quantum Volume} and the \textbf{runnability} of the quantum circuit on a given device.
 
 \begin{equation}
 \label{eq:general_qv}
-\(V_Q = min (N, d(N))^2\)
+V_Q = min (N, d(N))^2
 \end{equation}
 
-As with \(V_Q\), we initially defined the algorithm's Quantum Volume from the general equation \(V_Q\) (see eq. \ref{eq:orgc799c10}), although we will adapt it later.
+As with \(V_Q\), we initially derived the algorithm's Quantum Volume from the general equation \(V_Q\) (see eq. \ref{eq:orgc799c10}), although we will adapt it later.
 
 \begin{equation}
 \label{eq:orgc799c10}
@@ -181,7 +181,7 @@ In the current NISQ era, the quantum circuits need much less qubits than depth.
 Therefore, most of the times, the minimum value between \(n\) and \(d\) will be \(n\).
 As soon as \(V^a_Q\) is taking into account the minimum of them and the mapping procedure affects mostly to \(d\) we can conclude that this definition of \(V^a_Q\) is not considering the mapping in its results.
 
-A simplified solution for this problem would be the \(V^a_Q\) definition as the multiplication between \(n\) and \(d\).
+A simplified solution for this problem would be the \(V^a_Q\) definition as the multiplication between \(n\) and \(d\) (see eq. \ref{eq:org6aba4aa}).
 Unfortunately, this approach has several drawbacks as well.
 As Moll et al. point out \cite{Moll_2018}, extreme cases of high \(n\) and low \(d\) -- or the other way around -- lead to inconsistencies of the multiplication metric.
 But, considering that most of our work is not going to be in any of these extreme cases and that we can avoid those outliers, we define the algorithm's Quantum Volume as:
@@ -190,9 +190,6 @@ But, considering that most of our work is not going to be in any of these extrem
 \label{eq:org6aba4aa}
 V_Q^a =  n \times d
 \end{equation}
-
-\item Runnability
-\label{sec:org3254303}
 
 Finally, once the Quantum Volume of an algorithm is stated, we define runnability as the condition for which the \(V_Q\) should be bigger than \(V^a_Q\).
 That is the condition that the computational power of the device should be bigger than the computational power required by the algorithm.
@@ -204,10 +201,3 @@ If the algorithm's box volume is smaller than the volume of the device's box, th
 
 Indeed, one acceptable criticism of this definition is that, as \(V_Q\) and \(V^a_Q\) are finally defined in the previous sections, it seems that it is not really fair to compare them.
 But, as soon as the general behaviour of both definitions of \(V^a_Q\) is the same we believe that this definition of runnability is mathematically correct and useful.
-
-\end{equation}
-\end{enumerate}
-\end{enumerate}
-
-
-\end{enumerate}
