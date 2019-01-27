@@ -34,6 +34,7 @@ Another knowledge we inherited from the results is that the closer the values ar
 
 In Fig. [[fig:f_ps_correlation_with_meas_error]] we plot the results of the framework in terms of probability of success and fidelity. 
 For this figure and the figures from now on in this section, each dot is a different benchmark configuration (see [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]]) and the colors represent different decoherence times, blue for 30 $\mu s$ and orange for 10 $\mu s$.
+As we explained in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the shorter the decoherence time the more errors would appear in our quantum system.
 Fig. [[fig:f_ps_correlation_with_meas_error]] highlights a logarithmic correlation as well as the bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
 For instance, for values around 0.6 in fidelity, the probability of success has a value bigger than 0.7 for the majority of the samples.
 This behaviour could be due to the small error rate the measurement has.
@@ -191,7 +192,12 @@ Also the 'correcting' errors behaviour of the measurement should be taken into a
 #+END_EXPORT
 
 The results of the main mapping metrics against fidelity are depicted in Fig. [[ref:fig:f_metrics_correlation][ref:fig:f_metrics_correlation]].
-We observe that, for all the cases, the fidelity decreases with an inverse exponential behaviour.
+We observe that, for all the cases, the fidelity decreases with an inverse exponential behaviour and that it decreases faster for small decoherence times.
+Certainly, the shorter the decoherence times we use the more benchmarks will have non-useful results.
+We can also see how fidelity never goes to zero, but it gets constant around 0.2, giving random results.
+We consider the point where fidelity is constant as the limit in terms of each of the variables.
+We plot a line for the orange samples to mark this point.
+Finally, it can be seen how the number of gates is the metric most related with the fidelity, as predicted by the Pearson coefficient; it is the one with the samples more ordered.
 
 #+caption: Correlation between fidelity and the mapping metrics.
 #+NAME: fig:f_metrics_correlation
@@ -200,7 +206,8 @@ We observe that, for all the cases, the fidelity decreases with an inverse expon
 
 The correlation between the probability of success and the other metrics can be see in Fig. [[ref:fig:ps_metrics_correlation][ref:fig:ps_metrics_correlation]].
 We also observe a decreasing behaviour, although the shape is not as clear as in the case of fidelity.
-This could be provoked by the final error added by the measurement gate and by the fact that, most of the times, the measurement is correcting the wrong solutions.
+This could be provoked, again, by the final error added by the measurement gate and by the fact that, most of the times, the measurement is correcting the wrong solutions.
+The figure also highlights how the fast probability of success decreases depending on the decoherence time.
 
 #+caption: Correlation between probability of success and the mapping metrics.
 #+NAME: fig:ps_metrics_correlation
