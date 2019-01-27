@@ -1,0 +1,4 @@
+*** Intro                                                          :ignore:
+*** Probability of success and fidelity correlation.  :ignore:
+
+# Probability of success is more accurate because it takes into account the measurement gate error and, at the same time, it asserts higher values than the probability of sucess.

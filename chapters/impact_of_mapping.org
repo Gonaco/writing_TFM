@@ -49,7 +49,7 @@ Therefore, as it can be seen in Tab. ref:tab:map_selected_benchs, we address tha
 
 As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks, the results obtained are the fidelity, the probability of success and the Quantum Volume.
 We also extract other metrics like the number of SWAPs added and the depth of the circuits, between other circuit statistics.
-To match the three router algorithms developed in our group (see [[id:0a029c29-40ea-42ab-ad65-250a5a76bb49][Mapping model]]), we compiled the list of benchmarks with four different configurations.
+To match the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}), we compiled the list of benchmarks with four different configurations.
 We defined one configuration per router and another one without mapping the algorithms to any device.
 For a fair comparison, the non-mapped configuration decomposes the circuit gates in the SC-17 gate set (see Fig. \ref{fig:decompositions}).
 We also tried different configurations regarding the decoherence time and the error rates in order to study the mappers in different error regimes.
