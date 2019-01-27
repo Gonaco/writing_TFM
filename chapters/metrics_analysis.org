@@ -156,6 +156,9 @@ These results hold the fact that the quality of the mapping depends directly on 
 For example, a long circuit well mapped will have always worse results in fidelity or probability of success than a short circuit badly mapped.
 As Tab. ref:tab:pearson_corr_f and Tab. ref:tab:pearson_corr_ps highlight, we have a worse correlation for the shorter decoherence time.
 This lack of correlation can be attributed to the fact that the majority of the samples with $t_d = 1000$ are highly affected by the errors and, therefore, the samples have more random values.
+Moreover, contrary to expectations, the Quantum Volume was the least correlated metric.
+This small lack of correlation can be attributed to the imprecise formula that we chose to calculate it.
+Future work needs to be done to inspect a better formula.
 Finally, if we compare both tables, we can see that the fidelity is more correlated with the metrics that the probability of success.
 It is very likely that the reason for this result is that the added measurement error distribution in the end of the circuit adds more noise and spreads our samples.
 Also the 'correcting' errors behaviour of the measurement should be taken into account.
@@ -163,7 +166,6 @@ Also the 'correcting' errors behaviour of the measurement should be taken into a
 #+caption: Pearson correlation coefficient of the log transformation of fidelity against the metrics($\rho _{log(f),Y}$), where $Y$ is one of the four metrics we analyze
 #+NAME: tab:pearson_corr_f
 #+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float 
-#+TBLNAME: 
 |              | # of Gates | # of Two-qubit gates |   Depth |   $V_Q$ |
 |--------------+------------+----------------------+---------+---------|
 | $t_d = 3000$ |    -0.9730 |              -0.9600 | -0.9455 | -0.9118 |
@@ -174,7 +176,6 @@ Also the 'correcting' errors behaviour of the measurement should be taken into a
 #+caption: Pearson correlation coefficient for the probability of success against the metrics ($\rho _{p_s,Y}$), where $Y$ is one of the four metrics we analyze
 #+NAME: tab:pearson_corr_ps
 #+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float
-#+TBLNAME: 
 |              | # of Gates | # of Two-qubit gates |   Depth |   $V_Q$ |
 |--------------+------------+----------------------+---------+---------|
 | $t_d = 3000$ |    -0.9363 |              -0.9248 | -0.9179 | -0.8797 |
@@ -182,9 +183,6 @@ Also the 'correcting' errors behaviour of the measurement should be taken into a
 |--------------+------------+----------------------+---------+---------|
 #+TBLFM: 
 
-Contrary to expectations, the Quantum Volume was the least correlated metric.
-This small lack of correlation can be attributed to the imprecise formula that we chose to calculate it.
-Future work needs to be done to inspect a better formula.
 
 **** What we see in the figures                                   :ignore:
 
