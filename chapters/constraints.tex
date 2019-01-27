@@ -5,11 +5,11 @@ In this section the constraints of the superconducting Surface-17 quantum proces
 \subsection{Superconducting quantum processor architecture}
 \label{sec:topology}
 
-Figure \ref{fig:sc_17} shows a schematic of the layout for the Surface-17 chip where the circles represent the qubits \cite{versluis2016scalable} and the different colors the frequency used for single-qubit microwave control. In order to perform a single-qubit gate microwave pulses are used, whereas flux-pulses (qubit specific detuning sequence) are used for two-qubit gates. 
+Figure \ref{fig:sc_17} shows a schematic of the layout for the Surface-17 chip where the circles represent the qubits \cite{Versluis_2017} and the different colors the frequency used for single-qubit microwave control. In order to perform a single-qubit gate microwave pulses are used, whereas flux-pulses (qubit specific detuning sequence) are used for two-qubit gates. 
 To this purpose, every qubit has a dedicated flux-control line (yellow) and microwave-drive line (red) to control the qubit frequency and send operating waves, respectively.
 Several qubits are connected through a readout resonator (in purple) to the feedlines (diagonal blue lines) that are used for measuring them. Note that readout resonators are simultaneously interrogated using frequency-division multiplexing.
 Finally, only qubits connected by bus resonators (in orange) can interact, this is the nearest-neighbour constraint. 
-For more details, please read \cite{versluis2016scalable,versluis2017scalable}.
+For more details, please read \cite{Versluis_2017}.
 
 %% [ADD LEGEND TO \ref{fig:sc_17}]
 
@@ -20,7 +20,7 @@ Numbers  are the physical addresses of the qubit. As we just mentioned the diffe
 
 
 \begin{figure}[h!]
-\centerline{\subfigure[Schematic of the realization of SC-17 chip \cite{versluis2016scalable}]{\includegraphics[width=3in]{figures/sc-17}
+\centerline{\subfigure[Schematic of the realization of SC-17 chip \cite{Versluis_2017}]{\includegraphics[width=3in]{figures/sc-17}
 \label{fig:sc_17}}
 \subfigure[Simpler layout of the SC-17. All the examples will refer to this picture]{\includegraphics[width=3.5in]{figures/sc17_w_cnnct.eps}
 \label{fig:simple_sc_17}}}
@@ -50,7 +50,7 @@ In our case, any kind of single qubit rotation can be performed on the supercond
 \item Measurement in the Z basis ($M_{z}$)
 \end{itemize}
 
-Table \ref{primitive_gate_time} shows the gate time and the errors rates for single-qubit gates, CZ gate and measurement \cite{versluis2016scalable}. Note that the default basis of measurement will be Z basis unless one specifies.
+Table \ref{primitive_gate_time} shows the gate time and the errors rates for single-qubit gates, CZ gate and measurement \cite{Versluis_2017}. Note that the default basis of measurement will be Z basis unless one specifies.
 
 \begin{table}[h!]
 \centering
@@ -343,7 +343,7 @@ Obviously, it is not possible to perform more than one single-qubit gate on the 
 
 \subsubsection{Two-qubit gates}
 
-In order to perform a two-quibt gate in superconducting qubits, interacting qubits need to be brought to a specific close frequencies \cite{versluis2016scalable}. More specifically, $CZ_f$ gates are performed between qubits at $f^{int}_1$ and $f_2$ or at $f^{int}_2$ and $f_3$ as shown in Figure \ref{detuning}. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. This limits the amount of two-qubit gates that can be performed in parallel (hardware constraint). %In addition, note that, different frequency arrangements can be used as shown in Figure \ref{sequence}. 
+In order to perform a two-quibt gate in superconducting qubits, interacting qubits need to be brought to a specific close frequencies \cite{Versluis_2017}. More specifically, $CZ_f$ gates are performed between qubits at $f^{int}_1$ and $f_2$ or at $f^{int}_2$ and $f_3$ as shown in Figure \ref{detuning}. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. This limits the amount of two-qubit gates that can be performed in parallel (hardware constraint). %In addition, note that, different frequency arrangements can be used as shown in Figure \ref{sequence}. 
 
 
 \begin{figure}[h!]
@@ -351,11 +351,11 @@ In order to perform a two-quibt gate in superconducting qubits, interacting qubi
     \includegraphics[width=5in]{figures/detuning.png}
     }
 \caption{Frequency arrangement and detuning frequencies for the qubits in the unit cell.}
-\label{sequence}
+\label{detuning}
 \end{figure}
 
 
-Based on the notation in Figure \ref{cell} and assuming the frequency scheme of Figure \ref{detuning} we can formulate the following: 1) If a two-qubit gate is being performed between D1 (D2) and X1 (X1 or Z1), D2 (D1) cannot interact with X1 or Z1 (X1) at the same time; 2) In the same way, if a two-qubit gate is being performed between D3 (D4) and X1 or Z2 (X1 or Z1 or X2 or Z2), D4 (D3) cannot interact with X1 or Z1 or X2 or Z2 (X1 or Z2) at the same time. Obviously,  if a two-qubit gate is being performed between two qubits, the qubits involved can not perform another single- or two-qubit gate at the same time.
+As we assume the frequency scheme of Figure \ref{detuning} we can formulate the following: 1) If a two-qubit gate is being performed between D1 (D2) and X1 (X1 or Z1), D2 (D1) cannot interact with X1 or Z1 (X1) at the same time; 2) In the same way, if a two-qubit gate is being performed between D3 (D4) and X1 or Z2 (X1 or Z1 or X2 or Z2), D4 (D3) cannot interact with X1 or Z1 or X2 or Z2 (X1 or Z2) at the same time. Obviously,  if a two-qubit gate is being performed between two qubits, the qubits involved can not perform another single- or two-qubit gate at the same time.
 %As an example, a summary of the gates that cannot be performed in paralallel in SC-7 is shown in Table \ref{parallelCZ}.
 
 %% \begin{table}[h!]
