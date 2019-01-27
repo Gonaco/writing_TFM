@@ -70,7 +70,7 @@ $M_{z}$  & 600 ns    & $\sim 99.5 \%$     \\
 For the mapping process, we assume that arbitrary rotations and multi-qubit gates are first decomposed to the Clifford+T group, \{H,T,S,CNOT\}. Although this is a universal gate set that is not directly supported by the quantum chip. 
 These gates need to be further decomposed into the elementary gates as shown in Figure \ref{fig:decompositions}.
 Their gate time -- shown in Table \ref{uni_set_gatetime} -- depends on the gate time of the gates in which is decomposed.
-We show the gates time of the allowed gates in Table \ref{sc_set_gatetime}.
+We show this gate times, the gate time of the chip allowed gates, in Table \ref{sc_set_gatetime}.
 %\textcolor{red}{We still need to include SWAP decomposition}
 
 
@@ -460,7 +460,7 @@ Finally, all the qubits that are already in use cannot be used at the same time.
 \begin{figure}[h!]
 \centering
 %\includegraphics[width=\textwidth]{figures/two_qubit_constraint_sc17.png}
-\includegraphics[width=\textwidth]{figures/two_qubit_constraint_sc17_w_cnnct.eps}
+\includegraphics[width=0.5\textwidth]{figures/two_qubit_constraint_sc17_w_cnnct.eps}
 \caption{\label{fig:two_qubit_gate_ex}
 Example of a two qubit gate and allowed and not allowed parallel gates in SC-17}
 \end{figure}
