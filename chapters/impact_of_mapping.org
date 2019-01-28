@@ -70,30 +70,20 @@ For more details, we show the exact result values for all the benchmarks in [[id
 #+ATTR_LATEX: :width 0.7\textwidth
 [[file:figures/f_diff_bar_plot.eps]]
 
-*** - infidelity percentage against depth                 :ignore:noexport:
+*** How the mapping affect the error rates                         :ignore:
 
-In Fig. [[fig:infid_percentage_depth_before_mapping]] we can see [explain the points that I'm plotting and the selection of them as well as what we are trying to show]
-I WANT TO FIND A BETTER WAY TO SHOW THIS INSIGHTS BEFORE I EXPLAIN THEM
-
-#+caption: 
-#+NAME: fig:infid_percentage_depth_before_mapping
-#+ATTR_LATEX: :width 0.7\textwidth
-[[file:figures/infid_percentage_depth_before_mapping.png]]
-
-We can inherit that the longer the circuit is before being mapped, the less impact the mapping will have over it.
-In this case, even before mapped, the circuit is going to have a low fidelity or probability of success.
-And after mapped, that situation does not change that much.
-
-
-***** Notes                                                    :noexport:
-
-- In order to get this figure we filter fidelity. Only f>0.5 is plot
-- Infidelity: $\frac{f_a - f_b}{1 - f_b}$
-- Depth is the depth before mapping
-- We decided to see it like this in order to cluster the same benchmark mapped in different ways
-- We can conclude that the mapper quality is critical for benchmarks with small depth before being mapped, but for long circuits the mapper quality gets diminished. This means that simple and, therefore, faster mappers can be implemented for long circuits making possible the mapping on the fly, for instance
 
 ***** Figure                                                     :ignore:
+
+#+caption: Impact of mapping for $t_d = 30 \mu s$ [ *MORE* ]
+#+NAME: fig:mapping_effect_3000_both
+#+ATTR_LATEX: :width 0.7\textwidth
+[[file:figures/mapping_effect_3000_both.eps]]
+
+#+caption: Impact of mapping for $t_d = 10 \mu s$ [ *MORE* ]
+#+NAME: fig:mapping_effect_1000_both
+#+ATTR_LATEX: :width 0.7\textwidth
+[[file:figures/mapping_effect_1000_both.eps]]
 
 
 
@@ -101,7 +91,7 @@ And after mapped, that situation does not change that much.
 #+NAME: tab:
 #+ATTR_LATEX: :booktabs :environment :font \tiny :width 0.7\textwidth :float t
 |----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
-| Benchmark            | Depth before mapping | Depth after mapping with /minextendrc/ | Depth after mapping with /minextend/   | Depth after mapping with /base/   |
+| Benchmark            | Depth before mapping | Depth after mapping with /minextendrc/ | Depth after mapping with /minextend/ | Depth after mapping with /base/ |
 |----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
 | graycode6_47         |                   32 |                                  111 |                                 61 |                            82 |
 | mod5d1_63            |                   59 |                                  209 |                                136 |                           146 |
