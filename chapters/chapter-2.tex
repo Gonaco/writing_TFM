@@ -326,7 +326,7 @@ No routing would be required.
  \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{Q0}};
  \node [purple] at (7,-5) {\textbf{c} $\to$ \textbf{Q5}};
  \node [purple] at (17,5) {\textbf{e} $\to$ \textbf{Q1}};
- \node [purple] at (17,-5) {\textbf{6}};
+ \node [purple] at (17,-5) {\textbf{Q6}};
 
  % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
  \draw[-Latex] (0.1, 0.4)  -- (4.6,4.9);
@@ -363,10 +363,7 @@ No routing would be required.
 
 
  \end{tikzpicture}
- }
-\label{fig:map_ex_chip_optim}
 }
-
 \label{fig:optimal_init_place}
 \caption{Chip layout with the qubits in the optimal initial placement}
 \end{figure}
@@ -484,7 +481,7 @@ The latency after the routing increases in 1440 ns, \(1440 + 400 = 1840\) ns.
 \item Scheduling
 \label{sec:orgeafb033}
 
-As one could notice in the dependence graph (Fig. \ref{fig:map_ex_resch}) \textcolor{red}{This should be Figure 2.6b}, there are several operations that can be parallelized.
+As one could notice in the dependence graph (Fig. \ref{fig:map_ex_depend_resch}), there are several operations that can be parallelized.
 Therefore, we can apply a scheduling.
 In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, reducing the latency to 1520 ns.
 Note that the dashed boxes enclose all the parallel operations in a cycle.
@@ -581,14 +578,14 @@ And latency is the time required to run a quantum circuit in a given quantum dev
 It depends on the chip cycle time and the \textbf{depth} of the circuit, \(Latency = depth \times t_{cycle}\).
 Depth is the number of cycles the algorithm encloses.
 Actually, most of the studies \cite{Metodi_2006,Whitney_2007,Bahreini_2015} assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
-E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
+As shwon in Fig. \ref{fig:map_ex_resch}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
 
 
 \subsection{Number of SWAPs}
 \label{sec:orgaf1dc29}
 
-As explained before in the \hyperref[sec:orgd680d43]{Mapping of quantum circuits} section, to route means to introduce SWAP operations -- or a decomposition of them.
+As explained before in the \hyperref[sec:orgd680d43]{Mapping of quantum circuits} section, routing means to introduce SWAP operations -- or any other operation that allows qubits to be moved.
 Whenever a two-qubit gate requests two qubits that are far apart, a path in the gridlike chip layout should be given.
 Each step on this grid would mean a SWAP operation between the vertex qubits of that step.
 We already know that quantum gates are error prone and that one of the main problems that the mapping task is dealing with is to use the least amount of gates as possible.
@@ -606,23 +603,23 @@ It could be the case of a short circuit with a long number operation in parallel
 
 Latency is the time required to run a quantum circuit in a given quantum device.
 The introduction of gates due to the mapping makes the target circuit longer.
-Or what is the same, the introduction of SWAPs -- or their decomposition -- adds several cycles to the depth of the circuit.
+Or what is the same, the introduction of SWAPs  adds several cycles to the depth of the circuit.
 Therefore, the latency of the circuit increases.
 For instance, in the \hyperref[sec:org9c31051]{Mapping example}, we can see how the latency grows after the circuit is routed to 1840 ns and then it is reduced to 1520 ns after re-scheduling.
 
 
 
-One of the main source of errors is the decoherence, that is the quantum phenomena that makes the qubits loose their state along time.
+One of the main source of errors in quantum computing is the decoherence, that is the quantum phenomena that makes the qubits loose their state along time.
 The longer a quantum device is running an algorithm, the more errors would appear.
 Or what is the same, the longer the circuit, the more erroneous will be the result.
 The task of the scheduler -- one of the three mapping steps -- is to look for gates that can be run in parallel.
-Considering that time is one of the main error sources and that the scheduler task is to make operations simultaneously, one can understand why latency is used in order to assert the capacity of mapping algorithm.
+Considering that time is one of the main error sources and that the scheduler task is to make operations simultaneously, one can understand why latency is used in order to assert the quality of a mapping algorithm.
 Nonetheless, as the number of SWAPs this metric is not giving enough information for that.
 
 The latency of a circuit gives an intuition of how long it is but, unlike the number of operations, it gives no information about the number of operations it has.
 And, therefore, it gives no intuition about how the gate errors are affecting the algorithm final result.
 
-\subsection{Criticism}
+\subsection{Algorithm reliability}
 \label{sec:org4a19018}
 
 The ideal mapping would be the one affecting the least as possible the original circuit or, what is the same, introducing the least amount of errors.
@@ -639,7 +636,7 @@ Therefore, even though related, to optimize in one or the other holds different 
 
 Nonetheless, these metrics are not enough to assert how good the mapping process is.
 These metrics do not tell you how the algorithm is affected by them.
-In other words, my algorithm will still produce good results after the mapping.
+In other words, will my algorithm still produce `good' results after the mapping?
 They are related with the error rate increase but the relationship is not totally clear.
 For instance, it could be the case that concatenation of errors introduced by contiguous gates would end up in a correction of the first error.
 Or, that the busier the qubit is, the less affected by decoherence would be.
