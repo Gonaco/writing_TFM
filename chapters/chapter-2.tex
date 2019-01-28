@@ -295,7 +295,7 @@ Considering the gate times for this device the same ones as the ones described i
 \label{sec:org4d38c28}
 
 
-If we place the qubits based on the required interactions -- that is: \(q_1\) next to \(q_2\), \(q_2\) next to \(q_5\) and so on -- we can find in this case a placement in which all qubits can perform the required two-qubit gates.
+If we place the qubits based on the required interactions -- that is: \(a\) next to \(b\), \(b\) next to \(c\) and so on -- we can find in this case a placement in which all qubits can perform the required two-qubit gates as shown in Figure \ref{fig:optimal_init_place}.
 Then, with an optimal initial placement, we can observe that the circuit could be the same without adding any gate.
 No routing would be required.
 
@@ -410,7 +410,7 @@ We will need to start routing them.
 \item Routing
 \label{sec:orgbffd944}
 
-In order to allow the non-NN qubits to interact, we need to move them to adjacent positions and then we insert SWAPs.
+In order to allow the non-NN qubits to interact, we need to move them to adjacent positions by inserting SWAPs.
 The mapping brings smartly the qubits close to the next operation qubit as well.
 For example, it routes \(b\) next to \(a\) but also close to \(c\), avoiding a path increment for the next operation.
 The result can be seen in Fig. \ref{fig:map_ex_circ_route}.
@@ -506,7 +506,7 @@ The latency after the routing increases in 1440 ns, \(1440 + 400 = 1840\) ns.
 \item Scheduling
 \label{sec:orgeafb033}
 
-As one could notice in the dependence graph (Fig. \ref{fig:map_ex_resch}), there are several operations that can be parallelized.
+As one could notice in the dependence graph (Fig. \ref{fig:map_ex_resch}) \textcolor{red}{This should be Figure 2.6b}, there are several operations that can be parallelized.
 Therefore, we can apply a scheduling.
 In the Fig. \ref{fig:map_ex_resch} the result of an ASAP scheduling is shown, reducing the latency to 1520 ns.
 Note that the dashed boxes enclose all the parallel operations in a cycle.
@@ -550,16 +550,16 @@ latency & 400 ns & 1520 ns\\
 \end{table}
 \end{enumerate}
 
-\section{State of the art on the mapping of quantum circuits}
+\section{State-of-the-art on the mapping of quantum circuits}
 \label{sec:orgcc4f1c8}
 Quantum algorithms are meant to leverage the promising power of quantum computers \cite{coles18:quant_algor_implem_begin}.
 Commonly described as quantum circuits, quantum algorithms are hardware agnostic.
 However, as we have seen they need to be adapted -- mapped -- to the quantum device limitations.
 The main constraints in all of them is the limited connectivity between qubits.
 There is a vast amount of literature on the algorithms -- high abstraction level --, neglecting hardware constraints.
-From ion traps [? paper on ion traps] to superconducting qubits \cite{Barends_2014,Versluis_2017}, through quantum dots \cite{Hill_2015,Li_2018}, each layout has its own requirements and constraints.
+From ion traps [? paper on ion traps] \textcolor{red}{fata referencia a ion traps} to superconducting qubits \cite{Barends_2014,Versluis_2017}, through quantum dots \cite{Hill_2015,Li_2018}, each layout has its own requirements and constraints.
 Although all of them are arranged in a 2D -- planar -- structure, ion traps technologies are capable to connect the qubits in all-to-all networks while superconducting technologies connections form a grid shaped network where each qubit is connected to a maximum of four neighbors.
-This grid structure establishes one of the main connectivity limitation in today's quantum chips, the NN constraint.
+This grid structure establishes one of the main connectivity limitation in today's quantum chips, the nearest-neighbour constraint.
 Also industry's superconducting chip layouts from IBM \cite{IBM_QX}, Google \cite{boixo16:charac_quant_suprem_near_term_devic} and Rigetti \cite{Sete_2016} follow this structural limitations.
 As for the high abstraction level of the quantum algorithm, a link between the algorithms and the devices is required \cite{Fu_2016}.
 As in classical computation, the algorithms should go through a transformation process in order to adapt them to the hosting device.
@@ -577,7 +577,7 @@ Also, several publications \cite{Lye_2015,Wille_2016} outline only the routing s
 A recent review of the literature on the mapping topic focused on mapping quantum algorithms on a specific quantum device.
 In all the cases, taking into account the specific chip connectivity constrain.
 IBM's chip have been gaining much attention due to the open online tools that make the chips accessible to everybody.
-Various approaches to mapping algorithms for the IBM family of chips have been proposed \cite{zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018}.
+Various approaches to map algorithms for the IBM family of chips have been proposed \cite{zulehner17:effic_method_mappin_quant_circuit,Siraichi_2018,mckay18:qiskit_backen_specif_openq_openp_exper,Dueck_2018}.
 Zulehner et. al \cite{zulehner17:effic_method_mappin_quant_circuit} developed a routing algorithm that optimizes in the number of SWAPs building a graph -- similarly to previous works --  and searching the best route in the chip layout with the A* algorithm.
 Siraichi et. al \cite{Siraichi_2018} work defines a weighted dependence graph where the mapping algorithm is able to find a solution for all the mapping steps, initial placement, scheduling and routing.
 Also, apart from the works related to the IBM devices, Rigetti's devices have been approached \cite{Venturelli_2018}.
@@ -596,7 +596,7 @@ In the next section and in the \href{chapter-3.org}{New metrics} section we offe
 
 \section{Mapping metrics}
 \label{sec:orgc729465}
-As outlined in the state of the art, the literature considers mainly two metrics to optimize in their mapping algorithms and as an output to evaluate how good the mapping is.
+As outlined in the state-of-the-art, the literature considers mainly two metrics to optimize in their mapping algorithms and as an output to evaluate how good the mapping is.
 These are the added \textbf{latency} and the \textbf{number} of introduced \textbf{operations} after the mapping procedure.
 The routing step from the mapping process introduces SWAP gates in the quantum circuit in order to move the qubits around.
 And latency is the time required to run a quantum circuit in a given quantum device.
