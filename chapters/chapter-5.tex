@@ -1,14 +1,14 @@
 
 \chapter{Results}
-\label{sec:orgb88c597}
+\label{sec:org77ad494}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:org1e8beaa]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org3df2d26]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:org8e2b7f5]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgfee112c]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
-\label{sec:org1e8beaa}
+\label{sec:org8e2b7f5}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
@@ -77,14 +77,14 @@ Difference of fidelities before and after mapping with the \texttt{minextendrc} 
 \end{figure}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_3000_both.eps}
+\includegraphics[width=\textwidth]{figures/mapping_effect_3000_both.eps}
 \caption{\label{fig:mapping_effect_3000_both}
 Impact of mapping for \(t_d = 30 \mu s\) [ \textbf{MORE} ]}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_1000_both.eps}
+\includegraphics[width=\textwidth]{figures/mapping_effect_1000_both.eps}
 \caption{\label{fig:mapping_effect_1000_both}
 Impact of mapping for \(t_d = 10 \mu s\) [ \textbf{MORE} ]}
 \end{figure}
@@ -95,7 +95,7 @@ Impact of mapping for \(t_d = 10 \mu s\) [ \textbf{MORE} ]}
 \caption{\label{tab:}
 }
 \centering
-\tiny
+\small
 \begin{tabular}{lrrrr}
 \hline
 Benchmark & Depth before mapping & Depth after mapping with \emph{minextendrc} & Depth after mapping with \emph{minextend} & Depth after mapping with \emph{base}\\
@@ -120,7 +120,7 @@ mod5adder\(_{\text{127}}\) & 944 & 2878 & 2667 & 2378\\
 \end{table}
 
 \section{Analysis of the mapping metrics}
-\label{sec:org3df2d26}
+\label{sec:orgfee112c}
 Once we acknowledged the behaviour of the error growth due to the mapping process, it was the time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.

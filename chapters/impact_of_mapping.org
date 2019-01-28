@@ -77,19 +77,19 @@ For more details, we show the exact result values for all the benchmarks in [[id
 
 #+caption: Impact of mapping for $t_d = 30 \mu s$ [ *MORE* ]
 #+NAME: fig:mapping_effect_3000_both
-#+ATTR_LATEX: :width 0.7\textwidth
+#+ATTR_LATEX: :width \textwidth
 [[file:figures/mapping_effect_3000_both.eps]]
 
 #+caption: Impact of mapping for $t_d = 10 \mu s$ [ *MORE* ]
 #+NAME: fig:mapping_effect_1000_both
-#+ATTR_LATEX: :width 0.7\textwidth
+#+ATTR_LATEX: :width \textwidth
 [[file:figures/mapping_effect_1000_both.eps]]
 
 
 
 #+caption: 
 #+NAME: tab:
-#+ATTR_LATEX: :booktabs :environment :font \tiny :width 0.7\textwidth :float t
+#+ATTR_LATEX: :booktabs :environment :font \small :width 0.7\textwidth :float t
 |----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
 | Benchmark            | Depth before mapping | Depth after mapping with /minextendrc/ | Depth after mapping with /minextend/ | Depth after mapping with /base/ |
 |----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
