@@ -7,15 +7,14 @@
 
 Quantum computers will be able to solve problems that are intractable for classical computers.
 Due to the quantum phenomena, quantum computers are able to explore a whole solution space at once.
-For example, Shor's quantum algorithm is an integer factorization algorithm able to calculate prime numbers in polynomial time -- what is a main issue in computer security.
-Another example is the Grover's search quantum algorithm which, given the data and condition, is able to look for the samples that fulfills that condition.
+The most famous example is  Shor's quantum algorithm. It is an integer factorization algorithm able to calculate prime numbers in polynomial time, which is exponentially faster than its classical counterpart, General Number Field Sieve (GNFS). 
 In general, quantum computers are a promising technology able to solve problems considered hard in classical computation.
 In the next sections we will explain the basics of quantum computation.
 
 \subsection{Essential elements of quantum computation}
 \label{sec:orgba4af21}
 
-Quantum bit (or qubits) and quantum gates are the basic ingredients in quantum computation.
+Quantum bits (or qubits) and quantum gates are the basic ingredients in quantum computation.
 As in classical computation with boolean gates and bits, quantum gates operate on the qubits to change their state and return the desired result or calculation.
 
 \begin{enumerate}
@@ -23,7 +22,7 @@ As in classical computation with boolean gates and bits, quantum gates operate o
 \label{sec:org6bb5ea6}
 %% Space
 
-A qubit is the basic unit of information.
+A qubit is the basic unit of information in quantum computing.
 A classical bit can be either \texttt{0} or \texttt{1}.
 A qubit's state could be either \texttt{0} or \texttt{1} or both at the same time, what is called \textbf{superposition}.
 Both, ground or excited states, are represented in the Dirac's bra-ket notation \cite{Nielsen_2009}, \(| 0 \rangle\) and \(| 1 \rangle\) respectively.
@@ -75,7 +74,7 @@ A sphere of radius one, which z-axis extremes represent the ground and excited s
 
 The power of quantum computers comes from the combination of several qubits.
 The quantum state of \(n\) qubits can be represented in bra-ket notation, with a \(2^n\) size.
-For instance, the state of two and qubits is represented in the eq. \ref{eq:two_q_state} and \ref{eq:multiple_q_state}
+For instance, the state of two and $n$ qubits are represented in the eq. \ref{eq:two_q_state} and \ref{eq:multiple_q_state}, respectively.
 Another important quantum property is \textbf{entanglement}, which qubits are correlated with each other.
 
 \begin{equation}
@@ -98,7 +97,7 @@ We consider three kind of operations in quantum computing: gates, qubits' measur
 Quantum gates are represented as square matrices of \(2^{n} \times 2^{n}\), where \(n\) is the number of qubits involved in the operation.
 This matrices should be unitary respecting the qubit state vector unitary property (\(|\alpha_0|^2 + |\alpha_1|^2 = 1\)).
 Single-qubit operations can be represented as state rotations in the Bloch sphere (Fig. \ref{fig:bloch_sphere}).
-For instance, an X gate is a rotation of 180° in x-axis of the Bloch sphere and the qubit state from \(| 0 \rangle\) to \(| 1 \rangle\), or viceversa.
+For instance, an X gate is a rotation of 180° in x-axis of the Bloch sphere and changes the qubit state from \(| 0 \rangle\) to \(| 1 \rangle\), or viceversa.
 An example of the matrix representation of a quantum operation and the way to operate with qubits is shown in eq. \ref{eq:inner_prod_ex}.
 
 \begin{equation}
@@ -144,7 +143,7 @@ In general, the two-qubit gates execute a single-qubit operation over one of the
 The qubits that goes through the operation is called \textbf{target}, while the other is called the \textbf{control} qubit.
 The most common two-qubit gates are represented in Table \ref{tab:two_q_gates}.
 The \emph{CNOT} gate is a Controlled-NOT operation or, what is the same, a Pauli-x gate that, depending on the state of the control qubit will be executed or not.
-If the control qubit is \(| 1 \rangle\) the, the Pauli-x will be executed and the target qubit's state will be rotated.
+If the control qubit is \(| 1 \rangle\), a Pauli-x will be executed onthe target qubit.
 As the CNOT, the \emph{CZ} gate is a Controlled-Z operation that, in this case, performs a Pauli-z gate in the target qubit when the control qubit is \(|1\rangle\).
 Finally, the \emph{SWAP} gate exchanges the state of two qubits.
 This gate is mostly used for routing purposes as it will be seen in the next sections.
@@ -182,7 +181,7 @@ As mentioned before, they consist of quantum gates and qubits connected in circu
 As most of the algorithm description models -- no matter if classical or quantum --, quantum circuits are hardware agnostic, which is that they are not specified to any quantum device.
 In Fig. \ref{fig:circuit_example} we present an example of a quantum circuit.
 This circuit represents the quantum equivalent of a Gray encoder of six bit length.
-It is composed by CNOT gates only.
+It is composed by 6 qubits and CNOT gates.
 
 \begin{figure}[H]
     \centering
@@ -224,7 +223,7 @@ This transformation is the so-called mapping process.
 The mapping process adapts a quantum circuit representation to the requirements of a real quantum processor.
 It brings ideal algorithms down to earth, to the limitations of the quantum chips.
 Therefore, the mapping accounts for the realization of quantum algorithms in quantum chips.
-In order to this, the qubits states need to switch places between them -- introducing SWAP gates -- whenever an interaction between two qubits that are not NN is required. 
+In order to do this, the qubit states need to switch places between them -- introducing SWAP gates -- whenever an interaction between two qubits that are not NN is required. 
 But, as explained in the previous section (\hyperref[sec:org9e13eea]{Qubits are faulty}), quantum gates are faulty and the longer a circuit is, the more errors appear.
 Then, the extra addition of gates or the circuit depth increment due to the mapping task, causes quantum algorithms to accumulate errors and results in more noisy or even useless results.
 Therefore, the optimal mapping would be the one that alters the least the original circuit.
@@ -242,8 +241,8 @@ As we will see in the example below, an optimal initial placement may help to re
 \label{sec:org482e1ff}
 
 When two qubits that need to interact -- i.e. perform a two-qubit gate -- are not NN, they have to be moved or 'routed' to adjacent positions.
-The routing process accounts for finding the best path between two qubits far away in the chip that need to interact.
-It introduces the SWAP gates to move the qubit states from one point to another.
+The routing process accounts for finding the best path -e.g. shortest path- between two qubits far away in the chip that need to interact.
+Qubits (quantum states) can be moved from one position to another by means of SWAP gates.
 Therefore, it is a decisive step in order to reduce the number of added gates to the circuit and the circuit depth.
 
 \subsection{Scheduling}
@@ -253,7 +252,7 @@ A scheduler organizes the circuit operations through the circuit time,
 finding whether several operations can be executed in parallel -- at the same time -- or not.
 It is possible to schedule in different configurations, for instance As Soon As Possible (\textbf{ASAP}) or As Late As Possible (\textbf{ALAP}), depending on the mapping requirements.
 
-A dependence graph is a graph that relates qubits and gates sequentially.
+In order to schedule the operations, a dependence graph is built.  A graph that relates qubits and gates sequentially.
 Starting from the qubits, it chains all the gates with them.
 It is really convenient while mapping, mostly scheduling and finding the parallel operations.
 The gates that are in the same graph column can run in parallel.
@@ -261,7 +260,7 @@ The gates that are in the same graph column can run in parallel.
 \label{sec:org9c31051}
 
 
-In order to illustrate the mapping steps let us consider the following circuit (see Fig. \ref{fig:map_ex_circ}) and the device's chip layout in Fig. \ref{fig:map_ex_chip}, we need to map the quantum circuit to its requirements.
+In order to illustrate the mapping steps let us consider the following circuit (see Fig. \ref{fig:map_ex_circ}) and the device's chip layout in Fig. \ref{fig:map_ex_chip}, in which circles represent the physical qubits and the edges the connections between them and then possible interactions.  We want to map the Gray code circuit to such as chip layout.
 The mapping flow that we will follow starts with a scheduler, then we set the initial placement, route and, finally, we re-schedule in order to make all the gate additions as parallel as possible.
 As illustrated in the dependence graph of Fig. \ref{fig:map_ex_depend}, there are no parallel gates.
 No better schedule is possible.
@@ -295,7 +294,7 @@ Considering the gate times for this device the same ones as the ones described i
 \item Initial placement
 \label{sec:org4d38c28}
 
-As it can be seen in the dependence graph in Fig. \ref{fig:map_ex_depend}, there is no possible schedule -- all the gates depend to the previous one.
+
 If we place the qubits based on the required interactions -- that is: \(q_1\) next to \(q_2\), \(q_2\) next to \(q_5\) and so on -- we can find in this case a placement in which all qubits can perform the required two-qubit gates.
 Then, with an optimal initial placement, we can observe that the circuit could be the same without adding any gate.
 No routing would be required.

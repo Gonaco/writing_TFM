@@ -50,7 +50,7 @@ This requirement comes by the fact that simulations are long and computationally
 In order to do that, we studied the different benchmark profiles looking for most illustrative cases.
 The criteria used for selecting the algorithms used in this work are: 
 i) the number of qubits of the algorithm. It should be less than 17 as we will use the Surface-17 chip; ii) the number of gates.
-we select benchmarks with a number of gates as spread as possible; iii) different functionality.
+We select benchmarks with a number of gates as spread as possible; iii) different functionality.
 We try to have the less number of the same algorithm versions as possible.
 We only take the same algorithm versions for cases in which the number of qubits and the number of gates show an interesting combination.
 For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. \ref{tab:map_selected_benchs}.
@@ -79,20 +79,18 @@ After simulating the algorithms, few of them returned errors (segmentation fault
 
 \section{Analysis framework}
 \label{sec:orgc0c805b}
-In this section we introduce the framework we developed in order to analyze the quantum metrics.
+In this section we introduce the framework used to map the quantum algorithms and analyze the quantum metrics.
 It is based on two steps: \textbf{compilation} and \textbf{simulation}.
-With this purpose we connect two tools, OpenQL and quantumsim, and we build a whole framework over them.
+With this purpose we connect two tools, OpenQL and quantumsim \textcolor{red}{Please, add a refernce to qauntumsim and OpenQL}, and we build a whole framework over them.
 
 \subsection{Compiler (OpenQL)}
 \label{sec:orgeebd0c8}
-OpenQL is a framework for high-level quantum programming developed by our group.
-It is able to describe both, quantum circuits and quantum devices.
-The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages.
-The quantum chips and their constrains are described in a JSON file that is imported in the circuit description.
-OpenQL is able to compile quantum circuits for specific devices and export a code understandable by a quantum simulator.
-One of its compiler processes are the \textbf{mapper} algorithms developed by our group.
+OpenQL is a framework for high-level quantum programming developed by our group to describe quantum algorithms and compile them.
+The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages. It can target real quantum chips as well as different quantum computer simulators such are QX simulator or quantumsim \textcolor{red}{add references here to both simulators}. 
+
+One of the passes of the compiler is the \textbf{mapper} algorithm developed by our group. It performs the initial placement, schedule the operations and route the qubits taking into account the quantum chip constraints that are described in a JSON file.
 It is also able to load different compiler configurations like the kind of scheduler, router or initial placement.
-We will use OpenQL to describe the circuit and compile it for the SC-17 chip.
+We will use OpenQL to describe the selected benchmarks and compile them for the SC-17 chip.
 In Fig. \ref{code:openql_gray_code} we show an example of OpenQL code using Python that describes the Gray encoder quantum circuit (Fig. \ref{fig:circuit_example}).
 More insights can be found in the \href{https://github.com/QE-Lab/OpenQL}{github repository}.
 
@@ -208,7 +206,7 @@ Finally these results and the simulations parameters will be stored in the datab
 \item Database
 \label{sec:orgb5f5bb4}
 
-The database is conformed by six different table.
+The database is conformed by six different tables.
 The \emph{Benchmarks} table will store the information from the circuits before being mapped: the algorithm name, its source and functionality, the number of qubits used and the number of operations.
 The \emph{Configurations} table will save the device configuration and the mapper characteristics.
 \emph{HardwareBenchs} will store the name, the number of qubits and operations from the mapped algorithms as well as the SWAPs added and the circuit depth.
