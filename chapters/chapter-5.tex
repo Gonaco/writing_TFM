@@ -1,14 +1,14 @@
 
 \chapter{Results}
-\label{sec:org82a161d}
+\label{sec:org8b9ffe1}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:org28dbcca]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org2c64a48]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:org6875372]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgc75380b]{Analysis of the mapping metrics} section.
 
-\section{Impact of mapping on the algorithm reliability}
-\label{sec:org28dbcca}
+\section{Impact of the mapping on the algorithm reliability}
+\label{sec:org6875372}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
@@ -18,53 +18,54 @@ Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we address t
 
 \begin{table}[htbp]
 \caption{\label{tab:map_selected_benchs}
-Table of the selected benchmarks to be mapped. \textcolor{red}{order the benchmarks in terms of number of gates, from less to more}}
+Table of the selected benchmarks to be mapped.}
 \centering
 \small
 \begin{tabular}{lrrr}
 \hline
 Benchmark & \# qubits & \# gates & two-qubit gates (percentage)\\
 \hline
-4gt11\(_{\text{82}}\) & 5 & 27 & 0.667\\
-4gt12\(_{\text{v1}}\)\(_{\text{89}}\) & 6 & 228 & 0.439\\
-4gt4\(_{\text{v0}}\)\(_{\text{72}}\) & 6 & 258 & 0.438\\
-4mod5\(_{\text{bdd}}\)\(_{\text{287}}\) & 7 & 70 & 0.443\\
-4mod5\(_{\text{v0}}\)\(_{\text{20}}\) & 5 & 20 & 0.500\\
-alu\(_{\text{bdd}}\)\(_{\text{288}}\) & 7 & 84 & 0.452\\
-alu\(_{\text{v0}}\)\(_{\text{27}}\) & 5 & 36 & 0.472\\
-decod24\(_{\text{bdd}}\)\(_{\text{294}}\) & 6 & 73 & 0.438\\
-decod24\(_{\text{enable}}\)\(_{\text{126}}\) & 6 & 338 & 0.441\\
 graycode6\(_{\text{47}}\) & 6 & 5 & 1.000\\
-ham3\(_{\text{102}}\) & 3 & 20 & 0.550\\
-hwb4\(_{\text{49}}\) & 5 & 233 & 0.459\\
-mod10\(_{\text{176}}\) & 5 & 178 & 0.438\\
-mod5adder\(_{\text{127}}\) & 6 & 555 & 0.431\\
-mod5d1\(_{\text{63}}\) & 5 & 22 & 0.591\\
-mod8\(_{\text{10}}\)\(_{\text{177}}\) & 6 & 440 & 0.445\\
-one\(_{\text{two}}\)\(_{\text{three}}\)\(_{\text{v1}}\)\(_{\text{99}}\) & 5 & 132 & 0.447\\
-one\(_{\text{two}}\)\(_{\text{three}}\)\(_{\text{v3}}\)\(_{\text{101}}\) & 5 & 70 & 0.457\\
-rd32\(_{\text{v0}}\)\(_{\text{66}}\) & 4 & 34 & 0.471\\
-sf\(_{\text{274}}\) & 6 & 781 & 0.430\\
-sf\(_{\text{276}}\) & 6 & 778 & 0.432\\
-sym6\(_{\text{145}}\) & 7 & 3888 & 0.438\\
 xor5\(_{\text{254}}\) & 6 & 7 & 0.714\\
+4mod5\(_{\text{v0}}\)\(_{\text{20}}\) & 5 & 20 & 0.500\\
+ham3\(_{\text{102}}\) & 3 & 20 & 0.550\\
+mod5d1\(_{\text{63}}\) & 5 & 22 & 0.591\\
+4gt11\(_{\text{82}}\) & 5 & 27 & 0.667\\
+rd32\(_{\text{v0}}\)\(_{\text{66}}\) & 4 & 34 & 0.471\\
+alu\(_{\text{v0}}\)\(_{\text{27}}\) & 5 & 36 & 0.472\\
+4mod5\(_{\text{bdd}}\)\(_{\text{287}}\) & 7 & 70 & 0.443\\
+one\(_{\text{two}}\)\(_{\text{three}}\)\(_{\text{v3}}\)\(_{\text{101}}\) & 5 & 70 & 0.457\\
+decod24\(_{\text{bdd}}\)\(_{\text{294}}\) & 6 & 73 & 0.438\\
+alu\(_{\text{bdd}}\)\(_{\text{288}}\) & 7 & 84 & 0.452\\
+one\(_{\text{two}}\)\(_{\text{three}}\)\(_{\text{v1}}\)\(_{\text{99}}\) & 5 & 132 & 0.447\\
+mod10\(_{\text{176}}\) & 5 & 178 & 0.438\\
+4gt12\(_{\text{v1}}\)\(_{\text{89}}\) & 6 & 228 & 0.439\\
+hwb4\(_{\text{49}}\) & 5 & 233 & 0.459\\
+4gt4\(_{\text{v0}}\)\(_{\text{72}}\) & 6 & 258 & 0.438\\
+decod24\(_{\text{enable}}\)\(_{\text{126}}\) & 6 & 338 & 0.441\\
+mod8\(_{\text{10}}\)\(_{\text{177}}\) & 6 & 440 & 0.445\\
+mod5adder\(_{\text{127}}\) & 6 & 555 & 0.431\\
+sf\(_{\text{276}}\) & 6 & 778 & 0.432\\
+sf\(_{\text{274}}\) & 6 & 781 & 0.430\\
+sym6\(_{\text{145}}\) & 7 & 3888 & 0.438\\
 \hline
 \end{tabular}
 \end{table}
 
 
-As explained in the \href{chapter-4.org}{Analysis framework} section, after running the benchmarks \textcolor{red}{how many runs?}, the results obtained are the fidelity, the probability of success and the Quantum Volume.
+As explained in the \href{chapter-4.org}{Analysis framework} section, after running the benchmarks one thousand runs, the results obtained are the fidelity, the probability of success and the Quantum Volume.
 We also extract other metrics like the number of SWAPs added and the depth of the circuits, between other circuit statistics.
-These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). Note that, for a fair comparison both the mapped and the non-mapped are  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}. 
-
+These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). Note that, for a fair comparison both the mapped and the non-mapped are  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
 
 In quantumsim, we also tried different configurations regarding the decoherence time and the error rates \textcolor{red}{did you change the error rates or only the decoherence time? there are no results for different error rates} in order to study the mappers in different error regimes.
 All the results are shown in \textcolor{red}{menciona el apendice donde estan todas la tablas}
 
 
 In order to illustrate how the mapping process affects the algorithm reliability, Figure \ref{fig:f_diff_bar_plot} shows the fidelity for some of the benchmarks before being mapped and after being mapped using the \texttt{minextendrc} router.
-We can see how the fidelity is smaller for long circuits -- like \texttt{sf\_274} or \texttt{mod5adder\_127} -- than for the short ones -- \texttt{graycode6\_47} or \texttt{xor5\_254}. \textcolor{red}{It goes from XXX to XXX (non-mapped) and from XXXX to XXXX (mapped).}
-\textcolor{red}{Be more precise. Mention the dcrease of fidelity, and calculate it, for the worst case and the best case} It can be seen how, for the long circuits, the fidelity decreases more than a 50\%.
+We can see how the fidelity is smaller for long circuits -- like \texttt{sf\_274} or \texttt{mod5adder\_127} -- than for the short ones -- \texttt{graycode6\_47} or \texttt{xor5\_254}.
+\textcolor{red}{It goes from XXX to XXX (non-mapped) and from XXXX to XXXX (mapped).}
+\textcolor{red}{Be more precise. Mention the dcrease of fidelity, and calculate it, for the worst case and the best case}
+It can be seen how, for the long circuits, the fidelity decreases more than a 50\%.
 For instance, \texttt{sf\_274}'s fidelity goes from 0.35 to 0.17 or \texttt{mod5adder\_127}'s goes from 0.45 to 0.19.
 For more details, we show the exact result values for all the benchmarks in \href{appendix-1.org}{Appendix A}.
 
@@ -76,7 +77,7 @@ Difference of fidelities before and after mapping with the \texttt{minextendrc} 
 \end{figure}
 
 \section{Analysis of the mapping metrics}
-\label{sec:org2c64a48}
+\label{sec:orgc75380b}
 Once we acknowledged the behaviour of the error growth due to the mapping process, it was the time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
@@ -123,7 +124,7 @@ The results of the main mapping metrics against fidelity are depicted in Fig. \r
 We observe that, for all the cases, the fidelity decreases with an inverse exponential behaviour and that it decreases faster for small decoherence times.
 Certainly, the shorter the decoherence times we use the more benchmarks will have non-useful results.
 We can also see how fidelity never goes to zero, but it gets constant around 0.2, giving random results.
-We consider the point where fidelity is constant as the limit in terms of each of the variables.
+We consider the point where fidelity is constant as the limit in terms of each one of the variables.
 We plot a line for the orange samples to mark this point.
 Finally, it can be seen how the number of gates is the metric most related with the fidelity; it is the one with the samples more ordered.
 

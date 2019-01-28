@@ -151,7 +151,7 @@ The results of the main mapping metrics against fidelity are depicted in Fig. [[
 We observe that, for all the cases, the fidelity decreases with an inverse exponential behaviour and that it decreases faster for small decoherence times.
 Certainly, the shorter the decoherence times we use the more benchmarks will have non-useful results.
 We can also see how fidelity never goes to zero, but it gets constant around 0.2, giving random results.
-We consider the point where fidelity is constant as the limit in terms of each of the variables.
+We consider the point where fidelity is constant as the limit in terms of each one of the variables.
 We plot a line for the orange samples to mark this point.
 Finally, it can be seen how the number of gates is the metric most related with the fidelity; it is the one with the samples more ordered.
 

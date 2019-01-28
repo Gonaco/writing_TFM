@@ -1,14 +1,11 @@
 *** Intro                                                          :ignore:
 
-After the selection of benchmarks in the [[id:b34a4c5d-044f-4604-a95a-5028ee7f98ff][Benchmarks]] section, we started their simulations with the simulation framework.
-Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers.
-In most of those cases the circuits had more than ten qubits.
+After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
+Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
-As the number of qubits or the longitude of the circuit increase, the harder is to simulate them.
+The higher the number of qubits or the longitude of the circuit, the harder is to simulate them.
 Indeed, it is a critical issue in our case, as soon as we need to run multiple simulations in a complex error model.
-Therefore, as it can be seen in Tab. ref:tab:map_selected_benchs, we address that the final benchmark selection has a limitation in the number of qubits.
-# We are also conscious that the percentage of two-qubit gates in the used benchmarks has a majority of values around the 40%, so that our results will be biased in that sense.
-# because this variable was omitted through the selection.
+Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we address that the final benchmark selection has a limitation in the number of qubits.
 
 #+caption: Table of the selected benchmarks to be mapped.
 #+NAME: tab:map_selected_benchs
@@ -16,29 +13,29 @@ Therefore, as it can be seen in Tab. ref:tab:map_selected_benchs, we address tha
 |----------------------+----------+---------+------------------------------|
 | Benchmark            | # qubits | # gates | two-qubit gates (percentage) |
 |----------------------+----------+---------+------------------------------|
-| 4gt11_82             |        5 |      27 |                        0.667 |
-| 4gt12_v1_89          |        6 |     228 |                        0.439 |
-| 4gt4_v0_72           |        6 |     258 |                        0.438 |
-| 4mod5_bdd_287        |        7 |      70 |                        0.443 |
-| 4mod5_v0_20          |        5 |      20 |                        0.500 |
-| alu_bdd_288          |        7 |      84 |                        0.452 |
-| alu_v0_27            |        5 |      36 |                        0.472 |
-| decod24_bdd_294      |        6 |      73 |                        0.438 |
-| decod24_enable_126   |        6 |     338 |                        0.441 |
 | graycode6_47         |        6 |       5 |                        1.000 |
-| ham3_102             |        3 |      20 |                        0.550 |
-| hwb4_49              |        5 |     233 |                        0.459 |
-| mod10_176            |        5 |     178 |                        0.438 |
-| mod5adder_127        |        6 |     555 |                        0.431 |
-| mod5d1_63            |        5 |      22 |                        0.591 |
-| mod8_10_177          |        6 |     440 |                        0.445 |
-| one_two_three_v1_99  |        5 |     132 |                        0.447 |
-| one_two_three_v3_101 |        5 |      70 |                        0.457 |
-| rd32_v0_66           |        4 |      34 |                        0.471 |
-| sf_274               |        6 |     781 |                        0.430 |
-| sf_276               |        6 |     778 |                        0.432 |
-| sym6_145             |        7 |    3888 |                        0.438 |
 | xor5_254             |        6 |       7 |                        0.714 |
+| 4mod5_v0_20          |        5 |      20 |                        0.500 |
+| ham3_102             |        3 |      20 |                        0.550 |
+| mod5d1_63            |        5 |      22 |                        0.591 |
+| 4gt11_82             |        5 |      27 |                        0.667 |
+| rd32_v0_66           |        4 |      34 |                        0.471 |
+| alu_v0_27            |        5 |      36 |                        0.472 |
+| 4mod5_bdd_287        |        7 |      70 |                        0.443 |
+| one_two_three_v3_101 |        5 |      70 |                        0.457 |
+| decod24_bdd_294      |        6 |      73 |                        0.438 |
+| alu_bdd_288          |        7 |      84 |                        0.452 |
+| one_two_three_v1_99  |        5 |     132 |                        0.447 |
+| mod10_176            |        5 |     178 |                        0.438 |
+| 4gt12_v1_89          |        6 |     228 |                        0.439 |
+| hwb4_49              |        5 |     233 |                        0.459 |
+| 4gt4_v0_72           |        6 |     258 |                        0.438 |
+| decod24_enable_126   |        6 |     338 |                        0.441 |
+| mod8_10_177          |        6 |     440 |                        0.445 |
+| mod5adder_127        |        6 |     555 |                        0.431 |
+| sf_276               |        6 |     778 |                        0.432 |
+| sf_274               |        6 |     781 |                        0.430 |
+| sym6_145             |        7 |    3888 |                        0.438 |
 |----------------------+----------+---------+------------------------------|
 
 *** Extraction of the results                                      :ignore:
@@ -47,13 +44,12 @@ Therefore, as it can be seen in Tab. ref:tab:map_selected_benchs, we address tha
 
 #+END_EXPORT
 
-As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks, the results obtained are the fidelity, the probability of success and the Quantum Volume.
+As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks one thousand runs, the results obtained are the fidelity, the probability of success and the Quantum Volume.
 We also extract other metrics like the number of SWAPs added and the depth of the circuits, between other circuit statistics.
-To match the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}), we compiled the list of benchmarks with four different configurations.
-We defined one configuration per router and another one without mapping the algorithms to any device.
-For a fair comparison, the non-mapped configuration decomposes the circuit gates in the SC-17 gate set (see Fig. \ref{fig:decompositions}).
-We also tried different configurations regarding the decoherence time and the error rates in order to study the mappers in different error regimes.
+These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). Note that, for a fair comparison both the mapped and the non-mapped are  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
 
+In quantumsim, we also tried different configurations regarding the decoherence time and the error rates \textcolor{red}{did you change the error rates or only the decoherence time? there are no results for different error rates} in order to study the mappers in different error regimes.
+All the results are shown in \textcolor{red}{menciona el apendice donde estan todas la tablas}
 
 *** bar plot                                                       :ignore:
 
@@ -61,10 +57,10 @@ We also tried different configurations regarding the decoherence time and the er
 
 #+END_EXPORT
 
-The framework results immediately confirmed that the mapping procedure affects the errors amount in the quantum system.
-In Fig. [[fig:f_diff_bar_plot]] we highlight the difference in fidelity of some benchmarks before and after being mapped.
-The mapped data we plot comes from the router ~minextendrc~.
+In order to illustrate how the mapping process affects the algorithm reliability, Figure \ref{fig:f_diff_bar_plot} shows the fidelity for some of the benchmarks before being mapped and after being mapped using the \texttt{minextendrc} router.
 We can see how the fidelity is smaller for long circuits -- like ~sf_274~ or ~mod5adder_127~ -- than for the short ones -- ~graycode6_47~ or ~xor5_254~.
+\textcolor{red}{It goes from XXX to XXX (non-mapped) and from XXXX to XXXX (mapped).}
+\textcolor{red}{Be more precise. Mention the dcrease of fidelity, and calculate it, for the worst case and the best case}
 It can be seen how, for the long circuits, the fidelity decreases more than a 50%.
 For instance, ~sf_274~'s fidelity goes from 0.35 to 0.17 or ~mod5adder_127~'s goes from 0.45 to 0.19.
 For more details, we show the exact result values for all the benchmarks in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
@@ -96,6 +92,35 @@ And after mapped, that situation does not change that much.
 - Depth is the depth before mapping
 - We decided to see it like this in order to cluster the same benchmark mapped in different ways
 - We can conclude that the mapper quality is critical for benchmarks with small depth before being mapped, but for long circuits the mapper quality gets diminished. This means that simple and, therefore, faster mappers can be implemented for long circuits making possible the mapping on the fly, for instance
+
+***** Figure                                                     :ignore:
+
+
+
+#+caption: 
+#+NAME: tab:
+#+ATTR_LATEX: :booktabs :environment :font \tiny :width 0.7\textwidth :float t
+|----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
+| Benchmark            | Depth before mapping | Depth after mapping with /minextendrc/ | Depth after mapping with /minextend/   | Depth after mapping with /base/   |
+|----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
+| graycode6_47         |                   32 |                                  111 |                                 61 |                            82 |
+| mod5d1_63            |                   59 |                                  209 |                                136 |                           146 |
+| ham3_102             |                   60 |                                  127 |                                121 |                            98 |
+| alu_v0_27            |                   80 |                                  248 |                                156 |                           214 |
+| miller_11            |                  112 |                                  307 |                                278 |                           231 |
+| one_two_three_v3_101 |                  143 |                                  440 |                                302 |                           323 |
+| decod24_bdd_294      |                  144 |                                  407 |                                328 |                           300 |
+| alu_bdd_288          |                  165 |                                  495 |                                383 |                           360 |
+| one_two_three_v1_99  |                  256 |                                  839 |                                530 |                           609 |
+| mod10_176            |                  327 |                                 1090 |                                687 |                           734 |
+| hwb4_49              |                  439 |                                 1387 |                                961 |                          1006 |
+| mini_alu_167         |                  516 |                                 1598 |                                992 |                          1274 |
+| decod24_enable_126   |                  612 |                                 1788 |                               1440 |                          1446 |
+| mod8_10_177          |                  794 |                                 2275 |                               1761 |                          2006 |
+| mod5adder_127        |                  944 |                                 2878 |                               2667 |                          2378 |
+|----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
+
+
 *** BIB                                                   :ignore:noexport:
 
 bibliography:../thesis_plan.bib

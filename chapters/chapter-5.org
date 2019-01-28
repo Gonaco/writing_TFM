@@ -11,7 +11,7 @@ First, in the [[id:96ce8da9-08d8-4fbb-9b15-8b044f01f1b7][Impact of mapping in th
 After that, we analyze the metrics and their correlation with the error increase in the [[id:586ca325-54d8-4b90-93a0-1253140147c4][Analysis of the mapping metrics]] section.
 # Finally, in the [[id:5520e10c-045c-445a-a863-7eb221ad05c4][Regression analysis]] section, after a regression study, we offer a way to predict the amount of errors a circuit could get depending on the its characteristics.
 
-** Impact of mapping in the overall circuit error 
+** Impact of the mapping on the algorithm reliability
 :PROPERTIES:
 :ID:       96ce8da9-08d8-4fbb-9b15-8b044f01f1b7
 :END:
