@@ -72,7 +72,7 @@ For more details, we show the exact result values for all the benchmarks in [[id
 *** How the mapping affect the error rates                         :ignore:
 
 
-***** Figure                                                     :ignore:
+***** Figures                                                    :ignore:
 
 #+caption: Impact of mapping for $t_d = 30 \mu s$ [ *MORE* ]
 #+NAME: fig:mapping_effect_3000_both
