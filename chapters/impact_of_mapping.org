@@ -67,7 +67,7 @@ The mapped data we plot comes from the router ~minextendrc~.
 We can see how the fidelity is smaller for long circuits -- like ~sf_274~ or ~mod5adder_127~ -- than for the short ones -- ~graycode6_47~ or ~xor5_254~.
 It can be seen how, for the long circuits, the fidelity decreases more than a 50%.
 For instance, ~sf_274~'s fidelity goes from 0.35 to 0.17 or ~mod5adder_127~'s goes from 0.45 to 0.19.
-We show the exact result values for all the benchmarks in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
+For more details, we show the exact result values for all the benchmarks in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
 
 #+caption: Difference of fidelities before and after mapping with the ~minextendrc~ router for five different benchmarks.
 #+NAME: fig:f_diff_bar_plot
