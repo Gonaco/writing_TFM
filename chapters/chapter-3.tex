@@ -5,7 +5,7 @@
 
 In this chapter we will describe the superconducting quantum processor used in this thesis and its constraints. 
 Although the work done in this thesis  could be apply to any quantum technology, we limit our study to the surface code 17 chip (Surface-17) developed by Leo Di Carlo's group at QuTech \cite{Versluis_2017}.
-In addition, we will explain the mapping model and the metrics used in this work.
+In addition, we will explain the mapping model and the new metrics proposed in this work.
 
 \section{Constraints of the Surface-17 chip}
 \label{sec:org168a66d}
@@ -35,11 +35,11 @@ This optimal initial placement tries to place the qubits in a way that the minim
 \subsection{Router}
 \label{sec:org18105df}
 The function of the router is to move non-neighbouring qubits to adjacent positions whenever they need to interact. To this purpose, our router inspects all the gates, one by one, looking for non-NN qubits interactions.
-Whenever the router finds one, it will calculate several paths and select one of them. This path is selected based on the circuit depth, that is, the path that better interleaves with the previous operations.
+Whenever the router finds one, it will calculate several paths and selects one of them. This path is selected based on the circuit depth, that is, the path that better interleaves with the previous operations.
 Then, it will insert the SWAP operations (decomposed or not decomposed) required to follow the selected path.
 
 
-There are three router options, and a different path is generated depending on the router option that was selected by the user:
+There are three router options, and a different path is selected depending on the router option that was selected by the user:
 
 \begin{enumerate}
 \item \texttt{base} finds all the shortest paths and selects one of them randomly. The shortest paths are calculated based on the Manhattan distance, counting the number of steps that the qubits will need to move.
@@ -61,10 +61,10 @@ This limitation comes from the fact that, the more steps you are looking ahead w
 We highlight that the mapping problem is an NP problem \cite{Siraichi_2018}.
 Therefore, this method represents a viable solution, although a lot of future work should be done.
 
-\section{New Mapping Metrics}
+\section{New Mapping Metrics: algorithm reliability}
 \label{sec:org27990de}
-As mentioned in the \hyperref[sec:orgc729465]{Mapping metrics} section in the second chapter, we name \emph{mapping metrics} to those metrics used to assert the quality of a mapper and that are also used by the mapper algorithm as an heuristic.
-In this section we will review the common metrics as the \textbf{number of SWAPs} or the \textbf{latency}, but we will also define -- and study in more detail -- some new mapping metrics that we incorporated, \textbf{probability of success} and \textbf{Quantum Volume}.
+As mentioned in the \hyperref[sec:orgc729465]{Mapping metrics} section in the second chapter, we name \emph{mapping metrics} to those metrics used to assert the quality of a mapper and that are also used by the mapper algorithm as a cost function to optimize.
+In this section, we will present and  define some new mapping metrics: \textbf{fidelity}, \textbf{probability of success} and \textbf{Quantum Volume}.
 
 \subsection{Fidelity and probability of success}
 \label{sec:org0c7b2c2}
@@ -88,12 +88,11 @@ In this section we will review the common metrics as the \textbf{number of SWAPs
 \label{fig:latency_swaps_ex_orig}
 \end{figure}
 
-Fidelity and probability of success  are two different ways to measure the amount of errors that appear in a quantum system.
-Fidelity considers the errors in the qubit superposition state and probability of success considers the errors after collapsing the quantum state in a measurement, therefore, it includes the measurement error as well.
+Fidelity and probability of success  are two different ways to measure how errors affect the algorithm reliability.
+Fidelity is measured before measuring the qubits, and it is the difference between the obtained quantum state (affected by errors) and the expected quantum state (the one without errors).  Probability of success is obtained after measuring the qubits, and then  after collapsing the quantum state. Note that in this case measurement errors are also considered. After running the algorithm several times, it shows how many times a correct result is measured.
 
 Although not taking into account the measurement, the quantum fidelity metric is related with the probability of success.
-Both compare two quantum states, but, while the success of an algorithm is a boolean metric -- either success or failure --, the fidelity returns a number of how different the states are.
-How far is one state from the other.
+Both compare two quantum states, but, while the success of an algorithm is a boolean metric -- either success or failure --, the fidelity returns a number of how different the states are; how far is one state from the other.
 As an analogy, if we consider the quantum states as vectors, the fidelity would be the dot product between them.
 However, the fidelity between orthogonal states -- states that differ in rotations around the x-axis as \(| 0100 \rangle\), \(| 0001 \rangle\) and \(| 1111 \rangle\) -- is also 0.
 In eq. \ref{eq:orge3c164e} the fidelity formula is shown to understand its behaviour.
@@ -107,7 +106,7 @@ where \(\rho =\sum _{i}p_{i}|i\rangle \langle i|\) and \(\sigma =\sum _{i}q_{i}|
 These states are named \textbf{mixed states} and they are defined as the weighted sum of different pure states.
 This is the general case in order to calculate the fidelity in any case.
 But, for a situation with one of the states as pure state (\({\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}\)) the calculation of fidelity reduces its complexity as it can be understood from eq. \ref{eq:org2703857}.
-Eq. \ref{eq:org1f331e2} the next step of simplicity, the one in which both states are pure (\({\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}, {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|} {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|}\)).
+Eq. \ref{eq:org1f331e2} shows the next step of simplicity, the one in which both states are pure (\({\displaystyle \rho =|\psi _{\rho }\rangle \!\langle \psi _{\rho }|}, {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|} {\displaystyle \sigma =|\psi _{\sigma }\rangle \!\langle \psi _{\sigma }|}\)).
 
 
 \begin{equation}
@@ -125,30 +124,31 @@ We define probability of success as the probability of having the correct or exp
 For instance, if the expected result of an algorithm is \texttt{0100} and the results are either \texttt{0001} or \texttt{1111} we will get a failure.
 We will only get a success if the algorithm returns \texttt{0100}.
 Then, in the previous example, if we get \texttt{0001}, \texttt{0100} and \texttt{1111} as results after running the algorithm three times the resulting probability of success will be \(\frac{1}{3}\).
+
+\textcolor{red}{Change this. Both metric need several runs. The fidelity can only be calculated by simulation but not in real experiments. Mention again that we will use deterministic algorithms and the the result (after measuring) is only affected by errors and not by the non-deterministic behaviour of most of the quantum algorithms}
 This model was chosen because it is one of the most practical ways to include the measurement gate into the error analysis.
 But, at the same time, we aware that this metric have a limitation: it cannot assert -- in just one run -- the success of an algorithm that ideally returns a quantum state different that either the ground or the excited state.
 Once a quantum state is measured it collides in either ground or excited.
 In order to extract the complete quantum state, several runs of the circuit should be done, inheriting the results as a probabilistic distribution or histogram.
-For a state as \(0.3 | 0 \rangle + 0.7 | 1 \rangle\), after several measurements, we will get \texttt{0} a 30\% of the times and \texttt{1} 70\% of the times.
+For a state as \(0.3 | 0 \rangle + 0.7 | 1 \rangle\), after several measurements, we will get \texttt{0} a 30\% of the times and \texttt{1} a 70\% of the times.
 Accordingly, in order to calculate the probability of success, we will need to compare histograms instead of only one measured result.
 
 
 
-In our study, we will use both metrics in order to calculate the amount of errors that arise from an algorithm.
-As soon as fidelity is not taking into account the measurement errors, it is common that both metrics differ completely.
-It could be the case that a quantum state is erroneous before the measurement and, then, due to the error added from the measurement the erroneous state would flip and converge into the expected state.
+In our study, we will use both metrics in order to study how the mapping process and then the amount of errors affect the  algorithm reliability.
+Note that as we already mention, the fidelity is calculated before measurement and then it does  not take into account the measurement errors. It could be the case that a quantum state is erroneous before the measurement and, then, due to the error added from the measurement the erroneous state would flip and converge into the expected state.
 At the same time, a correct quantum state could be measured wrongly due to the measurement errors.
 
 \subsection{Quantum Volume}
 \label{sec:org3029336}
 
-Another metric we think it can be useful for the mapping quality assessment is Quantum Volume \cite{Bishop_2017,Moll_2018}.
-Quantum Volume is a metric developed by IBM to depict whether a device is able to run a quantum circuit or not.
+Another metric that could be useful for the mapping quality assessment is Quantum Volume \cite{Bishop_2017,Moll_2018}.
+Quantum Volume is a metric proposed by IBM to depict whether a device is able to run a quantum circuit or not.
 Given the different hardware implementations and technologies in Quantum Computation (superconducting, ion-trap, spin qubits, \ldots{}), it is often difficult to benchmark the usefulness or power of quantum systems. 
 The aim of Quantum Volume is to quantify the computational power of quantum devices. 
 Consequently we will use it as a metric to measure the runnability of the quantum algorithms on the quantum devices.
 But, while the device is the basis of the Quantum Volume metric, we fix our attention on the circuit.
-Our purpose is to assert how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the fidelity and the probability of success.
+Our purpose is to assess how the mapping procedure affects the runnability of a given circuit and to study how the Quantum Volume is related to the fidelity and the probability of success.
 
 The general Quantum Volume formula is defined in eq. \ref{eq:general_qv} where \(N\) is the number of physical qubits and \(d(N)\) is the achievable circuit depth; the maximum circuit depth for which the results, after running it on some device, are correctable and useful.
 \(d(N)\) depends on the number of qubits in the circuit as well as the error rate of the quantum device.
