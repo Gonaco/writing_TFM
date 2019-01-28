@@ -11,7 +11,7 @@ In order to analyze the different metrics to assess the quality of a mapping alg
 I built a list of quantum algorithms coming from different sources.
 The sources we chose are RevLib \cite{Wille_2008}, ScaffCC \cite{JavadiAbhari_2015}, some benchmarks from Zulehner's et al. work \cite{zulehner17:effic_method_mappin_quant_circuit} and QLib \cite{Lin_2014} because of the variety of algorithms and because they are already decomposed in the Clifford+T set.
 Note that the language used to describe the algorithm varies from source to source.
-Although, they all use a  a QASM-based language, there are small syntax differences.
+Although, they all use a  QASM-based language, there are small syntax differences.
 As we will explain in the next section, we will use our own programming languages -- OpenQL and cQASM -- and compiler.
 Therefore we had to translate all the selected algorithms from their QASM versions to the OpenQL notation.
 I developed a parser in order to do that.
@@ -23,9 +23,9 @@ They are deterministic and then the result is always the same if there are no er
 This is because  at the end of the circuit, before measuring the qubits, qubits are in either ground or excited state, but never superposition.
 
 
-The benchmarks were also classified depending on their functionality.
-This is an important step because algorithms that do similar calculations are used to have common gates distribution.
-From all the benchmarks we have, we can distinct six different classes.
+The benchmarks were also classified by their functionality.
+This is an important step because algorithms that do similar calculations use to have common gates distribution.
+From all the benchmarks we have, we can distinguish six different classes.
 
 \begin{itemize}
 \item Quantum Gates: Circuits that are a decomposition of a Quantum Gate
@@ -51,9 +51,9 @@ In order to do that, we studied the different benchmark profiles looking for mos
 The criteria used for selecting the algorithms used in this work are: 
 i) the number of qubits of the algorithm. It should be less than 17 as we will use the Surface-17 chip; ii) the number of gates.
 We select benchmarks with a number of gates as spread as possible; iii) different functionality.
-We try to have the less number of the same algorithm versions as possible.
+We try to have the least number of versions of the same algorithm as possible.
 We only take the same algorithm versions for cases in which the number of qubits and the number of gates show an interesting combination.
-For example, two similar algorithms which number of qubits or number of gates are very distinct as the first three selected benchmarks in Tab. \ref{tab:map_selected_benchs}.
+For example, two similar algorithms in which number of qubits or number of gates are very distinct appear as the first three selected benchmarks in Tab. \ref{tab:map_selected_benchs}.
 
 Once we had our requirements we could start the analysis and the selection afterwards.
 In Tab. \ref{tab:map_selected_benchs} we show the final benchmark selection.
@@ -75,7 +75,7 @@ Criteria:\\
 \end{tabular}
 \end{table}
 43 benchmarks (with qubits numbers from 3 to 17 qubits) selected after applying the previous Restrictions to the analysis of the benchmarks described in the next section (see Table \ref{tab:map_selected_benchs}).
-After simulating the algorithms, few of them returned errors (segmentation fault) and some others .
+After simulating the algorithms, few of them returned errors (segmentation fault) and some others \textcolor{red}{ what did the others return?}.
 
 \section{Analysis framework}
 \label{sec:orgc0c805b}
@@ -148,7 +148,7 @@ def circuit(config_file, scheduler='ASAP', uniform_sched= 'no', mapper='base', i
 Quantumsim \cite{O_Brien_2017} is a simulator for superconducting systems and designed to study the SC-17 chip.
 Its error model has been induced from the chip's behaviour after several experiments.
 Therefore, quantumsim's error model is much more complete for the superconducting case than other general simulators.
-It is based in the decoherence time and the observed gate error rates.
+It is based on the decoherence time and the observed gate error rates.
 Although the detail in its error model makes each simulation computationally harder.
 As a matter of fact, quantumsim is able to boost its calculations with a Graphics Processing Unit (GPU).
 Quantumsim can be found as a \textbf{python library} in its \href{https://github.com/quantumsim/quantumsim}{github repository} with instructions to install it and an overview of how to use it.
@@ -196,7 +196,7 @@ All this information will be stored in the database.
 After being mapped, the simulator will load the mapped circuit and the simulation characteristics.
 The mapped algorithm will be simulated first without errors, in order to know what is the correct result or the result we should expect from this circuit.
 We store both, the resultant quantum state \(\psi\) and its ideal measurement \(M(\psi)\).
-Note that, as soon as our benchmarks are all deterministic (see the \hyperref[sec:orga02804b]{Benchmarks} section) the quantum state and the measurement will be the same.
+Note that, as long as our benchmarks are all deterministic (see the \hyperref[sec:orga02804b]{Benchmarks} section) the quantum state and the measurement will be the same.
 After saving the correct result, the framework proceeds to simulate \(N\) times the benchmark.
 The results affected by the errors will be used to calculate the fidelity -- between the quantum state \(\psi'\) and the expected one \(\psi\) -- as well as the probability of success -- between the measurement \(M(\psi')\) and the expected one \(M(\psi)\).
 The final value for fidelity and probability of success will be calculated averaging all the fidelities and probabilities of success calculated per simulation.
