@@ -1,5 +1,5 @@
 
-OpenQL is a framework for high-level quantum programming developed by our group.
+OpenQL [ *Refer OpenQL paper* ] is a framework for high-level quantum programming developed by our group.
 It is able to describe both, quantum circuits and quantum devices.
 The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages.
 The quantum chips and their constrains are described in a JSON file that is imported in the circuit description.

@@ -302,21 +302,6 @@ No routing would be required.
 
 \begin{figure}[H]
 \centering
-\subfigure[Optimal initial placement]{
-%\resizebox{.3\textwidth}{!}{
-     \Qcircuit @C=1em @R=.7em {
-     \lstick{a \to Q_0} & \targ & \qw & \qw & \qw & \qw & \qw\\
-\lstick{b \to Q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \qw\\
-\lstick{c \to Q_5} & \qw & \ctrl{-1} & \targ & \qw & \qw & \qw\\
-\lstick{d \to Q_3} & \qw & \qw & \ctrl{-1} & \targ & \qw & \qw\\
-\lstick{e \to Q_1} & \qw & \qw & \qw & \ctrl{-1} & \targ & \qw\\
-\lstick{f \to Q_4} & \qw & \qw & \qw & \qw & \ctrl{-1} & \qw
-}
-%}
-\label{fig:map_ex_circ_optim}
-}
-
-\subfigure[Chip layout with the qubits with optimal initial placement]{
      \resizebox{0.45\textwidth}{!}{%
      \begin{tikzpicture}[x=5mm,y=5mm]
  % \tikzstyle{every node} = [circle, fill=gray!30]
@@ -335,12 +320,12 @@ No routing would be required.
  % \node [red] at (15,-5) {\textbullet};
  \draw node[fill=cyan,circle,minimum size=0.3cm] at (15,-5) {};
 
- \node [purple] at (2,0) {\textbf{b} $\to$ \textbf{2}};
- \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{3}};
- \node [purple] at (22,0) {\textbf{f} $\to$ \textbf{4}};
- \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{0}};
- \node [purple] at (7,-5) {\textbf{c} $\to$ \textbf{5}};
- \node [purple] at (17,5) {\textbf{e} $\to$ \textbf{1}};
+ \node [purple] at (2,0) {\textbf{b} $\to$ \textbf{Q2}};
+ \node [purple] at (12,0) {\textbf{d} $\to$ \textbf{Q3}};
+ \node [purple] at (22,0) {\textbf{f} $\to$ \textbf{Q4}};
+ \node [purple] at (7,5) {\textbf{a} $\to$ \textbf{Q0}};
+ \node [purple] at (7,-5) {\textbf{c} $\to$ \textbf{Q5}};
+ \node [purple] at (17,5) {\textbf{e} $\to$ \textbf{Q1}};
  \node [purple] at (17,-5) {\textbf{6}};
 
  % \draw[{Circle[red]}-Latex] (0,0) -- (2,0);
@@ -383,7 +368,7 @@ No routing would be required.
 }
 
 \label{fig:optimal_init_place}
-\caption{Optimal initial placement}
+\caption{Chip layout with the qubits in the optimal initial placement}
 \end{figure}
 
 
@@ -393,18 +378,11 @@ We will need to start routing them.
 
 \begin{figure}[H]
 \centering
-\subfigure[Qubits initialization in a naive way]{
-\input{figures/map_ex_circuit_wrong_init}
-\label{fig:map_ex_circ_wrong}
-}
 
-\subfigure[Qubit disposition in the chip layout]{
 \input{figures/map_ex_chip_wrong_init}
-\label{fig:map_ex_chip_wrong}
-}
 
 \label{fig:map_ex_wrong_init}
-\caption{Naive initial placement}
+\caption{Qubit disposition in the chip layout with a naive initial placement}
 \end{figure}
 
 \item Routing

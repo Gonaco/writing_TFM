@@ -1,7 +1,20 @@
 
+*** Why quantum?                                                   :ignore:
+
+The discoveries in quantum physics during the last century opened multiple questions and demonstrate strange behaviours that are far from the classical physics we are used to.
+The answer of these questions as well as another investigations from another fields require a huge computational power.
+In order to understand our world we need to simulate instances of it, and for that we need computer systems with a calculation power further than anything in the world.
+During the last century Feynman had the idea of getting advantage of the unexplained but controllable quantum phenomenon [ *REFER* ].
+He noticed that the main strange behavior .
+
+*** How quantum?                                                   :ignore:
+
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
 
 
 #+caption: Full stack implementation
 #+NAME: fig:system_stack
-#+ATTR_LATEX: :width 0.7\textwidth
+#+ATTR_LATEX: :width 0.5\textwidth
 [[file:figures/system_stack.png]]
