@@ -16,9 +16,11 @@ From the common ones -- number of SWAPs and depth -- to the ones we proposed -- 
 
 #+END_EXPORT
 
+[RECAP OF FIDELITY VS PROB. SUCCESS]
+
 First we analyze the probability of success and fidelity correlation.
 As expected, our experiments prove that both metrics are highly correlated in a logarithmic fashion.
-We also appreciated the fact that the probability of success is always higher than the fidelity.
+We also appreciated the fact that the probability of success, in general, is higher than the fidelity.
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
 It is a 'good' mistake that results in the expected solution.
 Nevertheless, this behaviour could be caused by the fact that our algorithms are deterministic.
@@ -32,10 +34,14 @@ Another knowledge we inherited from the results is that the closer the values ar
 
 #+END_EXPORT
 
+[TWO PARTS IN THE GRAPH  LINEARITY AND RANDOM]
+
+[EXPLAIN INHERENT BEHAVIOUR OF THE MEASUREMENT FOR THE CHAOTIC PART OF THE GRAPH]
+
 In Fig. [[fig:f_ps_correlation_with_meas_error]] we plot the results of the framework in terms of probability of success and fidelity. 
 For this figure and the figures from now on in this section, each dot is a different benchmark configuration (see [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]]) and the colors represent different decoherence times, blue for 30 $\mu s$ and orange for 10 $\mu s$.
 As we explained in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the shorter the decoherence time the more errors would appear in our quantum system.
-Fig. [[fig:f_ps_correlation_with_meas_error]] highlights a logarithmic correlation as well as the bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
+Fig. [[fig:f_ps_correlation_with_meas_error]] highlights a correlation with a bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
 For instance, for values around 0.6 in fidelity, the probability of success has a value bigger than 0.7 for the majority of the samples.
 This behaviour could be due to the small error rate the measurement has.
 Note that for values close to 1, fidelity and probability of success tend to be almost equal and linear, which make sense; if some circuit has almost no error, both metrics will be equally good.

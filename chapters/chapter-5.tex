@@ -1,14 +1,14 @@
 
 \chapter{Results}
-\label{sec:org2daea82}
+\label{sec:org1553adf}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:org617a5fb]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgd7a6aac]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:orgec7e7e7]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org7e0d207]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
-\label{sec:org617a5fb}
+\label{sec:orgec7e7e7}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
@@ -72,27 +72,61 @@ For more details, we show the exact result values for all the benchmarks in \hre
 \centering
 \includegraphics[width=0.7\textwidth]{figures/f_diff_bar_plot.eps}
 \caption{\label{fig:f_diff_bar_plot}
-Difference of fidelities before and after mapping with the \texttt{minextendrc} router for five different benchmarks.}
+Difference of fidelities before and after mapping with the \emph{minextendrc} router for five different benchmarks.}
 \end{figure}
-\begin{figure}[htbp]
+As we mentioned before, we use three different routers, each one giving a different mapped version per benchmark and, therefore, different metric statistics.
+For instance, as it can be seen in the \href{appendix-1.org}{Appendix A} and in the Tab. \ref{tab:depth_per_bench}, the depth of the \texttt{graycode6\_47} circuit before being mapped is 32 cycles and after being mapped grows to 111, 61 or 82 depending on the router.
+In Fig. \ref{fig:mapping_effect_3000_diff_lines} and Fig. \ref{fig:mapping_effect_1000_diff_lines} we plot the fidelity of each benchmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
+The dark blue dots represent the benchmarks before being mapped and the light blue ones represent the different mapped version of it from the different routers.
+
+
+
+
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/mapping_effect_3000_both.eps}
-\caption{\label{fig:mapping_effect_3000_both}
-Impact of mapping for \(t_d = 30 \mu s\) [ \textbf{MORE} ]}
+\subfigure[Fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
+
+\label{fig:mapping_effect_3000_diff_lines}
+}
+
+\subfigure[Difference of fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_3000.eps}
+
+\label{fig:mapping_effect_diff_3000}
+}
+
+\caption{Impact of mapping for $t_d = 30 \mu s$}
+\label{fig:mapping_effect_3000}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{figures/mapping_effect_1000_both.eps}
-\caption{\label{fig:mapping_effect_1000_both}
-Impact of mapping for \(t_d = 10 \mu s\) [ \textbf{MORE} ]}
-\end{figure}
 
+\begin{figure}
+\centering
+\subfigure[Fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
+
+\label{fig:mapping_effect_1000_diff_lines}
+}
+
+\subfigure[Difference of fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_1000.eps}
+
+\label{fig:mapping_effect_diff_1000}
+}
+
+\caption{Impact of mapping for $t_d = 10 \mu s$}
+\label{fig:mapping_effect_1000}
+\end{figure}
 
 
 \begin{table}[htbp]
-\caption{\label{tab:}
-}
+\caption{\label{tab:depth_per_bench}
+Different depth per benchmark}
 \centering
 \tiny
 \begin{tabular}{lrrrr}
@@ -119,16 +153,18 @@ mod5adder\(_{\text{127}}\) & 944 & 2878 & 2667 & 2378\\
 \end{table}
 
 \section{Analysis of the mapping metrics}
-\label{sec:orgd7a6aac}
+\label{sec:org7e0d207}
 Once we acknowledged the behaviour of the error growth due to the mapping process, it was the time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
 
 
 
+[RECAP OF FIDELITY VS PROB. SUCCESS]
+
 First we analyze the probability of success and fidelity correlation.
 As expected, our experiments prove that both metrics are highly correlated in a logarithmic fashion.
-We also appreciated the fact that the probability of success is always higher than the fidelity.
+We also appreciated the fact that the probability of success, in general, is higher than the fidelity.
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
 It is a 'good' mistake that results in the expected solution.
 Nevertheless, this behaviour could be caused by the fact that our algorithms are deterministic.
@@ -136,10 +172,14 @@ Another knowledge we inherited from the results is that the closer the values ar
 
 
 
+[TWO PARTS IN THE GRAPH  LINEARITY AND RANDOM]
+
+[EXPLAIN INHERENT BEHAVIOUR OF THE MEASUREMENT FOR THE CHAOTIC PART OF THE GRAPH]
+
 In Fig. \ref{fig:f_ps_correlation_with_meas_error} we plot the results of the framework in terms of probability of success and fidelity. 
 For this figure and the figures from now on in this section, each dot is a different benchmark configuration (see \href{appendix-1.org}{Appendix A}) and the colors represent different decoherence times, blue for 30 \(\mu s\) and orange for 10 \(\mu s\).
 As we explained in the \href{quantum_computing.org}{Qubits are faulty} section, the shorter the decoherence time the more errors would appear in our quantum system.
-Fig. \ref{fig:f_ps_correlation_with_meas_error} highlights a logarithmic correlation as well as the bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
+Fig. \ref{fig:f_ps_correlation_with_meas_error} highlights a correlation with a bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
 For instance, for values around 0.6 in fidelity, the probability of success has a value bigger than 0.7 for the majority of the samples.
 This behaviour could be due to the small error rate the measurement has.
 Note that for values close to 1, fidelity and probability of success tend to be almost equal and linear, which make sense; if some circuit has almost no error, both metrics will be equally good.

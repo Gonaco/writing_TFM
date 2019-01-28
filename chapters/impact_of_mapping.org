@@ -64,30 +64,87 @@ For instance, ~sf_274~'s fidelity goes from 0.35 to 0.17 or ~mod5adder_127~'s go
 On the other hand, for the small circuits like ~graycode6_47~ or ~xor5_254~ the fidelity decreases around 1%; from 0.99 to 0.98 and from 0.99 to 0.97, respectively.
 For more details, we show the exact result values for all the benchmarks in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
 
-#+caption: Difference of fidelities before and after mapping with the ~minextendrc~ router for five different benchmarks.
+#+caption: Difference of fidelities before and after mapping with the /minextendrc/ router for five different benchmarks.
 #+NAME: fig:f_diff_bar_plot
 #+ATTR_LATEX: :width 0.7\textwidth
 [[file:figures/f_diff_bar_plot.eps]]
 
 *** How the mapping affect the error rates                         :ignore:
 
+As we mentioned before, we use three different routers, each one giving a different mapped version per benchmark and, therefore, different metric statistics.
+For instance, as it can be seen in the [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]] and in the Tab. ref:tab:depth_per_bench, the depth of the ~graycode6_47~ circuit before being mapped is 32 cycles and after being mapped grows to 111, 61 or 82 depending on the router.
 
-***** Figures                                                    :ignore:
 
-#+caption: Impact of mapping for $t_d = 30 \mu s$ [ *MORE* ]
-#+NAME: fig:mapping_effect_3000_both
-#+ATTR_LATEX: :width \textwidth
-[[file:figures/mapping_effect_3000_both.eps]]
+*** Figures                                                        :ignore:
 
-#+caption: Impact of mapping for $t_d = 10 \mu s$ [ *MORE* ]
-#+NAME: fig:mapping_effect_1000_both
-#+ATTR_LATEX: :width \textwidth
-[[file:figures/mapping_effect_1000_both.eps]]
+**** Description of the figures. What are we plotting?            :ignore:
+
+In Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines we plot the fidelity of each benchmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
+The dark blue dots represent the benchmarks before being mapped and the light blue ones represent the different mapped version of it from the different routers.
 
 
 
-#+caption: 
-#+NAME: tab:
+# #+caption: Impact of mapping for $t_d = 30 \mu s$ [ *MORE* ]
+# #+NAME: fig:mapping_effect_3000_both
+# #+ATTR_LATEX: :width \textwidth
+# [[file:figures/mapping_effect_3000_both.eps]]
+
+# #+caption: Impact of mapping for $t_d = 10 \mu s$ [ *MORE* ]
+# #+NAME: fig:mapping_effect_1000_both
+# #+ATTR_LATEX: :width \textwidth
+# [[file:figures/mapping_effect_1000_both.eps]]
+
+#+BEGIN_EXPORT latex
+
+\begin{figure}
+\centering
+\subfigure[Fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
+
+\label{fig:mapping_effect_3000_diff_lines}
+}
+
+\subfigure[Difference of fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_3000.eps}
+
+\label{fig:mapping_effect_diff_3000}
+}
+
+\caption{Impact of mapping for $t_d = 30 \mu s$}
+\label{fig:mapping_effect_3000}
+\end{figure}
+
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+
+\begin{figure}
+\centering
+\subfigure[Fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
+
+\label{fig:mapping_effect_1000_diff_lines}
+}
+
+\subfigure[Difference of fidelity per benchmark]{
+
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_1000.eps}
+
+\label{fig:mapping_effect_diff_1000}
+}
+
+\caption{Impact of mapping for $t_d = 10 \mu s$}
+\label{fig:mapping_effect_1000}
+\end{figure}
+
+#+END_EXPORT
+
+
+#+caption: Different depth per benchmark
+#+NAME: tab:depth_per_bench
 #+ATTR_LATEX: :booktabs :environment :font \tiny :width 0.7\textwidth :float t
 |----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
 | Benchmark            | Depth before mapping | Depth after mapping with /minextendrc/ | Depth after mapping with /minextend/ | Depth after mapping with /base/ |
