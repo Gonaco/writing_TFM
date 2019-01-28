@@ -581,14 +581,14 @@ And latency is the time required to run a quantum circuit in a given quantum dev
 It depends on the chip cycle time and the \textbf{depth} of the circuit, \(Latency = depth \times t_{cycle}\).
 Depth is the number of cycles the algorithm encloses.
 Actually, most of the studies \cite{Metodi_2006,Whitney_2007,Bahreini_2015} assert the latency in terms of circuit depth, avoiding the cycle time specification of any device.
-E.g. in Fig. \ref{fig:latency_swaps_ex}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
+As shwon in Fig. \ref{fig:latency_swaps_ex} \textcolor{red}{fix this reference}, one can see how after some mapping process some SWAP operations have been added as well as the depth of the circuit or latency grows.
 From five cycles depth in the original circuit to nine cycles.
 
 
 \subsection{Number of SWAPs}
 \label{sec:orgaf1dc29}
 
-As explained before in the \hyperref[sec:orgd680d43]{Mapping of quantum circuits} section, to route means to introduce SWAP operations -- or a decomposition of them.
+As explained before in the \hyperref[sec:orgd680d43]{Mapping of quantum circuits} section, routing means to introduce SWAP operations -- or any other operation that allows qubits to be moved.
 Whenever a two-qubit gate requests two qubits that are far apart, a path in the gridlike chip layout should be given.
 Each step on this grid would mean a SWAP operation between the vertex qubits of that step.
 We already know that quantum gates are error prone and that one of the main problems that the mapping task is dealing with is to use the least amount of gates as possible.
