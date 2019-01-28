@@ -48,8 +48,8 @@ As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framewor
 We also extract other metrics like the number of SWAPs added and the depth of the circuits, between other circuit statistics.
 These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). Note that, for a fair comparison both the mapped and the non-mapped are  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
 
-In quantumsim, we also tried different configurations regarding the decoherence time and the error rates \textcolor{red}{did you change the error rates or only the decoherence time? there are no results for different error rates} in order to study the mappers in different error regimes.
-All the results are shown in \textcolor{red}{menciona el apendice donde estan todas la tablas}
+In quantumsim, we also tried different configurations regarding the decoherence time and the error rates \textcolor{red}{did you change the error rates or only the decoherence time? there are no results for different error rates} \textcolor{blue}{In quantumsim it is oly possible to twak decoherence times and measurement error rates. Im talking about error rates because in quantumsim the error rates are related with the decoherence time and I thought it would be more understandable like thaat } in order to study the mappers in different error regimes. 
+All the results are shown in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
 
 *** bar plot                                                       :ignore:
 
@@ -59,10 +59,9 @@ All the results are shown in \textcolor{red}{menciona el apendice donde estan to
 
 In order to illustrate how the mapping process affects the algorithm reliability, Figure \ref{fig:f_diff_bar_plot} shows the fidelity for some of the benchmarks before being mapped and after being mapped using the \texttt{minextendrc} router.
 We can see how the fidelity is smaller for long circuits -- like ~sf_274~ or ~mod5adder_127~ -- than for the short ones -- ~graycode6_47~ or ~xor5_254~.
-\textcolor{red}{It goes from XXX to XXX (non-mapped) and from XXXX to XXXX (mapped).}
-\textcolor{red}{Be more precise. Mention the dcrease of fidelity, and calculate it, for the worst case and the best case}
 It can be seen how, for the long circuits, the fidelity decreases more than a 50%.
 For instance, ~sf_274~'s fidelity goes from 0.35 to 0.17 or ~mod5adder_127~'s goes from 0.45 to 0.19.
+On the other hand, for the small circuits like ~graycode6_47~ or ~xor5_254~ the fidelity decreases around 1%; from 0.99 to 0.98 and from 0.99 to 0.97, respectively.
 For more details, we show the exact result values for all the benchmarks in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
 
 #+caption: Difference of fidelities before and after mapping with the ~minextendrc~ router for five different benchmarks.
@@ -89,7 +88,7 @@ For more details, we show the exact result values for all the benchmarks in [[id
 
 #+caption: 
 #+NAME: tab:
-#+ATTR_LATEX: :booktabs :environment :font \small :width 0.7\textwidth :float t
+#+ATTR_LATEX: :booktabs :environment :font \tiny :width 0.7\textwidth :float t
 |----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
 | Benchmark            | Depth before mapping | Depth after mapping with /minextendrc/ | Depth after mapping with /minextend/ | Depth after mapping with /base/ |
 |----------------------+----------------------+--------------------------------------+------------------------------------+-------------------------------|
