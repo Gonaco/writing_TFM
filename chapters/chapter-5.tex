@@ -188,20 +188,20 @@ Another observation is that the closer the values are to 0 the more chaotic and 
 
 
 
-[TWO PARTS IN THE GRAPH  LINEARITY AND RANDOM]
+[TWO PARTS IN THE GRAPH  LINEARITY AND RANDOM: \textcolor{red}{this is contrary to being logarithmic}]
 
 [EXPLAIN INHERENT BEHAVIOUR OF THE MEASUREMENT FOR THE CHAOTIC PART OF THE GRAPH]
 
 In Fig. \ref{fig:f_ps_correlation_with_meas_error} we plot the results of the framework in terms of probability of success and fidelity. 
 For this figure and the figures from now on in this section, each dot is a different benchmark configuration (see \href{appendix-1.org}{Appendix A}) and the colors represent different decoherence times, blue for 30 \(\mu s\) and orange for 10 \(\mu s\).
-As we explained in the \href{quantum_computing.org}{Qubits are faulty} section, the shorter the decoherence time the more errors would appear in our quantum system.
+As we explained in the \href{quantum_computing.org}{Qubits are faulty} section, the shorter the decoherence time the more errors will appear in our quantum system.
 Fig. \ref{fig:f_ps_correlation_with_meas_error} highlights a correlation with a bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
 For instance, for values around 0.6 in fidelity, the probability of success has a value bigger than 0.7 for the majority of the samples.
 This behaviour could be due to the small error rate the measurement has.
 Note that for values close to 1, fidelity and probability of success tend to be almost equal and linear, which make sense; if some circuit has almost no error, both metrics will be equally good.
 At the same time, the closer the values are to 0, the more spread the samples are, proving the chaotic and random behaviour.
 It can be seen that the curvature of the fitting line changes depending on the decoherence time of the system.
-For higher error rates -- orange function --, the curve tends to decrease faster; what means that the higher the error rates the less fidelity and probability of success will get the circuits.
+For higher error rates -- orange function --, the curve tends to decrease faster; what means that the higher the error rates the less fidelity and probability of success the circuits will get.
 The cluster that appears between the 0.9 and 1.0 values is due to the amount of simple benchmarks in the selection, as we previously mentioned.
 
 \begin{figure}[htbp]
@@ -214,7 +214,7 @@ Correlation between fidelity and probability of success for two different decohe
 
 
 Regarding the rest of the metrics, we analyzed their relation with the fidelity and probability of success.
-Instead of using the number of SWAPs we decided to use the number of two-qubit gates because we noticed in the results that the number of gates in the circuit before being mapped are important in this analysis.
+Instead of using the number of SWAPs we decided to use the number of two-qubit gates because we noticed in the results that the number of gates \textcolor{red}{Do you mean number of any gates or just number of two-qubit gates? Because the lat}in the circuit before being mapped is important in this analysis.
 For instance, it is not the same to add 10 SWAPs to a circuit with 100 operations than one with 10000.
 
 
