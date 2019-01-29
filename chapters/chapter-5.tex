@@ -83,7 +83,7 @@ As mentioned in the \href{quantum_computing.org}{Qubits are faulty} section, the
 
 In Fig. \ref{fig:mapping_effect_diff_3000} and Fig. \ref{fig:mapping_effect_diff_1000} we plot the maximum (red) and minimum (blue) percentage of difference in fidelity between the non-mapped version of the benchmarks and each one of the mapped versions.
 We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version \(\left(\frac{f_{\text{before}} - f_{\text{after}}}{f_{\text{before}}}\right)\).
-As an example, in Fig. \ref{fig:mapping_effect_3000_diff_lines} and Fig. \ref{fig:mapping_effect_1000_diff_lines}, we plot two lines over some benchmark to depict the maximum (red) and the minimum(blue) difference per benchmark.
+As an example, in Fig. \ref{fig:mapping_effect_3000_diff_lines} and Fig. \ref{fig:mapping_effect_1000_diff_lines}, we plot two lines over some benchmark to depict the maximum (red) and the minimum (blue) difference per benchmark.
 
 Finally, in Tab. \ref{tab:depth_per_bench} we show the exact depth values of each one of the benchmarks in the order they appear, from left to right.
 For instance, the first column of dots to the left is the \texttt{graycode6\_47} circuit.
@@ -93,7 +93,7 @@ I observe:
 
 \begin{itemize}
 \item In general, the fidelity starts from lower points just as the size of the circuit increases. This behaviour is certainly because the longer the circuit, the more errors it will get.
-\item The fidelity difference between non-mapped and the mapped algorithms tends to grow. The longer the circuit the bigger the difference in fidelity. It makes sense because the long circuits the more it will require more routing and, therefore, it will add more depth.
+\item The fidelity difference between non-mapped and the mapped algorithms tends to grow. The longer the circuit the bigger the difference in fidelity. It makes sense because the longer the circuit the more routing it will require and, therefore, it will add more depth.
 \item In the case of a decoherence time of \(10 \mu s\) (Fig \ref{fig:mapping_effect_1000}), we observe strange results like negative fidelities. This is due to the chaotic behaviour of the quantum noise. The more it affects the system, the more chaotic results appear.
 \end{itemize}
 
