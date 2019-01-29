@@ -219,12 +219,12 @@ Correlation between fidelity and probability of success for two different decohe
 
 
 Regarding the rest of the metrics, we analyzed their relation with the fidelity and probability of success.
-Instead of using the number of SWAPs we decided to use the number of two-qubit gates because we noticed in the results that the number of gates \textcolor{red}{Do you mean number of any gates or just number of two-qubit gates? Because the latter}in the circuit before being mapped is important in this analysis.
-For instance, it is not the same to add 10 SWAPs to a circuit with 100 operations than one with 10000.
+Instead of using the number of SWAPs we decided to use the number of two-qubit gates because we noticed in the results that the number of gates \textcolor{red}{Do you mean number of any gates or just number of two-qubit gates? Because the latter will correlate stronger to the number of SWAPs added}in the circuit before being mapped is important in this analysis.
+For instance, it is not the same to add 10 SWAPs to a circuit with 100 operations than one with 10000.\textcolor{red}{that is obvious but how does this relate to your decision to use nr of 2-q gates instaed of number of swaps?}
 
 
 The results of the main mapping metrics against fidelity are depicted in Fig. \ref{fig:f_metrics_correlation}.
-We observe that, for all the cases, the fidelity decreases with an inverse exponential behaviour and that it decreases faster for small decoherence times.
+We observe that, for all the cases, the fidelity decreases with an inverse exponential \textcolor{red}{it is inverse, sure, but why exponential?}behaviour and that it decreases faster for small decoherence times.
 Certainly, the shorter the decoherence times we use the more benchmarks will have non-useful results.
 We can also see how fidelity never goes to zero, but it gets constant around 0.2, giving random results.
 We consider the point where fidelity is constant as the limit in terms of each one of the variables.
@@ -241,7 +241,7 @@ Correlation between fidelity and the mapping metrics.}
 The correlation between the probability of success and the other metrics can be see in Fig. \ref{fig:ps_metrics_correlation}.
 We also observe a decreasing behaviour, although the shape is not as clear as in the case of fidelity.
 This could be provoked, again, by the final error added by the measurement gate and by the fact that, most of the times, the measurement is correcting the wrong solutions.
-The figure also highlights how the fast probability of success decreases depending on the decoherence time.
+The figure also highlights how fast probability of success decreases depending on the decoherence time.
 
 \begin{figure}[htbp]
 \centering
@@ -255,20 +255,22 @@ This happens because of the high concentration of small benchmarks, due to the s
 On the contrary, the rest of the values are a bit spread.
 In general, we observe a high correlation between all of the metrics; so in order to get correlation quality values to differ between the metrics, we calculated the Pearson correlation coefficient.
 Note that the Pearson coefficient measures linear correlations and, as it will be seen in Fig. \ref{fig:f_metrics_correlation}, the metrics behave in an inverse exponential fashion against fidelity.
-For this reason, we applied a \(log\) transformation to our fidelity data in order to make it linear for the Pearson calculation.
+For this reason, we applied a \(log\) transformation to our fidelity data in order to make it linear for the Pearson calculation.\textcolor{red}{From doing this, did you get evidence that it was indeed exponential? If so, please say this because otherwise this exponentiality is an open statement, not based on evidence.}
 
 
-As it can be seen in the Pearson values (Tab. \ref{tab:pearson_corr_f} and Tab. \ref{tab:pearson_corr_ps}) the most correlated metric is the number of two-qubit gates.
-These results hold the fact that the quality of the mapping depends directly on the length of the targeted circuit before it is being mapped.
+As it can be seen in the Pearson values (Tab. \ref{tab:pearson_corr_f} and Tab. \ref{tab:pearson_corr_ps}) the most correlated metric is the number of two-qubit gates.\textcolor{red}{I'm lost now. Do you mean that the router can best minimize the number of two-qubit gates added in order to minimize fidelity/prob.of.succ? Also from the tables I understand that the most correlation is with the number of gates (-0.9730) instead of number of 2q gates (-0.9600) or depth (-0.9455)... Is this number of 2q gates the number in the non-mapped circuit or the number after mapping, which thus includes and mostly is SWAPs (each 2q gate probably gets on average a multitude of SWAPs) after mapping}
+These results hold the fact that the quality of the mapping depends directly on the length of the targeted circuit before it is being mapped.\textcolor{}{Please do the following thought-experiment: imagine a circuit of 100 gates with 1 2q gate and then a circuit with 100 gates with 50 2q gates; the extension of the circuit and thereby the error introduced is not related to the number of gates in the circuit but to the number of 2q gates in the circuit}
 For example, a long circuit well mapped will have always worse results in fidelity or probability of success than a short circuit badly mapped.
 As Tab. \ref{tab:pearson_corr_f} and Tab. \ref{tab:pearson_corr_ps} highlight, we have a worse correlation for the shorter decoherence time.
 This lack of correlation can be attributed to the fact that the majority of the samples with \(t_d = 1000\) are highly affected by the errors and, therefore, the samples have more random values.
+
 Moreover, contrary to expectations, the Quantum Volume was the least correlated metric.
-This small lack of correlation can be attributed to the imprecise formula that we chose to calculate it.
-Future work needs to be done to inspect a better formula.
-Finally, if we compare both tables, we can see that the fidelity is more correlated with the metrics that the probability of success.
+This small lack of correlation can be attributed to the imprecise formula that we chose to compute it.
+Future work needs to be done to devise a better formula.
+
+Finally, if we compare both tables, we can see that the fidelity is more correlated with the metrics than the probability of success.
 It is very likely that the reason for this result is that the added measurement error distribution in the end of the circuit adds more noise and spreads our samples.
-Also the 'correcting' errors behaviour of the measurement should be taken into account.
+Also the 'correcting errors behaviour' of the measurement should be taken into account.
 
 \begin{center}
 \captionof{table}{\label{tab:pearson_corr_f}
@@ -295,3 +297,9 @@ Pearson correlation coefficient for the probability of success against the metri
 \hline
 \end{tabular}
 \end{center}
+
+\textcolor{red}{So I got lost above in what the correlation proves.}
+
+\textcolor{red}{In addition, what I miss is a discussion how well these measures can be used inside the (or a) router; i.e. is it feasible to make a decision on e.g. which SWAPs to insert (i.e. which path to take in the grid), based on a model that computes for each alternative and then minimizes the expected fidelity decrease, prob.of.success decrease, or algorithmic quantum volume decrease, respectively? What I mean: how hard is it to write the computation for each of these and how hard would it be to compute each?}
+
+\textcolor{red}{And is it realistic not to include the final measurement in the judgement?}
