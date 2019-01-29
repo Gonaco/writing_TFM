@@ -120,14 +120,14 @@ I observe:
 \centering
 \subfigure[Fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
 
 \label{fig:mapping_effect_3000_diff_lines}
 }
 
 \subfigure[Difference of fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_3000.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_diff_3000.eps}
 
 \label{fig:mapping_effect_diff_3000}
 }
@@ -144,14 +144,14 @@ I observe:
 \centering
 \subfigure[Fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
 
 \label{fig:mapping_effect_1000_diff_lines}
 }
 
 \subfigure[Difference of fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_1000.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_diff_1000.eps}
 
 \label{fig:mapping_effect_diff_1000}
 }

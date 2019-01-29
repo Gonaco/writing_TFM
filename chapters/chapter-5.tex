@@ -1,14 +1,14 @@
 
 \chapter{Results}
-\label{sec:orgfc73370}
+\label{sec:org086f61e}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:orga7fbf29]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgdd99623]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:org0472d53]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org61109ff]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
-\label{sec:orga7fbf29}
+\label{sec:org0472d53}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
@@ -102,14 +102,14 @@ I observe:
 \centering
 \subfigure[Fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
 
 \label{fig:mapping_effect_3000_diff_lines}
 }
 
 \subfigure[Difference of fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_3000.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_diff_3000.eps}
 
 \label{fig:mapping_effect_diff_3000}
 }
@@ -123,14 +123,14 @@ I observe:
 \centering
 \subfigure[Fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
 
 \label{fig:mapping_effect_1000_diff_lines}
 }
 
 \subfigure[Difference of fidelity per benchmark]{
 
-\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_1000.eps}
+\includegraphics[width=0.5\textwidth]{figures/mapping_effect_diff_1000.eps}
 
 \label{fig:mapping_effect_diff_1000}
 }
@@ -169,8 +169,8 @@ Benchmark & Depth before mapping & Depth after mapping with \emph{minextendrc} &
 \end{table}
 
 \section{Analysis of the mapping metrics}
-\label{sec:orgdd99623}
-Once we acknowledged the behaviour of the error growth due to the mapping process, it was the time to understand which circuit parameter affects it the most.
+\label{sec:org61109ff}
+Once we acknowledged the behaviour of the error growth due to the mapping process, it is time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
 
@@ -269,6 +269,7 @@ Also the 'correcting' errors behaviour of the measurement should be taken into a
 \captionof{table}{\label{tab:pearson_corr_f}
 Pearson correlation coefficient of the log transformation of fidelity against the metrics(\(\rho _{log(f),Y}\)), where \(Y\) is one of the four metrics we analyze}
 \begin{tabular}{lrrrr}
+\hline
  & \# of Gates & \# of Two-qubit gates & Depth & \(V_Q\)\\
 \hline
 \(t_d = 3000\) & -0.9730 & -0.9600 & -0.9455 & -0.9118\\
@@ -281,6 +282,7 @@ Pearson correlation coefficient of the log transformation of fidelity against th
 \captionof{table}{\label{tab:pearson_corr_ps}
 Pearson correlation coefficient for the probability of success against the metrics (\(\rho _{p_s,Y}\)), where \(Y\) is one of the four metrics we analyze}
 \begin{tabular}{lrrrr}
+\hline
  & \# of Gates & \# of Two-qubit gates & Depth & \(V_Q\)\\
 \hline
 \(t_d = 3000\) & -0.9363 & -0.9248 & -0.9179 & -0.8797\\

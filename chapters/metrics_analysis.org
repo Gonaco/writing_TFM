@@ -1,6 +1,6 @@
 *** Intro                                                          :ignore:
 
-Once we acknowledged the behaviour of the error growth due to the mapping process, it was the time to understand which circuit parameter affects it the most.
+Once we acknowledged the behaviour of the error growth due to the mapping process, it is time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
 
@@ -379,6 +379,7 @@ Also the 'correcting' errors behaviour of the measurement should be taken into a
 #+caption: Pearson correlation coefficient of the log transformation of fidelity against the metrics($\rho _{log(f),Y}$), where $Y$ is one of the four metrics we analyze
 #+NAME: tab:pearson_corr_f
 #+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float 
+|--------------+------------+----------------------+---------+---------|
 |              | # of Gates | # of Two-qubit gates |   Depth |   $V_Q$ |
 |--------------+------------+----------------------+---------+---------|
 | $t_d = 3000$ |    -0.9730 |              -0.9600 | -0.9455 | -0.9118 |
@@ -389,6 +390,7 @@ Also the 'correcting' errors behaviour of the measurement should be taken into a
 #+caption: Pearson correlation coefficient for the probability of success against the metrics ($\rho _{p_s,Y}$), where $Y$ is one of the four metrics we analyze
 #+NAME: tab:pearson_corr_ps
 #+ATTR_LATEX: :booktabs :environment :font :width \textwidth :float
+|--------------+------------+----------------------+---------+---------|
 |              | # of Gates | # of Two-qubit gates |   Depth |   $V_Q$ |
 |--------------+------------+----------------------+---------+---------|
 | $t_d = 3000$ |    -0.9363 |              -0.9248 | -0.9179 | -0.8797 |
