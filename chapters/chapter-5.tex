@@ -1,14 +1,14 @@
 
 \chapter{Results}
-\label{sec:org257d30d}
+\label{sec:orgfb65963}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:orgb5a15c2]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org8f8d45e]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:org8c977c4]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orge2508aa]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
-\label{sec:orgb5a15c2}
+\label{sec:org8c977c4}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
@@ -89,8 +89,12 @@ Finally, in Tab. \ref{tab:depth_per_bench} we show the exact depth values of eac
 For instance, the first column of dots to the left is the \texttt{graycode6\_47} circuit.
 
 
+I observe:
+
 \begin{itemize}
-\item The fidelity difference tends to grow. The longer the circuit the bigger difference in fidelity [Make sense because the long circuits the more it will require more routing and, therefore, it will add more depth]
+\item In general, the fidelity starts from lower points just as the size of the circuit increases. This behaviour is certainly because the longer the circuit, the more errors it will get.
+\item The fidelity difference between non-mapped and the mapped algorithms tends to grow. The longer the circuit the bigger the difference in fidelity. It makes sense because the long circuits the more it will require more routing and, therefore, it will add more depth.
+\item In the case of a decoherence time of \(10 \mu s\) (Fig \ref{fig:mapping_effect_1000}), we observe strange results like negative fidelities. This is due to the chaotic behaviour of the quantum noise. The more it affects the system, the more chaotic results appear.
 \end{itemize}
 
 
@@ -165,7 +169,7 @@ Benchmark & Depth before mapping & Depth after mapping with \emph{minextendrc} &
 \end{table}
 
 \section{Analysis of the mapping metrics}
-\label{sec:org8f8d45e}
+\label{sec:orge2508aa}
 Once we acknowledged the behaviour of the error growth due to the mapping process, it was the time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.

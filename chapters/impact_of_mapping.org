@@ -13,29 +13,29 @@ Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we address t
 |----------------------+----------+---------+------------------------------|
 | Benchmark            | # qubits | # gates | two-qubit gates (percentage) |
 |----------------------+----------+---------+------------------------------|
-| graycode6_47         |        6 |       5 |                        1.000 |
-| xor5_254             |        6 |       7 |                        0.714 |
-| 4mod5_v0_20          |        5 |      20 |                        0.500 |
-| ham3_102             |        3 |      20 |                        0.550 |
-| mod5d1_63            |        5 |      22 |                        0.591 |
-| 4gt11_82             |        5 |      27 |                        0.667 |
-| rd32_v0_66           |        4 |      34 |                        0.471 |
-| alu_v0_27            |        5 |      36 |                        0.472 |
-| 4mod5_bdd_287        |        7 |      70 |                        0.443 |
-| one_two_three_v3_101 |        5 |      70 |                        0.457 |
-| decod24_bdd_294      |        6 |      73 |                        0.438 |
-| alu_bdd_288          |        7 |      84 |                        0.452 |
-| one_two_three_v1_99  |        5 |     132 |                        0.447 |
-| mod10_176            |        5 |     178 |                        0.438 |
-| 4gt12_v1_89          |        6 |     228 |                        0.439 |
-| hwb4_49              |        5 |     233 |                        0.459 |
-| 4gt4_v0_72           |        6 |     258 |                        0.438 |
-| decod24_enable_126   |        6 |     338 |                        0.441 |
-| mod8_10_177          |        6 |     440 |                        0.445 |
-| mod5adder_127        |        6 |     555 |                        0.431 |
-| sf_276               |        6 |     778 |                        0.432 |
-| sf_274               |        6 |     781 |                        0.430 |
-| sym6_145             |        7 |    3888 |                        0.438 |
+| ~graycode6_47~         |        6 |       5 |                        1.000 |
+| ~xor5_254~             |        6 |       7 |                        0.714 |
+| ~4mod5_v0_20~          |        5 |      20 |                        0.500 |
+| ~ham3_102~             |        3 |      20 |                        0.550 |
+| ~mod5d1_63~            |        5 |      22 |                        0.591 |
+| ~4gt11_82~             |        5 |      27 |                        0.667 |
+| ~rd32_v0_66~           |        4 |      34 |                        0.471 |
+| ~alu_v0_27~            |        5 |      36 |                        0.472 |
+| ~4mod5_bdd_287~        |        7 |      70 |                        0.443 |
+| ~one_two_three_v3_101~ |        5 |      70 |                        0.457 |
+| ~decod24_bdd_294~      |        6 |      73 |                        0.438 |
+| ~alu_bdd_288~          |        7 |      84 |                        0.452 |
+| ~one_two_three_v1_99~  |        5 |     132 |                        0.447 |
+| ~mod10_176~            |        5 |     178 |                        0.438 |
+| ~4gt12_v1_89~          |        6 |     228 |                        0.439 |
+| ~hwb4_49~              |        5 |     233 |                        0.459 |
+| ~4gt4_v0_72~           |        6 |     258 |                        0.438 |
+| ~decod24_enable_126~   |        6 |     338 |                        0.441 |
+| ~mod8_10_177~          |        6 |     440 |                        0.445 |
+| ~mod5adder_127~        |        6 |     555 |                        0.431 |
+| ~sf_276~               |        6 |     778 |                        0.432 |
+| ~sf_274~               |        6 |     781 |                        0.430 |
+| ~sym6_145~             |        7 |    3888 |                        0.438 |
 |----------------------+----------+---------+------------------------------|
 
 *** Extraction of the results                                      :ignore:
@@ -79,13 +79,13 @@ For instance, as it can be seen in the [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54
 
 **** Description of the figures. What are we plotting?            :ignore:
 
-In Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines we plot the fidelity of each benchmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
+In Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines we plot the fidelity of each bencmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
 The dark blue dots represent the benchmarks before being mapped and the light blue ones represent the different mapped version of it from the different routers.
 Each figure represents simulations with a different decoherence time, Fig. ref:fig:mapping_effect_3000_diff_lines presents the result with a decoherence time of $30 \mu s$ and Fig. ref:fig:mapping_effect_1000_diff_lines the ones with a decoherence time of $10 \mu s$.
 As mentioned in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the higher the decoherence time the more errors would appear and the faster a qubit will be not useful.
 
 In Fig. ref:fig:mapping_effect_diff_3000 and Fig. ref:fig:mapping_effect_diff_1000 we plot the maximum (red) and minimum (blue) percentage of difference in fidelity between the non-mapped version of the benchmarks and each one of the mapped versions.
-We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version ($\frac{f_{\text{before mapping}} - f_{\text{after mapping}}}{f_{\text{before mapping}}}$).
+We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version \left($\frac{f_{\text{before mapping}} - f_{\text{after mapping}}}{f_{\text{before mapping}}}$\right).
 As an example, in Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines, we plot two lines over some benchmark to depict the maximum (red) and the minimum(blue) difference per benchmark.
 
 Finally, in Tab. ref:tab:depth_per_bench we show the exact depth values of each one of the benchmarks in the order they appear, from left to right.
@@ -98,7 +98,11 @@ For instance, the first column of dots to the left is the ~graycode6_47~ circuit
 
 #+END_EXPORT
 
-- The fidelity difference tends to grow. The longer the circuit the bigger difference in fidelity [Make sense because the long circuits the more it will require more routing and, therefore, it will add more depth]
+I observe:
+
+- In general, the fidelity starts from lower points just as the size of the circuit increases. This behaviour is certainly because the longer the circuit, the more errors it will get.
+- The fidelity difference between non-mapped and the mapped algorithms tends to grow. The longer the circuit the bigger the difference in fidelity. It makes sense because the long circuits the more it will require more routing and, therefore, it will add more depth.
+- In the case of a decoherence time of $10 \mu s$ (Fig ref:fig:mapping_effect_1000), we observe strange results like negative fidelities. This is due to the chaotic behaviour of the quantum noise. The more it affects the system, the more chaotic results appear.
 
 # #+caption: Impact of mapping for $t_d = 30 \mu s$ [ *MORE* ]
 # #+NAME: fig:mapping_effect_3000_both
