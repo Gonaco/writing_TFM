@@ -1,14 +1,14 @@
 
 \chapter{Results}
-\label{sec:org4e3b3fa}
+\label{sec:orga0c3f71}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
 Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:orgc26257b]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org098c17c]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:org3cedf02]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgd39afdc]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
-\label{sec:orgc26257b}
+\label{sec:org3cedf02}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
@@ -82,7 +82,7 @@ Each figure represents simulations with a different decoherence time, Fig. \ref{
 As mentioned in the \href{quantum_computing.org}{Qubits are faulty} section, the higher the decoherence time the more errors would appear and the faster a qubit will be not useful.
 
 In Fig. \ref{fig:mapping_effect_diff_3000} and Fig. \ref{fig:mapping_effect_diff_1000} we plot the maximum (red) and minimum (blue) percentage of difference in fidelity between the non-mapped version of the benchmarks and each one of the mapped versions.
-We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version \left(\$\frac\{f\(_{\text{before mapping}}\) - f\(_{\text{after mapping}}\)\}\{f\(_{\text{before mapping}}\)\}\$\right).
+We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version \left(\$\frac\{f\(_{\text{before}}\) - f\(_{\text{after}}\)\}\{f\(_{\text{before}}\)\}\$\right).
 As an example, in Fig. \ref{fig:mapping_effect_3000_diff_lines} and Fig. \ref{fig:mapping_effect_1000_diff_lines}, we plot two lines over some benchmark to depict the maximum (red) and the minimum(blue) difference per benchmark.
 
 Finally, in Tab. \ref{tab:depth_per_bench} we show the exact depth values of each one of the benchmarks in the order they appear, from left to right.
@@ -169,7 +169,7 @@ Benchmark & Depth before mapping & Depth after mapping with \emph{minextendrc} &
 \end{table}
 
 \section{Analysis of the mapping metrics}
-\label{sec:org098c17c}
+\label{sec:orgd39afdc}
 Once we acknowledged the behaviour of the error growth due to the mapping process, it was the time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.

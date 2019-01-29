@@ -85,7 +85,7 @@ Each figure represents simulations with a different decoherence time, Fig. ref:f
 As mentioned in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the higher the decoherence time the more errors would appear and the faster a qubit will be not useful.
 
 In Fig. ref:fig:mapping_effect_diff_3000 and Fig. ref:fig:mapping_effect_diff_1000 we plot the maximum (red) and minimum (blue) percentage of difference in fidelity between the non-mapped version of the benchmarks and each one of the mapped versions.
-We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version \left($\frac{f_{\text{before mapping}} - f_{\text{after mapping}}}{f_{\text{before mapping}}}$\right).
+We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version \left($\frac{f_{\text{before}} - f_{\text{after}}}{f_{\text{before}}}$\right).
 As an example, in Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines, we plot two lines over some benchmark to depict the maximum (red) and the minimum(blue) difference per benchmark.
 
 Finally, in Tab. ref:tab:depth_per_bench we show the exact depth values of each one of the benchmarks in the order they appear, from left to right.
