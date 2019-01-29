@@ -10,23 +10,14 @@ From the common ones -- number of SWAPs and depth -- to the ones we proposed -- 
 
 #+END_EXPORT
 
-**** What we see in the results                                   :ignore:
-
-#+BEGIN_EXPORT latex
-
-#+END_EXPORT
-
 First we analyze the probability of success and fidelity correlation.
-As we explained in the \hyperref[sec:org0c7b2c2]{Fidelity and Probability of success}, the main difference between them is that the probability of success takes into account the errors related with the measurement of the qubits but, unlike fidelity, is not able to calculate errors in quantum states.
+As we explained in the \hyperref[sec:org0c7b2c2]{Fidelity and Probability of success} section, one of the main differences between these two metrics is that the probability of success takes into account the measurement process of the qubits, while fidelity does not.
+This makes the probability of success not only sensitive to the errors related with the measurement but also to the inherent non-deterministic behaviour of it.
+This means that, although our benchmarks are deterministic, a circuit could result erroneously in a state in superposition due to the quantum noise, forcing the measurement to collapse to either the correct or the wrong state.
+Let us say that we are expecting ~1~ as the result of a given qubit but, before measuring instead of $|1\rangle$ we got $0.3 |0\rangle + 0.7 |1\rangle$.
+In this case, without taking into account the measurement errors, the measurement will result in ~0~ with a 30% chance and ~1~ with a 70% chance.
+For this reason, the probability of success tends to be more chaotic in regimes with high amount of errors; as we will throughout this section.
 
-As expected, our experiments prove that both metrics are highly correlated.
-We also appreciated the fact that the probability of success, in general, is higher than the fidelity.
-This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
-It is a 'good' mistake that results in the expected solution.
-Nevertheless, this behaviour could be caused by the fact that our algorithms are deterministic.
-Another observation is that the closer the values are to 0 the more chaotic and random the values get.
-# And, also, that no matter the error rates of the system, the probability of success and the fidelity will be correlated in a similar fashion.
-# While comparing the results with different decoherence times, we noticed that more error prone is your system, the less correlated these two metrics are.
 
 **** What we show in the figure                                   :ignore:
 
@@ -34,21 +25,12 @@ Another observation is that the closer the values are to 0 the more chaotic and 
 
 #+END_EXPORT
 
-[TWO PARTS IN THE GRAPH  LINEARITY AND RANDOM]
-
-[EXPLAIN INHERENT BEHAVIOUR OF THE MEASUREMENT FOR THE CHAOTIC PART OF THE GRAPH]
+[TWO PARTS IN THE GRAPH LINEARITY AND RANDOM]
 
 In Fig. [[fig:f_ps_correlation_with_meas_error]] we plot the results of the framework in terms of probability of success and fidelity. 
 For this figure and the figures from now on in this section, each dot is a different benchmark configuration (see [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]]) and the colors represent different decoherence times, blue for 30 $\mu s$ and orange for 10 $\mu s$.
-As we explained in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the shorter the decoherence time the more errors will appear in our quantum system.
-Fig. [[fig:f_ps_correlation_with_meas_error]] highlights a correlation with a bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
-For instance, for values around 0.6 in fidelity, the probability of success has a value bigger than 0.7 for the majority of the samples.
-This behaviour could be due to the small error rate the measurement has.
-Note that for values close to 1, fidelity and probability of success tend to be almost equal and linear, which make sense; if some circuit has almost no error, both metrics will be equally good.
-At the same time, the closer the values are to 0, the more spread the samples are, proving the chaotic and random behaviour.
-It can be seen that the curvature of the fitting line changes depending on the decoherence time of the system.
-For higher error rates -- orange function --, the curve tends to decrease faster; what means that the higher the error rates the less fidelity and probability of success the circuits will get.
-The cluster that appears between the 0.9 and 1.0 values is due to the amount of simple benchmarks in the selection, as we previously mentioned.
+As we explained in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the decoherence time is related with the amount of errors that affect our circuit; the shorter the decoherence time, the more errors will appear in our quantum system.
+
 
 #+caption: Correlation between fidelity and probability of success for two different decoherence times
 #+NAME: fig:f_ps_correlation_with_meas_error
@@ -136,15 +118,43 @@ Polynomial function:
 
 #+END_SRC
 
+**** What we see in the results                                   :ignore:
+
+#+BEGIN_EXPORT latex
+
+#+END_EXPORT
+
+What I can see from the figure ref:fig:f_ps_correlation_with_meas_error:
+
+- Probability of success and fidelity are correlated
+- It can be seen that most of the samples are above the $x=y$ line. What means that, in general, probability of success is higher than the fidelity. This suggest me that the measurement is making 'good' mistakes. Nevertheless, this behaviour could be happening because of the low measurement error rates from SC-17 or due to the fact that our algorithms are deterministic. It is possible that, results in superposition would dilute this behaviour.
+- We can see how the closer the samples get to 0 fidelity or 0 probability of success, the more chaotic the values are. Actually we can delimit two parts in the graph: above and below 0.6 in fidelity -- around 0.7 in probability of success. Above 0.6 we observe an almost linear behaviour and below 0.6 we start seeing more chaotic results. This behaviour happens because, whenever a circuit accumulates a high amount of errors, fidelity and probability of success have low but almost random values. On the other hand, if some circuit has almost no error, both metrics will be equally good; explaining the values close to 1.
+- Finally, we see that most of the orange samples are below the 0.6 fidelity value; or what is the same, most of the benchmarks simulated with the low decoherence time have more chaotic results. This can be explained by the fact that the correctness of circuits that are run in lower error rate regimes will have much worse results in systems with higher error rates.
+
+# UNCOMMENT IF THE POINTS ABORVE ARE CORRECT
+# As expected, our experiments prove that both metrics are highly correlated.
+# We also appreciated the fact that most of the samples are above the $x=y$ line; meaning that the probability of success, in general, is higher than the fidelity.
+# This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
+# It is a 'good' mistake that results in the expected solution.
+# Nevertheless, this behaviour could be happening because of the low measurement error rates from SC-17 or due to the fact that our algorithms are deterministic.
+# It is possible that this 'correcting- errors behaviour' is diluted while running quantum algorithms that result in a quantum state in superposition.
+
+# Another observation we see is that, the closer the samples get to 0 fidelity or 0 probability of success, the more chaotic the values are. Actually we can delimit two parts in the graph: above and below 0.6 in fidelity -- around 0.7 in probability of success. Above 0.6 we observe an almost linear behaviour and below 0.6 we start seeing more chaotic results. This behaviour happens because, whenever a circuit accumulates a high amount of errors, fidelity or probability of success low but almost random values.
+# On the other hand, if some circuit has almost no error, both metrics will be equally good; explaining the values close to 1.
+# Finally, we see that most of the orange samples are below the 0.6 fidelity value; or what is the same, most of the benchmarks simulated with the low decoherence time have more chaotic results. 
+# This can be explained by the fact that the correctness of circuits that are run in lower error rate regimes will have much worse results in systems with higher error rates.
+
 *** Metrics behaviour                                              :ignore:
 
 #+BEGIN_EXPORT latex
 
 #+END_EXPORT
 
-Regarding the rest of the metrics, we analyzed their relation with the fidelity and probability of success.
-Instead of using the number of SWAPs we decided to use the number of two-qubit gates because we noticed in the results that the number of gates in the circuit before being mapped is important in this analysis.
-For instance, it is not the same to add 10 SWAPs to a circuit with 100 operations than one with 10000.
+Regarding the rest of the metrics, below we analyzed their relation with the fidelity and probability of success.
+Apart from the metrics we described throughout this thesis, we did the analysis with the total number of gates as well, because we noticed a high correlation between that and the fidelity or the probability of success, although more with the first one.
+As we have seen in the previous section, the length of the circuit before mapping determines the amount of errors a circuit is going to get, even after being mapped.
+Considering the importance of the amount of previous gates in the errors returned by the circuits we also decided to plot the number of two-qubit gates instead of the number of SWAPs.
+For instance, as an intuition, it is not the same to add 10 SWAPs to a circuit with 100 operations than to another with 10000.
 
 
 **** What we see in the figures                                   :ignore:
@@ -154,12 +164,20 @@ For instance, it is not the same to add 10 SWAPs to a circuit with 100 operation
 #+END_EXPORT
 
 The results of the main mapping metrics against fidelity are depicted in Fig. [[ref:fig:f_metrics_correlation][ref:fig:f_metrics_correlation]].
-We observe that, for all the cases, the fidelity decreases with an inverse exponential behaviour and that it decreases faster for small decoherence times.
-Certainly, the shorter the decoherence times we use the more benchmarks will have non-useful results.
-We can also see how fidelity never goes to zero, but it gets constant around 0.2, giving random results.
-We consider the point where fidelity is constant as the limit in terms of each one of the variables.
-We plot a line for the orange samples to mark this point.
-Finally, it can be seen how the number of gates is the metric most related with the fidelity; it is the one with the samples more ordered.
+
+What I observe:
+
+- We observe a high correlation between the fidelity and all the metrics, such is the case that is hard to declare which metric is more correlated just by looking at the figure. Although it can be seen how the number of gates is the one with the samples that fit the most.
+- We also see how the fidelity decreases just as all the metrics increase; faster in the case of a small decoherence. Again, this is because the bigger the circuit, the more errors would appear. Even more in systems with smaller decoherence time.
+- In all the cases we can observe a cluster of samples around the highest values of fidelity. Certainly, this happens because most of the benchmarks simulated benchmarks have a not too high amount of gates and other circuit statistics.
+- The plots also shows how fidelity never goes to 0, but gets stuck around 0.2. This could be a prove of the noisy behaviour of the fidelity in systems with high amounts of errors.
+
+# We observe that, for all the cases, the fidelity decreases with a behaviour that looks inverse exponential and that it decreases faster for small decoherence times.
+# Certainly, the shorter the decoherence times we use the more benchmarks will have non-useful results.
+# We can also see how fidelity never goes to zero, but it gets constant around 0.2, giving random results.
+# We consider the point where fidelity is constant as the limit in terms of each one of the variables.
+# We plot a line for the orange samples to mark this point.
+# Finally, it can be seen how the number of gates is the metric most related with the fidelity; it is the one with the samples more ordered.
 
 #+caption: Correlation between fidelity and the mapping metrics.
 #+NAME: fig:f_metrics_correlation
@@ -167,196 +185,33 @@ Finally, it can be seen how the number of gates is the metric most related with 
 [[file:figures/f_metrics_correlation_poly.eps]]
 
 The correlation between the probability of success and the other metrics can be see in Fig. [[ref:fig:ps_metrics_correlation][ref:fig:ps_metrics_correlation]].
-We also observe a decreasing behaviour, although the shape is not as clear as in the case of fidelity.
-This could be provoked, again, by the final error added by the measurement gate and by the fact that, most of the times, the measurement is correcting the wrong solutions.
-The figure also highlights how the fast probability of success decreases depending on the decoherence time.
+
+What I observe:
+
+- We also observe a certain correlation between the metrics and the probability of success.
+- We observe a decreasing behaviour, although the samples are much more spread in this case than in the case of the fidelity. We believe that this is provoked by the inherent effect in the nature of the measurement that makes in addition to its error probability.
+- As in the case of fidelity we can observe a cluster of samples in the small values of each metric due to the amount of small benchmarks we selected.
+- We can see again how for shorter decoherence times the probability of success is lower and descends much faster. 
+
+
+# We also observe a decreasing behaviour, although the shape is not as clear as in the case of fidelity.
+# This could be provoked, again, by the final error added by the measurement gate and by the fact that, most of the times, the measurement is correcting the wrong solutions.
+# The figure also highlights how the fast probability of success decreases depending on the decoherence time.
 
 #+caption: Correlation between probability of success and the mapping metrics.
 #+NAME: fig:ps_metrics_correlation
 #+ATTR_LATEX: :width \textwidth
 [[file:figures/ps_metrics_correlation.eps]]
 
-We can also see in both figures that, as announced before, there is a cluster of benchmarks with high fidelity and high probability of success.
-This happens because of the high concentration of small benchmarks, due to the simulation difficulties.
-On the contrary, the rest of the values are a bit spread.
-
-
-******  Notes                                                 :noexport:
-
-SIGO FILTRANDO FIDELITY > 0.5
-
-#+BEGIN_SRC C
-
-        Analysis For Decoherence Time = 3000 and Error Measurement = 0.005
-
-        -------------------------------
-
-        -- Correlation between Fidelity and:
-
-- # of Gates:
-
-Polynomial function:
-           2
-1.534e-07 x - 0.000523 x + 1.005
-----------------------------
-
-(-0.8630740403512944, 7.492413733912921e-19)
-
-- # of two-qubit gates:
-
-Polynomial function:
-           2
-3.049e-06 x - 0.002383 x + 1.004
-----------------------------
-
-(-0.863286950097695, 7.18389012251959e-19)
-
-- Depth:
-
-Polynomial function:
-           2
-3.203e-07 x - 0.0007814 x + 1.019
-----------------------------
-
-(-0.8305711564938272, 2.2460770328365885e-16)
-
-- Quantum Volume:
-
-Polynomial function:
-           2
-4.242e-09 x - 8.926e-05 x + 0.9828
-----------------------------
-
-(-0.7902264007122082, 6.045814411414274e-14)
-
-
-        -- Correlation between Probability of Success and:
-
-- # of Gates:
-
-Polynomial function:
-           2
-1.425e-07 x - 0.0003704 x + 1.008
-----------------------------
-
-(-0.6324404022306189, 5.9408960728175597e-08)
-
-- # of two-qubit gates:
-
-Polynomial function:
-           2
-2.769e-06 x - 0.001732 x + 1.01
-----------------------------
-
-(-0.6441233355408925, 2.8150298712169916e-08)
-
-- Depth:
-
-Polynomial function:
-           2
-2.584e-07 x - 0.0005238 x + 1.014
-----------------------------
-
-(-0.6174470539858588, 1.4818911589874065e-07)
-
-- Quantum Volume:
-
-Polynomial function:
-           2
-3.169e-09 x - 5.64e-05 x + 0.988
-----------------------------
-
-(-0.5724133147384978, 1.7659969011385104e-06)
-
-        Analysis For Decoherence Time = 1000 and Error Measurement = 0.005
-
-        -------------------------------
-
-        -- Correlation between Fidelity and:
-
-- # of Gates:
-
-Polynomial function:
-           2
-5.383e-07 x - 0.001103 x + 0.9934
-----------------------------
-
-(-0.897561920337874, 1.4957448590931355e-08)
-
-- # of two-qubit gates:
-
-Polynomial function:
-          2
-1.629e-05 x - 0.005348 x + 0.9712
-----------------------------
-
-(-0.7785748517752366, 1.975273755557373e-05)
-
-- Depth:
-
-Polynomial function:
-           2
-1.651e-06 x - 0.001773 x + 1.009
-----------------------------
-
-(-0.8194633195943474, 3.078535631273159e-06)
-
-- Quantum Volume:
-
-Polynomial function:
-           2
-2.687e-08 x - 0.000201 x + 0.9471
-----------------------------
-
-(-0.6784205747012305, 0.0005194496207515033)
-
-
-        -- Correlation between Probability of Success and:
-
-- # of Gates:
-
-Polynomial function:
-          2
-2.03e-08 x - 0.0006141 x + 0.9941
-----------------------------
-
-(-0.8447301986384201, 7.618304513439932e-07)
-
-- # of two-qubit gates:
-
-Polynomial function:
-           2
-3.226e-06 x - 0.002616 x + 0.9647
-----------------------------
-
-(-0.6901152561603443, 0.00037894800783273185)
-
-- Depth:
-
-Polynomial function:
-           2
-6.506e-07 x - 0.001068 x + 1.009
-----------------------------
-
-(-0.792713984206436, 1.0880694258391198e-05)
-
-- Quantum Volume:
-
-Polynomial function:
-           2
-1.125e-08 x - 0.0001186 x + 0.9648
-----------------------------
-
-(-0.6477821957243156, 0.0011155566982108602)
-
-
-#+END_SRC
+# We can also see in both figures that, as announced before, there is a cluster of benchmarks with high fidelity and high probability of success.
+# This happens because of the high concentration of small benchmarks, due to the simulation difficulties.
+# On the contrary, the rest of the values are a bit spread.
 
 **** How we analyze it                                            :ignore:
 
-In general, we observe a high correlation between all of the metrics; so in order to get correlation quality values to differ between the metrics, we calculated the Pearson correlation coefficient.
-Note that the Pearson coefficient measures linear correlations and, as it will be seen in Fig. [[ref:fig:f_metrics_correlation][ref:fig:f_metrics_correlation]], the metrics behave in an inverse exponential fashion against fidelity.
-For this reason, we applied a $log$ transformation to our fidelity data in order to make it linear for the Pearson calculation.
+In general, we observe a high correlation between all of the metrics; so in order to differ between the metrics, we calculated the Pearson correlation coefficient to measure the correlation quality between them.
+Note that the Pearson coefficient measures linear correlations and, as it looks like in Fig. [[ref:fig:f_metrics_correlation][ref:fig:f_metrics_correlation]], the metrics behave in an inverse exponential fashion against fidelity.
+For this reason, in order to see the real correlation between the metrics and the fidelity, we applied a $log(·)$ transformation to our fidelity data in order to make it linear for the Pearson calculation.
 
 **** What we see in the results                                   :ignore:
 
@@ -369,12 +224,14 @@ These results hold the fact that the quality of the mapping depends directly on 
 For example, a long circuit well mapped will have always worse results in fidelity or probability of success than a short circuit badly mapped.
 As Tab. ref:tab:pearson_corr_f and Tab. ref:tab:pearson_corr_ps highlight, we have a worse correlation for the shorter decoherence time.
 This lack of correlation can be attributed to the fact that the majority of the samples with $t_d = 1000$ are highly affected by the errors and, therefore, the samples have more random values.
-Moreover, contrary to expectations, the Quantum Volume was the least correlated metric.
-This small lack of correlation can be attributed to the imprecise formula that we chose to calculate it.
-Future work needs to be done to inspect a better formula.
-Finally, if we compare both tables, we can see that the fidelity is more correlated with the metrics that the probability of success.
-It is very likely that the reason for this result is that the added measurement error distribution in the end of the circuit adds more noise and spreads our samples.
-Also the 'correcting' errors behaviour of the measurement should be taken into account.
+
+Moreover, contrary to our expectations, the Quantum Volume was the least correlated metric.
+This small lack of correlation can be attributed to the imprecise formula that we chose to compute it.
+Future work needs to be done to devise a better formula.
+
+Finally, if we compare both tables, we can see that the fidelity is more correlated with the metrics than the probability of success.
+It is very likely that the reason for this result is that the measurement error together with the measurement indeterministic behaviour  adds more noise and spreads our samples.
+Also the 'correcting-errors behaviour' of the measurement should be taken into account.
 
 #+caption: Pearson correlation coefficient of the log transformation of fidelity against the metrics($\rho _{log(f),Y}$), where $Y$ is one of the four metrics we analyze
 #+NAME: tab:pearson_corr_f

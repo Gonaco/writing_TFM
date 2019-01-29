@@ -1,4 +1,9 @@
+# DISCUSSION. ARE MY RESULTS VALID?
+
+# In addition, what I miss is a discussion how well these measures can be used inside the (or a) router; i.e. is it feasible to make a decision on e.g. which SWAPs to insert (i.e. which path to take in the grid), based on a model that computes for each alternative and then minimizes the expected fidelity decrease, prob.of.success decrease, or algorithmic quantum volume decrease, respectively? What I mean: how hard is it to write the computation for each of these and how hard would it be to compute each?
+# And is it realistic not to include the final measurement in the judgement?
+
 *** Intro                                                          :ignore:
 *** Probability of success and fidelity correlation.  :ignore:
 
-# Probability of success is more accurate because it takes into account the measurement gate error and, at the same time, it asserts higher values than the probability of sucess.
+# Probability of success is more accurate because it takes into account the measurement gate error and, at the same time, it asserts higher values than the probability of success.
