@@ -1,18 +1,18 @@
 
 \chapter{Results}
-\label{sec:org417999c}
+\label{sec:org8a9853f}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics:
 their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:orgffe7727]{Impact of mapping on the algorithm reliabiliy} section we show how the mapping procedure affects the general increment of error.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgcef9c1f]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:org13721de]{Impact of the mapping on the algorithm reliability} section we show how the mapping procedure affects the general increment of error.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgc87040a]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
-\label{sec:orgffe7727}
+\label{sec:org13721de}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
-The higher the number of qubits or the length of the circuit, the harder it is to simulate it.
+The higher the number of qubits or the length of the circuit, the harder is it to simulate it.
 Indeed, it is a critical issue in our case, as soon as we need to run multiple simulations in a complex error model.
 Therefore, as can be seen in Tab. \ref{tab:map_selected_benchs}, we address that the final benchmark selection has a limitation in the number of qubits.
 
@@ -56,7 +56,7 @@ Benchmark & \# qubits & \# gates & two-qubit gates (fraction)\\
 As explained in the \href{chapter-4.org}{Analysis framework} section, after running the benchmarks for one thousand runs, the results obtained are the fidelity, the probability of success and the Quantum Volume.
 We also extracted other metrics like the number of SWAPs added and the depth of the circuits, among other circuit statistics.
 These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). 
-Note that, for a fair comparison both the mapped and the non-mapped were  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
+Note that, for a fair comparison both the mapped and the non-mapped circuits were decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
 
 In quantumsim, we also tried different configurations regarding the decoherence time in order to study the mappers in different error regimes. 
 All the results are shown in \href{appendix-1.org}{Appendix A}.
@@ -174,7 +174,7 @@ Benchmark & Depth before mapping & Depth after mapping with \emph{minextendrc} &
 \end{table}
 
 \section{Analysis of the mapping metrics}
-\label{sec:orgcef9c1f}
+\label{sec:orgc87040a}
 Once we acknowledged the behaviour of the error growth due to the mapping process, it is time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
@@ -184,12 +184,12 @@ From the common ones -- number of SWAPs and depth -- to the ones we proposed -- 
 First we analyze the probability of success and fidelity correlation.
 As we explained in the \hyperref[sec:org0c7b2c2]{Fidelity and Probability of success}, the main difference between them is that the probability of success takes into account the errors related with the measurement of the qubits but, unlike fidelity, is not able to calculate errors in quantum states.
 
-As expected, our experiments prove that both metrics are highly correlated in a logarithmic fashion.
+As expected, our experiments prove that both metrics are highly correlated.
 We also appreciated the fact that the probability of success, in general, is higher than the fidelity.
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
 It is a 'good' mistake that results in the expected solution.
 Nevertheless, this behaviour could be caused by the fact that our algorithms are deterministic.
-Another knowledge we inherited from the results is that the closer the values are to 0 the more chaotic and random the values will get.
+Another observation from the results is that the closer the values are to 0 the more chaotic and random the values will get.
 
 
 

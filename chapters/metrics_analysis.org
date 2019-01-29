@@ -19,12 +19,12 @@ From the common ones -- number of SWAPs and depth -- to the ones we proposed -- 
 First we analyze the probability of success and fidelity correlation.
 As we explained in the \hyperref[sec:org0c7b2c2]{Fidelity and Probability of success}, the main difference between them is that the probability of success takes into account the errors related with the measurement of the qubits but, unlike fidelity, is not able to calculate errors in quantum states.
 
-As expected, our experiments prove that both metrics are highly correlated in a logarithmic fashion.
+As expected, our experiments prove that both metrics are highly correlated.
 We also appreciated the fact that the probability of success, in general, is higher than the fidelity.
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
 It is a 'good' mistake that results in the expected solution.
 Nevertheless, this behaviour could be caused by the fact that our algorithms are deterministic.
-Another knowledge we inherited from the results is that the closer the values are to 0 the more chaotic and random the values will get.
+Another observation from the results is that the closer the values are to 0 the more chaotic and random the values will get.
 # And, also, that no matter the error rates of the system, the probability of success and the fidelity will be correlated in a similar fashion.
 # While comparing the results with different decoherence times, we noticed that more error prone is your system, the less correlated these two metrics are.
 
