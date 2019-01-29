@@ -3,15 +3,15 @@
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
-The higher the number of qubits or the longitude of the circuit, the harder is to simulate them.
+The higher the number of qubits or the length of the circuit, the harder it is to simulate it.
 Indeed, it is a critical issue in our case, as soon as we need to run multiple simulations in a complex error model.
-Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we address that the final benchmark selection has a limitation in the number of qubits.
+Therefore, as can be seen in Tab. \ref{tab:map_selected_benchs}, we address that the final benchmark selection has a limitation in the number of qubits.
 
 #+caption: Table of the selected benchmarks to be mapped.
 #+NAME: tab:map_selected_benchs
 #+ATTR_LATEX: :booktabs :environment :float t :font \small :align lrrr                                     
 |----------------------+----------+---------+------------------------------|
-| Benchmark            | # qubits | # gates | two-qubit gates (percentage) |
+| Benchmark            | # qubits | # gates | two-qubit gates (fraction) |
 |----------------------+----------+---------+------------------------------|
 | ~graycode6_47~         |        6 |       5 |                        1.000 |
 | ~xor5_254~             |        6 |       7 |                        0.714 |
@@ -44,9 +44,10 @@ Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we address t
 
 #+END_EXPORT
 
-As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks one thousand runs, the results obtained are the fidelity, the probability of success and the Quantum Volume.
-We also extract other metrics like the number of SWAPs added and the depth of the circuits, between other circuit statistics.
-These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). Note that, for a fair comparison both the mapped and the non-mapped are  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
+As explained in the [[id:0f271e2b-2b00-49a2-8a9b-c942b2f367c3][Analysis framework]] section, after running the benchmarks for one thousand runs, the results obtained are the fidelity, the probability of success and the Quantum Volume.
+We also extracted other metrics like the number of SWAPs added and the depth of the circuits, among other circuit statistics.
+These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). 
+Note that, for a fair comparison both the mapped and the non-mapped were  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
 
 In quantumsim, we also tried different configurations regarding the decoherence time in order to study the mappers in different error regimes. 
 All the results are shown in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
@@ -59,7 +60,7 @@ All the results are shown in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix
 
 In order to illustrate how the mapping process affects the algorithm reliability, Figure \ref{fig:f_diff_bar_plot} shows the fidelity for some of the benchmarks before being mapped and after being mapped using the \texttt{minextendrc} router.
 We can see how the fidelity is smaller for long circuits -- like ~sf_274~ or ~mod5adder_127~ -- than for the short ones -- ~graycode6_47~ or ~xor5_254~.
-It can be seen how, for the long circuits, the fidelity decreases more than a 50%.
+It can be seen how, for the long circuits, the fidelity decreases more than 50%.
 For instance, ~sf_274~'s fidelity goes from 0.35 to 0.17 or ~mod5adder_127~'s goes from 0.45 to 0.19.
 On the other hand, for the small circuits like ~graycode6_47~ or ~xor5_254~ the fidelity decreases around 1%; from 0.99 to 0.98 and from 0.99 to 0.97, respectively.
 For more details, we show the exact result values for all the benchmarks in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]].
@@ -72,17 +73,17 @@ For more details, we show the exact result values for all the benchmarks in [[id
 *** How the mapping affect the error rates                         :ignore:
 
 As we mentioned before, we use three different routers, each one giving a different mapped version per benchmark and, therefore, different metric statistics.
-For instance, as it can be seen in the [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]] and in the Tab. ref:tab:depth_per_bench, the depth of the ~graycode6_47~ circuit before being mapped is 32 cycles and after being mapped grows to 111, 61 or 82 depending on the router.
+For instance, as it can be seen in [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]] and in Tab. ref:tab:depth_per_bench, the depth of the ~graycode6_47~ circuit before being mapped is 32 cycles and after being mapped grows to 111, 61 or 82 depending on the router.
 
 
 *** Figures                                                        :ignore:
 
 **** Description of the figures. What are we plotting?            :ignore:
 
-In Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines we plot the fidelity of each bencmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
+In Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines we plot the fidelity of each benchmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
 The dark blue dots represent the benchmarks before being mapped and the light blue ones represent the different mapped version of it from the different routers.
 Each figure represents simulations with a different decoherence time, Fig. ref:fig:mapping_effect_3000_diff_lines presents the result with a decoherence time of $30 \mu s$ and Fig. ref:fig:mapping_effect_1000_diff_lines the ones with a decoherence time of $10 \mu s$.
-As mentioned in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the higher the decoherence time the more errors would appear and the faster a qubit will be not useful.
+As mentioned in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the shorter the decoherence time the more errors would appear and the faster a qubit will be not useful.
 
 In Fig. ref:fig:mapping_effect_diff_3000 and Fig. ref:fig:mapping_effect_diff_1000 we plot the maximum (red) and minimum (blue) percentage of difference in fidelity between the non-mapped version of the benchmarks and each one of the mapped versions.
 We calculate the percentage of the fidelity difference as the ratio between the difference in fidelities and the fidelity of the non-mapped version $\left(\frac{f_{\text{before}} - f_{\text{after}}}{f_{\text{before}}}\right)$.
@@ -98,11 +99,23 @@ For instance, the first column of dots to the left is the ~graycode6_47~ circuit
 
 #+END_EXPORT
 
-I observe:
+# I observe:
 
-- In general, the fidelity starts from lower points just as the size of the circuit increases. This behaviour is certainly because the longer the circuit, the more errors it will get.
-- The fidelity difference between non-mapped and the mapped algorithms tends to grow. The longer the circuit the bigger the difference in fidelity. It makes sense because the long circuits the more it will require more routing and, therefore, it will add more depth.
-- In the case of a decoherence time of $10 \mu s$ (Fig ref:fig:mapping_effect_1000), we observe strange results like negative fidelities. This is due to the chaotic behaviour of the quantum noise. The more it affects the system, the more chaotic results appear.
+# - In general, the fidelity starts from lower points just as the size of the circuit increases. This behaviour is certainly because the longer the circuit, the more errors it will get.
+# - The fidelity difference between non-mapped and the mapped algorithms tends to grow. The longer the circuit the bigger the difference in fidelity. It makes sense because the long circuits the more it will require more routing and, therefore, it will add more depth.
+# - In the case of a decoherence time of $10 \mu s$ (Fig ref:fig:mapping_effect_1000), we observe strange results like negative fidelities. This is due to the chaotic behaviour of the quantum noise. The more it affects the system, the more chaotic results appear.
+
+
+From these results, we observe that, in general, the fidelity starts from lower points just as the size of the circuit increases.
+This behaviour is certainly because the longer the circuit, the more errors it will get.
+We can also observe how the fidelity difference between non-mapped and the mapped algorithms tends to grow.
+Due to most of the selected benchmarks have a similar two-qubit gates percentage and also a similar number of qubits -- main parameters for the mapping task --, we can say that this increasing tendency is mostly provoked by the length of the circuit at the very beginning.
+Or what is the same, that if a circuit is already long before mapping, the results of the mapped version will be bad, no matter which mapper is used.
+For instance, let us assume two different circuits with a similar number of qubits and the same percentage of two-qubit gates, but different circuit depths, one much longer than the other.
+While mapping them, the router will have the same proportion of two-qubit interactions and, therefore, the mapper will act similarly in both cases.
+But, based on our results, the difference in fidelity between the mapped and non-mapped versions of the short algorithm will be much smaller than the difference in fidelity between the mapped and non-mapped versions of the long circuit.
+Moreover, another remark we see is that, in the case of a decoherence time of $10 \mu s$ (Fig ref:fig:mapping_effect_1000), we observe strange results like negative fidelities. 
+This is due to the chaotic behaviour of the quantum noise; the more it affects the system, the more chaotic results appear.
 
 # #+caption: Impact of mapping for $t_d = 30 \mu s$ [ *MORE* ]
 # #+NAME: fig:mapping_effect_3000_both
@@ -120,14 +133,14 @@ I observe:
 \centering
 \subfigure[Fidelity per benchmark]{
 
-\includegraphics[width=0.5\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_3000_diff_lines.eps}
 
 \label{fig:mapping_effect_3000_diff_lines}
 }
 
 \subfigure[Difference of fidelity per benchmark]{
 
-\includegraphics[width=0.5\textwidth]{figures/mapping_effect_diff_3000.eps}
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_3000.eps}
 
 \label{fig:mapping_effect_diff_3000}
 }
@@ -144,14 +157,14 @@ I observe:
 \centering
 \subfigure[Fidelity per benchmark]{
 
-\includegraphics[width=0.5\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_1000_diff_lines.eps}
 
 \label{fig:mapping_effect_1000_diff_lines}
 }
 
 \subfigure[Difference of fidelity per benchmark]{
 
-\includegraphics[width=0.5\textwidth]{figures/mapping_effect_diff_1000.eps}
+\includegraphics[width=0.7\textwidth]{figures/mapping_effect_diff_1000.eps}
 
 \label{fig:mapping_effect_diff_1000}
 }

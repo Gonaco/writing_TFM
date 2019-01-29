@@ -16,9 +16,9 @@ From the common ones -- number of SWAPs and depth -- to the ones we proposed -- 
 
 #+END_EXPORT
 
-[RECAP OF FIDELITY VS PROB. SUCCESS]
-
 First we analyze the probability of success and fidelity correlation.
+As we explained in the \hyperref[sec:org0c7b2c2]{Fidelity and Probability of success}, the main difference between them is that the probability of success takes into account the errors related with the measurement of the qubits but, unlike fidelity, is not able to calculate errors in quantum states.
+
 As expected, our experiments prove that both metrics are highly correlated in a logarithmic fashion.
 We also appreciated the fact that the probability of success, in general, is higher than the fidelity.
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
@@ -365,7 +365,7 @@ For this reason, we applied a $log$ transformation to our fidelity data in order
 #+END_EXPORT
 
 As it can be seen in the Pearson values (Tab. ref:tab:pearson_corr_f and Tab. ref:tab:pearson_corr_ps) the most correlated metric is the number of two-qubit gates.
-These results hold the fact that the quality of the mapping depends directly on the longitude of the targeted circuit before it is being mapped.
+These results hold the fact that the quality of the mapping depends directly on the length of the targeted circuit before it is being mapped.
 For example, a long circuit well mapped will have always worse results in fidelity or probability of success than a short circuit badly mapped.
 As Tab. ref:tab:pearson_corr_f and Tab. ref:tab:pearson_corr_ps highlight, we have a worse correlation for the shorter decoherence time.
 This lack of correlation can be attributed to the fact that the majority of the samples with $t_d = 1000$ are highly affected by the errors and, therefore, the samples have more random values.
