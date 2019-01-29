@@ -2,9 +2,9 @@
 \chapter{Results}
 \label{sec:org086f61e}
 
-In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics.
-Their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:org0472d53]{Impact of mapping in the overall circuit error} section we show how the mapping procedure affects the general increment of error.
+In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics:
+their precision when assessing the mapping quality and their relation with the error amount after mapping.
+First, in the \hyperref[sec:org0472d53]{Impact of the mapping on the algorithm reliability} section we show how the mapping procedure affects the general increment of error.
 After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org61109ff]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
@@ -12,9 +12,9 @@ After that, we analyze the metrics and their correlation with the error increase
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Not surprisingly, some of the benchmarks either had very long simulation times or were even impossible to simulate in our lab servers. In most of those cases the circuits had more than ten qubits.
 As we mentioned before throughout this thesis, the simulation of quantum systems is computationally exhausting.
-The higher the number of qubits or the longitude of the circuit, the harder is to simulate them.
+The higher the number of qubits or the length of the circuit, the harder is it to simulate it.
 Indeed, it is a critical issue in our case, as soon as we need to run multiple simulations in a complex error model.
-Therefore, as it can be seen in Tab. \ref{tab:map_selected_benchs}, we address that the final benchmark selection has a limitation in the number of qubits.
+Therefore, as can be seen in Tab. \ref{tab:map_selected_benchs}, we address that the final benchmark selection has a limitation in the number of qubits.
 
 \begin{table}[htbp]
 \caption{\label{tab:map_selected_benchs}
@@ -23,7 +23,7 @@ Table of the selected benchmarks to be mapped.}
 \small
 \begin{tabular}{lrrr}
 \hline
-Benchmark & \# qubits & \# gates & two-qubit gates (percentage)\\
+Benchmark & \# qubits & \# gates & two-qubit gates (fraction)\\
 \hline
 \texttt{graycode6\_47} & 6 & 5 & 1.000\\
 \texttt{xor5\_254} & 6 & 7 & 0.714\\
@@ -53,9 +53,9 @@ Benchmark & \# qubits & \# gates & two-qubit gates (percentage)\\
 \end{table}
 
 
-As explained in the \href{chapter-4.org}{Analysis framework} section, after running the benchmarks one thousand runs, the results obtained are the fidelity, the probability of success and the Quantum Volume.
-We also extract other metrics like the number of SWAPs added and the depth of the circuits, between other circuit statistics.
-These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). Note that, for a fair comparison both the mapped and the non-mapped are  decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
+As explained in the \href{chapter-4.org}{Analysis framework} section, after running the benchmarks for one thousand runs, the results obtained are the fidelity, the probability of success and the Quantum Volume.
+We also extracted other metrics like the number of SWAPs added and the depth of the circuits, among other circuit statistics.
+These metrics were obtained for all mentioned benchmarks before (non-mapped) and after mapping (mapped). Note that, for a fair comparison both the mapped and the non-mapped circuits were decomposed into the gates supported by  the Surface-17 chip (see Fig. \ref{fig:decompositions}). For the mapped ones, we used the three router algorithms developed in our group (see \hyperref[sec:org19dc500]{Mapping Model}): \textit{base}, \textit{minextend} and \textit{minextendrc}.
 
 In quantumsim, we also tried different configurations regarding the decoherence time in order to study the mappers in different error regimes. 
 All the results are shown in \href{appendix-1.org}{Appendix A}.
@@ -63,7 +63,7 @@ All the results are shown in \href{appendix-1.org}{Appendix A}.
 
 In order to illustrate how the mapping process affects the algorithm reliability, Figure \ref{fig:f_diff_bar_plot} shows the fidelity for some of the benchmarks before being mapped and after being mapped using the \texttt{minextendrc} router.
 We can see how the fidelity is smaller for long circuits -- like \texttt{sf\_274} or \texttt{mod5adder\_127} -- than for the short ones -- \texttt{graycode6\_47} or \texttt{xor5\_254}.
-It can be seen how, for the long circuits, the fidelity decreases more than a 50\%.
+It can be seen how, for the long circuits, the fidelity decreases more than 50\%.
 For instance, \texttt{sf\_274}'s fidelity goes from 0.35 to 0.17 or \texttt{mod5adder\_127}'s goes from 0.45 to 0.19.
 On the other hand, for the small circuits like \texttt{graycode6\_47} or \texttt{xor5\_254} the fidelity decreases around 1\%; from 0.99 to 0.98 and from 0.99 to 0.97, respectively.
 For more details, we show the exact result values for all the benchmarks in \href{appendix-1.org}{Appendix A}.
@@ -75,8 +75,8 @@ For more details, we show the exact result values for all the benchmarks in \hre
 Difference of fidelities before and after mapping with the \emph{minextendrc} router for five different benchmarks.}
 \end{figure}
 As we mentioned before, we use three different routers, each one giving a different mapped version per benchmark and, therefore, different metric statistics.
-For instance, as it can be seen in the \href{appendix-1.org}{Appendix A} and in the Tab. \ref{tab:depth_per_bench}, the depth of the \texttt{graycode6\_47} circuit before being mapped is 32 cycles and after being mapped grows to 111, 61 or 82 depending on the router.
-In Fig. \ref{fig:mapping_effect_3000_diff_lines} and Fig. \ref{fig:mapping_effect_1000_diff_lines} we plot the fidelity of each bencmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
+For instance, as it can be seen in \href{appendix-1.org}{Appendix A} and in Tab. \ref{tab:depth_per_bench}, the depth of the \texttt{graycode6\_47} circuit before being mapped is 32 cycles and after being mapped grows to 111, 61 or 82 depending on the router.
+In Fig. \ref{fig:mapping_effect_3000_diff_lines} and Fig. \ref{fig:mapping_effect_1000_diff_lines} we plot the fidelity of each benchmark, where the dots are the different benchmark configurations aligned vertically and ordered from the shortest to the longest circuit depth; from left to right.
 The dark blue dots represent the benchmarks before being mapped and the light blue ones represent the different mapped version of it from the different routers.
 Each figure represents simulations with a different decoherence time, Fig. \ref{fig:mapping_effect_3000_diff_lines} presents the result with a decoherence time of \(30 \mu s\) and Fig. \ref{fig:mapping_effect_1000_diff_lines} the ones with a decoherence time of \(10 \mu s\).
 As mentioned in the \href{quantum_computing.org}{Qubits are faulty} section, the higher the decoherence time the more errors would appear and the faster a qubit will be not useful.
