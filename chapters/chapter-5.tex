@@ -170,7 +170,7 @@ Benchmark & Depth before mapping & Depth after mapping with \emph{minextendrc} &
 
 \section{Analysis of the mapping metrics}
 \label{sec:org61109ff}
-Once we acknowledged the behaviour of the error growth due to the mapping process, it is time to understand which circuit parameter affects it the most.
+Once we acknowledge the behaviour of the error growth due to the mapping process, it is time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
 
@@ -179,12 +179,12 @@ From the common ones -- number of SWAPs and depth -- to the ones we proposed -- 
 [RECAP OF FIDELITY VS PROB. SUCCESS]
 
 First we analyze the probability of success and fidelity correlation.
-As expected, our experiments prove that both metrics are highly correlated in a logarithmic fashion.
+As expected, our experiments prove that both metrics are highly correlated in a logarithmic\textcolor{red}{that the correlation is logarithmic, requires more evidence and thus more convincing words here} fashion.
 We also appreciated the fact that the probability of success, in general, is higher than the fidelity.
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
 It is a 'good' mistake that results in the expected solution.
 Nevertheless, this behaviour could be caused by the fact that our algorithms are deterministic.
-Another knowledge we inherited from the results is that the closer the values are to 0 the more chaotic and random the values will get.
+Another observation is that the closer the values are to 0 the more chaotic and random the values get.
 
 
 
