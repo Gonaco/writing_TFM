@@ -25,13 +25,6 @@ After that, we analyze the metrics and their correlation with the error increase
 
 #+INCLUDE: metrics_analysis.org
 
-*** Regression analysis                                          :noexport:
-:PROPERTIES:
-:ID:       5520e10c-045c-445a-a863-7eb221ad05c4
-:END:
-
-#+INCLUDE: regression.org
-
 ** Advice                                                         :noexport:
 :PROPERTIES:
 :ID:       21bf261d-1457-4453-8a65-acf55aa6d363
