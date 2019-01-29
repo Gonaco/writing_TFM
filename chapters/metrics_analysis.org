@@ -1,6 +1,6 @@
 *** Intro                                                          :ignore:
 
-Once we acknowledged the behaviour of the error growth due to the mapping process, it is time to understand which circuit parameter affects it the most.
+Once we acknowledge the behaviour of the error growth due to the mapping process, it is time to understand which circuit parameter affects it the most.
 In this section we evaluate the behaviour and quality of the mapping metrics.
 From the common ones -- number of SWAPs and depth -- to the ones we proposed -- fidelity, probability of success and Quantum Volume.
 
@@ -24,7 +24,7 @@ We also appreciated the fact that the probability of success, in general, is hig
 This could suggest that the measurement is 'correcting' circuit errors colliding the state in the correct result, instead of the wrong one.
 It is a 'good' mistake that results in the expected solution.
 Nevertheless, this behaviour could be caused by the fact that our algorithms are deterministic.
-Another observation from the results is that the closer the values are to 0 the more chaotic and random the values will get.
+Another observation is that the closer the values are to 0 the more chaotic and random the values get.
 # And, also, that no matter the error rates of the system, the probability of success and the fidelity will be correlated in a similar fashion.
 # While comparing the results with different decoherence times, we noticed that more error prone is your system, the less correlated these two metrics are.
 
@@ -40,14 +40,14 @@ Another observation from the results is that the closer the values are to 0 the 
 
 In Fig. [[fig:f_ps_correlation_with_meas_error]] we plot the results of the framework in terms of probability of success and fidelity. 
 For this figure and the figures from now on in this section, each dot is a different benchmark configuration (see [[id:15254cfb-b82c-47a3-b8e8-8eb08de47f54][Appendix A]]) and the colors represent different decoherence times, blue for 30 $\mu s$ and orange for 10 $\mu s$.
-As we explained in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the shorter the decoherence time the more errors would appear in our quantum system.
+As we explained in the [[id:016d3e26-fc74-45a4-a459-1934d84c24bf][Qubits are faulty]] section, the shorter the decoherence time the more errors will appear in our quantum system.
 Fig. [[fig:f_ps_correlation_with_meas_error]] highlights a correlation with a bias between both metrics, proving the fact that the probability of success is always higher than the fidelity.
 For instance, for values around 0.6 in fidelity, the probability of success has a value bigger than 0.7 for the majority of the samples.
 This behaviour could be due to the small error rate the measurement has.
 Note that for values close to 1, fidelity and probability of success tend to be almost equal and linear, which make sense; if some circuit has almost no error, both metrics will be equally good.
 At the same time, the closer the values are to 0, the more spread the samples are, proving the chaotic and random behaviour.
 It can be seen that the curvature of the fitting line changes depending on the decoherence time of the system.
-For higher error rates -- orange function --, the curve tends to decrease faster; what means that the higher the error rates the less fidelity and probability of success will get the circuits.
+For higher error rates -- orange function --, the curve tends to decrease faster; what means that the higher the error rates the less fidelity and probability of success the circuits will get.
 The cluster that appears between the 0.9 and 1.0 values is due to the amount of simple benchmarks in the selection, as we previously mentioned.
 
 #+caption: Correlation between fidelity and probability of success for two different decoherence times
@@ -143,7 +143,7 @@ Polynomial function:
 #+END_EXPORT
 
 Regarding the rest of the metrics, we analyzed their relation with the fidelity and probability of success.
-Instead of using the number of SWAPs we decided to use the number of two-qubit gates because we noticed in the results that the number of gates in the circuit before being mapped are important in this analysis.
+Instead of using the number of SWAPs we decided to use the number of two-qubit gates because we noticed in the results that the number of gates in the circuit before being mapped is important in this analysis.
 For instance, it is not the same to add 10 SWAPs to a circuit with 100 operations than one with 10000.
 
 
