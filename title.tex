@@ -2,18 +2,23 @@
 
 \begin{center}
 
-\begin{tikzpicture}[remember picture, overlay]
-    \node at (current page.south west)[anchor=south west, inner ysep=40pt,inner xsep=110pt]
+  \begin{tikzpicture}[remember picture, overlay]
+    \node at (current page.south west)[anchor=south west, inner ysep=40pt,inner xsep=120pt]
+    %[anchor=south west,inner xsep=110pt, inner ysep=15pt, xshift=15.5pt]
+    {
+        \includegraphics[height = 1.5cm]{cover/upc}
+    };
+    \node at (current page.south west)[anchor=south west, inner ysep=40pt,inner xsep=60pt]
     %[anchor=south west,inner xsep=110pt, inner ysep=15pt, xshift=15.5pt]
     {
         \includegraphics[height = 1.5cm]{cover/tudelft}
-    };
-    \node at (current page.south)[anchor=south, inner ysep=40pt]
+    }; 
+    \node at (current page.south)[anchor=south east, inner ysep=40pt,inner xsep=60pt]
     %[anchor=south, inner ysep=30pt, xshift=15.5pt]
     {
         \includegraphics[height = 1.5cm]{cover/qutech}
     };
-    \node at (current page.south east)[anchor=south east, inner ysep=40pt,inner xsep=110pt]
+    \node at (current page.south east)[anchor=south east, inner ysep=40pt,inner xsep=120pt]
     %[anchor=south east,inner xsep=118pt, inner ysep=30pt, xshift=15.5pt]
     {
         \includegraphics[height = 1.5cm]{cover/qce}
