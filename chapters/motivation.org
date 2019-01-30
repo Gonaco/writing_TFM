@@ -2,10 +2,12 @@
 *** Why quantum?                                                   :ignore:
 
 The discoveries in quantum physics during the last century opened multiple questions and demonstrate strange behaviours that are far from the classical physics we are used to.
-The answer of these questions as well as another investigations from another fields require a huge computational power.
-In order to understand our world we need to simulate instances of it, and for that we need computer systems with a calculation power further than anything in the world.
-During the last century Feynman had the idea of getting advantage of the unexplained but controllable quantum phenomenon [ *REFER* ].
-He noticed that the main strange behavior .
+The answers of these questions as well as another field's investigations rely on the simulation of Nature.
+In order to understand our world we need to simulate instances of it, but the simulation of Nature itself requires a huge computational power that is intractable for classical computers.
+At the same time, we are witnesses of the Moore's law halt; we are reaching the limit in transistor sizes.
+While trying to make them smaller, quantum phenomena appear making impossible a transistor behaviour.
+During the last century Feynman had the idea of getting advantage of the unexplained but controllable quantum phenomena.
+He noticed that this quantum phenomena that would stop the development of smaller transistors and, therefore, powerful chips, actually could be used to get much more computational power.
 
 *** How quantum?                                                   :ignore:
 
@@ -13,8 +15,20 @@ He noticed that the main strange behavior .
 
 #+END_EXPORT
 
+To be able to control this quantum phenomena, quantum chips were developed.
+And in order to be able to exploit its potential, quantum algorithms were developed.
+But, to run the quantum algorithms in quantum chips the quantum algorithms should be adapted.
+Our QCA lab at TU Delft University of Technology develop a general architecture for quantum computers cite:Fu_2016 that follow a process which steps can be see in Fig. ref:fig:system_stack.
+This process goes from the algorithms description -- upper layer in the figure -- to the set of instructions that are sent as hardware dependent signals  -- lower layer -- to the hardware interface that controls the quantum chip.
 
-#+caption: Full stack implementation
+
+#+caption: Full stack implementation cite:Fu:2017:EMS:3123939.3123952
 #+NAME: fig:system_stack
 #+ATTR_LATEX: :width 0.5\textwidth
 [[file:figures/system_stack.png]]
+
+
+*** BIB                                                   :ignore:noexport:
+
+bibliography:../thesis_plan.bib
+bibliographystyle:plain

@@ -1,17 +1,33 @@
 
 \chapter{Introduction}
-\label{sec:orga3cd0bf}
+\label{sec:org76eb342}
 \section{Motivation}
-\label{sec:orgcd9d217}
+\label{sec:org37e5d53}
+The discoveries in quantum physics during the last century opened multiple questions and demonstrate strange behaviours that are far from the classical physics we are used to.
+The answers of these questions as well as another field's investigations rely on the simulation of Nature.
+In order to understand our world we need to simulate instances of it, but the simulation of Nature itself requires a huge computational power that is intractable for classical computers.
+At the same time, we are witnesses of the Moore's law halt; we are reaching the limit in transistor sizes.
+While trying to make them smaller, quantum phenomena appear making impossible a transistor behaviour.
+During the last century Feynman had the idea of getting advantage of the unexplained but controllable quantum phenomena.
+He noticed that this quantum phenomena that would stop the development of smaller transistors and, therefore, powerful chips, actually could be used to get much more computational power.
+
+
+To be able to control this quantum phenomena, quantum chips were developed.
+And in order to be able to exploit its potential, quantum algorithms were developed.
+But, to run the quantum algorithms in quantum chips the quantum algorithms should be adapted.
+Our QCA lab at TU Delft University of Technology develop a general architecture for quantum computers \cite{Fu_2016} that follow a process which steps can be see in Fig. \ref{fig:system_stack}.
+This process goes from the algorithms description -- upper layer in the figure -- to the set of instructions that are sent as hardware dependent signals  -- lower layer -- to the hardware interface that controls the quantum chip.
+
+
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.7\textwidth]{figures/system_stack.png}
+\includegraphics[width=0.5\textwidth]{figures/system_stack.png}
 \caption{\label{fig:system_stack}
-Full stack implementation}
+Full stack implementation \cite{Fu:2017:EMS:3123939.3123952}}
 \end{figure}
 
 \section{Problem Statement}
-\label{sec:orge8770ed}
+\label{sec:org81811d9}
 Quantum algorithms are represented as quantum circuits when the circuit model of computation is adopted. Quantum circuits consist of quantum bits and gates operating on them.
 This representation (at high-levels of the system stack) is hardware agnostic; that is, it does not take into account the possible constraints of the quantum chip. Therefore, mapping models are required to have a version of the quantum algorithm adapted to the quantum device and that can be executed on it. 
 
@@ -23,4 +39,4 @@ Most of the works done about the mapping task optimize in terms of two parameter
 Given this scenario, the aim of this thesis is two fold: i) to propose different metrics that show how the algorithm's reliability is affected by the mapping process. To this purpose, we will focus on the fidelity, the probability of success and the quantum volume; and ii) to analyze how\ldots{} \textcolor{red}{Daniel, finish this sentence based on the results chapter and on what we discussed last week}
 
 \section{Structure of the thesis}
-\label{sec:orgb7f181d}
+\label{sec:orgdf4cd06}
