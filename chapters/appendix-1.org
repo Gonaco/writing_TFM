@@ -7,28 +7,29 @@
 :ID:       15254cfb-b82c-47a3-b8e8-8eb08de47f54
 :END:
 
-[ADD ALL THE TABLES]
+In this appendix we add the exact results of the simulations for each one of the benchmarks and each of the configurations we used.
+Note that the non-mapped version of the benchmarks have the quantum gates decomposed in the operations allowed in the SC-17 chip.
+Also, notice that not all the benchmarks have given results for the simulations with a decoherence time of $10 \mu s$ due to the long simulation times.
 
-[EXPLAIN WHY THE NON MAPPED VERSION HAS MORE GATES IN THE CIRCUIT THAN THE NUMBER OF GATES THAT APPEAR IN THE SELECTION TABLE]
+** ~4gt11_82~
 
-** 4gt11_82
-
-#+caption: Step 1 results after 1000 iterations
+#+caption: Step 1 results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:step1000
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+-------+---------+---------+------------+------------+-------|
 | Mapper      | # qubits | depth | # gates | # SWAPS | p. success |        $f$ | $V_Q$ |
 |-------------+----------+-------+---------+---------+------------+------------+-------|
-| No          |        5 |    78 |      84 |       0 |       0.96 | 0.97823066 |   390 |
+| no          |        5 |    78 |      84 |       0 |       0.96 | 0.97823066 |   390 |
 |-------------+----------+-------+---------+---------+------------+------------+-------|
 | minextendrc |        7 |   226 |     237 |      17 |      0.929 | 0.92937318 |  1582 |
 | minextend   |        8 |   *158* |     *228* |      *16* |      *0.947* |  *0.9312172* |  1264 |
 | base        |        6 |   177 |     *228* |      *16* |      0.932 |   0.906571 |  1062 |
 |-------------+----------+-------+---------+---------+------------+------------+-------|
 
-** 4gt12-v1_89
 
-#+caption: Results after 1000 iterations
+** ~4gt12-v1_89~
+
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:4gt12-v1_89
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+-------+---------+---------+------------+------------+-------|
@@ -42,9 +43,9 @@
 |-------------+----------+-------+---------+---------+------------+------------+-------|
 
 
-** 4gt4-v0_72
+** ~4gt4-v0_72~
 
-#+caption: Results after 1000 iterations
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:4gt4-v0_72
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+-------+---------+---------+------------+------------+-------|
@@ -57,8 +58,8 @@
 | base        |        6 |  1056 |    *1547* |      *89* |      *0.532* | 0.35703954 |  6336 |
 |-------------+----------+-------+---------+---------+------------+------------+-------|
 
-** 4mod5-bdd_287
-#+caption: Results after 1000 iterations
+** ~4mod5-bdd_287~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:4mod5-bdd_287
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+-------+---------+---------+------------+------------+-------|
@@ -72,8 +73,8 @@
 |-------------+----------+-------+---------+---------+------------+------------+-------|
 
 
-** 4mod5-v0_20
-#+caption: Results after 1000 iterations
+** ~4mod5-v0_20~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:4mod5-v0_20
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+-------+---------+---------+------------+------------+-------|
@@ -86,9 +87,9 @@
 | base        |        6 |   133 |     *119* |       *8* |      *0.947* | 0.89871898 |   714 |
 |-------------+----------+-------+---------+---------+------------+------------+-------|
 
-** alu_bdd_288                                        :mapper_not_important:
+** ~alu_bdd_288~                                      :mapper_not_important:
 
-#+caption: Results after 1000 iterations
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:alu_bdd_288
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -100,8 +101,22 @@
 | minextend   |        8 |     616 |      41 |   383 |      0.846 | 0.73109047 |  3064 |
 | base        |        7 |     *472* |      *25* |   *360* |      0.841 | 0.71637503 |  2520 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
-** alu_v0_27           
-#+caption: Results after 1000 iterations
+
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
+#+NAME: tab:alu_bdd_288
+#+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
+|-------------+------------+------------|
+| Mapper      | p. success |        $f$ |
+|-------------+------------+------------|
+| no          |      0.823 |  0.7239169 |
+|-------------+------------+------------|
+| minextendrc |      0.645 | 0.53390012 |
+| minextend   |      0.635 | 0.44304306 |
+| base        |      0.619 | 0.42191365 |
+|-------------+------------+------------|
+
+** ~alu_v0_27~           
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:alu_v0_27           
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -113,8 +128,22 @@
 | minextend   |       10 |     296 |      21 |   *156* |      0.944 | 0.89032214 |  1560 |
 | base        |        6 |     *278* |      *19* |   214 |      0.915 | 0.84492332 |  1284 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
-** decod24_bdd_294                                   :mapper_not_important:
-#+caption: Results after 1000 iterations
+
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
+#+NAME: tab:alu_v0_27
+#+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
+|-------------+------------+------------|
+| Mapper      | p. success |        $f$ |
+|-------------+------------+------------|
+| no          |      0.935 | 0.88798044 |
+|-------------+------------+------------|
+| minextendrc |       0.86 | 0.78330212 |
+| minextend   |      0.838 | 0.71318628 |
+| base        |      0.764 |  0.6236159 |
+|-------------+------------+------------|
+
+** ~decod24_bdd_294~                                  :mapper_not_important:
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:decod24_bdd_294     
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -126,8 +155,22 @@
 | minextend   |        7 |     468 |      29 |   328 |      0.816 | 0.73708015 |  2296 |
 | base        |        6 |     *405* |      *22* |   *300* |      0.781 | 0.71803687 |  1800 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
-** decod24_enable_126
-#+caption: Results after 1000 iterations
+
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
+#+NAME: tab:decod24_bdd_294
+#+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
+|-------------+------------+------------|
+| Mapper      | p. success |        $f$ |
+|-------------+------------+------------|
+| no          |      0.824 | 0.76021761 |
+|-------------+------------+------------|
+| minextendrc |      0.697 | 0.48128717 |
+| minextend   |      0.583 | 0.47226973 |
+| base        |      0.522 | 0.46210864 |
+|-------------+------------+------------|
+
+** ~decod24_enable_126~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:decod24_enable_126
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -139,8 +182,8 @@
 | minextend   |       10 |    2184 |     134 |  *1440* |      0.805 | 0.50947313 | 14400 |
 | base        |        6 |    *1959* |     *109* |  1446 |       0.74 | 0.42630108 |  8676 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
-** graycode6_47
-#+caption: Results after 1000 iterations
+** ~graycode6_47~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:graycode6_47
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -152,8 +195,8 @@
 | minextend   |       10 |     102 |       9 |    61 |      0.987 | 0.97012132 |   610 |
 | base        |        6 |      84 |       7 |    82 |      0.991 | 0.98075312 |   492 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
-** ham3_102
-#+caption: Results after 1000 iterations
+** ~ham3_102~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:ham3_102
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -165,8 +208,51 @@
 | minextend   |        4 |     115 |       6 |   121 |      0.974 | 0.96288976 |   484 |
 | base        |        4 |     106 |       5 |    98 |      0.973 | 0.95944625 |   392 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
-** mod10_176                                          :mapper_not_important:
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~hwb4_49~
+
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
+#+NAME: tab:hwb4_49
+#+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| Mapper      | # qubits | # gates | # SWAPS | depth | p. success |        $f$ | $V_Q$ |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| no          |        5 |     676 |       0 |   439 |      0.932 | 0.83574294 |  2195 |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| minextendrc |        8 |    1513 |      93 |  1387 |      0.836 | 0.64431638 | 11096 |
+| minextend   |        8 |    1486 |      90 |   961 |      0.841 | 0.61627052 |  7688 |
+| base        |        6 |    1342 |      74 |  1006 |      0.793 | 0.55657097 |  6036 |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+** ~miller_11~
+
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
+#+NAME: tab:miller_11
+#+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| Mapper      | # qubits | # gates | # SWAPS | depth | p. success |        $f$ | $V_Q$ |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| no          |        3 |     147 |       0 |   112 |      0.974 | 0.95730728 |   336 |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| minextendrc |        4 |     300 |      17 |   307 |      0.936 | 0.89826972 |  1228 |
+| minextend   |        4 |     291 |      16 |   278 |      0.941 | 0.90537705 |  1112 |
+| base        |        4 |     282 |      15 |   231 |      0.936 | 0.89555086 |   924 |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+** ~mini_alu_167~
+
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
+#+NAME: tab:mini_alu_167
+#+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| Mapper      | # qubits | # gates | # SWAPS | depth | p. success |        $f$ | $V_Q$ |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| no          |        5 |     833 |       0 |   516 |      0.891 | 0.77613311 |  2580 |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+| minextendrc |        8 |    1805 |     108 |  1598 |      0.843 |  0.6160112 | 12784 |
+| minextend   |        8 |    1832 |     111 |   992 |      0.805 | 0.53931365 |  7936 |
+| base        |        6 |    1697 |      96 |  1274 |      0.774 | 0.51881554 |  7644 |
+|-------------+----------+---------+---------+-------+------------+------------+-------|
+
+** ~mod10_176~                                        :mapper_not_important:
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:mod10_174_1
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -179,7 +265,7 @@
 | base        |        6 |     *983* |      *52* |   734 |      0.697 | 0.56115058 |  4404 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:mod10_174_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -192,8 +278,8 @@
 | base        |      0.372 | 0.27839542 |
 |-------------+------------+------------|
 
-** mod5adder_127                                               :lil_diff_fs:
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~mod5adder_127~                                             :lil_diff_fs:
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:mod5adder_127
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -206,7 +292,7 @@
 | base        |        6 |    *3248* |     *185* |  *2378* |      *0.591* | 0.18911191 | 14268 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:mod5adder_127_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -218,8 +304,8 @@
 | minextend   |      0.399 | 0.14349585 |
 | base        |      *0.465* | 0.12694018 |
 |-------------+------------+------------|
-** mod5d1_63
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~mod5d1_63~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:mod5d1_63
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -232,7 +318,7 @@
 | base        |        6 |     *195* |      *14* |   146 |       0.95 | 0.91002595 |   876 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:mod5d1_63_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -245,8 +331,8 @@
 | base        |      0.892 |  0.7849484 |
 |-------------+------------+------------|
 
-** mod8_10_177
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~mod8_10_177~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:mod8_10_177
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -259,7 +345,7 @@
 | base        |        6 |    2773 |     167 |  2006 |      0.335 | 0.26106507 | 12036 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:mod8_10_177_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -271,8 +357,8 @@
 | minextend   |      0.123 | 0.14638911 |
 | base        |      0.068 | 0.16412249 |
 |-------------+------------+------------|
-** one_two_three_v1_99
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~one_two_three_v1_99~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:one_two_three_v1_99
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -285,7 +371,7 @@
 | base        |        6 |     *833* |      *50* |   609 |      0.662 | 0.57083541 |  3654 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:one_two_three_v1_99_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -297,8 +383,8 @@
 | minextend   |      *0.355* | 0.33820922 |
 | base        |       0.26 | 0.31493265 |
 |-------------+------------+------------|
-** one_two_three_v3_101
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~one_two_three_v3_101~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:one_two_three_v3
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -311,7 +397,7 @@
 | base        |        6 |     *428* |      *25* |   323 |      0.742 | *0.62081173* |  1938 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:one_two_three_v_3_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -323,8 +409,8 @@
 | minextend   |      0.391 | *0.31579028* |
 | base        |       *0.42* | 0.31189591 |
 |-------------+------------+------------|
-** rd32_v0_66
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~rd32_v0_66~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:rd32_v0_66
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -337,7 +423,7 @@
 | base        |        5 |     *219* |      *13* |   169 |      0.955 | 0.90759692 |   845 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:rd32_v0_66_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -349,8 +435,8 @@
 | minextend   |      *0.902* | 0.77708902 |
 | base        |      0.896 | 0.77242986 |
 |-------------+------------+------------|
-** sf_274
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~sf_274~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:sf_274
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -363,7 +449,7 @@
 | base        |        6 |    *4450* |     *247* |  3289 |      0.088 | 0.15461728 | 19734 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:sf_274_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -375,8 +461,8 @@
 | minextend   |        0.0 |  0.1458942 |
 | base        |        0.0 | 0.14493197 |
 |-------------+------------+------------|
-** sf_276
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~sf_276~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:sf_276
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -389,7 +475,7 @@
 | base        |        6 |    *4447* |     *247* |  3280 |      0.089 | 0.13928494 | 19680 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:sf_276_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -401,8 +487,8 @@
 | minextend   |        0.0 | 0.15992956 |
 | base        |        0.0 | 0.14842314 |
 |-------------+------------+------------|
-** sym6_145
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~sym6_145~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:sym6_145
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+--------|
@@ -415,7 +501,7 @@
 | base        |        7 |   *21679* |    *1166* | 15613 |      0.531 | 0.12176519 | 109291 |
 |-------------+----------+---------+---------+-------+------------+------------+--------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 1000$
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
 #+NAME: tab:sym6_145_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
@@ -428,8 +514,8 @@
 | base        |       0.53 | 0.14274046 |
 |-------------+------------+------------|
 
-** xor5_254
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
+** ~xor5_254~
+#+caption: Results after 1000 iterations, $t_d = 30 \mu s$
 #+NAME: tab:xor5_254
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+----------+---------+---------+-------+------------+------------+-------|
@@ -442,8 +528,8 @@
 | base        |        6 |     104 |       9 |    92 |      0.942 | 0.91559086 |   552 |
 |-------------+----------+---------+---------+-------+------------+------------+-------|
 
-#+caption: Results after 1000 iterations, $t_1 = t_2 = 3000$
-#+NAME: tab:xor5_254
+#+caption: Results after 1000 iterations, $t_d = 10 \mu s$
+#+NAME: tab:xor5_254_2
 #+ATTR_LATEX: :booktabs :environment :placement [H] :font \small
 |-------------+------------+------------|
 | Mapper      | p. success |        $f$ |
