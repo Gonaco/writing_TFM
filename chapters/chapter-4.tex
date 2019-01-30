@@ -81,12 +81,12 @@ After simulating the algorithms, few of them returned errors (segmentation fault
 \label{sec:orgc0c805b}
 In this section we introduce the framework used to map the quantum algorithms and analyze the quantum metrics.
 It is based on two steps: \textbf{compilation} and \textbf{simulation}.
-With this purpose we connect two tools, OpenQL and quantumsim \textcolor{red}{Please, add a refernce to qauntumsim and OpenQL}, and we build a whole framework over them.
+With this purpose we connect two tools, OpenQL \cite{OpenQL} and quantumsim \cite{O_Brien_2017}, and we build a whole framework over them.
 
 \subsection{Compiler (OpenQL)}
 \label{sec:orgeebd0c8}
 OpenQL is a framework for high-level quantum programming developed by our group to describe quantum algorithms and compile them.
-The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages. It can target real quantum chips as well as different quantum computer simulators such are QX simulator or quantumsim \textcolor{red}{add references here to both simulators}. 
+The framework can be found as a library in either C++ or Python and, therefore, the circuits are described over one of these programming languages. It can target real quantum chips as well as different quantum computer simulators such are QX simulator \cite{Khammassi:2017:QHQ:3130379.3130487} or quantumsim \cite{O_Brien_2017}. 
 
 One of the passes of the compiler is the \textbf{mapper} algorithm developed by our group. It performs the initial placement, schedule the operations and route the qubits taking into account the quantum chip constraints that are described in a JSON file.
 It is also able to load different compiler configurations like the kind of scheduler, router or initial placement.
