@@ -1,12 +1,44 @@
 \chapter*{Abstract}
 
-[Abstract]
+%% Quantum algorithms are represented as quantum circuits.
+%% This notation is hardware agnostic.
+%% Mapping models are required to have a version of the quantum algorithm adapted to the quantum device and, therefor, executable in that device.
+%% This mapping process increases the probability of getting errors in the run of a given device, making the algorithm's results too noisy to be used.
+%% Therefore, mapping models require an optimization process in search of the best circuit version that is executable in a given device.
+%% Most of the works done about the mapping task optimize in terms of two parameters, either the number of added operations in the adapted version of the circuit or the latency added to the circuit.
+%% Moreover, these works asses the quality of their mapping algorithms in one of those two metrics.
+%% But, the information given by any of the two is enough to certify the quality of a mapping algorithm.
+%% Given this panorama, the aim of this thesis is to study metrics to asses the quality of a mapper of quantum algorithms.
+
+%% What is mapping
+
+Quantum computing is increasingly becoming a main interest in academia and companies all over the world.
+With a promising computational power, quantum computers' technology is driven by the development of quantum devices and quantum algorithms.
+However, quantum algorithms are hardware agnostic -- they do not take into account hardware constrains --, therefore, they need to follow an adaptation process in order to be executable in real quantum chips.
+One of the main phases of this adaptation process is the mapping task.
+
+The main drawback of the mapping is that, due to the changes that makes to the original quantum algorithm, the mapping increments the probability of getting errors while running the adapted quantum algorithm in a given device.
+Thus, mapping models require an optimization process in search of the best algorithm adaptation.
+Most of the current mapping models optimize in terms of two metrics: latency and number of operations added.
+Although correct, to optimize in terms of any of them is not enough to find the quantum algorithm adaptation with the least probability of getting errors.
+This two metrics are also used to asses the quality of the mapping models, but any of the two is sufficient to assess the quality of the mapping task either.
+
+%% What is the aim of the thesis and what we do
+
+The aim of this thesis is to study the most used metrics, among others, to assess the quality of the mapping procedure and that also could serve as heuristics for optimization.
+With that purpose we built an index of quantum algorithms as benchmarks to be mapped following the constrains of a real chip from QuTech, the Surface?-17.
+And, in order to test the metrics behaviour, we developed a framework able to map and simulate the benchmarks.
+%% After the simulations, the framework stores all the data in a database to be analyzed.
+
+%% We offer results...
+
+The results from the simulations framework let us extract several insights about the behaviour of the different metrics that were useful in our study.
 
 \begin{comment}
 \begin{flushright}
 {\makeatletter\itshape
     \@author \\
-    Delft, January 2018
+    Delft, February 2019
 \makeatother}
 \end{flushright}
 \end{comment}

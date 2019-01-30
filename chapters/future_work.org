@@ -1,0 +1,16 @@
+
+*** Intro                                                          :ignore:
+*** Improve mapping algorithm
+*** More samples
+
+[Enlarge the study with more samples and more cases (different number of qubits)]
+*** Better formula for Quantum Volume
+*** Values prediction
+
+[Regression]
+
+[General regression formula for fidelity an probability of success]
+
+*** Understanding more about probability of success
+
+[Investigate why the Probability of success is always higher than fidelity]
