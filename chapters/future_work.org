@@ -1,19 +1,23 @@
 
 *** Intro                                                          :ignore:
 
-While reviewing our results we recognized several issues that
-These topics are deferred to future work.
+While reviewing our results we recognized several issues that require more investigations.
+# These topics are deferred to future work.
 
-*** More samples
+*** Bigger selection of benchmarks
 
 # [Enlarge the study with more samples and more cases (different number of qubits)]
 
-Although our results explore a big set of values for each metric, we 
-
+Although our results explore a big set of values for each metric, we are aware that some regions in our plots are much more populated in terms of samples than others.
+In order to fully understand the behaviour of the metrics, more and different benchmarks should be analyzed with our simulations framework.
+Therefore, future work should include a bigger benchmark selection.
 
 *** More qubits
 
-Also, we targeted 
+Also, we targeted a similar benchmarks distribution in terms of number of qubits.
+Due to quantumsim limitations, the number of qubits are between 3 and 7 qubits, which is a low amount of qubits.
+Therefore, in order to explore higher systems in terms of qubits, we suggest that further research should be undertaken in the improvement of simulators.
+If we are able to simulate higher amounts of qubits, we will be able to study the behaviour of the mapping and the metrics in higher qubits systems.
 
 *** Improve Quantum Volume
 
@@ -34,12 +38,8 @@ Further studies on different and more samples configurations are therefore requi
 *** Understanding more about probability of success
 
 # [Investigate why the Probability of success is always higher than fidelity]
-
-This research has raised many questions in need of further investigation.
-
-
-
-
+We observed in the results chapter that probability of success tends to be higher than the fidelity.
+We are not sure about the source of this behaviour, therefore we recognize the need of further investigation about this question.
 
 *** Improve mapping algorithm
 

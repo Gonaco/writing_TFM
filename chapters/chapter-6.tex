@@ -1,35 +1,38 @@
 
 
 \chapter{Conclusions and Future Work}
-\label{sec:org3d18185}
+\label{sec:org7d44186}
 \section{Conclusions}
-\label{sec:org47e21c4}
+\label{sec:org16e6d2d}
 \section{Future work}
-\label{sec:org6667f25}
+\label{sec:org84160a2}
 
-While reviewing our results we recognized several issues that
-These topics are deferred to future work.
+While reviewing our results we recognized several issues that require more investigations.
 
-\subsection{More samples}
-\label{sec:orgf9d20fa}
+\subsection{Bigger selection of benchmarks}
+\label{sec:org3deb249}
 
-Although our results explore a big set of values for each metric, we 
-
+Although our results explore a big set of values for each metric, we are aware that some regions in our plots are much more populated in terms of samples than others.
+In order to fully understand the behaviour of the metrics, more and different benchmarks should be analyzed with our simulations framework.
+Therefore, future work should include a bigger benchmark selection.
 
 \subsection{More qubits}
-\label{sec:org0310707}
+\label{sec:orga80887a}
 
-Also, we targeted 
+Also, we targeted a similar benchmarks distribution in terms of number of qubits.
+Due to quantumsim limitations, the number of qubits are between 3 and 7 qubits, which is a low amount of qubits.
+Therefore, in order to explore higher systems in terms of qubits, we suggest that further research should be undertaken in the improvement of simulators.
+If we are able to simulate higher amounts of qubits, we will be able to study the behaviour of the mapping and the metrics in higher qubits systems.
 
 \subsection{Improve Quantum Volume}
-\label{sec:orgc127c02}
+\label{sec:org8775948}
 
 As we mention in the \hyperref[]{Quantum Volume} section, the metric of Quantum Volume defined as the multiplication of qubits and depth of the circuit is an initial attempt of studying it as mapping metric.
 As we showed in the \hyperref[]{Results} chapter, this definition, although highly correlated with the error increase, it is not having the best results.
 Thus, further studies, which take a better definition of Quantum Volume, will need to be undertaken.
 
 \subsection{Fidelity and probability of success estimation}
-\label{sec:orgc5a25c3}
+\label{sec:orgf1b0bfe}
 
 One of the main restrictions we have found through the development of this work are the simulation limits.
 Simulations of long circuits require long time to be simulated and, in some cases, are not even able to be simulated.
@@ -37,16 +40,13 @@ In order to avoid this overload that drags out our work we would like to model f
 Further studies on different and more samples configurations are therefore required in order to elucidate the regression model able to estimate fidelity and probability of success with the least error.
 
 \subsection{Understanding more about probability of success}
-\label{sec:org37f3ade}
+\label{sec:orgbdc5ccb}
 
-This research has raised many questions in need of further investigation.
-
-
-
-
+We observed in the results chapter that probability of success tends to be higher than the fidelity.
+We are not sure about the source of this behaviour, therefore we recognize the need of further investigation about this question.
 
 \subsection{Improve mapping algorithm}
-\label{sec:org36e47c9}
+\label{sec:org45071cf}
 
 Finally, aside from the aim of this project, we noticed that, in general, our mapping algorithm did not have state-of-the-art results.
 Although it helped us to observe a higher range of values, the mapping algorithm should be able to not accumulate the amount of errors we show.
