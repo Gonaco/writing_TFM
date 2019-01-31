@@ -90,7 +90,7 @@ From these results, we observe that, in general, the fidelity starts from lower 
 This behaviour is certainly because the longer the circuit, the more errors it will get.
 
 In Fig. ref:fig:mapping_effect_diff_3000 and Fig. ref:fig:mapping_effect_diff_1000 we plot the maximum (red) and minimum (blue) percentage of difference in fidelity between the non-mapped version of the benchmarks and each one of the mapped versions.
-We calculate the percentage of the fidelity difference as $\left(\frac{f_{\text{before}} - f_{\text{after}}}{f_{\text{before}}}\right)$ where $f_{\text{after}}$ is the fidelity of the mapped circuit and f_{\text{before}} is the fidelity of the non-mapped one.
+We calculate the percentage of the fidelity difference as $\frac{f_{\text{before}} - f_{\text{after}}}{f_{\text{before}}}$ where $f_{\text{after}}$ is the fidelity of the mapped circuit and f_{\text{before}} is the fidelity of the non-mapped one.
 As an example, in Fig. ref:fig:mapping_effect_3000_diff_lines and Fig. ref:fig:mapping_effect_1000_diff_lines, we plot two lines over some benchmark to depict the maximum (red) and the minimum(blue) difference.
 
 We can observe how the fidelity difference between non-mapped and the mapped algorithms tends to grow.

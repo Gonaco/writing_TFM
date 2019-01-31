@@ -1,14 +1,14 @@
 
 \chapter{Results}
-\label{sec:orge13a8ae}
+\label{sec:orgaed8c93}
 
 In this chapter the simulation results are presented with reference to the aim of the thesis, which was to study the mapping metrics:
 their precision when assessing the mapping quality and their relation with the error amount after mapping.
-First, in the \hyperref[sec:org0f1e697]{Impact of the mapping on the algorithm reliability} section we show how the mapping procedure affects the general increment of errors.
-After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:org13f1dfb]{Analysis of the mapping metrics} section.
+First, in the \hyperref[sec:org2563966]{Impact of the mapping on the algorithm reliability} section we show how the mapping procedure affects the general increment of errors.
+After that, we analyze the metrics and their correlation with the error increase in the \hyperref[sec:orgb1f6186]{Analysis of the mapping metrics} section.
 
 \section{Impact of the mapping on the algorithm reliability}
-\label{sec:org0f1e697}
+\label{sec:org2563966}
 After the selection of benchmarks in the \href{chapter-4.org}{Benchmarks} section, we started their simulations using our simulation framework.
 Some of the benchmarks either had very long simulation times or were even impossible to simulate due the computational power required by the quantumsim's complex error model. 
 In most of those cases the circuits had more than ten qubits.
@@ -87,7 +87,7 @@ From these results, we observe that, in general, the fidelity starts from lower 
 This behaviour is certainly because the longer the circuit, the more errors it will get.
 
 In Fig. \ref{fig:mapping_effect_diff_3000} and Fig. \ref{fig:mapping_effect_diff_1000} we plot the maximum (red) and minimum (blue) percentage of difference in fidelity between the non-mapped version of the benchmarks and each one of the mapped versions.
-We calculate the percentage of the fidelity difference as \(\left(\frac{f_{\text{before}} - f_{\text{after}}}{f_{\text{before}}}\right)\) where \(f_{\text{after}}\) is the fidelity of the mapped circuit and f\(_{\text{before}}\) is the fidelity of the non-mapped one.
+We calculate the percentage of the fidelity difference as \(\frac{f_{\text{before}} - f_{\text{after}}}{f_{\text{before}}}\) where \(f_{\text{after}}\) is the fidelity of the mapped circuit and f\(_{\text{before}}\) is the fidelity of the non-mapped one.
 As an example, in Fig. \ref{fig:mapping_effect_3000_diff_lines} and Fig. \ref{fig:mapping_effect_1000_diff_lines}, we plot two lines over some benchmark to depict the maximum (red) and the minimum(blue) difference.
 
 We can observe how the fidelity difference between non-mapped and the mapped algorithms tends to grow.
@@ -172,7 +172,7 @@ Benchmark & Depth before mapping & Depth after mapping with \emph{minextendrc} &
 \end{table}
 
 \section{Analysis of the mapping metrics}
-\label{sec:org13f1dfb}
+\label{sec:orgb1f6186}
 Once we acknowledge the behaviour of the fidelity decrease due to the mapping process, in this section, we will analyze which circuit parameter affects the amount of error the most.
 We consider that the best mapping is the one adding the less possible errors to the original circuit.
 If we are able to answer which metric is more correlated with the appearance of errors in the circuit, we will know the most critical metric for the mapping quality.
