@@ -1,16 +1,48 @@
 
 *** Intro                                                          :ignore:
-*** Improve mapping algorithm
+
+While reviewing our results we recognized several issues that
+These topics are deferred to future work.
+
 *** More samples
 
-[Enlarge the study with more samples and more cases (different number of qubits)]
-*** Better formula for Quantum Volume
-*** Values prediction
+# [Enlarge the study with more samples and more cases (different number of qubits)]
 
-[Regression]
+Although our results explore a big set of values for each metric, we 
 
-[General regression formula for fidelity an probability of success]
+
+*** More qubits
+
+Also, we targeted 
+
+*** Improve Quantum Volume
+
+As we mention in the \hyperref[]{Quantum Volume} section, the metric of Quantum Volume defined as the multiplication of qubits and depth of the circuit is an initial attempt of studying it as mapping metric.
+As we showed in the \hyperref[]{Results} chapter, this definition, although highly correlated with the error increase, it is not having the best results.
+Thus, further studies, which take a better definition of Quantum Volume, will need to be undertaken.
+
+*** Fidelity and probability of success estimation
+
+# [Regression]
+# [General regression formula for fidelity an probability of success]
+
+One of the main restrictions we have found through the development of this work are the simulation limits.
+Simulations of long circuits require long time to be simulated and, in some cases, are not even able to be simulated.
+In order to avoid this overload that drags out our work we would like to model fidelity and probability of success given the different circuit parameters.
+Further studies on different and more samples configurations are therefore required in order to elucidate the regression model able to estimate fidelity and probability of success with the least error.
 
 *** Understanding more about probability of success
 
-[Investigate why the Probability of success is always higher than fidelity]
+# [Investigate why the Probability of success is always higher than fidelity]
+
+This research has raised many questions in need of further investigation.
+
+
+
+
+
+*** Improve mapping algorithm
+
+Finally, aside from the aim of this project, we noticed that, in general, our mapping algorithm did not have state-of-the-art results.
+Although it helped us to observe a higher range of values, the mapping algorithm should be able to not accumulate the amount of errors we show.
+Research into solving this problem is already underway.
