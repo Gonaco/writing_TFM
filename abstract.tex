@@ -12,9 +12,12 @@
 
 %% What is mapping
 
-Quantum computing is increasingly becoming a main interest in academia and companies all over the world.
-With a promising computational power, quantum computers' technology is driven by the development of quantum devices and quantum algorithms.
-However, quantum algorithms are hardware agnostic -- they do not take into account hardware constrains --, therefore, they need to follow an adaptation process in order to be executable in real quantum chips.
+
+Quantum computers hold the promise for solving efficiently important problems in computational sciences that are intractable nowadays by exploiting quantum phenomena such are superposition and entanglement. 
+ Research in quantum computing is mainly driven by the development of quantum devices and quantum algorithms. Quantum algorithms can be described by quantum circuits, which are hardware agnostic and assume, for instance, that any interaction between any pair of qubits is possible.
+ 
+ 
+ -- i.e. they do not take into account quantum chip constrains --.  Therefore, they need to be compiled ti an executable version  to be executable in real quantum chips.
 One of the main phases of this adaptation process is the mapping task.
 
 The main drawback of the mapping is that, due to the changes that makes to the original quantum algorithm, the mapping increments the probability of getting errors while running the adapted quantum algorithm in a given device.
