@@ -6,6 +6,9 @@
 
 * Conclusions and Future Work
 ** Conclusions
+
+#+INCLUDE: conclusions.org
+
 ** Future work
 
 #+INCLUDE: future_work.org
