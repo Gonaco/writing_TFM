@@ -4,34 +4,58 @@
 \label{sec:org7d44186}
 \section{Conclusions}
 \label{sec:org16e6d2d}
+
+In this thesis we have proposed three different metrics to analyze how the mapping process affects the reliability of the algorithms.
+These metrics are the quantum fidelity, the probability of success of the algorithms and the Quantum Volume.
+They can be used not only to evaluate how good the mapping model is, but also as parameters to optimize during the mapping.
+Note that to calculate the fidelity and the probability of success of a quantum algorithm we need to simulate it -- using a quantum simulator -- which is time consuming and limits you to small circuit sizes.
+That is why we have investigated the Quantum Volume as possible alternative.
+
+To this purpose we have developed a simulation framework combining the OpenQL mapping model, that takes into account the constrains of a real chip -- the SC-17 --, and the quantumsim simulator.
+The analysis framework also stores the results of the simulations as well as the results from the mapping model in a database.
+
+
+
+The results of this study indicates that, as expected, mapping quantum algorithm on a quantum processor decreases the algorithm's reliability (quantum fidelity).
+And this difference in fidelity is more pronounced for longer circuits.
+
+In addition, although correlated, there is a slight difference between probability of success and fidelity due to the non-deterministic behaviour of the quantum measurements.
+
+We have also investigated the correlation of both metrics, the fidelity and probability of success, with the number of gates, number of two-qubit gates, circuit depth and Quantum Volume.
+Our results suggest that the number of gates is the most correlated metric and then, the best candidate to optimize by the mapping model, for this specific case.
+
+Finally, although we observe a certain correlation between fidelity/probability of success with Quantum Volume, the use of Quantum Volume to measure the algorithm's reliability should be further investigated.
+
+
 \section{Future work}
 \label{sec:org84160a2}
 
-While reviewing our results we recognized several issues that require more investigations.
+While reviewing our results we identify several points that require further research.
 
-\subsection{Bigger selection of benchmarks}
+\subsection*{Bigger selection of benchmarks}
 \label{sec:org3deb249}
 
 Although our results explore a big set of values for each metric, we are aware that some regions in our plots are much more populated in terms of samples than others.
 In order to fully understand the behaviour of the metrics, more and different benchmarks should be analyzed with our simulations framework.
 Therefore, future work should include a bigger benchmark selection.
 
-\subsection{More qubits}
+\subsection*{More qubits}
 \label{sec:orga80887a}
 
 Also, we targeted a similar benchmarks distribution in terms of number of qubits.
 Due to quantumsim limitations, the number of qubits are between 3 and 7 qubits, which is a low amount of qubits.
 Therefore, in order to explore higher systems in terms of qubits, we suggest that further research should be undertaken in the improvement of simulators.
 If we are able to simulate higher amounts of qubits, we will be able to study the behaviour of the mapping and the metrics in higher qubits systems.
+To this purpose we could use the QX simulator, developed at the QCA lab, that will include more realistic error models and will allow the exploration of quantum systems with higher number of qubits.
 
-\subsection{Improve Quantum Volume}
+\subsection*{Improve Quantum Volume}
 \label{sec:org8775948}
 
 As we mention in the \hyperref[]{Quantum Volume} section, the metric of Quantum Volume defined as the multiplication of qubits and depth of the circuit is an initial attempt of studying it as mapping metric.
-As we showed in the \hyperref[]{Results} chapter, this definition, although highly correlated with the error increase, it is not having the best results.
+As we showed in the \hyperref[]{Results} chapter, this definition, although correlated with the fidelity/probability of success, it is not having the best results.
 Thus, further studies, which take a better definition of Quantum Volume, will need to be undertaken.
 
-\subsection{Fidelity and probability of success estimation}
+\subsection*{Fidelity and probability of success estimation}
 \label{sec:orgf1b0bfe}
 
 One of the main restrictions we have found through the development of this work are the simulation limits.
@@ -39,15 +63,8 @@ Simulations of long circuits require long time to be simulated and, in some case
 In order to avoid this overload that drags out our work we would like to model fidelity and probability of success given the different circuit parameters.
 Further studies on different and more samples configurations are therefore required in order to elucidate the regression model able to estimate fidelity and probability of success with the least error.
 
-\subsection{Understanding more about probability of success}
+\subsection*{Understanding more about probability of success}
 \label{sec:orgbdc5ccb}
 
 We observed in the results chapter that probability of success tends to be higher than the fidelity.
-We are not sure about the source of this behaviour, therefore we recognize the need of further investigation about this question.
-
-\subsection{Improve mapping algorithm}
-\label{sec:org45071cf}
-
-Finally, aside from the aim of this project, we noticed that, in general, our mapping algorithm did not have state-of-the-art results.
-Although it helped us to observe a higher range of values, the mapping algorithm should be able to not accumulate the amount of errors we show.
-Research into solving this problem is already underway.
+We are not sure about the source of this behaviour, therefore further investigation is needed.

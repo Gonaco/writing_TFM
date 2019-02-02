@@ -1,12 +1,12 @@
 
-\chapter{Quantum computers and mapping of quantum circuits}
+\chapter{Quantum computing and mapping of quantum circuits}
 \label{sec:org9b8733c}
 
 In this chapter we offer the background in Quantum Computing required throughout the thesis. 
 First, in section \hyperref[sec:org94895bc]{Quantum computing} we describe the general rules and the basic elements of a quantum computer.
 After that, in the \hyperref[sec:orgd680d43]{Mapping of quantum circuits} section we explain what is the process of mapping quantum algorithms, why is required and the basic steps on it.
 In the \hyperref[sec:orgcc4f1c8]{State-of-the-art on the mapping of quantum circuits} we talk about the current works and improvements done during the last years about the mapping task.
-We finish the chapter with a description of the metrics used to measure the quality of the mapping process and that serve as heuristics to optimize in the mapping algorithms, in the \hyperref[sec:orgc729465]{Mapping metrics} section.
+We finish the chapter with a description of the metrics used to measure the quality of the mapping process and that serve as parameters to optimize in the mapping algorithms, in the \hyperref[sec:orgc729465]{Mapping metrics} section.
 
 \section{Quantum computing}
 \label{sec:org94895bc}
@@ -639,19 +639,17 @@ Several operations can be run in parallel in the same cycle -- at the same time.
 Actually, to minimize in latency is to maximize in parallelism.
 Therefore, even though related, to optimize in one or the other holds different baselines.
 
-Nonetheless, these metrics are not enough to assert how good the mapping process is.
+In addition, these metrics are not enough to assess how good the mapping process is.
 These metrics do not tell you how the algorithm is affected by them.
 In other words, will my algorithm still produce `good' results after the mapping?
 They are related with the error rate increase but the relationship is not totally clear.
 For instance, it could be the case that concatenation of errors introduced by contiguous gates would end up in a correction of the first error.
 Or, that the busier the qubit is, the less affected by decoherence would be.
-Then, one question arises.
-What would be the best metric?
-Definitely, the optimal solution would be to optimize directly in terms of the error rate.
-But, in order to do that, a precise prediction of the error should be done and this is a hard computational task in quantum computing.
+%Then, one question arises.
+%What would be the best metric  ?
+%Definitely, the optimal solution would be to optimize directly in terms of the error rate.
+%But, in order to do that, a precise prediction of the error should be done and this is a hard computational task in quantum computing.
 
-
-\textcolor{red}{Review this paragraph once the results chapter is finished}
 
 In this thesis, we propose three new metrics to analyze how the mapping process affects the algorithm reliability. As we will explain in Section \hyperref[sec:org27990de]{New Mapping Metrics: algorithm reliability} these metrics are fidelity, probability of success and quantum volume. 
 To perform this analysis we will map several small quantum algorithms on the superconducting quantum chip develop at Qutech by DiCarlo's group 

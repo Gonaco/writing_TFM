@@ -14,28 +14,26 @@
 
 
 Quantum computers hold the promise for solving efficiently important problems in computational sciences that are intractable nowadays by exploiting quantum phenomena such are superposition and entanglement. 
- Research in quantum computing is mainly driven by the development of quantum devices and quantum algorithms. Quantum algorithms can be described by quantum circuits, which are hardware agnostic and assume, for instance, that any interaction between any pair of qubits is possible.
+ Research in quantum computing is mainly driven by the development of quantum devices and quantum algorithms. Quantum algorithms can be described by quantum circuits, which are hardware agnostic -- e.g it is assumed that any arbitrary interaction between qubits is possible. However, real quantum processors have a series of constraints that must be complied to when running a quantum algorithm. Therefore, a mapping process that adapts the quantum circuit to  chip's constraints is required.
+ 
+ The mapping process will, in general, increase the number of gates and/or the circuit depth. As qubits and gates are error prone, it will result in an increment of the failure rate of computation while running the adapted quantum algorithm in a given quantum device. Most of the current mapping models optimize and are assessed based  on two metrics: circuit depth (or latency) and number of (movement) operations added; they should be as minimal as possible. However, these metrics are not giving any information about how the mapping process is affecting the reliability of the algorithm. In other words, can still the algorithm produce `good' results after being mapped?   
  
  
- -- i.e. they do not take into account quantum chip constrains --.  Therefore, they need to be compiled ti an executable version  to be executable in real quantum chips.
-One of the main phases of this adaptation process is the mapping task.
 
-The main drawback of the mapping is that, due to the changes that makes to the original quantum algorithm, the mapping increments the probability of getting errors while running the adapted quantum algorithm in a given device.
-Thus, mapping models require an optimization process in search of the best algorithm adaptation.
-Most of the current mapping models optimize in terms of two metrics: latency and number of operations added.
-Although correct, to optimize in terms of any of them is not enough to find the quantum algorithm adaptation with the least probability of getting errors.
-This two metrics are also used to asses the quality of the mapping models, but any of the two is sufficient to assess the quality of the mapping task either.
 
 %% What is the aim of the thesis and what we do
 
-The aim of this thesis is to study the most used metrics, among others, to assess the quality of the mapping procedure and that also could serve as heuristics for optimization.
-With that purpose we built an index of quantum algorithms as benchmarks to be mapped following the constrains of a real chip from QuTech, the Surface?-17.
-And, in order to test the metrics behaviour, we developed a framework able to map and simulate the benchmarks.
+The aim of this thesis is to propose some new mapping metrics that allow to study the impact of the mapping process on the algorithm's reliability. These are, quantum fidelity, probability of success of the algorithm and quantum volume. They could be used not only  to assess the quality of the mapping procedure but also as parameters to be optimized by the mapping.
+
+To this purpose, different quantum algorithms have been mapped into the superconducting quantum processor, called Surface-17, developed at QuTech.  
+
+%With that purpose we built an index of quantum algorithms as benchmarks to be mapped following the constrains of a real chip from QuTech, the Surface-17.
+%And, in order to test the metrics behaviour, we developed a framework able to map and simulate the benchmarks.
 %% After the simulations, the framework stores all the data in a database to be analyzed.
 
 %% We offer results...
 
-The results from the simulations framework let us extract several insights about the behaviour of the different metrics that were useful in our study.
+%The results from the simulations framework let us extract several insights about the behaviour of the different metrics that were useful in our study.
 
 \begin{comment}
 \begin{flushright}

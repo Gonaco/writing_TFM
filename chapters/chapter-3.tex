@@ -62,7 +62,7 @@ This limitation comes from the fact that, the more steps you are looking ahead w
 We highlight that the mapping problem is an NP problem \cite{Siraichi_2018}.
 Therefore, this method represents a viable solution, although a lot of future work should be done.
 
-\section{New Mapping Metrics: algorithm reliability}
+\section{New Mapping Metrics: algorithm's reliability}
 \label{sec:org27990de}
 As mentioned in the \hyperref[sec:orgc729465]{Mapping metrics} section in the second chapter, we name \emph{mapping metrics} to those metrics used to assert the quality of a mapper and that are also used by the mapper algorithm as a cost function to optimize.
 In this section, we will present and  define some new mapping metrics: \textbf{fidelity}, \textbf{probability of success} and \textbf{Quantum Volume}.
@@ -132,18 +132,14 @@ For instance, if the expected result of an algorithm is \texttt{0100} and the re
 We will only get a success if the algorithm returns \texttt{0100}.
 Then, in the previous example, if we get \texttt{0001}, \texttt{0100} and \texttt{1111} as results after running the algorithm three times the resulting probability of success will be \(\frac{1}{3}\).
 
-This model was chosen because it is one of the most practical ways to include the measurement gate into the error analysis.
-But, at the same time, we aware that this metric has a limitation: it cannot assert the success of an algorithm that returns a quantum state in superposition, a quantum state that is not either the ground or the excited state but both at the same time; at least it is not able in just one run.
-Once a quantum state is measured it collides in either ground or excited.
-In order to extract the complete quantum state, several runs of the circuit should be done, inheriting the results as a probabilistic distribution or histogram.
-For a state as \(0.3 | 0 \rangle + 0.7 | 1 \rangle\), after several measurements, we will get \texttt{0} a 30\% of the times and \texttt{1} a 70\% of the times.
-Accordingly, in order to calculate the probability of success, we will need to compare histograms developed after several runs, instead of only one measured result.
-For this reason, as we explain with more detail in the \hyperref[sec:org17c0cef]{Benchmarks} section, we decided to work only with deterministic quantum algorithms, which result is binary and known
+
 
 
 In our study, we will use both metrics in order to study how the mapping process and then the amount of errors affect the  algorithm reliability.
 Note that as we already mention, the fidelity is calculated before measurement and then it does  not take into account the measurement errors. It could be the case that a quantum state is erroneous before the measurement and, then, due to the error added from the measurement the erroneous state would flip and converge into the expected state.
 At the same time, a correct quantum state could be measured wrongly due to the measurement errors.
+
+It is worth noting that both metrics, the fidelity and probability of success, are obtained by using a quantum computer simulator as we will explain in the next chapter.
 
 \subsection{Quantum Volume}
 \label{sec:org3029336}
