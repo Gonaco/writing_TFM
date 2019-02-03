@@ -1,0 +1,376 @@
+% Created 2019-02-03 Sun 14:59
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{minted}
+\usepackage{color}
+\usepackage{minted}
+\usepackage{parskip}
+\usepackage[options]{qcircuit}
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\author{Daniel Moreno Manzano}
+\date{\today}
+\title{Thesis Defense}
+\hypersetup{
+ pdfauthor={Daniel Moreno Manzano},
+ pdftitle={Thesis Defense},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.1.1 (Org mode 9.1.14)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+
+
+\section{Intro to Quantum}
+\label{sec:org47caaa5}
+
+\subsection{Qubits and what is Quantum (\textasciitilde{}2 min)}
+\label{sec:orga338936}
+
+\subsubsection{Intro}
+\label{sec:org84e281f}
+
+First of all I would like to introduce a bit about what is quantum computing.
+Throughout the last century, the discoveries in Quantum Physics gave a headache to all the physicists.
+There were two phenomena which behaviour was far from what we could understand from classical physics: \textbf{superposition} and \textbf{entanglement}.
+
+Still today there is no explanation to this phenomena but, Feynman -- one of those physicists -- noticed that this behaviour could be used to compute large problems much faster than classical computers.
+
+\subsubsection{Qubit}
+\label{sec:orgf7838a3}
+
+So they made up the concept of quantum bit -- the qubit --, that is the basic unit of quantum information.
+A qubit state is described in the bra-ket notation.
+Due to the \textbf{superposition} effect and unlike a bit, a qubit could be either in the excited state, in the ground state or even \textbf{both} at the same time.
+In other words, it can be 0 and 1 at the same time.
+
+As an analogy, this is like flipping a coin.
+While it is turning in the air one cannot distinguish either face or tails, but both.
+
+[Superposition graph]
+
+[coin animation]
+
+The superposition phenomena is mathematically represented as this formula there
+
+$${\displaystyle |\psi \rangle =\alpha_0 |0\rangle +\alpha_1 |1\rangle }$$
+
+
+And, whenever the state of the qubit is measured, the measurement returns either 0 with a probability of  \(|\alpha_0| ^2\) or 1 with a probability of \(|\alpha_1| ^2\).
+
+[graph representing the possibilities of measuring a qubit]
+
+For instance, a qubit in the state \(|\psi \rangle =\sqrt{0.3} |0\rangle + \sqrt{0.7} |1\rangle\), will output 0 30\% of the times and 1 70\% percent of the times.
+
+But, -- and here comes the strangest part -- after measurement the qubit collapses in the measured state.
+
+Following the coin example, it is like, when you catch the coin, until you don't open the hands it could be in both states still.
+But, whenever you look at it you make the coin stay in either heads or tails.
+
+I'm sure you've heard about the famous Shrödinger's cat.
+It is the same. 
+The cat is alive and dead at the same time until we open the box and we wither kill or maintain him alive.
+
+[A cat somewhere?]
+
+\subsection{Motivation. Why quantum is so cool?}
+\label{sec:org4da5130}
+
+Ok, but why everybody is so excited about quantum?
+
+Well as I said before, quantum computers have much more computational power than classical computers.
+Due to the superposition effect, with \(N\) qubits we can represent \(2^{2N}\) states, while with bits we can represent \(2^N\).
+
+\begin{center}
+\begin{tabular}{ll}
+\(N\) bits & \(N\) qubits\\
+\(2^N\) & \(2^{2N}\)\\
+\end{tabular}
+\end{center}
+
+For instance, with 3 qubits we can represent either 000, 001, etc. Till 111; 8 states.
+But with 3 qubits we can represent all the those states at once.
+
+\begin{center}
+\begin{tabular}{ll}
+3 bits & 3 qubits\\
+gif of the possibilities & \(\alpha_{000} \textbar 000\rangle +\alpha_{001} \textbar 001\rangle + ... + \alpha_{111} \textbar 111\rangle\)\\
+\end{tabular}
+\end{center}
+
+
+[Graph showing the relation between qubit states and bit states]
+
+[more quantum promising things?]
+
+
+\subsection{Quantum Gates and circuits}
+\label{sec:orgcdfc933}
+
+In order to do operations with qubits the quantum gates are used.
+They are the quantum siblings of the boolean gates.
+As described in the report, depending on the gate you apply to a qubit you will change it's state in different ways.
+There are two main kinds, single-qubit gates and two-qubit gates.
+
+[Boolean gates figure]
+
+These are the single-qubit gates:
+
+\begin{center}
+\begin{tabular}{lllllll}
+Identity & Pauli-X & Pauli-Y & Pauli-Z & Hadamard & S gate & T gate\\
+ &  &  &  &  &  & \\
+\input{../figures/i_gate} & \input{../figures/x_gate} & \input{../figures/y_gate} & \input{../figures/z_gate} & \input{../figures/h_gate} & \input{../figures/s_gate} & \input{../figures/t_gate}\\
+\end{tabular}
+\end{center}
+
+
+And these three, the CNOT, the CZ and the SWAP are the two-qubit gates.
+For example, a CNOT is a Controlled-NOT gate.
+The qubit in the black dot is the control qubit, and the one going through the plus symbol is the target qubit.
+Depending on the state of the control qubit it will negate, or not, the target one.
+
+An easier example is the SWAP gate, that exchanges the states of two qubit.
+Moving the state of one qubit to the other and vice versa.
+
+\begin{center}
+\begin{tabular}{lll}
+CNOT & CZ & SWAP\\
+ &  & \\
+\input{../figures/cnot_gate} & \input{../figures/cz_gate} & \input{../figures/swap_gate}\\
+\end{tabular}
+\end{center}
+
+
+\subsubsection{Quantum Circuits}
+\label{sec:org79a6fca}
+
+As boolean logic, the quantum algorithms are represented as the so-called quantum circuits.
+As algorithm representations, they are \textbf{hardware agnostic}.
+Or in other words, quantum circuits do not consider the device where they are going to be executed.
+
+A quantum circuit is based on \textbf{virtual qubits} -- because they are a representation, not the real ones in the device -- and quantum gates.
+The quantum circuits connect the virtual qubits with the upcoming quantum gates that are going be applied to them.
+
+For instance, in this circuit we can see 6 qubits connected with 5 CNOTs and 6 Measurements at the end.
+
+\begin{figure}[H]
+    \centering
+
+\resizebox{0.3\textwidth}{!}{
+   \Qcircuit @C=1em @R=.7em {
+\lstick{q_1} & \targ & \qw & \qw & \qw & \qw & \push{|0\rangle} \qw & \meter & \rstick{0} \qw\\
+\lstick{q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \push{|0\rangle} \qw & \meter & \rstick{0} \qw\\
+\lstick{q_3} & \qw & \ctrl{-1} & \targ & \qw & \qw & \push{|0\rangle} \qw & \meter & \rstick{0} \qw\\
+\lstick{q_4} & \qw & \qw & \ctrl{-1} & \targ & \qw & \push{|0\rangle} \qw & \meter & \rstick{0} \qw\\
+\lstick{q_5} & \qw & \qw & \qw & \ctrl{-1} & \targ & \push{|0\rangle} \qw & \meter & \rstick{0} \qw\\
+\lstick{q_6} & \qw & \qw & \qw & \qw & \ctrl{-1} & \push{|1\rangle} \qw & \meter & \rstick{1} \qw
+}
+}
+\end{figure}
+
+
+\subsubsection{Qubits are faulty. Example of a circuit demonstrating that qubits are faulty?}
+\label{sec:org2ddf9c0}
+
+But \textbf{qubits and quantum gates are faulty}.
+Qubits have a limited life time, called the \textbf{decoherence time}, and quantum gates can introduce errors.
+
+Let's say that the correct answer of this circuit [previous example] is \texttt{000001}.
+We can see how, under ideal conditions, after the gates the qubits hold a pure state that is correctly measured.
+
+But, if we add errors, the results will be much more different.
+We can see now in the circuit how the first and the last qubit are still correct, but the rest have been affected by errors.
+
+\begin{figure}[H]
+    \centering
+
+\resizebox{0.3\textwidth}{!}{
+   \Qcircuit @C=1em @R=.7em {
+\lstick{q_1} & \targ & \qw & \qw & \qw & \qw & \push{|0\rangle} \qw & \meter & \rstick{0} \qw\\
+\lstick{q_2} & \ctrl{-1} & \targ & \qw & \qw & \qw & \push{|0\rangle} \qw & \meter & \rstick{1} \qw\\
+\lstick{q_3} & \qw & \ctrl{-1} & \targ & \qw & \qw & \push{\sqrt{0.3}|0\rangle + \sqrt{0.7}|1\rangle} \qw & \meter & \rstick{1} \qw\\
+\lstick{q_4} & \qw & \qw & \ctrl{-1} & \targ & \qw & \push{\sqrt{0.3}|0\rangle + \sqrt{0.7}|1\rangle} \qw & \meter & \rstick{0} \qw\\
+\lstick{q_5} & \qw & \qw & \qw & \ctrl{-1} & \targ & \push{\sqrt{0.3}|0\rangle + \sqrt{0.7}|1\rangle} \qw & \meter & \rstick{1} \qw\\
+\lstick{q_6} & \qw & \qw & \qw & \qw & \ctrl{-1} & \push{|1\rangle} \qw & \meter & \rstick{1} \qw
+}
+}
+\end{figure}
+
+We can see how the second qubit is correct until the measurement and then it suffers a measurement error.
+We can see, as well, that qubits 3, 4 and 5 suffer an error during the circuit that leads them to an incorrect state.
+As explained before, this error makes the qubit to collapse in 0 30\% of the times and in 1 70\% of the times.
+
+\subsection{Quantum is real}
+\label{sec:org6aad16b}
+
+All right, this was theory.
+Let's talk about reality.
+
+\subsubsection{Quantum chip examples}
+\label{sec:orge9d45c8}
+
+Quantum Computing is not just a theoretical field.
+Quantum Computers do exist!
+For example, QuTech's Superconducting chips, SC-7 and SC-17.
+
+We can see the golden structure and the fridge required to set the proper conditions for the quantum chip.
+Normally, quantum chips need to be at a very cold temperature, \textasciitilde{}2°K.
+Moreover, we can see in the picture how the controllers -- that are at room temperature -- and the chips are separated.
+
+[Figure of the fridge and the golden structure]
+
+In this research, we will focus our work in the SC-17 chip.
+
+\subsubsection{Chip constrains \(\to\) Why mapping?}
+\label{sec:org639bdbe}
+
+Quantum chips have constrains.
+Most of the quantum chips -- not only QuTech's ones -- have one main limitation, the Nearest Neighbor constrain.
+This constrain limits the interaction between qubits.
+
+[Figure of the chip layout]
+
+As one can see in the SC-17 chip layout, the qubits -- the colored dots -- are not connected in an all-to-all fashion, but in a grid fashion -- each qubit has a maximum of 4 connections.
+For instance, we can see how qubit 8 is linked with qubits 5, 6, 10 and 11 but not with 7 or 9.
+
+Therefore, if we want to run any quantum algorithm -- that is hardware agnostic -- in a given device you need to adapt/transform it to the requirements of the chip.
+This adaption process is what we call the mapping procedure.
+
+\section{Mapping}
+\label{sec:org04d1802}
+\subsection{What is mapping}
+\label{sec:orgc4f2b96}
+
+\ldots{}
+
+\begin{itemize}
+\item Scheduler
+\item Initial placement
+\item Router
+\end{itemize}
+
+
+\subsubsection{Scheduler}
+\label{sec:orge24e8c4}
+
+\begin{enumerate}
+\item Definition + Dependence graph
+\label{sec:orge8c7094}
+
+\item Example
+\label{sec:org296ad38}
+\end{enumerate}
+\subsubsection{Initial placement}
+\label{sec:orgfb46bf6}
+\begin{enumerate}
+\item Definition
+\label{sec:orgbaa068c}
+\end{enumerate}
+\subsubsection{Router}
+\label{sec:org60943ef}
+\begin{enumerate}
+\item Definition
+\label{sec:org9c82baf}
+\end{enumerate}
+\subsubsection{Metrics intro?}
+\label{sec:orgaf8f759}
+\subsection{Example}
+\label{sec:orgbba9723}
+\subsection{Metrics outro}
+\label{sec:org3136856}
+\section{Constrains?}
+\label{sec:org5bf8fbe}
+\subsection{More constrains}
+\label{sec:org1320c1c}
+
+[Figure of SC-17 again]
+
+Particularly, SC-17, as most of the superconducting technologies, has more constrains that we need to take into account.
+As I describe with more detail in the thesis:
+
+\begin{itemize}
+\item SC-17 does not support all quantum gates, but enough to do any possible operation.
+\item SC-17 requires between 20 and 600 \(ns\) to execute the quantum gates, depending on their kind. As explained before, time is a critical issue in quantum, so the faster we run the better.
+\item SC-17 has also a limitation in terms of parallel execution of gates. Not all single- or two-qubit gates are allowed to be executed at the same time.
+\item Finally, SC-17 has three feed-lines able to measure out the qubits' state. As it can be seen in the SC-17 figure, each feed-line is connected to a different set of qubits; and whenever one uses a feed-line it will measure all the qubits. So, although one can extract the information of only one qubit, the rest of qubits in the same feed-line will be measured as well. This makes impossible to measure two qubits in the same feed-line in a row. For example, we cannot measure qubit 2 and then qubit 6.
+\end{itemize}
+
+\section{Aim of the project again}
+\label{sec:org152a912}
+\subsection{Aim}
+\label{sec:orgbd3c714}
+\subsection{Overall view of what we have done}
+\label{sec:org26b7d2a}
+
+\begin{itemize}
+\item New Metrics
+\item Benchmarks
+\item Framework Analysis (Map + simulation)
+\end{itemize}
+
+\section{New metrics}
+\label{sec:org6562b5c}
+
+\subsection{Fidelity}
+\label{sec:org34c145d}
+
+\subsection{Probability of success}
+\label{sec:org9884af3}
+
+\subsection{Quantum Volume}
+\label{sec:org516ee7c}
+\section{Benchmarks}
+\label{sec:orgbf1375d}
+\subsection{Why Benchmarks}
+\label{sec:orgf4b0049}
+\subsection{How Benchmarks (sources)}
+\label{sec:org3b51801}
+\subsection{How the Benchmarks are}
+\label{sec:orgf574c69}
+\subsection{Selection}
+\label{sec:orgda14697}
+\section{Framework Analysis}
+\label{sec:orgf7efb16}
+\subsection{OpenQL}
+\label{sec:org1bb70bc}
+\subsection{quantumsim}
+\label{sec:org71ad76b}
+\subsection{Overall view of the Framework analysis}
+\label{sec:org48e2ac6}
+\section{Results}
+\label{sec:org1c42612}
+\subsection{Impact of mapping}
+\label{sec:org8bf4a01}
+\subsubsection{Fidelity decreases}
+\label{sec:org21f5871}
+\subsubsection{How fidelity decreases?}
+\label{sec:org0a7e0f2}
+\subsection{Analysis of the metrics}
+\label{sec:org07623f2}
+\subsubsection{Probability of success and fidelity correlation}
+\label{sec:orge9f158a}
+\subsubsection{Metrics correlation}
+\label{sec:orgee19340}
+\subsection{Future Work}
+\label{sec:org17c2287}
+\end{document}
